@@ -11,7 +11,7 @@ exports.getFlashcards = async (req, res, next) => {
       .status(200)
       .json({ success: true, count: flashcards.length, data: flashcards });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };
 
@@ -33,9 +33,7 @@ exports.getFlashcard = async (req, res, next) => {
 
     res.status(200).json({ success: true, data: flashcard });
   } catch (err) {
-    next(
-      new ErrorResponse(`Flashcard not found with id of ${req.params.id}`, 404)
-    );
+    next(err);
   }
 };
 
@@ -51,8 +49,7 @@ exports.createFlashcard = async (req, res, next) => {
       data: flashcard
     });
   } catch (err) {
-    res.status(400).json({ success: false });
-    console.log(err.message);
+    next(err);
   }
 };
 
@@ -71,12 +68,17 @@ exports.updateFlashcard = async (req, res, next) => {
     );
 
     if (!flashcard) {
-      return res.status(400).json({ success: false });
+      return next(
+        new ErrorResponse(
+          `Flashcard not found with id of ${req.params.id}`,
+          404
+        )
+      );
     }
 
     res.status(200).json({ success: true, data: flashcard });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };
 
@@ -88,11 +90,16 @@ exports.deleteFlashcard = async (req, res, next) => {
     const flashcard = await Flashcard.findByIdAndDelete(req.params.id);
 
     if (!flashcard) {
-      return res.status(400).json({ success: false });
+      return next(
+        new ErrorResponse(
+          `Flashcard not found with id of ${req.params.id}`,
+          404
+        )
+      );
     }
 
     res.status(200).json({ success: true, data: {} });
   } catch (error) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };

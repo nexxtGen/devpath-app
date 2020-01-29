@@ -20,7 +20,7 @@ const FlashcardSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true,
+    required: [true, 'Category is required'],
     enum: [
       'Javascript',
       'React',
