@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Flashcard = require('../models/Flashcard');
 
 // @desc Get all flashcards
@@ -22,12 +23,19 @@ exports.getFlashcard = async (req, res, next) => {
     const flashcard = await Flashcard.findById(req.params.id);
 
     if (!flashcard) {
-      return res.status(400).json({ success: false });
+      return next(
+        new ErrorResponse(
+          `Flashcard not found with id of ${req.params.id}`,
+          404
+        )
+      );
     }
 
     res.status(200).json({ success: true, data: flashcard });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(
+      new ErrorResponse(`Flashcard not found with id of ${req.params.id}`, 404)
+    );
   }
 };
 
