@@ -23,5 +23,7 @@ exports.register = asyncHandler(async (req, res, next) => {
     avatar
   });
 
-  res.status(200).json({ success: true });
+  const token = user.getSignedJwtToken();
+
+  res.status(200).json({ success: true, token });
 });
