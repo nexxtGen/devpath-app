@@ -9,15 +9,17 @@ const {
 
 const router = express.Router();
 
+const { protect } = require('../middleware/auth');
+
 router
   .route('/')
-  .get(getFlashcards)
-  .post(createFlashcard);
+  .get(protect, getFlashcards)
+  .post(protect, createFlashcard);
 
 router
   .route('/:id')
-  .get(getFlashcard)
-  .put(updateFlashcard)
-  .delete(deleteFlashcard);
+  .get(protect, getFlashcard)
+  .put(protect, updateFlashcard)
+  .delete(protect, deleteFlashcard);
 
 module.exports = router;
