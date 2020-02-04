@@ -6,7 +6,6 @@ const UserNavigationWrapper = () => {
   return (
     <div>
       <UserSidebar />
-      <h1>Navigation Wrapper</h1>
     </div>
   );
 };

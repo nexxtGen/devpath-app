@@ -10,29 +10,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 
-const drawerWidth = 230;
 const styles = createStyles({
   root: {
     flexGrow: 1,
     background: 'none'
   },
-  appBar: {
+  appbar: {
     background:
       'linear-gradient(135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)',
-    zIndex: 1,
-    transition: 'width 0.2s, margin .02s, ease-in',
     height: 65
   },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: 'width 0.2s, margin .02s, ease-in'
-  },
   menuButton: {
-    marginRight: 36
-  },
-  hide: {
-    display: 'none'
+    marginRight: 40
   },
   title: {
     flexGrow: 2,
@@ -45,12 +34,13 @@ const styles = createStyles({
   },
   menu: {
     marginTop: 52
+    //background: 'red'
   }
 });
 
-const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
+const UserAppbar = ({ classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const openMenu = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -62,21 +52,13 @@ const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position='fixed'
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
+      <AppBar position='static' className={classes.appbar}>
         <Toolbar>
           <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
             edge='start'
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open
-            })}
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='menu'
           >
             <MenuIcon />
           </IconButton>
@@ -112,7 +94,7 @@ const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
                 vertical: 'top',
                 horizontal: 'right'
               }}
-              open={openMenu}
+              open={open}
               onClose={handleClose}
               className={classes.menu}
             >
