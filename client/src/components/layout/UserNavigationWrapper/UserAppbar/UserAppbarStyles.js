@@ -11,13 +11,13 @@ const styles = createStyles({
     background:
       'linear-gradient(135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)',
     zIndex: 1,
-    transition: 'width 0.2s, margin .02s, ease-in',
+    transition: 'width 0.3s, margin .03s, ease-in',
     height: 65
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: 'width 0.2s, margin .02s, ease-in'
+    transition: 'width 0.3s, margin .03s, ease-in'
   },
   menuButton: {
     marginRight: 36

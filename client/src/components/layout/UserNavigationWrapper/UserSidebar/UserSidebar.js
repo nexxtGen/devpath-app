@@ -1,24 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useTheme, withStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import UserAppbar from '../UserAppbar/UserAppbar';
-import Avatar from '@material-ui/core/Avatar';
 
 const drawerWidth = 230;
 
@@ -34,10 +26,10 @@ const styles = createStyles({
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: 'width 0.2s, ease-in'
+    transition: 'width 0.3s, ease-in'
   },
   drawerClose: {
-    transition: 'width 0.2s, ease-in',
+    transition: 'width 0.3s, ease-in',
     overflowX: 'hidden',
     width: 65
   },
@@ -53,22 +45,9 @@ const styles = createStyles({
   }
 });
 
-const UserSidebar = ({ classes }) => {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+const UserSidebar = ({ classes, handleDrawerClose, open }) => {
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
       <Drawer
         variant='permanent'
         className={clsx(classes.drawer, {
@@ -110,16 +89,6 @@ const UserSidebar = ({ classes }) => {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-        </Typography>
-      </main>
     </div>
   );
 };
