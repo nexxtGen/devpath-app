@@ -10,14 +10,14 @@ const styles = createStyles({
   }
 });
 
-const RegisterUser = ({ classes }) => {
+const LoginUserFormContainer = ({ classes }) => {
   return (
     <div>
       <main className={classes.content}>
-        <h3>Register User</h3>
+        <h3>Login user</h3>
       </main>
     </div>
   );
 };
 
-export default withStyles(styles)(RegisterUser);
+export default withStyles(styles)(LoginUserFormContainer);

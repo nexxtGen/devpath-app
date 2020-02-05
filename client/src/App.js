@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './components/layout/LandingPage';
 import UserNavigationWrapper from './components/layout/UserNavigationWrapper';
 import UserProfileInfo from './components/UserProfileInfo';
-import RegisterUser from './components/auth/register';
-import LoginUser from './components/auth/login';
+import RegisterUserFormContainer from './components/auth/RegisterUserForm/';
+import LoginUserFormContainer from './components/auth/LoginUserForm/';
 import LandingNavbar from './components/layout/LandingNavbar';
 import './App.css';
 
@@ -15,8 +15,8 @@ const App = () => {
       {!logged && <LandingNavbar />}
       <Switch>
         <Route exact path='/' component={LandingPage} />
-        <Route exact path='/login' component={LoginUser} />
-        <Route exact path='/register' component={RegisterUser} />
+        <Route exact path='/login' component={LoginUserFormContainer} />
+        <Route exact path='/register' component={RegisterUserFormContainer} />
         <UserNavigationWrapper>
           <Route exact path={'/main'} component={UserProfileInfo} />
         </UserNavigationWrapper>
