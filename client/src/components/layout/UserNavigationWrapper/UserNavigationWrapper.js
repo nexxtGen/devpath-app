@@ -8,10 +8,15 @@ import LandingPage from '../LandingPage';
 const styles = createStyles({
   root: {
     display: 'flex'
+  },
+  content: {
+    display: 'flex',
+    flexGrow: 1,
+    padding: 60
   }
 });
 
-const UserNavigationWrapper = classes => {
+const UserNavigationWrapper = ({ classes, children }) => {
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -26,7 +31,7 @@ const UserNavigationWrapper = classes => {
       <CssBaseline />
       <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
       <UserSidebar open={open} handleDrawerClose={handleDrawerClose} />
-      <LandingPage open={open} />
+      <div className={classes.content}>{children}</div>
     </div>
   );
 };
