@@ -44,9 +44,8 @@ const RegisterUserForm = classes => {
   return (
     <Form className={classes.form}>
       <Grid>
-        <Field
-          name='name'
-          render={({ field, form }) => (
+        <Field name='name'>
+          {({ field, form }) => (
             <FormControl fullWidth style={{ height: '75px' }}>
               <FTextField label={'Name'} fieldProps={field} disabled={false} />
               <FormHelperText error>
@@ -54,7 +53,7 @@ const RegisterUserForm = classes => {
               </FormHelperText>
             </FormControl>
           )}
-        />
+        </Field>
         <Field
           name='email'
           render={({ field, form }) => (

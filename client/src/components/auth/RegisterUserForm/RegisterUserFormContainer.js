@@ -3,12 +3,7 @@ import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import RegisterUserForm from './RegisterUserForm';
-import {
-  primary,
-  primaryLight,
-  primaryExtraLight,
-  primaryDark
-} from '../../../shared/colors';
+import { primaryLight } from '../../../shared/colors';
 import logo from '../../../assets/images/logo.png';
 
 const styles = createStyles({
@@ -79,8 +74,9 @@ const RegisterUserFormContainer = ({ classes }) => {
             enableReinitialize={true}
             validationSchema={formUserSchema}
             onSubmit={(values, actions) => submitForm(values, actions)}
-            render={FormikBag => <RegisterUserForm FormikBag={FormikBag} />}
-          />
+          >
+            {FormikBag => <RegisterUserForm FormikBag={FormikBag} />}
+          </Formik>
         </Grid>
       </Grid>
     </Grid>
