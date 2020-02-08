@@ -54,9 +54,8 @@ const RegisterUserForm = classes => {
             </FormControl>
           )}
         </Field>
-        <Field
-          name='email'
-          render={({ field, form }) => (
+        <Field name='email'>
+          {({ field, form }) => (
             <FormControl fullWidth style={{ height: '75px' }}>
               <FTextField label={'Email'} fieldProps={field} disabled={false} />
               <FormHelperText error>
@@ -64,10 +63,9 @@ const RegisterUserForm = classes => {
               </FormHelperText>
             </FormControl>
           )}
-        />
-        <Field
-          name='password'
-          render={({ field, form }) => (
+        </Field>
+        <Field name='password'>
+          {({ field, form }) => (
             <FormControl fullWidth style={{ height: '75px' }}>
               <FTextField
                 type={'password'}
@@ -82,10 +80,9 @@ const RegisterUserForm = classes => {
               </FormHelperText>
             </FormControl>
           )}
-        />
-        <Field
-          name='password2'
-          render={({ field, form }) => (
+        </Field>
+        <Field name='password2'>
+          {({ field, form }) => (
             <FormControl fullWidth style={{ height: '75px' }}>
               <FTextField
                 type={'password'}
@@ -100,12 +97,10 @@ const RegisterUserForm = classes => {
               </FormHelperText>
             </FormControl>
           )}
-        />
+        </Field>
         <Grid style={{ height: 60 }}>
-          <Field
-            name='terms'
-            type='checkbox'
-            render={({ field, form }) => (
+          <Field name='terms' type='checkbox'>
+            {({ field, form }) => (
               <FormGroup>
                 <Grid
                   container
@@ -167,7 +162,7 @@ const RegisterUserForm = classes => {
                 </Grid>
               </FormGroup>
             )}
-          />
+          </Field>
         </Grid>
       </Grid>
       <Grid container justify='center' style={{ marginTop: '45px' }}>

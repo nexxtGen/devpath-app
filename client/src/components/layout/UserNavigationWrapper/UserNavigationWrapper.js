@@ -3,7 +3,6 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import UserSidebar from './UserSidebar/UserSidebar';
 import UserAppbar from './UserAppbar/UserAppbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LandingPage from '../LandingPage';
 
 const styles = createStyles({
   root: {
