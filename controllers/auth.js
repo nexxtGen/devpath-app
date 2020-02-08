@@ -7,7 +7,7 @@ const gravatar = require('gravatar');
 // @route POST /api/v1/auth/register
 // @access Public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role, terms } = req.body;
   const avatar = gravatar.url(email, {
     s: '200',
     r: 'pg',
@@ -19,7 +19,8 @@ exports.register = asyncHandler(async (req, res, next) => {
     email,
     password,
     role,
-    avatar
+    avatar,
+    terms
   });
 
   sendTokenResponse(user, 200, res);

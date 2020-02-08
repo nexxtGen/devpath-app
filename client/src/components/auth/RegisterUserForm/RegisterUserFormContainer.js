@@ -6,14 +6,20 @@ import * as Yup from 'yup';
 import RegisterUserForm from './RegisterUserForm';
 import logo from '../../../assets/images/logo.png';
 import styles from './registerUserFormContainerStyles';
-import { setAlert } from '../../../actions/alert';
+import { register } from '../../../actions/auth';
 import PropTypes from 'prop-types';
 
-const RegisterUserFormContainer = ({ classes, setAlert }) => {
-  const submitForm = values => {
-    setAlert('Register success!', 'success');
-
-    console.log('Reister success', values);
+const RegisterUserFormContainer = ({ classes, register }) => {
+  const submitForm = async values => {
+    console.log('values:', values);
+    const user = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      terms: values.terms
+    };
+    register(user);
+    //setAlert('Register success!', 'success');
   };
 
   return (
@@ -53,6 +59,7 @@ const RegisterUserFormContainer = ({ classes, setAlert }) => {
 };
 
 const formUserSchema = Yup.object().shape({
+  /*
   name: Yup.string()
     .max(15, 'Must be 15 characters or less')
     .required('Required'),
@@ -67,13 +74,14 @@ const formUserSchema = Yup.object().shape({
     .min(6, 'Must be 6 characters or more')
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
   terms: Yup.boolean().oneOf([true], 'Please accept Terms')
+  */
 });
 
 RegisterUserFormContainer.propTypes = {
-  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 };
 
-export default connect(null, { setAlert })(
+export default connect(null, { register })(
   withStyles(styles)(RegisterUserFormContainer)
 );

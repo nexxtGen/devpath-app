@@ -30,6 +30,11 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
+  terms: {
+    type: Boolean,
+    default: false,
+    required: [true, 'Please accept terms of service']
+  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {
