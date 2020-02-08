@@ -6,6 +6,7 @@ import UserProfileInfo from './components/UserProfileInfo';
 import RegisterUserFormContainer from './components/auth/RegisterUserForm/';
 import LoginUserFormContainer from './components/auth/LoginUserForm/';
 import LandingNavbar from './components/layout/LandingNavbar';
+import Alert from './components/layout/Alert/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -17,6 +18,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         {!logged && <LandingNavbar />}
+        <Alert />
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/login' component={LoginUserFormContainer} />

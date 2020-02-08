@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/nexxtGen/devpath-app#readme",
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.41",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^5.1.0",

@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import RegisterUserForm from './RegisterUserForm';
 import logo from '../../../assets/images/logo.png';
 import styles from './registerUserFormContainerStyles';
+import { setAlert } from '../../../actions/alert';
+import PropTypes from 'prop-types';
 
-const RegisterUserFormContainer = ({ classes }) => {
+const RegisterUserFormContainer = ({ classes, setAlert }) => {
   const submitForm = values => {
+    setAlert('Register success!', 'success');
+
     console.log('Reister success', values);
   };
 
@@ -64,4 +69,11 @@ const formUserSchema = Yup.object().shape({
   terms: Yup.boolean().oneOf([true], 'Please accept Terms')
 });
 
-export default withStyles(styles)(RegisterUserFormContainer);
+RegisterUserFormContainer.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired
+};
+
+export default connect(null, { setAlert })(
+  withStyles(styles)(RegisterUserFormContainer)
+);
