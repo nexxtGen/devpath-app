@@ -32,8 +32,13 @@ const UserSchema = new mongoose.Schema({
   },
   terms: {
     type: Boolean,
-    default: false,
-    required: [true, 'Please accept terms of service']
+    required: true,
+    validate: {
+      validator: function(value) {
+        return value === true;
+      },
+      message: 'Please agree with terms of service'
+    }
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,

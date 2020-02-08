@@ -28,11 +28,9 @@ export const register = ({
       payload: res.data
     });
   } catch (err) {
-    console.log(err);
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-    }
+    const error = err.response.data.error;
+    console.log(error);
+    dispatch(setAlert(error, 'error'));
     dispatch({ type: REGISTER_FAIL });
   }
 };

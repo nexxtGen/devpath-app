@@ -11,15 +11,14 @@ import PropTypes from 'prop-types';
 
 const RegisterUserFormContainer = ({ classes, register }) => {
   const submitForm = async values => {
-    console.log('values:', values);
     const user = {
       name: values.name,
       email: values.email,
       password: values.password,
       terms: values.terms
     };
+
     register(user);
-    //setAlert('Register success!', 'success');
   };
 
   return (
@@ -59,7 +58,6 @@ const RegisterUserFormContainer = ({ classes, register }) => {
 };
 
 const formUserSchema = Yup.object().shape({
-  /*
   name: Yup.string()
     .max(15, 'Must be 15 characters or less')
     .required('Required'),
@@ -74,7 +72,6 @@ const formUserSchema = Yup.object().shape({
     .min(6, 'Must be 6 characters or more')
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
   terms: Yup.boolean().oneOf([true], 'Please accept Terms')
-  */
 });
 
 RegisterUserFormContainer.propTypes = {
