@@ -5,10 +5,13 @@ import * as Yup from 'yup';
 import LoginUserForm from './LoginUserForm';
 import logo from '../../../assets/images/logo.png';
 import styles from './loginUserFormContainerStyles';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../../actions/auth';
 
-const LoginUserFormContainer = ({ classes }) => {
+const LoginUserFormContainer = ({ classes, login }) => {
   const submitForm = values => {
-    console.log('Reister success', values);
+    login(values);
   };
 
   return (
@@ -53,4 +56,11 @@ const formUserSchema = Yup.object().shape({
     .min(6, 'Must be 6 characters or more')
 });
 
-export default withStyles(styles)(LoginUserFormContainer);
+LoginUserFormContainer.propTypes = {
+  login: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired
+};
+
+export default connect(null, { login })(
+  withStyles(styles)(LoginUserFormContainer)
+);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './components/layout/LandingPage';
 import UserNavigationWrapper from './components/layout/UserNavigationWrapper';
@@ -8,6 +8,7 @@ import LoginUserFormContainer from './components/auth/LoginUserForm/';
 import LandingNavbar from './components/layout/LandingNavbar';
 import Alert from './components/layout/Alert/Alert';
 import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
@@ -19,15 +20,21 @@ if (localStorage.token) {
 }
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
     store.dispatch(loadUser());
+    store.subscribe(() => {
+      setIsAuthenticated({
+        isAuthenticated: store.getState().auth.isAuthenticated
+      });
+    });
   }, []);
 
-  const logged = false;
   return (
     <Provider store={store}>
       <Router>
-        {!logged && <LandingNavbar />}
+        {!isAuthenticated && <LandingNavbar />}
         <Alert />
         <Switch>
           <Route exact path='/' component={LandingPage} />
