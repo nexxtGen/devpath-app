@@ -1,2 +1,2 @@
-import LoginUserFormContainer from './LoginUserFormContainer';
-export default LoginUserFormContainer;
+import LoginUser from './LoginUserFormContainer';
+export default LoginUser;

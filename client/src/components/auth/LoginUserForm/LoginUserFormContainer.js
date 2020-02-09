@@ -65,7 +65,8 @@ const formUserSchema = Yup.object().shape({
 
 LoginUserFormContainer.propTypes = {
   login: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

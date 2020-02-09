@@ -1,15 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import RegisterUserForm from './RegisterUserForm';
 import logo from '../../../assets/images/logo.png';
 import styles from './registerUserFormContainerStyles';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { register } from '../../../actions/auth';
 import PropTypes from 'prop-types';
 
-const RegisterUserFormContainer = ({ classes, register }) => {
+const RegisterUserFormContainer = ({ classes, register, isAuthenticated }) => {
   const submitForm = async values => {
     const user = {
       name: values.name,
@@ -20,6 +21,10 @@ const RegisterUserFormContainer = ({ classes, register }) => {
 
     register(user);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/main' />;
+  }
 
   return (
     <Grid className={classes.formContainer}>
@@ -76,9 +81,14 @@ const formUserSchema = Yup.object().shape({
 
 RegisterUserFormContainer.propTypes = {
   register: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { register })(
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { register })(
   withStyles(styles)(RegisterUserFormContainer)
 );

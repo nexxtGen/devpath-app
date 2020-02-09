@@ -1,2 +1,2 @@
-import RegisterUserFormContainer from './RegisterUserFormContainer';
-export default RegisterUserFormContainer;
+import RegisterUser from './RegisterUserFormContainer';
+export default RegisterUser;
