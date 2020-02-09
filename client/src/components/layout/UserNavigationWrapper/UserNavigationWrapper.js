@@ -3,6 +3,9 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 import UserSidebar from './UserSidebar/UserSidebar';
 import UserAppbar from './UserAppbar/UserAppbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const styles = createStyles({
   root: {
@@ -15,7 +18,7 @@ const styles = createStyles({
   }
 });
 
-const UserNavigationWrapper = ({ classes, children }) => {
+const UserNavigationWrapper = ({ classes, children, auth }) => {
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -25,6 +28,11 @@ const UserNavigationWrapper = ({ classes, children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  if (!auth.isAuthenticated && !auth.loading) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -35,4 +43,14 @@ const UserNavigationWrapper = ({ classes, children }) => {
   );
 };
 
-export default withStyles(styles)(UserNavigationWrapper);
+UserNavigationWrapper.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(
+  withStyles(styles)(UserNavigationWrapper)
+);

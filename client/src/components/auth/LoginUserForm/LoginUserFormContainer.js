@@ -5,17 +5,24 @@ import * as Yup from 'yup';
 import LoginUserForm from './LoginUserForm';
 import logo from '../../../assets/images/logo.png';
 import styles from './loginUserFormContainerStyles';
+import { Redirect } from 'react-router-dom';
+import Alert from '../../layout/Alert/Alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
 
-const LoginUserFormContainer = ({ classes, login }) => {
+const LoginUserFormContainer = ({ classes, login, isAuthenticated }) => {
   const submitForm = values => {
     login(values);
   };
 
+  if (isAuthenticated) {
+    return <Redirect to='/main' />;
+  }
+
   return (
     <Grid className={classes.formContainer}>
+      <Alert />
       <Grid className={classes.primaryContainer}>
         <Grid className={classes.headerContainer}>
           <Grid>
@@ -61,6 +68,10 @@ LoginUserFormContainer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default connect(null, { login })(
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(
   withStyles(styles)(LoginUserFormContainer)
 );

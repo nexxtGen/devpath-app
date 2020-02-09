@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles, createStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const styles = createStyles({
   menu: {
@@ -9,7 +10,12 @@ const styles = createStyles({
   }
 });
 
-const UserAppbarMenu = ({ classes, anchorEl, open, handleClose }) => {
+const UserAppbarMenu = ({ classes, anchorEl, open, handleClose, logout }) => {
+  const handleLogout = () => {
+    handleClose();
+    logout();
+  };
+
   return (
     <Menu
       id='menu-appbar'
@@ -27,9 +33,13 @@ const UserAppbarMenu = ({ classes, anchorEl, open, handleClose }) => {
       onClose={handleClose}
       className={classes.menu}
     >
-      <MenuItem onClick={handleClose}>Profile</MenuItem>
-      <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem>
+      <MenuItem onClick={handleClose}>
+        <Link to='/main'>Profile</Link>
+      </MenuItem>
+      <MenuItem onClick={handleClose}>
+        <Link to='/card'>Card</Link>
+      </MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 };

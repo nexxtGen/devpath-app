@@ -9,8 +9,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import UserAppbarMenu from './UserAppbarMenu';
 import styles from './UserAppbarStyles';
+import { logout } from '../../../../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
+const UserAppbar = ({ classes, open, handleDrawerOpen, logout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
 
@@ -66,6 +69,7 @@ const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
               anchorEl={anchorEl}
               open={openMenu}
               handleClose={handleClose}
+              logout={logout}
             />
           </div>
         </Toolbar>
@@ -74,4 +78,4 @@ const UserAppbar = ({ classes, open, handleDrawerOpen }) => {
   );
 };
 
-export default withStyles(styles)(UserAppbar);
+export default connect(null, { logout })(withStyles(styles)(UserAppbar));
