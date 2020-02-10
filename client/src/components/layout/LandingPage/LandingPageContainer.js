@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { routes } from '../../../static/routesUrl';
 
 const styles = createStyles({
   content: {
@@ -15,9 +16,9 @@ const styles = createStyles({
   }
 });
 
-const LandingPageContainer = ({ classes, isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Redirect to='/main' />;
+const LandingPageContainer = ({ classes, auth }) => {
+  if (auth.isAuthenticated && auth.user) {
+    return <Redirect to={routes.userProfile} />;
   }
 
   return (
@@ -35,12 +36,12 @@ const LandingPageContainer = ({ classes, isAuthenticated }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 LandingPageContainer.propTypes = {
   classes: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.object
 };
 
 export default connect(mapStateToProps)(

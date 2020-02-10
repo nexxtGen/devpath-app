@@ -11,7 +11,7 @@ import { register } from '../../../actions/auth';
 import PropTypes from 'prop-types';
 import { routes } from '../../../static/routesUrl';
 
-const RegisterUserFormContainer = ({ classes, register, isAuthenticated }) => {
+const RegisterUserFormContainer = ({ classes, register, auth }) => {
   const submitForm = async values => {
     const user = {
       name: values.name,
@@ -23,7 +23,7 @@ const RegisterUserFormContainer = ({ classes, register, isAuthenticated }) => {
     register(user);
   };
 
-  if (isAuthenticated) {
+  if (auth.isAuthenticated && auth.user) {
     return <Redirect to={routes.userProfile} />;
   }
 
@@ -83,11 +83,11 @@ const formUserSchema = Yup.object().shape({
 RegisterUserFormContainer.propTypes = {
   register: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { register })(

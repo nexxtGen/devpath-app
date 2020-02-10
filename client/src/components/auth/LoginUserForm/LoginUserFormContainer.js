@@ -12,12 +12,13 @@ import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
 import { routes } from '../../../static/routesUrl';
 
-const LoginUserFormContainer = ({ classes, login, isAuthenticated }) => {
+const LoginUserFormContainer = ({ classes, login, auth }) => {
   const submitForm = values => {
+    //setTimeout(() => login(values), 200);
     login(values);
   };
 
-  if (isAuthenticated) {
+  if (auth.isAuthenticated && auth.user) {
     return <Redirect to={routes.userProfile} />;
   }
 
@@ -67,11 +68,11 @@ const formUserSchema = Yup.object().shape({
 LoginUserFormContainer.propTypes = {
   login: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { login })(
