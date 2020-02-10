@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../../actions/auth';
 import PropTypes from 'prop-types';
+import { routes } from '../../../static/routesUrl';
 
 const RegisterUserFormContainer = ({ classes, register, isAuthenticated }) => {
   const submitForm = async values => {
@@ -23,7 +24,7 @@ const RegisterUserFormContainer = ({ classes, register, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/main' />;
+    return <Redirect to={routes.userProfile} />;
   }
 
   return (

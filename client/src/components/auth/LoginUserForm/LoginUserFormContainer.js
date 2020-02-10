@@ -10,6 +10,7 @@ import Alert from '../../layout/Alert/Alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/auth';
+import { routes } from '../../../static/routesUrl';
 
 const LoginUserFormContainer = ({ classes, login, isAuthenticated }) => {
   const submitForm = values => {
@@ -17,7 +18,7 @@ const LoginUserFormContainer = ({ classes, login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/main' />;
+    return <Redirect to={routes.userProfile} />;
   }
 
   return (

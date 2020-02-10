@@ -2,7 +2,8 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles, createStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import LinkWithoutDefaultStyles from '../../../../shared/LinkWithoutDefaultStyles';
+import { routes } from '../../../../static/routesUrl';
 
 const styles = createStyles({
   menu: {
@@ -34,10 +35,14 @@ const UserAppbarMenu = ({ classes, anchorEl, open, handleClose, logout }) => {
       className={classes.menu}
     >
       <MenuItem onClick={handleClose}>
-        <Link to='/main'>Profile</Link>
+        <LinkWithoutDefaultStyles to={routes.userProfile}>
+          Profile
+        </LinkWithoutDefaultStyles>
       </MenuItem>
       <MenuItem onClick={handleClose}>
-        <Link to='/card'>Card</Link>
+        <LinkWithoutDefaultStyles to={routes.userFlashcards}>
+          Card
+        </LinkWithoutDefaultStyles>
       </MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserDashboardContainer = () => {
+const UserProfile = () => {
   return (
     <div>
-      <h3>Information about User</h3>
+      <h3>User Profile</h3>
       <h4>Mainpage in User dashboard</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -24,4 +24,4 @@ const UserDashboardContainer = () => {
     </div>
   );
 };
-export default UserDashboardContainer;
+export default UserProfile;
