@@ -10,8 +10,9 @@ dotenv.config({ path: './config/config.env' });
 
 connectDB();
 
-const flashcards = require('./routes/flashcards');
 const auth = require('./routes/auth');
+const flashcards = require('./routes/flashcards');
+const profile = require('./routes/profile');
 
 const app = express();
 
@@ -23,8 +24,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Mount Routes
-app.use('/api/v1/flashcards', flashcards);
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/profile', profile);
+app.use('/api/v1/flashcards', flashcards);
 
 app.use(errorHandler);
 

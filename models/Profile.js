@@ -8,13 +8,17 @@ const ProfileSchema = new mongoose.Schema({
   },
   profession: {
     type: String,
-    required: true
+    required: [true, 'Please add a profession']
   },
   website: {
     type: String
   },
   company: {
     type: String
+  },
+  country: {
+    type: String,
+    required: [true, 'Please add a country']
   },
   location: {
     type: String
