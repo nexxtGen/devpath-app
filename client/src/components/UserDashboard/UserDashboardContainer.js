@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserProfileInfoContainer = () => {
+const UserDashboardContainer = () => {
   return (
     <div>
       <h3>Information about User</h3>
@@ -24,4 +24,4 @@ const UserProfileInfoContainer = () => {
     </div>
   );
 };
-export default UserProfileInfoContainer;
+export default UserDashboardContainer;

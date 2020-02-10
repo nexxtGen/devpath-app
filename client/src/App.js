@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './components/layout/LandingPage/';
-import UserNavigationWrapper from './components/layout/UserNavigationWrapper';
-import UserProfileInfo from './components/UserProfileInfo';
-import UserFlashcardsContainer from './components/UserFlashcards';
-import RegisterUser from './components/auth/RegisterUserForm/';
-import LoginUser from './components/auth/LoginUserForm/';
 import LandingNavbar from './components/layout/LandingNavbar';
+import LoginUser from './components/auth/LoginUserForm/';
+import RegisterUser from './components/auth/RegisterUserForm/';
+import UserNavigationWrapper from './components/layout/UserNavigationWrapper';
+import UserDashboard from './components/UserDashboard';
+import UserFlashcardsContainer from './components/UserFlashcards';
+import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
@@ -32,8 +33,16 @@ const App = () => {
           <Route exact path='/login' component={LoginUser} />
           <Route exact path='/register' component={RegisterUser} />
           <UserNavigationWrapper>
-            <Route exact path={'/main'} component={UserProfileInfo} />
-            <Route exact path={'/card'} component={UserFlashcardsContainer} />
+            <PrivateRoute
+              exact
+              path={'/user/dashboard'}
+              component={UserDashboard}
+            />
+            <PrivateRoute
+              exact
+              path={'/user/flashcard'}
+              component={UserFlashcardsContainer}
+            />
           </UserNavigationWrapper>
         </Switch>
       </Router>
