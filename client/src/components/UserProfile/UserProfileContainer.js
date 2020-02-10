@@ -2,27 +2,46 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
+import Preloader from '../../shared/Preloader';
+import { withStyles, createStyles, Grid } from '@material-ui/core';
 
-const UserProfileContainer = ({ getCurrentProfile, auth, profile }) => {
+const styles = createStyles({
+  container: {
+    display: 'flex',
+    width: '100%'
+  },
+  preloader: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%'
+  }
+});
+
+const UserProfileContainer = ({
+  getCurrentProfile,
+  auth,
+  profile,
+  classes
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
 
   return (
-    <div>
+    <Grid>
       {auth.isAuthenticated && profile.profile ? (
         <div>
           <h3>User Profile</h3>
-          <h4>Mainpage in User dashboard</h4>
+          <h4>Mainpage in User dashboard3</h4>
           <p>{profile.profile.profession}</p>
           <p></p>
         </div>
       ) : profile.loading ? (
-        <div>LOADING....</div>
+        <Preloader className={classes.preloader} />
       ) : (
         <div>Nie posiadasz profilu. Załóż go kudła</div>
       )}
-    </div>
+    </Grid>
   );
 };
 
@@ -37,5 +56,5 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 export default connect(mapStateToProps, { getCurrentProfile })(
-  UserProfileContainer
+  withStyles(styles)(UserProfileContainer)
 );

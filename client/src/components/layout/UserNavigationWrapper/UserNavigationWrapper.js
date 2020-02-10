@@ -12,7 +12,9 @@ const styles = createStyles({
   content: {
     display: 'flex',
     flexGrow: 1,
-    padding: 60
+    padding: 60,
+    marginTop: '64px',
+    width: '100%'
   }
 });
 
