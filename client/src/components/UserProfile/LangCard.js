@@ -43,7 +43,7 @@ const LangCard = ({ classes, githubLang }) => {
 
   return (
     <Grid className={classes.container}>
-      <Typography variant='h6'>Git Primary Languages</Typography>
+      <Typography variant='h6'>Git Top Languages</Typography>
       <Grid style={{ maxWidth: '80%', maxHeight: '80%' }}>
         <ReactMinimalPieChart
           animate
@@ -60,7 +60,7 @@ const LangCard = ({ classes, githubLang }) => {
           onMouseOut={undefined}
           onMouseOver={undefined}
           paddingAngle={0}
-          radius={35}
+          radius={39}
           rounded={false}
           startAngle={0}
           viewBoxSize={[30, 30]}
@@ -85,9 +85,20 @@ const LangCard = ({ classes, githubLang }) => {
       </Grid>
       {githubLang.map((item, index) => {
         return (
-          <Grid container direction='row' alignItems='center' key={index}>
+          <Grid
+            container
+            direction='row'
+            alignItems='center'
+            style={{ paddingLeft: 35 }}
+            key={index}
+          >
             <div
-              style={{ backgroundColor: item.color, width: 25, height: 15 }}
+              style={{
+                backgroundColor: item.color,
+                width: 30,
+                height: 15,
+                marginRight: 10
+              }}
             ></div>
             <Typography>{item.label}</Typography>
           </Grid>

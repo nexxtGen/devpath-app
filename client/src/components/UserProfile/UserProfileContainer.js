@@ -6,6 +6,7 @@ import Preloader from '../../shared/Preloader';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import AvatarCard from './AvatarCard';
 import LangCard from './LangCard';
+import GithubCalendar from './GithubCalendar';
 
 const styles = createStyles({
   container: {
@@ -18,6 +19,12 @@ const styles = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap'
+  },
+  gitCalendar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
@@ -35,9 +42,18 @@ const UserProfileContainer = ({
   return (
     <Grid style={{ padding: '30px' }}>
       {auth.isAuthenticated && profile.profile ? (
-        <Grid className={classes.profileContainer}>
-          <AvatarCard profile={profile.profile} user={auth.user} />
-          {profile.githubLang && <LangCard githubLang={profile.githubLang} />}
+        <Grid>
+          <Grid className={classes.profileContainer}>
+            <AvatarCard profile={profile.profile} user={auth.user} />
+            {profile.githubLang && (
+              <Grid>
+                <LangCard githubLang={profile.githubLang} />
+              </Grid>
+            )}
+          </Grid>
+          <Grid className={classes.gitCalendar}>
+            <GithubCalendar profile={profile.profile} />
+          </Grid>
         </Grid>
       ) : profile.loading ? (
         <Preloader />

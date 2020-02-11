@@ -11,12 +11,10 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    //justifyContent: 'center',
+
     backgroundImage:
       'linear-gradient(to right bottom, #664b8e, #5c4181, #523874, #482e67, #3e255b)',
-    //background: '#F3F3F8',
-    //height: '190px',
-    //clipPath: 'polygon(100% 0, 100% 100%, 0 74%, 0 0)',
+
     boxShadow: '1px 1px 8px #aaaaaa',
     margin: '30px'
   },
