@@ -10,11 +10,14 @@ const styles = createStyles({
     display: 'flex'
   },
   content: {
-    display: 'flex',
-    flexGrow: 1,
-    padding: 60,
+    //display: 'flex',
+    //flexGrow: 1,
+    padding: 50,
     marginTop: '64px',
-    width: '100%'
+    width: '100%',
+    minHeight: 'calc(100vh - 64px)'
+    //justifyContent: 'center',
+    //alignItems: 'center'
   }
 });
 

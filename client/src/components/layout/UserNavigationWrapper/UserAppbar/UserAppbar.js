@@ -78,4 +78,11 @@ const UserAppbar = ({ classes, open, handleDrawerOpen, logout }) => {
   );
 };
 
+UserAppbar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  open: PropTypes.bool,
+  handleDrawerOpen: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired
+};
+
 export default connect(null, { logout })(withStyles(styles)(UserAppbar));

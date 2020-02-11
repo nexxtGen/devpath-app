@@ -41,8 +41,8 @@ const LoginUserFormContainer = ({ classes, login, auth }) => {
         <Grid className={classes.formikContainer}>
           <Formik
             initialValues={{
-              email: '',
-              password: ''
+              email: 'kszczypior1@gmail.com',
+              password: '111111'
             }}
             enableReinitialize={true}
             validationSchema={formUserSchema}

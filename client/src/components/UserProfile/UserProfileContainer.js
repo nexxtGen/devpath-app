@@ -4,16 +4,20 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Preloader from '../../shared/Preloader';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
+import AvatarCard from './AvatarCard';
+import LangCard from './LangCard';
 
 const styles = createStyles({
   container: {
     display: 'flex',
     width: '100%'
   },
-  preloader: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%'
+  profileContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   }
 });
 
@@ -25,21 +29,20 @@ const UserProfileContainer = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <Grid>
+    <Grid style={{ padding: '30px' }}>
       {auth.isAuthenticated && profile.profile ? (
-        <div>
-          <h3>User Profile</h3>
-          <h4>Mainpage in User dashboard3</h4>
-          <p>{profile.profile.profession}</p>
-          <p></p>
-        </div>
+        <Grid className={classes.profileContainer}>
+          <AvatarCard profile={profile.profile} user={auth.user} />
+          {profile.githubLang && <LangCard githubLang={profile.githubLang} />}
+        </Grid>
       ) : profile.loading ? (
-        <Preloader className={classes.preloader} />
+        <Preloader />
       ) : (
-        <div>Nie posiadasz profilu. Załóż go kudła</div>
+        <div>Nie posiadasz profilu. Załóż go.</div>
       )}
     </Grid>
   );

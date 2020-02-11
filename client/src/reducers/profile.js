@@ -1,8 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR } from '../actions/types';
+import { GET_PROFILE, PROFILE_ERROR, GET_GITHUB_LANG } from '../actions/types';
 
 const initialState = {
   profile: null,
   profiles: [],
+  githubLang: [],
   repos: [],
   loading: true,
   error: {}
@@ -16,6 +17,11 @@ export default function(state = initialState, action) {
         ...state,
         profile: payload,
         loading: false
+      };
+    case GET_GITHUB_LANG:
+      return {
+        ...state,
+        githubLang: payload
       };
     case PROFILE_ERROR:
       return {
