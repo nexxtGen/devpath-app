@@ -18,7 +18,8 @@ const styles = createStyles({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    flexShrink: 1
   },
   gitCalendar: {
     display: 'flex',

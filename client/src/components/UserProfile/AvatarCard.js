@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { primaryLight } from '../../shared/colors';
 
 const styles = createStyles({
   container: {
@@ -16,7 +15,7 @@ const styles = createStyles({
       'linear-gradient(to right bottom, #664b8e, #5c4181, #523874, #482e67, #3e255b)',
 
     boxShadow: '1px 1px 8px #aaaaaa',
-    margin: '30px'
+    margin: '30px 50px'
   },
   title: {
     //fontSize: 14,
@@ -42,7 +41,7 @@ const AvatarCard = ({ classes, profile, user }) => {
     <Grid className={classes.container}>
       <img src={avatar} alt='User Avatar' className={classes.avatar} />
       <Typography className={classes.title} variant='h6' gutterBottom>
-        {user.name}
+        {name}
       </Typography>
       <Typography className={classes.title} variant='subtitle2' gutterBottom>
         {profile.profession}

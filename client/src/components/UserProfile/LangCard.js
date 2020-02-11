@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
-import GhPolyglot from 'gh-polyglot';
 import ReactMinimalPieChart from 'react-minimal-pie-chart';
 
 const styles = createStyles({
@@ -17,7 +16,7 @@ const styles = createStyles({
     backgroundImage:
       'linear-gradient(to right bottom, #e5e5e5, #e0e0e0, #dcdcdc, #d7d7d7, #d3d3d3)',
     boxShadow: '1px 1px 8px #aaaaaa',
-    margin: '30px',
+    margin: '30px 50px',
     padding: 10
   },
   typography: {

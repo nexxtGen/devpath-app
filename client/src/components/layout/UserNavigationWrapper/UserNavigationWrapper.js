@@ -4,24 +4,21 @@ import UserSidebar from './UserSidebar/UserSidebar';
 import UserAppbar from './UserAppbar/UserAppbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const styles = createStyles({
   root: {
     display: 'flex'
   },
   content: {
-    //display: 'flex',
-    //flexGrow: 1,
     padding: 50,
     marginTop: '64px',
     width: '100%',
     minHeight: 'calc(100vh - 64px)'
-    //justifyContent: 'center',
-    //alignItems: 'center'
   }
 });
 
-const UserNavigationWrapper = ({ classes, children }) => {
+const UserNavigationWrapper = ({ classes, children, user }) => {
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -35,7 +32,7 @@ const UserNavigationWrapper = ({ classes, children }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} />
+      <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} user={user} />
       <UserSidebar open={open} handleDrawerClose={handleDrawerClose} />
       <div className={classes.content}>{children}</div>
     </div>
@@ -43,7 +40,14 @@ const UserNavigationWrapper = ({ classes, children }) => {
 };
 
 UserNavigationWrapper.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.any,
+  user: PropTypes.object
 };
+const mapStateToProps = state => ({
+  user: state.auth.user
+});
 
-export default withStyles(styles)(UserNavigationWrapper);
+export default connect(mapStateToProps)(
+  withStyles(styles)(UserNavigationWrapper)
+);

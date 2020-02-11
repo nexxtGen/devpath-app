@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,7 @@ import { logout } from '../../../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const UserAppbar = ({ classes, open, handleDrawerOpen, logout }) => {
+const UserAppbar = ({ classes, open, handleDrawerOpen, logout, user }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
 
@@ -27,53 +27,55 @@ const UserAppbar = ({ classes, open, handleDrawerOpen, logout }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position='fixed'
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' className={classes.title}>
-            DevPath Logo
-          </Typography>
-          <Typography variant='h6' className={classes.title2}>
-            Hello Kamil
-          </Typography>
-          <div>
+      {user && (
+        <AppBar
+          position='fixed'
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open
+          })}
+        >
+          <Toolbar>
             <IconButton
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={handleMenu}
               color='inherit'
+              aria-label='open drawer'
+              onClick={handleDrawerOpen}
+              edge='start'
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open
+              })}
             >
-              <Avatar
-                alt='Avatar'
-                src='https://qph.fs.quoracdn.net/main-qimg-6cdacca8b9af4283eac60abbc764faf7.webp'
-                className={classes.small}
-              />
+              <MenuIcon />
             </IconButton>
-            <UserAppbarMenu
-              anchorEl={anchorEl}
-              open={openMenu}
-              handleClose={handleClose}
-              logout={logout}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
+            <Typography variant='h6' className={classes.title}>
+              DevPath Logo
+            </Typography>
+            <Typography variant='subtitle1' className={classes.title2}>
+              hello {user.name}
+            </Typography>
+            <Grid>
+              <IconButton
+                aria-label='account of current user'
+                aria-controls='menu-appbar'
+                aria-haspopup='true'
+                onClick={handleMenu}
+                color='inherit'
+              >
+                <Avatar
+                  alt='Avatar'
+                  src={user.avatar}
+                  className={classes.small}
+                />
+              </IconButton>
+              <UserAppbarMenu
+                anchorEl={anchorEl}
+                open={openMenu}
+                handleClose={handleClose}
+                logout={logout}
+              />
+            </Grid>
+          </Toolbar>
+        </AppBar>
+      )}
     </div>
   );
 };
@@ -82,7 +84,8 @@ UserAppbar.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool,
   handleDrawerOpen: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default connect(null, { logout })(withStyles(styles)(UserAppbar));

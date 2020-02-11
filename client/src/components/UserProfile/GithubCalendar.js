@@ -1,11 +1,10 @@
 import React from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import GitHubCalendar from 'react-github-calendar';
-import { primaryLight } from '../../shared/colors';
 
 const styles = createStyles({
   container: {
-    maxWidth: '90%',
+    maxWidth: '100%',
     minWidth: '300px',
     display: 'flex',
     flexDirection: 'column',
@@ -15,7 +14,7 @@ const styles = createStyles({
 
     boxShadow: '1px 1px 8px #aaaaaa',
     margin: '30px',
-    padding: '40px'
+    padding: '15px 40px'
   }
 });
 
@@ -24,7 +23,7 @@ const GithubCalendar = ({ classes, profile }) => {
     background: 'transparent',
     text: '#000',
     grade4: '#351b66',
-    grade3: '#533a81',
+    grade3: '#5a418a',
     grade2: '#7e68a8',
     grade1: '#b29fd8',
     grade0: '#e5e5e5'

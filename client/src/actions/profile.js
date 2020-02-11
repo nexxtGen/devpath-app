@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setAlert } from './alert';
 import GhPolyglot from 'gh-polyglot';
 
 import { GET_PROFILE, PROFILE_ERROR, GET_GITHUB_LANG } from './types';
