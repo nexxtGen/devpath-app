@@ -18,7 +18,6 @@ const styles = createStyles({
     margin: '30px 50px'
   },
   title: {
-    //fontSize: 14,
     color: 'white'
   },
   pos: {
@@ -28,6 +27,13 @@ const styles = createStyles({
     height: 150,
     margin: '20px 0',
     borderRadius: '50%'
+  },
+  codewarsContainer: {
+    background: '#664b8e',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   codewars: {
     padding: '20px 0',
@@ -55,11 +61,13 @@ const AvatarCard = ({ classes, profile, user }) => {
       <Typography className={classes.title} variant='subtitle2' gutterBottom>
         {profile.website}
       </Typography>
-      <img
-        src='https://www.codewars.com/users/nexxtGen/badges/large?logo=false'
-        alt='Codewars'
-        className={classes.codewars}
-      />
+      <Grid className={classes.codewarsContainer}>
+        <img
+          src='https://www.codewars.com/users/nexxtGen/badges/large?logo=false'
+          alt='Codewars'
+          className={classes.codewars}
+        />
+      </Grid>
     </Grid>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
 import ReactMinimalPieChart from 'react-minimal-pie-chart';
+import PropTypes from 'prop-types';
 
 const styles = createStyles({
   container: {
@@ -52,15 +53,11 @@ const LangCard = ({ classes, githubLang }) => {
           cy={50}
           data={githubLang}
           label={false}
-          //labelPosition={50}
           lengthAngle={360}
           lineWidth={60}
           onClick={handleClick}
-          onMouseOut={undefined}
-          onMouseOver={undefined}
           paddingAngle={0}
           radius={39}
-          rounded={false}
           startAngle={0}
           viewBoxSize={[30, 30]}
           segmentsStyle={{ transition: 'stroke .3s' }}
@@ -105,5 +102,10 @@ const LangCard = ({ classes, githubLang }) => {
       })}
     </Grid>
   );
+};
+
+LangCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  githubLang: PropTypes.object.isRequired
 };
 export default withStyles(styles)(LangCard);

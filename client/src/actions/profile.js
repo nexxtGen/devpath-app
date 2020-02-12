@@ -12,7 +12,9 @@ export const getCurrentProfile = () => async dispatch => {
       payload: res.data.data
     });
 
-    dispatch(getGithubLang(res.data.data.usernameservices.github));
+    if (res.data.data.usernameservices.github) {
+      dispatch(getGithubLang(res.data.data.usernameservices.github));
+    }
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,

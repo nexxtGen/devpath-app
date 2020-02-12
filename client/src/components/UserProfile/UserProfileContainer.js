@@ -52,9 +52,11 @@ const UserProfileContainer = ({
               </Grid>
             )}
           </Grid>
-          <Grid className={classes.gitCalendar}>
-            <GithubCalendar profile={profile.profile} />
-          </Grid>
+          {profile.profile.usernameservices.github && (
+            <Grid className={classes.gitCalendar}>
+              <GithubCalendar profile={profile.profile} />
+            </Grid>
+          )}
         </Grid>
       ) : profile.loading ? (
         <Preloader />
