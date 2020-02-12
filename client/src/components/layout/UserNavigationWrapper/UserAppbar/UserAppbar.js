@@ -47,7 +47,7 @@ const UserAppbar = ({ classes, open, handleDrawerOpen, logout, user }) => {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' className={classes.title}>
-              DevPath Logo
+              Logo
             </Typography>
             <Typography variant='subtitle1' className={classes.title2}>
               hello {user.name}

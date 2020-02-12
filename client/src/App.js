@@ -6,6 +6,7 @@ import LoginUser from './components/auth/LoginUserForm/';
 import RegisterUser from './components/auth/RegisterUserForm/';
 import UserNavigationWrapper from './components/layout/UserNavigationWrapper';
 import UserProfile from './components/UserProfile';
+import UserProfileForm from './components/UserProfileForm';
 import UserFlashcardsContainer from './components/UserFlashcards';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
@@ -30,7 +31,8 @@ const App = () => {
     loginUser,
     registerUser,
     userProfile,
-    userFlashcards
+    userFlashcards,
+    userProfileForm
   } = routes;
 
   return (
@@ -43,6 +45,11 @@ const App = () => {
           <Route exact path={registerUser} component={RegisterUser} />
           <UserNavigationWrapper>
             <PrivateRoute exact path={userProfile} component={UserProfile} />
+            <PrivateRoute
+              exact
+              path={userProfileForm}
+              component={UserProfileForm}
+            />
             <PrivateRoute
               exact
               path={userFlashcards}

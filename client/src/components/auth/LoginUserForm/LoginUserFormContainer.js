@@ -14,7 +14,6 @@ import { routes } from '../../../static/routesUrl';
 
 const LoginUserFormContainer = ({ classes, login, auth }) => {
   const submitForm = values => {
-    //setTimeout(() => login(values), 200);
     login(values);
   };
 

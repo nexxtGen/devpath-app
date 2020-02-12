@@ -46,7 +46,7 @@ const UserProfileContainer = ({
         <Grid>
           <Grid className={classes.profileContainer}>
             <AvatarCard profile={profile.profile} user={auth.user} />
-            {profile.githubLang && (
+            {profile.githubLang.length > 0 && (
               <Grid>
                 <LangCard githubLang={profile.githubLang} />
               </Grid>

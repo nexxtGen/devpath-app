@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const styles = createStyles({
   container: {
     width: '300px',
-    height: '400px',
+    height: '410px',
     minWidth: '300px',
     display: 'flex',
     flexDirection: 'column',
@@ -106,6 +106,6 @@ const LangCard = ({ classes, githubLang }) => {
 
 LangCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  githubLang: PropTypes.object.isRequired
+  githubLang: PropTypes.array
 };
 export default withStyles(styles)(LangCard);

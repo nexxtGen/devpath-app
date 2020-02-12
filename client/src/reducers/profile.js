@@ -1,4 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR, GET_GITHUB_LANG } from '../actions/types';
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  GET_GITHUB_LANG,
+  CLEAR_PROFILE
+} from '../actions/types';
 
 const initialState = {
   profile: null,
@@ -28,6 +33,14 @@ export default function(state = initialState, action) {
         ...state,
         error: payload,
         loading: false
+      };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        repos: [],
+        loading: false,
+        githubLang: []
       };
     default:
       return state;
