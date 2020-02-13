@@ -9,22 +9,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const UserProfileFormContainer = ({ classes }) => {
-  const submitForm = values => {};
+  const submitForm = values => {
+    console.log(values);
+  };
 
   const initialValues = {
     profession: '',
-    website: '',
     company: '',
     country: '',
     location: '',
+    website: '',
     usernameservices: {
       github: '',
       codewars: ''
     },
     skills: [
       {
-        skillname: {},
-        level: {}
+        skillname: '',
+        icon: ''
       }
     ]
   };
