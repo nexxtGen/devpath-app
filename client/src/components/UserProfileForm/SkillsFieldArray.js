@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Formik,
-  FormikProps,
-  Form,
-  Field,
-  ErrorMessage,
-  FieldArray
-} from 'formik';
+import { Field, FastField, FieldArray, ErrorMessage } from 'formik';
 import {
   FormControl,
   FormHelperText,
@@ -14,75 +7,86 @@ import {
   createStyles,
   Grid
 } from '@material-ui/core';
-import FTextField from '../../shared/FormikComponents/FTextField';
+import FTextFieldLow from '../../shared/FormikComponents/FTextFieldLow';
+import PropTypes from 'prop-types';
 
-const SkillsFieldArray = ({ FormikBag }) => {
+const styles = createStyles({
+  listItemContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    //boxShadow: '1px 1px 4px gray',
+    marginBottom: 5,
+    height: 60
+  }
+});
+
+const SkillsFieldArray = ({ classes, FormikBag }) => {
   return (
-    <div>
+    <Grid>
       <FieldArray
         name='skills'
         render={arrayHelpers => (
-          <div>
+          <Grid>
             {FormikBag.values.skills.map((skill, index) => (
-              <div
-                key={index}
-                style={{ display: 'flex', flexDirection: 'row' }}
-              >
-                <Field name={`skills[${index}].skillname`}>
+              <Grid key={index} className={classes.listItemContainer}>
+                <FastField name={`skills[${index}].skillname`}>
                   {({ field, form }) => (
                     <FormControl fullWidth style={{ height: '75px' }}>
-                      <FTextField
-                        label={'Skillname'}
+                      <FTextFieldLow
+                        label={'SkillName'}
                         fieldProps={field}
                         disabled={false}
                       />
                       <FormHelperText error>
-                        {form.touched.profession &&
-                          form.errors.profession &&
-                          form.errors.profession}
+                        <ErrorMessage name={`skills.${index}.skillname`}>
+                          {msg => <span>{msg}</span>}
+                        </ErrorMessage>
                       </FormHelperText>
                     </FormControl>
                   )}
-                </Field>
-                <Field name={`skills[${index}].icon`}>
+                </FastField>
+                <FastField name={`skills[${index}].icon`}>
                   {({ field, form }) => (
                     <FormControl fullWidth style={{ height: '75px' }}>
-                      <FTextField
-                        label={'Icon'}
+                      <FTextFieldLow
+                        label={'Img link'}
                         fieldProps={field}
                         disabled={false}
                       />
                       <FormHelperText error>
-                        {form.touched.profession &&
-                          form.errors.profession &&
-                          form.errors.profession}
+                        <ErrorMessage name={`skills.${index}.icon`}>
+                          {msg => <span>{msg}</span>}
+                        </ErrorMessage>
                       </FormHelperText>
                     </FormControl>
                   )}
-                </Field>
+                </FastField>
 
-                {/* Remove this vehicle */}
                 <button
                   type='button'
                   onClick={() => arrayHelpers.remove(index)}
                 >
-                  Remove
+                  X
                 </button>
-              </div>
+              </Grid>
             ))}
 
-            {/* Add a new empty vehicle at the end of the list */}
             <button
               type='button'
               onClick={() => arrayHelpers.push({ skillname: '', icon: '' })}
             >
-              Add Vehicle
+              Add Skill
             </button>
-          </div>
+          </Grid>
         )}
       />
-    </div>
+    </Grid>
   );
 };
 
-export default SkillsFieldArray;
+SkillsFieldArray.propTypes = {
+  classes: PropTypes.object.isRequired,
+  FormikBag: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(SkillsFieldArray);

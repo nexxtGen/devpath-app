@@ -32,7 +32,7 @@ const App = () => {
     registerUser,
     userProfile,
     userFlashcards,
-    userProfileForm
+    createEditProfile
   } = routes;
 
   return (
@@ -47,7 +47,7 @@ const App = () => {
             <PrivateRoute exact path={userProfile} component={UserProfile} />
             <PrivateRoute
               exact
-              path={userProfileForm}
+              path={createEditProfile}
               component={UserProfileForm}
             />
             <PrivateRoute

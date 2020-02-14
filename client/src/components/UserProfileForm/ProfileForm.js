@@ -15,10 +15,20 @@ const ProfileForm = ({ classes, FormikBag }) => {
   return (
     <Form className={classes.form}>
       <Grid container spacing={3}>
-        <Grid container item xs={6}>
+        <Grid
+          container
+          item
+          xs={4}
+          style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
+        >
           <BasicInfoForm />
         </Grid>
-        <Grid container item xs={6}>
+        <Grid
+          container
+          item
+          xs={6}
+          style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
+        >
           <SkillsFieldArray FormikBag={FormikBag} />
         </Grid>
       </Grid>
