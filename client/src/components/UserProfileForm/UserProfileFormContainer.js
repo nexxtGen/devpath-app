@@ -24,8 +24,22 @@ const UserProfileFormContainer = ({ classes }) => {
     },
     skills: [
       {
-        skillname: '',
-        icon: ''
+        skillname: 'React',
+        icon:
+          'https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png',
+        edit: false
+      },
+      {
+        skillname: 'Node.js',
+        icon:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa5uBi1MmG23ko8-dlCf_Y_7m3Q-2Ah9RwFoO6Lsk295p97X-T&s',
+        edit: false
+      },
+      {
+        skillname: 'HTML 5',
+        icon:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl1yekAb16Kh-XOlZ7A0O3WjkaaxCJQ27AfU9elJTDGPTztDhL9A&s',
+        edit: false
       }
     ]
   };

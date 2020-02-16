@@ -3,7 +3,7 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import { Form } from 'formik';
 import BasicButton from '../../shared/BasicButton';
 import BasicInfoForm from './BasicInfoForm';
-import SkillsFieldArray from './SkillsFieldArray';
+import SkillsFieldArray from './SkillsFieldArray/SkillsFieldArray';
 
 const styles = createStyles({
   form: {
@@ -18,7 +18,7 @@ const ProfileForm = ({ classes, FormikBag }) => {
         <Grid
           container
           item
-          xs={4}
+          xs={6}
           style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
         >
           <BasicInfoForm />
@@ -26,7 +26,7 @@ const ProfileForm = ({ classes, FormikBag }) => {
         <Grid
           container
           item
-          xs={6}
+          xs={4}
           style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
         >
           <SkillsFieldArray FormikBag={FormikBag} />
