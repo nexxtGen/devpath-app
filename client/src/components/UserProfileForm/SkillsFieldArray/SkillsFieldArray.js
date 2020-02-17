@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldArray, arrayHelpers } from 'formik';
+import { FieldArray } from 'formik';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import SkillsList from './SkillsList';
@@ -14,7 +14,7 @@ const styles = createStyles({
   }
 });
 
-const SkillsFieldArray = ({ classes, FormikBag, arrayHelpers }) => {
+const SkillsFieldArray = ({ classes, FormikBag }) => {
   const [editMode, setEditMode] = useState(false);
 
   return (

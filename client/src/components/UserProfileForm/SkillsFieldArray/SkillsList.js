@@ -91,7 +91,7 @@ const SkillsList = ({
                     render={({ field, form }) => (
                       <Button
                         className={classes.editMemberButton}
-                        disabled={false}
+                        disabled={editMode}
                         name={`skills.${index}.edit`}
                         color='primary'
                         onClick={() => {

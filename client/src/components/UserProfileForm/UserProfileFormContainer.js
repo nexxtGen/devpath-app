@@ -22,6 +22,8 @@ const UserProfileFormContainer = ({ classes }) => {
       github: '',
       codewars: ''
     },
+    skillname: '',
+    icon: '',
     skills: [
       {
         skillname: 'React',
