@@ -7,18 +7,22 @@ import SkillsFieldArray from './SkillsFieldArray/SkillsFieldArray';
 
 const styles = createStyles({
   form: {
-    maxWidth: '100%'
+    maxWidth: '100%',
+    display: 'flex',
+    //flexDirection: 'column',
+    //alignItems: 'center'
+    justifyContent: 'center'
   }
 });
 
 const ProfileForm = ({ classes, FormikBag }) => {
   return (
-    <Form className={classes.form}>
-      <Grid container spacing={3}>
+    <Form>
+      <Grid container spacing={3} className={classes.form}>
         <Grid
           container
           item
-          xs={6}
+          xs={5}
           style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
         >
           <BasicInfoForm />
@@ -27,7 +31,7 @@ const ProfileForm = ({ classes, FormikBag }) => {
           container
           item
           xs={4}
-          style={{ boxShadow: '2px 2px 5px gray', margin: 10 }}
+          style={{ boxShadow: '2px 2px 5px gray', margin: 10, minWidth: 500 }}
         >
           <SkillsFieldArray FormikBag={FormikBag} />
         </Grid>

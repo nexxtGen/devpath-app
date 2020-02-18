@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Preloader from '../../shared/Preloader';
+import { Link } from 'react-router-dom';
+import { routes } from '../../static/routesUrl';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import AvatarCard from './AvatarCard';
 import LangCard from './LangCard';
 import GithubCalendar from './GithubCalendar';
+import checkGitLanguagesExist from './utilis/checkGitLanguagesExist';
 
 const styles = createStyles({
   container: {
@@ -46,10 +49,12 @@ const UserProfileContainer = ({
         <Grid>
           <Grid className={classes.profileContainer}>
             <AvatarCard profile={profile.profile} user={auth.user} />
-            {profile.githubLang.length > 0 && (
+            {checkGitLanguagesExist(profile.githubLang) ? (
               <Grid>
                 <LangCard githubLang={profile.githubLang} />
               </Grid>
+            ) : (
+              <Grid>Check Github username. </Grid>
             )}
           </Grid>
           {profile.profile.usernameservices.github && (
@@ -61,7 +66,10 @@ const UserProfileContainer = ({
       ) : profile.loading ? (
         <Preloader />
       ) : (
-        <div>Nie posiadasz profilu. Załóż go.</div>
+        <Grid>
+          You do not have a profile. Create it{' '}
+          <Link to={routes.createEditProfile}>here</Link>.
+        </Grid>
       )}
     </Grid>
   );

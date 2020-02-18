@@ -37,11 +37,13 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add a skill name']
       },
-      level: {
-        type: Number,
-        min: [1, 'One is a minimal value'],
-        max: [6, 'Six is a max value'],
-        required: [true, 'Please add a skill level']
+      icon: {
+        type: String,
+        required: [true, 'Please add icon image link']
+      },
+      edit: {
+        type: Boolean,
+        default: false
       }
     }
   ],

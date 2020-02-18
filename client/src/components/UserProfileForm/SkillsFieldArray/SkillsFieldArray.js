@@ -10,7 +10,7 @@ const styles = createStyles({
     flexDirection: 'column',
     //justifyContent: 'center',
     //alignItems: 'center',
-    maxWidth: 500
+    maxWidth: 800
   }
 });
 

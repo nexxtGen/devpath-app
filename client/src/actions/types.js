@@ -11,6 +11,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 // USER PROFILE
 export const GET_PROFILE = 'GET_PROFILE';
+export const CREATE_UPDATE_PROFILE = 'CREATE_UPDATE_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_GITHUB_LANG = 'GET_GITHUB_LANG';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';

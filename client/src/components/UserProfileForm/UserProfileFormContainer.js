@@ -1,50 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import ProfileForm from './ProfileForm';
 import styles from './profileFormStyles';
 import { connect } from 'react-redux';
+import { getCurrentProfile, createUpdateProfile } from '../../actions/profile';
 import PropTypes from 'prop-types';
+import createProfileValues from './utilis/createProfileValues';
 
-const UserProfileFormContainer = ({ classes }) => {
+const UserProfileFormContainer = ({
+  classes,
+  profile,
+  getCurrentProfile,
+  createUpdateProfile
+}) => {
   const submitForm = values => {
     console.log(values);
+    createUpdateProfile(values);
   };
 
-  const initialValues = {
-    profession: '',
-    company: '',
-    country: '',
-    location: '',
-    website: '',
-    usernameservices: {
-      github: '',
-      codewars: ''
-    },
-    skillname: '',
-    icon: '',
-    skills: [
-      {
-        skillname: 'React',
-        icon:
-          'https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png',
-        edit: false
-      },
-      {
-        skillname: 'Node.js',
-        icon:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa5uBi1MmG23ko8-dlCf_Y_7m3Q-2Ah9RwFoO6Lsk295p97X-T&s',
-        edit: false
-      },
-      {
-        skillname: 'HTML 5',
-        icon:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl1yekAb16Kh-XOlZ7A0O3WjkaaxCJQ27AfU9elJTDGPTztDhL9A&s',
-        edit: false
-      }
-    ]
-  };
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
+
+  //const profileData = null;
+  const initialValues = createProfileValues(profile.profile);
+
   return (
     <Grid className={classes.formContainer}>
       <Grid container className={classes.primaryContainer} spacing={4}>
@@ -91,13 +73,27 @@ const formProfileSchema = Yup.object().shape({
         .max(20, 'Maximum 20 letters')
         .required('Name of skill is required'),
       icon: Yup.string()
-        .min(2, 'Minimum 2 letters')
-        .max(100, 'Maximum 100 letters')
+        .min(10, 'Minimum 10 characters')
+        .max(500, 'Maximum 500 characters')
         .required('Icon link is required')
     })
-  )
+  ),
+  usernameservices: Yup.object().shape({
+    github: Yup.string()
+      .min(2, 'Minimum 2 letters')
+      .max(20, 'Maximum 20 letters'),
+    codewars: Yup.string()
+      .min(2, 'Minimum 2 letters')
+      .max(100, 'Maximum 100 letters')
+  })
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
 
-export default connect(null)(withStyles(styles)(UserProfileFormContainer));
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  createUpdateProfile
+})(withStyles(styles)(UserProfileFormContainer));

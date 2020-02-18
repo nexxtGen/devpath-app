@@ -99,6 +99,40 @@ const BasicInfoForm = ({ classes, FormikBag }) => {
             </FormControl>
           )}
         </Field>
+        <Grid container direction='row'>
+          <Field name='usernameservices.github'>
+            {({ field, form }) => (
+              <FormControl fullWidth style={{ height: '75px' }}>
+                <FTextField
+                  label={'Github username'}
+                  fieldProps={field}
+                  disabled={false}
+                />
+                <FormHelperText error>
+                  {form.touched.usernameservices &&
+                    form.errors.usernameservices &&
+                    form.errors.usernameservices.github}
+                </FormHelperText>
+              </FormControl>
+            )}
+          </Field>
+          <Field name='usernameservices.codewars'>
+            {({ field, form }) => (
+              <FormControl fullWidth style={{ height: '75px' }}>
+                <FTextField
+                  label={'Codewars username'}
+                  fieldProps={field}
+                  disabled={false}
+                />
+                <FormHelperText error>
+                  {form.touched.usernameservices &&
+                    form.errors.usernameservices &&
+                    form.errors.usernameservices.codewars}
+                </FormHelperText>
+              </FormControl>
+            )}
+          </Field>
+        </Grid>
       </Grid>
     </Grid>
   );
