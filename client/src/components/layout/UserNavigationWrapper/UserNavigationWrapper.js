@@ -33,7 +33,11 @@ const UserNavigationWrapper = ({ classes, children, user }) => {
     <div className={classes.root}>
       <CssBaseline />
       <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} user={user} />
-      <UserSidebar open={open} handleDrawerClose={handleDrawerClose} />
+      <UserSidebar
+        open={open}
+        handleDrawerClose={handleDrawerClose}
+        user={user}
+      />
       <div className={classes.content}>{children}</div>
     </div>
   );

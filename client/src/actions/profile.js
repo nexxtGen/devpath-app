@@ -35,8 +35,6 @@ export const createUpdateProfile = profileData => async dispatch => {
     }
   };
 
-  //const body = JSON.stringify({ name, email, password, terms });
-
   try {
     const res = await axios.post('/api/v1/profile', profileData, config);
 

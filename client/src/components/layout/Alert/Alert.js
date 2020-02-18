@@ -8,7 +8,8 @@ const styles = createStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '10px'
+    marginTop: '10px',
+    width: '100%'
   },
   alert: {
     width: '50%',

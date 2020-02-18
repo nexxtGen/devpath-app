@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, createUpdateProfile } from '../../actions/profile';
 import PropTypes from 'prop-types';
 import createProfileValues from './utilis/createProfileValues';
+import Alert from '../layout/Alert/Alert';
 
 const UserProfileFormContainer = ({
   classes,
@@ -16,7 +17,6 @@ const UserProfileFormContainer = ({
   createUpdateProfile
 }) => {
   const submitForm = values => {
-    console.log(values);
     createUpdateProfile(values);
   };
 
@@ -24,11 +24,11 @@ const UserProfileFormContainer = ({
     getCurrentProfile();
   }, []);
 
-  //const profileData = null;
   const initialValues = createProfileValues(profile.profile);
 
   return (
     <Grid className={classes.formContainer}>
+      <Alert />
       <Grid container className={classes.primaryContainer} spacing={4}>
         <Grid className={classes.headerContainer}>
           <Typography variant='h4' className={classes.typographyPrimary}>
