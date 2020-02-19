@@ -1,0 +1,41 @@
+.slider-container {
+  width: 100%;
+}
+
+.cos {
+  background-image: radial-gradient(circle, #548aec, #02659e);
+}
+
+.romb {
+  background: blue;
+  width: 450px;
+  height: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  clip-path: polygon(30% 0, 100% 0, 70% 100%, 0% 100%);
+}
+
+.triangle1 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  width: 350px;
+  height: 150px;
+  clip-path: polygon(30% 0%, 0% 100%, 50% 100%);
+}
+.triangle2 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  width: 350px;
+  height: 150px;
+  clip-path: polygon(50% 100%, 30% 0, 70% 0);
+}
+
+.romb:hover > .triangle1 {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.romb:hover > .triangle2 {
+  background: rgba(255, 255, 255, 0.3);
+}

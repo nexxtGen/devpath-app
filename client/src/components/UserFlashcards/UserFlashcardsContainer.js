@@ -1,27 +1,21 @@
 import React from 'react';
+import SliderContainer from './Slider/SliderContainer';
+import { Grid, withStyles, createStyles } from '@material-ui/core';
 
-const UserFlashcardsContainer = () => {
+const styles = createStyles({
+  container: {
+    display: 'flex',
+    direction: 'row',
+    width: '100%',
+    position: 'relative'
+  }
+});
+
+const UserFlashcardsContainer = ({ classes }) => {
   return (
-    <div>
-      <h3>FLASHCARDS</h3>
-      <h4>FLASHCARDS</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-        non enim praesent elementum facilisis leo vel. Lorem ipsum dolor sit
-        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-        elementum facilisis leo vel. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Rhoncus dolor purus non enim praesent elementum facilisis
-        leo vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-        dolor purus non enim praesent elementum facilisis leo vel. Lorem ipsum
-        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-        enim praesent elementum facilisis leo vel.
-      </p>
-    </div>
+    <Grid className={classes.container}>
+      <SliderContainer />
+    </Grid>
   );
 };
-export default UserFlashcardsContainer;
+export default withStyles(styles)(UserFlashcardsContainer);

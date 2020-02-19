@@ -9,9 +9,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SubtitlesIcon from '@material-ui/icons/Subtitles';
 import ProfileList from './ProfileList';
+import LinkWithoutDefaultStyles from '../../../../shared/LinkWithoutDefaultStyles';
+import { routes } from '../../../../static/routesUrl';
+import { primaryLight } from '../../../../shared/colors';
 
 const drawerWidth = 230;
 
@@ -74,14 +76,14 @@ const UserSidebar = ({ classes, handleDrawerClose, open, user }) => {
           <ProfileList user={user} />
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
+            <LinkWithoutDefaultStyles to={routes.userFlashcards}>
+              <ListItem button>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <SubtitlesIcon style={{ color: primaryLight }} />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Flashcards' />
               </ListItem>
-            ))}
+            </LinkWithoutDefaultStyles>
           </List>
         </Drawer>
       )}

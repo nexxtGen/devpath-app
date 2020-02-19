@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles, Grid } from '@material-ui/core';
 import UserSidebar from './UserSidebar/UserSidebar';
 import UserAppbar from './UserAppbar/UserAppbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,10 +11,11 @@ const styles = createStyles({
     display: 'flex'
   },
   content: {
-    padding: 50,
+    padding: '50px',
     marginTop: '64px',
-    width: '100%',
-    minHeight: 'calc(100vh - 64px)'
+    width: 'calc(100vw - 66px)',
+    minHeight: 'calc(100vh - 64px)',
+    overflow: 'hidden'
   }
 });
 
@@ -30,7 +31,7 @@ const UserNavigationWrapper = ({ classes, children, user }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
       <CssBaseline />
       <UserAppbar open={open} handleDrawerOpen={handleDrawerOpen} user={user} />
       <UserSidebar
@@ -38,8 +39,8 @@ const UserNavigationWrapper = ({ classes, children, user }) => {
         handleDrawerClose={handleDrawerClose}
         user={user}
       />
-      <div className={classes.content}>{children}</div>
-    </div>
+      <Grid className={classes.content}>{children}</Grid>
+    </Grid>
   );
 };
 
