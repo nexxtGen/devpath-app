@@ -7,20 +7,10 @@ const SliderItem = ({ index, url }) => {
       <div className='romb' style={{ backgroundImage: `url('${url}')` }}>
         <div className='triangle1'></div>
         <div className='triangle2'></div>
+        <div className='triangle3'></div>
+        <div className='triangle4'></div>
       </div>
-      <button
-        style={{
-          height: '42px',
-          width: '260px',
-          transform: 'translate(-50px, -4px)',
-          backgroundImage:
-            'linear-gradient(-45deg, rgba(211,219,226,1) 0%, rgba(232,232,232,1) 42%, rgba(230,235,239,1) 58%, rgba(207,212,214,1) 100%)',
-          border: 'none',
-          color: 'black'
-        }}
-      >
-        Przycisk nr:{index}
-      </button>
+      <button className='button-slider-triangle'>Przycisk nr:{index}</button>
     </div>
   );
 };
