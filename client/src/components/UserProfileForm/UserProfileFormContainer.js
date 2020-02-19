@@ -13,6 +13,7 @@ import Alert from '../layout/Alert/Alert';
 const UserProfileFormContainer = ({
   classes,
   profile,
+  user,
   getCurrentProfile,
   createUpdateProfile
 }) => {
@@ -29,23 +30,20 @@ const UserProfileFormContainer = ({
   return (
     <Grid className={classes.formContainer}>
       <Alert />
-      <Grid container className={classes.primaryContainer} spacing={4}>
-        <Grid className={classes.headerContainer}>
-          <Typography variant='h4' className={classes.typographyPrimary}>
-            Profile Form
-          </Typography>
+      {user && (
+        <Grid container className={classes.primaryContainer} spacing={4}>
+          <Grid className={classes.formikContainer}>
+            <Formik
+              initialValues={initialValues}
+              enableReinitialize={true}
+              validationSchema={formProfileSchema}
+              onSubmit={(values, actions) => submitForm(values, actions)}
+            >
+              {FormikBag => <ProfileForm FormikBag={FormikBag} user={user} />}
+            </Formik>
+          </Grid>
         </Grid>
-        <Grid className={classes.formikContainer}>
-          <Formik
-            initialValues={initialValues}
-            enableReinitialize={true}
-            validationSchema={formProfileSchema}
-            onSubmit={(values, actions) => submitForm(values, actions)}
-          >
-            {FormikBag => <ProfileForm FormikBag={FormikBag} />}
-          </Formik>
-        </Grid>
-      </Grid>
+      )}
     </Grid>
   );
 };
@@ -89,7 +87,7 @@ const formProfileSchema = Yup.object().shape({
 });
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: state.auth.user,
   profile: state.profile
 });
 

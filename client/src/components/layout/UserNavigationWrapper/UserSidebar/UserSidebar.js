@@ -27,12 +27,14 @@ const styles = createStyles({
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: 'width 0.3s, ease-in'
+    transition: 'width 0.3s, ease-in',
+    background: '#F3F3F8'
   },
   drawerClose: {
     transition: 'width 0.3s, ease-in',
     overflowX: 'hidden',
-    width: 65
+    width: 65,
+    background: '#F3F3F8'
   },
   toolbar: {
     display: 'flex',

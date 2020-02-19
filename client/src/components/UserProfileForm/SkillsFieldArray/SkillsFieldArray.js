@@ -8,9 +8,15 @@ import AddSkill from './AddSkill';
 const styles = createStyles({
   listContainer: {
     flexDirection: 'column',
-    //justifyContent: 'center',
-    //alignItems: 'center',
     maxWidth: 800
+  },
+  headerContainer: {
+    width: '100%',
+    display: 'flex',
+    paddingLeft: 20,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginBottom: 25
   }
 });
 
@@ -22,7 +28,7 @@ const SkillsFieldArray = ({ classes, FormikBag }) => {
       name='skills'
       render={arrayHelpers => (
         <Grid container className={classes.listContainer}>
-          <Typography variant='h4' className={classes.typographyPrimary}>
+          <Typography variant='h5' className={classes.headerContainer}>
             Skills List
           </Typography>
           <SkillsList
@@ -32,15 +38,17 @@ const SkillsFieldArray = ({ classes, FormikBag }) => {
             setEditMode={setEditMode}
           />
           {editMode === false ? (
-            <AddSkill
-              FormikBag={FormikBag}
-              arrayHelpers={arrayHelpers}
-              skillNameProps={`skillname`}
-              iconNameProps={`icon`}
-              index={''}
-              editMode={editMode}
-              setEditMode={setEditMode}
-            />
+            <Grid style={{ padding: '0 70px 0 28px' }}>
+              <AddSkill
+                FormikBag={FormikBag}
+                arrayHelpers={arrayHelpers}
+                skillNameProps={`skillname`}
+                iconNameProps={`icon`}
+                index={''}
+                editMode={editMode}
+                setEditMode={setEditMode}
+              />
+            </Grid>
           ) : (
             ''
           )}
@@ -51,8 +59,7 @@ const SkillsFieldArray = ({ classes, FormikBag }) => {
 };
 
 SkillsFieldArray.propTypes = {
-  classes: PropTypes.object.isRequired,
-  FormikBag: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SkillsFieldArray);

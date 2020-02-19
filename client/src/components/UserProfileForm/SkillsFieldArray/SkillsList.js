@@ -12,32 +12,26 @@ import { Field, ErrorMessage } from 'formik';
 import checkSkillsExist from '../utilis/checkSkillsExist';
 import Typography from '@material-ui/core/Typography';
 import AddSkill from './AddSkill';
+import { primary } from '../../../shared/colors';
 
 const styles = createStyles({
-  personOutline: {
-    width: '34px',
-    height: '34px',
-    color: 'rgb(0,143, 213)',
-    marginTop: '5px',
-    marginRight: '6px'
-  },
   typograpfySubtitle: {
     marginTop: '10px',
     paddingLeft: '30px',
     color: 'gray'
   },
-  editMemberButton: {
+  editSkillButton: {
     width: '25px',
     height: '35px',
-    color: 'rgb(0,143, 213)',
+    color: primary,
     padding: '8px',
     paddingLeft: '15px'
   },
-  removeMemberButton: {
+  removeSkillButton: {
     minWidth: '30px',
     height: '35px',
-    color: 'black',
-    padding: '8px'
+    padding: '8px',
+    marginLeft: 10
   }
 });
 
@@ -53,7 +47,7 @@ const SkillsList = ({
       container
       direction='column'
       justify='center'
-      style={{ paddingRight: '0' }}
+      style={{ paddingRight: '0', marginLeft: '40px' }}
     >
       {checkSkillsExist(FormikBag) ? (
         FormikBag.values.skills.map((skill, index) => (
@@ -67,7 +61,7 @@ const SkillsList = ({
               >
                 <Grid
                   item
-                  xs={7}
+                  xs={8}
                   container
                   direction='row'
                   justify='flex-start'
@@ -86,11 +80,11 @@ const SkillsList = ({
                     {skill.skillname + ' '}
                   </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   <Field
                     render={({ field, form }) => (
                       <Button
-                        className={classes.editMemberButton}
+                        className={classes.editSkillButton}
                         disabled={editMode}
                         name={`skills.${index}.edit`}
                         color='primary'
@@ -104,12 +98,12 @@ const SkillsList = ({
                     )}
                   />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   <Button
                     disabled={false}
-                    className={classes.removeMemberButton}
+                    className={classes.removeSkillButton}
                     type='button'
-                    color='primary'
+                    color='secondary'
                     onClick={() => arrayHelpers.remove(index)}
                   >
                     <DeleteForeverOutlinedIcon />
@@ -117,15 +111,17 @@ const SkillsList = ({
                 </Grid>
               </Grid>
             ) : (
-              <AddSkill
-                FormikBag={FormikBag}
-                arrayHelpers={arrayHelpers}
-                skillNameProps={`skills.${index}.skillname`}
-                iconNameProps={`skills.${index}.icon`}
-                index={index}
-                editMode={editMode}
-                setEditMode={setEditMode}
-              />
+              <Grid style={{ paddingRight: '75px' }}>
+                <AddSkill
+                  FormikBag={FormikBag}
+                  arrayHelpers={arrayHelpers}
+                  skillNameProps={`skills.${index}.skillname`}
+                  iconNameProps={`skills.${index}.icon`}
+                  index={index}
+                  editMode={editMode}
+                  setEditMode={setEditMode}
+                />
+              </Grid>
             )}
           </Grid>
         ))

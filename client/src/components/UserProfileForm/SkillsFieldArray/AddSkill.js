@@ -8,17 +8,18 @@ import {
   Grid,
   createStyles
 } from '@material-ui/core';
-import { Field, ErrorMessage, FieldProps } from 'formik';
-import PersonAddOutlined from '@material-ui/icons/PersonAddOutlined';
+import { Field, ErrorMessage } from 'formik';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import addNewSkill from '../utilis/addNewSkill';
 import confirmFinishSkillEdit from '../utilis/confirmFinishSkillEdit';
 import validateMessage from '../utilis/validateMessage';
+import { primary } from '../../../shared/colors';
 
 const styles = createStyles({
-  personOutline: {
+  confirmChanges: {
     width: '34px',
     height: '34px',
-    color: 'rgb(0,143, 213)',
+    color: primary,
     marginTop: '5px',
     marginRight: '6px'
   },
@@ -29,7 +30,7 @@ const styles = createStyles({
   muiTextFieldLow: {
     paddingLeft: '15px',
     backgroundColor: 'white',
-    borderBottom: '2px solid rgb(0,143, 213)',
+    borderBottom: `1px solid ${primary}`,
     height: '45px'
   }
 });
@@ -72,7 +73,7 @@ const AddSkill = ({
                       }
                 }
               >
-                <PersonAddOutlined className={classes.personOutline} />
+                <PlaylistAddCheckIcon className={classes.confirmChanges} />
               </Button>
             );
           }}

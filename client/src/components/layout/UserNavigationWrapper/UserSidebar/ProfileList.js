@@ -12,6 +12,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
 import { routes } from '../../../../static/routesUrl';
 import LinkWithoutDefaultStyles from '../../../../shared/LinkWithoutDefaultStyles';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import EditIcon from '@material-ui/icons/Edit';
+import { primaryLight } from '../../../../shared/colors';
 
 const styles = createStyles({
   summaryRoot: {
@@ -36,7 +39,7 @@ const styles = createStyles({
 const ProfileList = ({ classes, user }) => {
   return (
     <Grid>
-      <ExpansionPanel>
+      <ExpansionPanel square>
         <ExpansionPanelSummary
           classes={{ root: classes.summaryRoot }}
           expandIcon={<ExpandMoreIcon />}
@@ -53,13 +56,17 @@ const ProfileList = ({ classes, user }) => {
           <List style={{ width: '100%' }}>
             <LinkWithoutDefaultStyles to={routes.userProfile}>
               <ListItem button style={{ width: '100%' }}>
-                <ListItemIcon>MP</ListItemIcon>
+                <ListItemIcon>
+                  <AccountBoxIcon style={{ color: primaryLight }} />
+                </ListItemIcon>
                 <ListItemText primary='My Profile' />
               </ListItem>
             </LinkWithoutDefaultStyles>
             <LinkWithoutDefaultStyles to={routes.createEditProfile}>
               <ListItem button style={{ width: '100%' }}>
-                <ListItemIcon>EP</ListItemIcon>
+                <ListItemIcon style={{ color: primaryLight }}>
+                  <EditIcon />
+                </ListItemIcon>
                 <ListItemText primary='Edit Profile' />
               </ListItem>
             </LinkWithoutDefaultStyles>

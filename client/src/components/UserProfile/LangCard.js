@@ -14,8 +14,7 @@ const styles = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundImage:
-      'linear-gradient(to right bottom, #e5e5e5, #e0e0e0, #dcdcdc, #d7d7d7, #d3d3d3)',
+    background: '#F3F3F8',
     boxShadow: '1px 1px 8px #aaaaaa',
     margin: '30px 50px',
     padding: 10
