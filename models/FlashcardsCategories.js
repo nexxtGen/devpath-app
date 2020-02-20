@@ -18,11 +18,9 @@ const FlashcardsCategoriesSchema = new mongoose.Schema({
       },
       flashcards: [
         {
-          card: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Flashcard',
-            required: true
-          }
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Flashcard',
+          required: true
         }
       ],
       createdAt: {
@@ -36,6 +34,15 @@ const FlashcardsCategoriesSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+async function populateFlashcards(next) {
+  this.populate('categories.flashcards');
+  console.log('Populate flashcards in model');
+  next();
+}
+
+FlashcardsCategoriesSchema.pre('find', populateFlashcards);
+FlashcardsCategoriesSchema.pre('findOne', populateFlashcards);
 
 module.exports = mongoose.model(
   'FlashcardsCategories',

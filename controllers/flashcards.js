@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const Flashcard = require('../models/Flashcard');
+const FlashcardsCategories = require('../models/FlashcardsCategories');
 
 // @desc Get all flashcards
 // @route GET /api/v1/flashcards
@@ -12,11 +13,14 @@ exports.getFlashcards = asyncHandler(async (req, res, next) => {
     .json({ success: true, count: flashcards.length, data: flashcards });
 });
 
-// @desc Get single flashcard
+// @desc Get single user flashcard
 // @route GET /api/v1/flashcards/:id
 // @access Private
 exports.getFlashcard = asyncHandler(async (req, res, next) => {
-  const flashcard = await Flashcard.findById(req.params.id);
+  const flashcard = await Flashcard.findOne({
+    _id: req.params.id,
+    user: req.user.id
+  });
 
   if (!flashcard) {
     return next(
@@ -31,7 +35,22 @@ exports.getFlashcard = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/flashcards
 // @access Private
 exports.createFlashcard = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
+
   const flashcard = await Flashcard.create(req.body);
+  let category = await FlashcardsCategories.findOne({ user: req.user.id });
+  console.log(category);
+
+  category.categories.map(item => {
+    if (item._id.toString() === req.body.categoryId)
+      item.flashcards.push(flashcard._id);
+  });
+
+  await FlashcardsCategories.findOneAndUpdate(
+    { user: req.user.id },
+    { $set: category },
+    { new: true }
+  );
 
   res.status(201).json({
     success: true,

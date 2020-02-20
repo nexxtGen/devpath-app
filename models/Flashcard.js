@@ -27,6 +27,10 @@ const FlashcardSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  categoryId: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
