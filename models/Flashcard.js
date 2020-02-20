@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const FlashcardSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   title: {
     type: String,
     required: [true, 'Please add a title'],
@@ -17,21 +22,6 @@ const FlashcardSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add a code'],
     maxlength: [500, 'Code can not be more than 500 characters']
-  },
-  category: {
-    type: String,
-    required: [true, 'Category is required'],
-    enum: [
-      'Javascript',
-      'React',
-      'Angular',
-      'HTML',
-      'CSS',
-      'LESS/SASS',
-      'MongoDB',
-      'Node',
-      'Other'
-    ]
   },
   archived: {
     type: Boolean,

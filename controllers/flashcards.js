@@ -6,7 +6,7 @@ const Flashcard = require('../models/Flashcard');
 // @route GET /api/v1/flashcards
 // @access Private
 exports.getFlashcards = asyncHandler(async (req, res, next) => {
-  const flashcards = await Flashcard.find();
+  const flashcards = await Flashcard.find({ user: req.user.id });
   res
     .status(200)
     .json({ success: true, count: flashcards.length, data: flashcards });
