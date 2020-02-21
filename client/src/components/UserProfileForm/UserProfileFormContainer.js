@@ -50,7 +50,11 @@ const UserProfileFormContainer = ({
 };
 
 UserProfileFormContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  profile: PropTypes.object,
+  user: PropTypes.object,
+  getCurrentProfile: PropTypes.func.isRequired,
+  createUpdateProfile: PropTypes.func.isRequired
 };
 
 const formProfileSchema = Yup.object().shape({

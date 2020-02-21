@@ -10,12 +10,18 @@ const styles = createStyles({
   }
 });
 
-const SliderContainer = ({ classes, categories }) => {
+const SliderContainer = ({ classes, categories, setCategory }) => {
   return (
     <Grid className={classes.container}>
       <Slider {...settings}>
         {categories.map((item, index) => (
-          <SliderItem key={index} name={item.name} image={item.image} />
+          <SliderItem
+            key={index}
+            name={item.name}
+            image={item.image}
+            id={item._id}
+            setCategory={setCategory}
+          />
         ))}
       </Slider>
     </Grid>
