@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { withStyles, Grid, Typography } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import ProfileForm from './ProfileForm';
@@ -23,6 +23,7 @@ const UserProfileFormContainer = ({
 
   useEffect(() => {
     getCurrentProfile();
+    //eslint-disable-next-line
   }, []);
 
   const initialValues = createProfileValues(profile.profile);

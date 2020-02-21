@@ -1,7 +1,10 @@
 import axios from 'axios';
-
 import { setAlert } from './alert';
-import { GET_FLASHCARDS_CATEGORIES, CREATE_FLASHCARDS_CATEGORY } from './types';
+import {
+  GET_FLASHCARDS_CATEGORIES,
+  CREATE_FLASHCARDS_CATEGORY,
+  FLASHCARDS_CATEGORIES_ERROR
+} from './types';
 
 // Get current users profile
 export const getFlashcardsCategories = () => async dispatch => {

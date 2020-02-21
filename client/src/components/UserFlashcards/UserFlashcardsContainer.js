@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SliderContainer from './Slider/SliderContainer';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { getFlashcardsCategories } from '../../actions/flashcardsCategories';
 
 const styles = createStyles({
   container: {
@@ -11,11 +13,31 @@ const styles = createStyles({
   }
 });
 
-const UserFlashcardsContainer = ({ classes }) => {
+const UserFlashcardsContainer = ({
+  classes,
+  flashcardsCategories,
+  getFlashcardsCategories
+}) => {
+  useEffect(() => {
+    getFlashcardsCategories();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <Grid className={classes.container}>
-      <SliderContainer />
+      {flashcardsCategories.categories && (
+        <SliderContainer
+          categories={flashcardsCategories.categories.categories}
+        />
+      )}
     </Grid>
   );
 };
-export default withStyles(styles)(UserFlashcardsContainer);
+
+const mapStateToProps = state => ({
+  flashcardsCategories: state.flashcardsCategories
+});
+
+export default connect(mapStateToProps, { getFlashcardsCategories })(
+  withStyles(styles)(UserFlashcardsContainer)
+);
