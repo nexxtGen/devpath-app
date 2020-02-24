@@ -3,12 +3,15 @@ import {
   GET_FLASHCARDS_CATEGORIES,
   CREATE_FLASHCARDS_CATEGORY,
   SET_CURRENT_FLASHCARDS_CATEGORY,
-  FLASHCARDS_ERROR
+  SET_FLASHCARDS_CATEGORIES_LIST,
+  FLASHCARDS_ERROR,
+  SET_LOADING
 } from '../actions/types';
 
 const initialState = {
   categories: null,
-  loading: true,
+  categoriesList: null,
+  loading: false,
   currentFlashcards: null,
   error: {}
 };
@@ -31,10 +34,19 @@ export default function(state = initialState, action) {
     case SET_CURRENT_FLASHCARDS_CATEGORY:
       return {
         ...state,
+        loading: false,
         currentFlashcards: state.categories.categories
           .filter(item => item._id === payload)
           .map(el => el.flashcards)
           .flat()
+      };
+    case SET_FLASHCARDS_CATEGORIES_LIST:
+      return {
+        ...state,
+        categoriesList: payload.map(item => {
+          const categories = { name: item.name, _id: item._id };
+          return categories;
+        })
       };
     case CREATE_FLASHCARDS_CATEGORY:
       return {
@@ -42,6 +54,8 @@ export default function(state = initialState, action) {
         categories: payload,
         loading: false
       };
+    case SET_LOADING:
+      return { ...state, loading: true };
     case FLASHCARDS_ERROR:
       return { ...state, loading: false, error: payload };
     default:

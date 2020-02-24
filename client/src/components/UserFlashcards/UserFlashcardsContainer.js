@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SliderContainer from './Slider/SliderContainer';
 import FlashcardsContainer from './Flashcards/FlashcardsContainer';
+import AddBtn from './AddBtn';
+import AddFlashcardModal from './../UserFlashcardsForms/AddFlashcardModal';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
@@ -26,6 +28,15 @@ const UserFlashcardsContainer = ({
   getAllUserFlashcards,
   setCurrentFLashcardsCategory
 }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     getFlashcardsCategories();
     getAllUserFlashcards();
@@ -34,6 +45,7 @@ const UserFlashcardsContainer = ({
 
   return (
     <Grid className={classes.container}>
+      <AddFlashcardModal open={open} handleClose={handleClose} />
       {flashcards.categories && (
         <SliderContainer
           categories={flashcards.categories.categories}
@@ -45,6 +57,7 @@ const UserFlashcardsContainer = ({
           <FlashcardsContainer flashcards={flashcards.currentFlashcards} />
         )}
       </Grid>
+      <AddBtn open={handleClickOpen} />
     </Grid>
   );
 };

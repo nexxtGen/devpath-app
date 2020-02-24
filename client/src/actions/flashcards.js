@@ -5,12 +5,16 @@ import {
   GET_ALL_USER_FLASHCARDS,
   CREATE_FLASHCARDS_CATEGORY,
   SET_CURRENT_FLASHCARDS_CATEGORY,
-  FLASHCARDS_ERROR
+  SET_FLASHCARDS_CATEGORIES_LIST,
+  FLASHCARDS_ERROR,
+  SET_LOADING
 } from './types';
 
 // Get current users profile
 export const getAllUserFlashcards = () => async dispatch => {
   try {
+    dispatch(setLoading());
+
     const res = await axios.get('/api/v1/flashcards');
 
     dispatch({
@@ -28,12 +32,16 @@ export const getAllUserFlashcards = () => async dispatch => {
 
 export const getFlashcardsCategories = () => async dispatch => {
   try {
+    dispatch(setLoading());
+
     const res = await axios.get('/api/v1/flashcards-categories');
 
     dispatch({
       type: GET_FLASHCARDS_CATEGORIES,
       payload: res.data.data
     });
+
+    dispatch(setFlashcardsCategoriesList(res.data.data.categories));
   } catch (err) {
     dispatch({
       type: FLASHCARDS_ERROR,
@@ -42,12 +50,22 @@ export const getFlashcardsCategories = () => async dispatch => {
   }
 };
 
+export const setFlashcardsCategoriesList = categoriesData => dispatch => {
+  dispatch({
+    type: SET_FLASHCARDS_CATEGORIES_LIST,
+    payload: categoriesData
+  });
+};
+
 export const setCurrentFLashcardsCategory = categoryId => async dispatch => {
+  dispatch(setLoading());
+
   dispatch({
     type: SET_CURRENT_FLASHCARDS_CATEGORY,
     payload: categoryId
   });
 };
+
 export const createFlashcardsCategory = categoryData => async dispatch => {
   const config = {
     headers: {
@@ -56,6 +74,8 @@ export const createFlashcardsCategory = categoryData => async dispatch => {
   };
 
   try {
+    dispatch(setLoading());
+
     const res = await axios.post(
       '/api/v1/flashcards-categories',
       categoryData,
@@ -74,4 +94,10 @@ export const createFlashcardsCategory = categoryData => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING
+  };
 };
