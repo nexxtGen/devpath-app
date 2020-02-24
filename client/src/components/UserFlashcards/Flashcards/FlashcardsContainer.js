@@ -1,6 +1,7 @@
 import React from 'react';
 import FlashcardsList from './FlashcardsList';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const styles = createStyles({
   container: {
@@ -13,10 +14,14 @@ const styles = createStyles({
 const FlashcardsContainer = ({ classes, flashcards }) => {
   return (
     <Grid className={classes.container}>
-      Flashcards Container
       <FlashcardsList flashcards={flashcards} />
     </Grid>
   );
+};
+
+FlashcardsContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  flashcards: PropTypes.array
 };
 
 export default withStyles(styles)(FlashcardsContainer);

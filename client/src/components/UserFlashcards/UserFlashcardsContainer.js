@@ -8,6 +8,7 @@ import {
   getAllUserFlashcards,
   setCurrentFLashcardsCategory
 } from '../../actions/flashcards';
+import PropTypes from 'prop-types';
 
 const styles = createStyles({
   container: {
@@ -51,6 +52,14 @@ const UserFlashcardsContainer = ({
 const mapStateToProps = state => ({
   flashcards: state.flashcards
 });
+
+UserFlashcardsContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  flashcards: PropTypes.object,
+  getFlashcardsCategories: PropTypes.func.isRequired,
+  getAllUserFlashcards: PropTypes.func.isRequired,
+  setCurrentFLashcardsCategory: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, {
   getFlashcardsCategories,

@@ -21,7 +21,7 @@ export const getAllUserFlashcards = () => async dispatch => {
     console.log(err);
     dispatch({
       type: FLASHCARDS_ERROR,
-      payload: { msg: err }
+      payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
 };

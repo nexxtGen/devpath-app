@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, withStyles, createStyles, Grid } from '@material-ui/core';
+import { TextField, withStyles, createStyles } from '@material-ui/core';
 import { primary } from '../colors';
 
 const styles = createStyles({

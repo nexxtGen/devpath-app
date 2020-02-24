@@ -1,67 +1,30 @@
-import React, { useState } from 'react';
-import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
+import React from 'react';
+import { Grid, withStyles, Typography } from '@material-ui/core';
 import Editor from 'react-simple-code-editor';
 import '../../../shared/prism_v2.css';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
-
-const styles = createStyles({
-  container: {
-    width: '300px',
-    height: '400px',
-    display: 'flex',
-    flexDirection: 'column',
-    border: '1px solid black',
-    margin: 15,
-    background: 'lightgray',
-    flexWrap: 'wrap'
-  }
-});
+import styles from './flashcardStyles';
+import { Edit, DeleteOutline } from '@material-ui/icons';
+import PropTypes from 'prop-types';
 
 const Flashcard = ({ classes, card }) => {
-  const [code2, setCode2] = useState(`import React from "react";
-  import ReactDOM from "react-dom";
-  
-  const thePies = "pies";
-  
-  function App() {
-    return (
-      <h1>Hello world</h1>
-    );
-  }
-
-  function App() {
-    return (
-      <h1>Hello world</h1>
-    );
-  }
-
-  function App() {
-    return (
-      <h1>Hello world</h1>
-    );
-  }
-  
-  ReactDOM.render(<App />, document.getElementById("root"));`);
-
-  const onChange = code => {
-    setCode2(code);
-    console.log(code);
-  };
+  const onChange = code => {};
 
   const { title, description, code } = card;
   return (
     <Grid className={classes.container}>
-      <Typography>{title}</Typography>
-      <Typography>{description}</Typography>
-      <Grid
-        style={{
-          background: 'white',
-          height: '250px',
-          display: 'flex'
-        }}
-      >
+      <Grid className={classes.arrow}></Grid>
+      <Grid className={classes.header}>
+        <Typography variant='h6'>{title}</Typography>
+      </Grid>
+      <Grid className={classes.divider}></Grid>
+      <Grid className={classes.textContainer}>
+        <Typography variant='body2'>{description}</Typography>
+      </Grid>
+      <Grid className={classes.divider}></Grid>
+      <Grid className={classes.codeContainer}>
         <Editor
           value={code}
           onValueChange={code => onChange(code)}
@@ -71,12 +34,22 @@ const Flashcard = ({ classes, card }) => {
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 12,
-            overflowY: 'scroll'
+            overflowY: 'scroll',
+            width: '100%'
           }}
         />
       </Grid>
+      <Grid className={classes.footer}>
+        <Edit className={classes.icon} />
+        <DeleteOutline className={classes.icon} />
+      </Grid>
     </Grid>
   );
+};
+
+Flashcard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  card: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Flashcard);
