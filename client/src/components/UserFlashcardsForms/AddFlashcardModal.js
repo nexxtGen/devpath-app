@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import {
   withStyles,
   createStyles,
-  Typography,
   Dialog,
   DialogActions,
   DialogContent,
@@ -22,6 +21,7 @@ import 'prismjs/components/prism-javascript';
 import '../../shared/prism_v2.css';
 import { primary } from '../../shared/colors';
 import { connect } from 'react-redux';
+import { createNewFlashcard } from '../../actions/flashcards';
 
 const styles = createStyles({
   underline: {
@@ -36,7 +36,8 @@ const AddFlashcardModal = ({
   open,
   handleClose,
   loading,
-  categoriesList
+  categoriesList,
+  createNewFlashcard
 }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -46,7 +47,7 @@ const AddFlashcardModal = ({
 
   const handleSubmit = () => {
     const flashcard = { title, description, code, categoryId };
-    console.log(flashcard);
+    createNewFlashcard(flashcard);
     setTitle('');
     setDescription('');
     setCategoryId('');
@@ -60,7 +61,7 @@ const AddFlashcardModal = ({
         open={open}
         onClose={handleClose}
         aria-labelledby='form-dialog-title'
-        style={{ padding: 20 }}
+        style={{ padding: 30 }}
       >
         <DialogTitle id='form-dialog-title'>New flashcard</DialogTitle>
         <DialogContent>
@@ -148,4 +149,6 @@ const mapStateToProps = state => ({
   loading: state.flashcards.loading
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(AddFlashcardModal));
+export default connect(mapStateToProps, { createNewFlashcard })(
+  withStyles(styles)(AddFlashcardModal)
+);

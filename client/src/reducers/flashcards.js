@@ -4,6 +4,7 @@ import {
   CREATE_FLASHCARDS_CATEGORY,
   SET_CURRENT_FLASHCARDS_CATEGORY,
   SET_FLASHCARDS_CATEGORIES_LIST,
+  CREATE_NEW_FLASHCARD,
   FLASHCARDS_ERROR,
   SET_LOADING
 } from '../actions/types';
@@ -12,7 +13,7 @@ const initialState = {
   categories: null,
   categoriesList: null,
   loading: false,
-  currentFlashcards: null,
+  currentFlashcards: [],
   error: {}
 };
 
@@ -53,6 +54,11 @@ export default function(state = initialState, action) {
         ...state,
         categories: payload,
         loading: false
+      };
+    case CREATE_NEW_FLASHCARD:
+      return {
+        ...state,
+        currentFlashcards: [...state.currentFlashcards, payload]
       };
     case SET_LOADING:
       return { ...state, loading: true };

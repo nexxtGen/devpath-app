@@ -39,7 +39,6 @@ exports.createFlashcard = asyncHandler(async (req, res, next) => {
 
   const flashcard = await Flashcard.create(req.body);
   let category = await FlashcardsCategories.findOne({ user: req.user.id });
-  console.log(category);
 
   category.categories.map(item => {
     if (item._id.toString() === req.body.categoryId)
