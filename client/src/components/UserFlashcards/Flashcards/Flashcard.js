@@ -8,11 +8,26 @@ import 'prismjs/components/prism-javascript';
 import styles from './flashcardStyles';
 import { Edit, DeleteOutline } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setCurrentEditedFlashcard } from '../../../actions/flashcards';
 
-const Flashcard = ({ classes, card, open }) => {
+const Flashcard = ({ classes, card, open, setCurrentEditedFlashcard }) => {
+  const { title, description, code, categoryId, _id } = card;
+
+  const setHandleEdit = () => {
+    const current = {
+      title,
+      description,
+      code,
+      categoryId,
+      _id
+    };
+
+    setCurrentEditedFlashcard(current);
+    open('edit');
+  };
   const onChange = code => {};
 
-  const { title, description, code } = card;
   return (
     <Grid className={classes.container}>
       <Grid className={classes.arrow}></Grid>
@@ -40,7 +55,7 @@ const Flashcard = ({ classes, card, open }) => {
         />
       </Grid>
       <Grid className={classes.footer}>
-        <Edit className={classes.icon} onClick={() => open('edit')} />
+        <Edit className={classes.icon} onClick={() => setHandleEdit()} />
         <DeleteOutline className={classes.icon} />
       </Grid>
     </Grid>
@@ -52,4 +67,6 @@ Flashcard.propTypes = {
   card: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Flashcard);
+export default connect(null, { setCurrentEditedFlashcard })(
+  withStyles(styles)(Flashcard)
+);

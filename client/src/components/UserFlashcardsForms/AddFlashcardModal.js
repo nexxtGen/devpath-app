@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import {
   withStyles,
@@ -23,6 +23,7 @@ import '../../shared/prism_v2.css';
 import { primary } from '../../shared/colors';
 import { connect } from 'react-redux';
 import { createNewFlashcard } from '../../actions/flashcards';
+import { updateCurrentFlashcard } from '../../actions/flashcards';
 import Alert from '../../components/layout/Alert';
 
 const styles = createStyles({
@@ -39,7 +40,10 @@ const AddFlashcardModal = ({
   handleClose,
   loading,
   categoriesList,
-  createNewFlashcard
+  createNewFlashcard,
+  formMode,
+  currentFlashcard,
+  updateCurrentFlashcard
 }) => {
   const [validationTitle, setValidationTitle] = useState('');
   const [validationDescription, setValidationDescription] = useState('');
@@ -50,7 +54,16 @@ const AddFlashcardModal = ({
   const [code, setCode] = useState('Write your code here');
   const ref = React.createRef();
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (formMode === 'edit') {
+      setTitle(currentFlashcard.title);
+      setDescription(currentFlashcard.description);
+      setCategoryId(currentFlashcard.categoryId);
+      setCode(currentFlashcard.code);
+    }
+  }, [formMode]);
+
+  const handleSubmitCreate = () => {
     if (title === '') {
       setValidationTitle('Required');
     } else if (description === '') {
@@ -60,6 +73,24 @@ const AddFlashcardModal = ({
     } else {
       const flashcard = { title, description, code, categoryId };
       createNewFlashcard(flashcard);
+      handleClose();
+      setTitle('');
+      setDescription('');
+      setCategoryId('');
+      setCode('Write your code here');
+    }
+  };
+
+  const handleSubmitUpdate = () => {
+    if (title === '') {
+      setValidationTitle('Required');
+    } else if (description === '') {
+      setValidationDescription('Required');
+    } else if (categoryId === '') {
+      setValidationCategoryId('Required');
+    } else {
+      const flashcard = { title, description, code, _id: currentFlashcard._id };
+      updateCurrentFlashcard(flashcard);
       handleClose();
       setTitle('');
       setDescription('');
@@ -99,6 +130,7 @@ const AddFlashcardModal = ({
               value={categoryId}
               onChange={e => setCategoryId(e.target.value)}
               style={{ width: 200 }}
+              disabled={formMode === 'edit' ? true : false}
             >
               {!loading &&
                 categoriesList !== null &&
@@ -167,7 +199,12 @@ const AddFlashcardModal = ({
           <Button onClick={handleCloseModal} color='primary'>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color='primary'>
+          <Button
+            onClick={
+              formMode === ' create' ? handleSubmitCreate : handleSubmitUpdate
+            }
+            color='primary'
+          >
             Add FLashcard
           </Button>
         </DialogActions>
@@ -178,9 +215,11 @@ const AddFlashcardModal = ({
 
 const mapStateToProps = state => ({
   categoriesList: state.flashcards.categoriesList,
-  loading: state.flashcards.loading
+  loading: state.flashcards.loading,
+  currentFlashcard: state.flashcards.currentEditedFlashcard
 });
 
-export default connect(mapStateToProps, { createNewFlashcard })(
-  withStyles(styles)(AddFlashcardModal)
-);
+export default connect(mapStateToProps, {
+  createNewFlashcard,
+  updateCurrentFlashcard
+})(withStyles(styles)(AddFlashcardModal));

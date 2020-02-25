@@ -7,6 +7,8 @@ import {
   SET_CURRENT_FLASHCARDS_CATEGORY,
   SET_FLASHCARDS_CATEGORIES_LIST,
   CREATE_NEW_FLASHCARD,
+  SET_CURRENT_EDITED_FLASHCARD,
+  UPDATE_CURRENT_FLASHCARD,
   FLASHCARDS_ERROR,
   SET_LOADING
 } from './types';
@@ -112,6 +114,46 @@ export const createNewFlashcard = data => async dispatch => {
     dispatch(getFlashcardsCategories());
     dispatch({
       type: CREATE_NEW_FLASHCARD,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: FLASHCARDS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const setCurrentEditedFlashcard = flashcard => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_FLASHCARD,
+    payload: flashcard
+  });
+};
+
+export const updateCurrentFlashcard = flashcard => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    dispatch(setLoading());
+    const updatedFlashcard = {
+      title: flashcard.title,
+      description: flashcard.description,
+      code: flashcard.code
+    };
+    const res = await axios.put(
+      `/api/v1/flashcards/${flashcard._id}`,
+      updatedFlashcard,
+      config
+    );
+
+    dispatch(setAlert('Flashcard has been updated', 'success'));
+    dispatch(getFlashcardsCategories());
+    dispatch({
+      type: UPDATE_CURRENT_FLASHCARD,
       payload: res.data.data
     });
   } catch (err) {

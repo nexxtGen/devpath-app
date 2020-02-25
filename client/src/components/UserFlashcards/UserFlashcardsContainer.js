@@ -50,7 +50,11 @@ const UserFlashcardsContainer = ({
 
   return (
     <Grid className={classes.container}>
-      <AddFlashcardModal open={open} handleClose={handleClose} />
+      <AddFlashcardModal
+        open={open}
+        handleClose={handleClose}
+        formMode={formMode}
+      />
       {flashcards.categories && (
         <SliderContainer
           categories={flashcards.categories.categories}
