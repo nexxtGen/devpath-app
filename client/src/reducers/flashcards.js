@@ -7,6 +7,7 @@ import {
   CREATE_NEW_FLASHCARD,
   SET_CURRENT_EDITED_FLASHCARD,
   UPDATE_CURRENT_FLASHCARD,
+  DELETE_CURRENT_FLASHCARD,
   FLASHCARDS_ERROR,
   SET_LOADING
 } from '../actions/types';
@@ -83,6 +84,13 @@ export default function(state = initialState, action) {
           return item;
         }),
         loading: false
+      };
+    case DELETE_CURRENT_FLASHCARD:
+      return {
+        ...state,
+        currentFlashcards: state.currentFlashcards.filter(
+          item => item._id !== payload
+        )
       };
     case SET_LOADING:
       return { ...state, loading: true };

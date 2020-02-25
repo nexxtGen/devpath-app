@@ -9,9 +9,18 @@ import styles from './flashcardStyles';
 import { Edit, DeleteOutline } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setCurrentEditedFlashcard } from '../../../actions/flashcards';
+import {
+  setCurrentEditedFlashcard,
+  deleteCurrentFlashcard
+} from '../../../actions/flashcards';
 
-const Flashcard = ({ classes, card, open, setCurrentEditedFlashcard }) => {
+const Flashcard = ({
+  classes,
+  card,
+  open,
+  setCurrentEditedFlashcard,
+  deleteCurrentFlashcard
+}) => {
   const { title, description, code, categoryId, _id } = card;
 
   const setHandleEdit = () => {
@@ -56,7 +65,10 @@ const Flashcard = ({ classes, card, open, setCurrentEditedFlashcard }) => {
       </Grid>
       <Grid className={classes.footer}>
         <Edit className={classes.icon} onClick={() => setHandleEdit()} />
-        <DeleteOutline className={classes.icon} />
+        <DeleteOutline
+          className={classes.icon}
+          onClick={() => deleteCurrentFlashcard(_id, categoryId)}
+        />
       </Grid>
     </Grid>
   );
@@ -67,6 +79,7 @@ Flashcard.propTypes = {
   card: PropTypes.object.isRequired
 };
 
-export default connect(null, { setCurrentEditedFlashcard })(
-  withStyles(styles)(Flashcard)
-);
+export default connect(null, {
+  setCurrentEditedFlashcard,
+  deleteCurrentFlashcard
+})(withStyles(styles)(Flashcard));

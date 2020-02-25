@@ -87,5 +87,18 @@ exports.deleteFlashcard = asyncHandler(async (req, res, next) => {
     );
   }
 
+  let category = await FlashcardsCategories.findOne({ user: req.user.id });
+
+  category.categories.map(item => {
+    if (item._id.toString() === req.body.categoryId)
+      item.flashcards.filter(card => card !== req.params.id);
+  });
+
+  await FlashcardsCategories.findOneAndUpdate(
+    { user: req.user.id },
+    { $set: category },
+    { new: true }
+  );
+
   res.status(200).json({ success: true, data: {} });
 });
