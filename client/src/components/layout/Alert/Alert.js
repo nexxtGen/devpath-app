@@ -9,6 +9,7 @@ const styles = createStyles({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '10px',
+    marginBottom: 30,
     width: '100%'
   },
   alert: {

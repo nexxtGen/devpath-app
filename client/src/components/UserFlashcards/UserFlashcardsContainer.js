@@ -28,13 +28,18 @@ const UserFlashcardsContainer = ({
   getAllUserFlashcards,
   setCurrentFLashcardsCategory
 }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
+  const [open, setOpen] = useState(false);
+  const [formMode, setFormMode] = useState('');
+
+  const handleClickOpen = mode => {
+    setFormMode(mode);
     setOpen(true);
+    console.log('Mode', mode);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setFormMode('');
   };
 
   useEffect(() => {
@@ -54,7 +59,10 @@ const UserFlashcardsContainer = ({
       )}
       <Grid container direction='column' style={{ width: '100%' }}>
         {flashcards.currentFlashcards && (
-          <FlashcardsContainer flashcards={flashcards.currentFlashcards} />
+          <FlashcardsContainer
+            flashcards={flashcards.currentFlashcards}
+            open={handleClickOpen}
+          />
         )}
       </Grid>
       <AddBtn open={handleClickOpen} />

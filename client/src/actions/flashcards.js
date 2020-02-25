@@ -109,7 +109,7 @@ export const createNewFlashcard = data => async dispatch => {
     const res = await axios.post('/api/v1/flashcards', data, config);
 
     dispatch(setAlert('Flashcard has been created', 'success'));
-
+    dispatch(getFlashcardsCategories());
     dispatch({
       type: CREATE_NEW_FLASHCARD,
       payload: res.data.data

@@ -12,10 +12,10 @@ const styles = createStyles({
   }
 });
 
-const FlashcardsContainer = ({ classes, flashcards }) => {
+const FlashcardsContainer = ({ classes, flashcards, open }) => {
   return (
     <Grid className={classes.container}>
-      <FlashcardsList flashcards={flashcards} />
+      <FlashcardsList flashcards={flashcards} open={open} />
     </Grid>
   );
 };

@@ -12,7 +12,8 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  FormHelperText
 } from '@material-ui/core';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
@@ -22,6 +23,7 @@ import '../../shared/prism_v2.css';
 import { primary } from '../../shared/colors';
 import { connect } from 'react-redux';
 import { createNewFlashcard } from '../../actions/flashcards';
+import Alert from '../../components/layout/Alert';
 
 const styles = createStyles({
   underline: {
@@ -39,6 +41,9 @@ const AddFlashcardModal = ({
   categoriesList,
   createNewFlashcard
 }) => {
+  const [validationTitle, setValidationTitle] = useState('');
+  const [validationDescription, setValidationDescription] = useState('');
+  const [validationCategoryId, setValidationCategoryId] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [categoryId, setCategoryId] = useState('');
@@ -46,22 +51,42 @@ const AddFlashcardModal = ({
   const ref = React.createRef();
 
   const handleSubmit = () => {
-    const flashcard = { title, description, code, categoryId };
-    createNewFlashcard(flashcard);
+    if (title === '') {
+      setValidationTitle('Required');
+    } else if (description === '') {
+      setValidationDescription('Required');
+    } else if (categoryId === '') {
+      setValidationCategoryId('Required');
+    } else {
+      const flashcard = { title, description, code, categoryId };
+      createNewFlashcard(flashcard);
+      handleClose();
+      setTitle('');
+      setDescription('');
+      setCategoryId('');
+      setCode('Write your code here');
+    }
+  };
+
+  const handleCloseModal = () => {
     setTitle('');
     setDescription('');
     setCategoryId('');
     setCode('Write your code here');
+    setValidationTitle('');
+    setValidationDescription('');
+    setValidationCategoryId('');
     handleClose();
   };
 
   return (
     <div>
+      <Alert />
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseModal}
         aria-labelledby='form-dialog-title'
-        style={{ padding: 30 }}
+        style={{ padding: 30, display: 'flex', flexDirection: 'column' }}
       >
         <DialogTitle id='form-dialog-title'>New flashcard</DialogTitle>
         <DialogContent>
@@ -83,38 +108,45 @@ const AddFlashcardModal = ({
                   </MenuItem>
                 ))}
             </Select>
+            <FormHelperText error>{validationCategoryId}</FormHelperText>
           </FormControl>
-          <TextField
-            autoFocus
-            margin='dense'
-            id='title'
-            label='Title*'
-            type='text'
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            fullWidth
-            InputProps={{
-              classes: {
-                underline: classes.underline
-              }
-            }}
-          />
-          <TextField
-            multiline
-            rowsMax='5'
-            autoFocus
-            margin='dense'
-            id='description'
-            label='Description*'
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            fullWidth
-            InputProps={{
-              classes: {
-                underline: classes.underline
-              }
-            }}
-          />
+          <FormControl style={{ width: '100%' }}>
+            <TextField
+              autoFocus
+              margin='dense'
+              id='title'
+              label='Title*'
+              type='text'
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              fullWidth
+              InputProps={{
+                classes: {
+                  underline: classes.underline
+                }
+              }}
+            />
+            <FormHelperText error>{validationTitle}</FormHelperText>
+          </FormControl>
+          <FormControl style={{ width: '100%' }}>
+            <TextField
+              multiline
+              rowsMax='5'
+              autoFocus
+              margin='dense'
+              id='description'
+              label='Description*'
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              fullWidth
+              InputProps={{
+                classes: {
+                  underline: classes.underline
+                }
+              }}
+            />
+            <FormHelperText error>{validationDescription}</FormHelperText>
+          </FormControl>
           <Editor
             value={code}
             onValueChange={code => setCode(code)}
@@ -132,7 +164,7 @@ const AddFlashcardModal = ({
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color='primary'>
+          <Button onClick={handleCloseModal} color='primary'>
             Cancel
           </Button>
           <Button onClick={handleSubmit} color='primary'>

@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { primary } from './colors';
 
-const Preloader = classes => {
+const Preloader = () => {
   return (
     <Grid
       style={{

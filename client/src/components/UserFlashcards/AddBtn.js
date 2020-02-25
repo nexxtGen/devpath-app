@@ -15,7 +15,7 @@ const styles = createStyles({
 const AddBtn = ({ classes, open }) => {
   return (
     <Grid className={classes.primaryContainer}>
-      <Fab onClick={open} style={{ background: primaryLight }}>
+      <Fab onClick={() => open('create')} style={{ background: primaryLight }}>
         <Add style={{ color: 'white' }} />
       </Fab>
     </Grid>

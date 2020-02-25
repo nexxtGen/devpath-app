@@ -9,7 +9,7 @@ import styles from './flashcardStyles';
 import { Edit, DeleteOutline } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 
-const Flashcard = ({ classes, card }) => {
+const Flashcard = ({ classes, card, open }) => {
   const onChange = code => {};
 
   const { title, description, code } = card;
@@ -40,7 +40,7 @@ const Flashcard = ({ classes, card }) => {
         />
       </Grid>
       <Grid className={classes.footer}>
-        <Edit className={classes.icon} />
+        <Edit className={classes.icon} onClick={() => open('edit')} />
         <DeleteOutline className={classes.icon} />
       </Grid>
     </Grid>

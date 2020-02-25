@@ -14,11 +14,11 @@ const styles = createStyles({
   }
 });
 
-const FlashcardsList = ({ classes, flashcards }) => {
+const FlashcardsList = ({ classes, flashcards, open }) => {
   return (
     <Grid className={classes.container}>
       {flashcards.map((card, index) => (
-        <Flashcard key={index} card={card}>
+        <Flashcard key={index} card={card} open={open}>
           {' '}
           Flashcard item
         </Flashcard>
