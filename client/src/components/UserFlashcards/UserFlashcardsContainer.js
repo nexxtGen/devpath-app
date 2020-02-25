@@ -5,6 +5,7 @@ import FlashcardsContainer from './Flashcards/FlashcardsContainer';
 import AddBtn from './AddBtn';
 import AddFlashcardModal from './../UserFlashcardsForms/AddFlashcardModal';
 import AddCategoryModal from './../UserFlashcardsForms/CategoriesForms/AddCategoryModal';
+import CategoriesListModal from './CategoriesList/CategoriesListModal';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
@@ -32,6 +33,7 @@ const UserFlashcardsContainer = ({
 }) => {
   const [openFlashcardModal, setOpenFlashcardModal] = useState(false);
   const [openAddCategoryModal, setOpenAddCategoryModal] = useState(false);
+  const [openCategoriesListModal, setOpenCategoriesListModal] = useState(false);
   const [formMode, setFormMode] = useState('');
 
   const handleClickOpenFlashcardModal = mode => {
@@ -39,17 +41,8 @@ const UserFlashcardsContainer = ({
     setOpenFlashcardModal(true);
   };
 
-  const handleClickOpenAddCategoryModal = mode => {
-    setOpenAddCategoryModal(true);
-  };
-
   const handleCloseFlashcardModal = () => {
     setOpenFlashcardModal(false);
-    setFormMode('');
-  };
-
-  const handleCloseAddCategoryModal = () => {
-    setOpenAddCategoryModal(false);
   };
 
   useEffect(() => {
@@ -68,7 +61,11 @@ const UserFlashcardsContainer = ({
       />
       <AddCategoryModal
         open={openAddCategoryModal}
-        handleClose={handleCloseAddCategoryModal}
+        handleClose={setOpenAddCategoryModal}
+      />
+      <CategoriesListModal
+        open={openCategoriesListModal}
+        handleClose={setOpenCategoriesListModal}
       />
       {flashcards.categories && (
         <SliderContainer
@@ -86,7 +83,8 @@ const UserFlashcardsContainer = ({
       </Grid>
       <AddBtn
         openFlashcardModal={handleClickOpenFlashcardModal}
-        openAddCategoryModal={handleClickOpenAddCategoryModal}
+        openAddCategoryModal={setOpenAddCategoryModal}
+        openCategoriesListModal={setOpenCategoriesListModal}
       />
     </Grid>
   );

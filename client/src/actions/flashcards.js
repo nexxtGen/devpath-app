@@ -10,6 +10,7 @@ import {
   SET_CURRENT_EDITED_FLASHCARD,
   UPDATE_CURRENT_FLASHCARD,
   DELETE_CURRENT_FLASHCARD,
+  DELETE_FLASHCARDS_CATEGORY,
   FLASHCARDS_ERROR,
   SET_LOADING
 } from './types';
@@ -91,6 +92,25 @@ export const createFlashcardsCategory = categoryData => async dispatch => {
     dispatch({
       type: CREATE_FLASHCARDS_CATEGORY,
       payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: FLASHCARDS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const deleteFlashcardsCategory = categoryId => async dispatch => {
+  try {
+    dispatch(setLoading());
+
+    await axios.delete(`/api/v1/flashcards-categories/${categoryId}`);
+
+    dispatch(setAlert('Flashcards category has been deleted', 'success'));
+    dispatch(getFlashcardsCategories());
+    dispatch({
+      type: DELETE_FLASHCARDS_CATEGORY
     });
   } catch (err) {
     dispatch({

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,18 +11,14 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  TextField,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   FormHelperText,
   Typography,
   Grid
 } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { createFlashcardsCategory } from '../../../actions/flashcards';
 
 const styles = createStyles({
   underline: {
@@ -48,14 +44,19 @@ const styles = createStyles({
   }
 });
 
-const AddCategoryModal = ({ classes, open, handleClose }) => {
+const AddCategoryModal = ({
+  classes,
+  open,
+  handleClose,
+  createFlashcardsCategory
+}) => {
   const handleSubmitCreate = (values, actions) => {
-    console.log('Category create:', values);
+    createFlashcardsCategory(values);
     handleClose();
   };
 
   const handleCloseModal = () => {
-    handleClose();
+    handleClose(false);
   };
 
   return (
@@ -126,12 +127,7 @@ const AddCategoryModal = ({ classes, open, handleClose }) => {
                   >
                     Cancel
                   </Button>
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    onClick={handleSubmitCreate}
-                    color='primary'
-                  >
+                  <Button type='submit' variant='contained' color='primary'>
                     Add Category
                   </Button>
                 </DialogActions>
@@ -155,9 +151,6 @@ const categorySchema = Yup.object().shape({
     .required('Image link is required')
 });
 
-const mapStateToProps = state => ({});
-
-export default connect(
-  mapStateToProps,
-  {}
-)(withStyles(styles)(AddCategoryModal));
+export default connect(null, { createFlashcardsCategory })(
+  withStyles(styles)(AddCategoryModal)
+);

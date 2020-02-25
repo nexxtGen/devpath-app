@@ -1,7 +1,7 @@
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
-import { Add, Subtitles, PhotoLibrary } from '@material-ui/icons';
+import { Add, Subtitles, PhotoLibrary, List } from '@material-ui/icons';
 import { primaryLight, primary } from '../../shared/colors';
 
 const styles = createStyles({
@@ -14,7 +14,12 @@ const styles = createStyles({
   }
 });
 
-const AddBtn = ({ classes, openFlashcardModal, openAddCategoryModal }) => {
+const AddBtn = ({
+  classes,
+  openFlashcardModal,
+  openAddCategoryModal,
+  openCategoriesListModal
+}) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Fab
@@ -25,11 +30,17 @@ const AddBtn = ({ classes, openFlashcardModal, openAddCategoryModal }) => {
         <Subtitles style={{ color: 'white', marginTop: 7 }} />
       </Fab>
       <Fab
-        onClick={() => openAddCategoryModal()}
-        style={{ background: primaryLight }}
+        onClick={() => openAddCategoryModal(true)}
+        style={{ background: primaryLight, marginTop: 15 }}
       >
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <PhotoLibrary style={{ color: 'white', marginTop: 7 }} />
+      </Fab>
+      <Fab
+        onClick={() => openCategoriesListModal(true)}
+        style={{ background: primaryLight }}
+      >
+        <List style={{ color: 'white' }} />
       </Fab>
     </Grid>
   );
