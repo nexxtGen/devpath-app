@@ -24,7 +24,6 @@ import { primary } from '../../shared/colors';
 import { connect } from 'react-redux';
 import { createNewFlashcard } from '../../actions/flashcards';
 import { updateCurrentFlashcard } from '../../actions/flashcards';
-import Alert from '../../components/layout/Alert';
 
 const styles = createStyles({
   underline: {
@@ -112,7 +111,6 @@ const AddFlashcardModal = ({
 
   return (
     <div>
-      <Alert />
       <Dialog
         open={open}
         onClose={handleCloseModal}

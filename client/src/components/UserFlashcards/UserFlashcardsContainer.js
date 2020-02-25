@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Alert from '../../components/layout/Alert';
 import SliderContainer from './Slider/SliderContainer';
 import FlashcardsContainer from './Flashcards/FlashcardsContainer';
 import AddBtn from './AddBtn';
 import AddFlashcardModal from './../UserFlashcardsForms/AddFlashcardModal';
+import AddCategoryModal from './../UserFlashcardsForms/CategoriesForms/AddCategoryModal';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
@@ -28,18 +30,26 @@ const UserFlashcardsContainer = ({
   getAllUserFlashcards,
   setCurrentFLashcardsCategory
 }) => {
-  const [open, setOpen] = useState(false);
+  const [openFlashcardModal, setOpenFlashcardModal] = useState(false);
+  const [openAddCategoryModal, setOpenAddCategoryModal] = useState(false);
   const [formMode, setFormMode] = useState('');
 
-  const handleClickOpen = mode => {
+  const handleClickOpenFlashcardModal = mode => {
     setFormMode(mode);
-    setOpen(true);
-    console.log('Mode', mode);
+    setOpenFlashcardModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClickOpenAddCategoryModal = mode => {
+    setOpenAddCategoryModal(true);
+  };
+
+  const handleCloseFlashcardModal = () => {
+    setOpenFlashcardModal(false);
     setFormMode('');
+  };
+
+  const handleCloseAddCategoryModal = () => {
+    setOpenAddCategoryModal(false);
   };
 
   useEffect(() => {
@@ -50,10 +60,15 @@ const UserFlashcardsContainer = ({
 
   return (
     <Grid className={classes.container}>
+      <Alert />
       <AddFlashcardModal
-        open={open}
-        handleClose={handleClose}
+        open={openFlashcardModal}
+        handleClose={handleCloseFlashcardModal}
         formMode={formMode}
+      />
+      <AddCategoryModal
+        open={openAddCategoryModal}
+        handleClose={handleCloseAddCategoryModal}
       />
       {flashcards.categories && (
         <SliderContainer
@@ -65,11 +80,14 @@ const UserFlashcardsContainer = ({
         {flashcards.currentFlashcards && (
           <FlashcardsContainer
             flashcards={flashcards.currentFlashcards}
-            open={handleClickOpen}
+            open={handleClickOpenFlashcardModal}
           />
         )}
       </Grid>
-      <AddBtn open={handleClickOpen} />
+      <AddBtn
+        openFlashcardModal={handleClickOpenFlashcardModal}
+        openAddCategoryModal={handleClickOpenAddCategoryModal}
+      />
     </Grid>
   );
 };
