@@ -69,7 +69,6 @@ export default function(state = initialState, action) {
         currentEditedFlashcard: payload
       };
     case UPDATE_CURRENT_FLASHCARD:
-      console.log(payload);
       return {
         ...state,
         currentFlashcards: state.currentFlashcards.map(item => {

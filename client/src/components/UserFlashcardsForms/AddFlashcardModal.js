@@ -117,11 +117,13 @@ const AddFlashcardModal = ({
         open={open}
         onClose={handleCloseModal}
         aria-labelledby='form-dialog-title'
-        style={{ padding: 30, display: 'flex', flexDirection: 'column' }}
       >
-        <DialogTitle id='form-dialog-title'>New flashcard</DialogTitle>
+        <DialogTitle id='form-dialog-title'>
+          {formMode === 'create'
+            ? 'Create New Flashcard'
+            : 'Edit Current Flashcard'}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText>Create your own flashcard</DialogContentText>
           <FormControl className={classes.formControl}>
             <InputLabel id='select-category'>Categories*</InputLabel>
             <Select
@@ -196,16 +198,21 @@ const AddFlashcardModal = ({
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseModal} color='primary'>
+          <Button
+            variant='contained'
+            onClick={handleCloseModal}
+            color='primary'
+          >
             Cancel
           </Button>
           <Button
+            variant='contained'
             onClick={
-              formMode === ' create' ? handleSubmitCreate : handleSubmitUpdate
+              formMode === 'create' ? handleSubmitCreate : handleSubmitUpdate
             }
             color='primary'
           >
-            Add FLashcard
+            {formMode === 'create' ? 'Add Flashcard' : 'Update Flashcard'}
           </Button>
         </DialogActions>
       </Dialog>
