@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const Job = require('../models/Job');
+const Company = require('../models/Company');
 //const FlashcardsCategories = require('../models/FlashcardsCategories');
 
 // @desc Get all jobs
@@ -69,7 +70,7 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 // @route PUT /api/v1/Jobs/:id
 // @access Private
 exports.updateJob = asyncHandler(async (req, res, next) => {
-  const Job = await Job.findByIdAndUpdate(req.params.id, req.body, {
+  const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });

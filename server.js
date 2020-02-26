@@ -15,6 +15,7 @@ const flashcards = require('./routes/flashcards');
 const profile = require('./routes/profile');
 const flashcardsCategories = require('./routes/flashcardsCategories');
 const jobs = require('./routes/jobs');
+const companies = require('./routes/companies');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/v1/profile', profile);
 app.use('/api/v1/flashcards', flashcards);
 app.use('/api/v1/flashcards-categories', flashcardsCategories);
 app.use('/api/v1/jobs', jobs);
+app.use('/api/v1/companies', companies);
 
 app.use(errorHandler);
 
