@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import WorkIcon from '@material-ui/icons/Work';
 import ListItemText from '@material-ui/core/ListItemText';
 import SubtitlesIcon from '@material-ui/icons/Subtitles';
 import ProfileList from './ProfileList';
@@ -82,6 +83,14 @@ const UserSidebar = ({ classes, handleDrawerClose, open, user }) => {
                   <SubtitlesIcon style={{ color: primaryLight }} />
                 </ListItemIcon>
                 <ListItemText primary='Flashcards' />
+              </ListItem>
+            </LinkWithoutDefaultStyles>
+            <LinkWithoutDefaultStyles to={routes.userJobs}>
+              <ListItem button>
+                <ListItemIcon>
+                  <WorkIcon style={{ color: primaryLight }} />
+                </ListItemIcon>
+                <ListItemText primary='User Jobs' />
               </ListItem>
             </LinkWithoutDefaultStyles>
           </List>

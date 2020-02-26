@@ -4,5 +4,6 @@ export const routes = {
   registerUser: '/register',
   userProfile: '/user/main',
   userFlashcards: '/user/flashcards',
-  createEditProfile: '/user/create-edit-profile'
+  createEditProfile: '/user/create-edit-profile',
+  userJobs: '/user/jobs'
 };

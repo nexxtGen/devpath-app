@@ -36,7 +36,7 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 exports.createJob = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
 
-  let company = await Company.find({
+  let company = await Company.findOne({
     _id: req.body.companyId,
     user: req.user.id
   });
@@ -51,8 +51,9 @@ exports.createJob = asyncHandler(async (req, res, next) => {
   }
 
   const job = await Job.create(req.body);
+  console.log(company);
 
-  company.jobs.push(job._id);
+  company.jobs.push(job._id.toString());
 
   await Company.findOneAndUpdate(
     { _id: req.body.companyId },

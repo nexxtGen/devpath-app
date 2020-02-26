@@ -26,7 +26,7 @@ const CompanySchema = new mongoose.Schema({
   },
   localization: {
     type: String,
-    required: [true, 'Please add a city'],
+    required: [true, 'Please add a localization'],
     maxlength: [60, 'City can not be more than 60 characters']
   },
   description: {
@@ -55,12 +55,13 @@ const CompanySchema = new mongoose.Schema({
   }
 });
 
+/*
 async function populateJobs(next) {
-  this.populate('jobs');
+  this.populate('jobs', ['position']);
   next();
 }
 
 CompanySchema.pre('find', populateJobs);
 CompanySchema.pre('findOne', populateJobs);
-
+*/
 module.exports = mongoose.model('Company', CompanySchema);

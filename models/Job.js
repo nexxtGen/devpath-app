@@ -65,7 +65,13 @@ const JobSchema = new mongoose.Schema({
 });
 
 async function populateCompany(next) {
-  this.populate('companyId');
+  this.populate('companyId', [
+    'name',
+    'localization',
+    'country',
+    'size',
+    'logo'
+  ]);
   next();
 }
 
