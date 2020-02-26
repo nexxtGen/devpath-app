@@ -14,6 +14,7 @@ const auth = require('./routes/auth');
 const flashcards = require('./routes/flashcards');
 const profile = require('./routes/profile');
 const flashcardsCategories = require('./routes/flashcardsCategories');
+const jobs = require('./routes/jobs');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/profile', profile);
 app.use('/api/v1/flashcards', flashcards);
 app.use('/api/v1/flashcards-categories', flashcardsCategories);
+app.use('/api/v1/jobs', jobs);
 
 app.use(errorHandler);
 

@@ -13,7 +13,8 @@ const JobSchema = new mongoose.Schema({
     maxlength: [40, 'Position can not be more than 40 characters']
   },
   companyId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Company',
     required: true
   },
   city: {
@@ -24,7 +25,7 @@ const JobSchema = new mongoose.Schema({
   },
   technologies: {
     type: [String],
-    required: true
+    required: [true, 'Please add required technologies']
   },
   level: {
     type: String,
@@ -33,8 +34,9 @@ const JobSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
+    required: [true, 'Please set rating'],
     min: [1, 'Value rating must be at least 1'],
-    max: [10, 'Value rating must can not be more than 10']
+    max: [5, 'Value rating must can not be more than 5']
   },
   comment: {
     type: String,
@@ -53,12 +55,21 @@ const JobSchema = new mongoose.Schema({
     default: false
   },
   agreement: {
-    type: String
+    type: String,
+    maxlength: [20, 'Agreement can not be more than 20 characters']
   },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
+
+async function populateCompany(next) {
+  this.populate('companyId');
+  next();
+}
+
+JobSchema.pre('find', populateCompany);
+JobSchema.pre('findOne', populateCompany);
 
 module.exports = mongoose.model('Job', JobSchema);

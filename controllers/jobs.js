@@ -35,11 +35,21 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 exports.createJob = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
 
-  const job = await Job.create(req.body);
   let company = await Company.find({
     _id: req.body.companyId,
     user: req.user.id
   });
+
+  if (!company) {
+    return next(
+      new ErrorResponse(
+        `Company not found with id of ${req.body.companyId}`,
+        404
+      )
+    );
+  }
+
+  const job = await Job.create(req.body);
 
   company.jobs.push(job._id);
 
