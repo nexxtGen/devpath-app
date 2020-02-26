@@ -22,7 +22,8 @@ const FlashcardsContainer = ({ classes, flashcards, open }) => {
 
 FlashcardsContainer.propTypes = {
   classes: PropTypes.object.isRequired,
-  flashcards: PropTypes.array
+  flashcards: PropTypes.array,
+  open: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(FlashcardsContainer);

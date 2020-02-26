@@ -37,7 +37,6 @@ const FlashcardsCategoriesSchema = new mongoose.Schema({
 
 async function populateFlashcards(next) {
   this.populate('categories.flashcards');
-  console.log('Populate flashcards in model');
   next();
 }
 

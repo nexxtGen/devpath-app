@@ -12,11 +12,16 @@ import {
 } from '@material-ui/core';
 import CategoriesListItem from './CategoriesListItem';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const styles = createStyles({});
+const styles = createStyles({
+  emptyContainer: {
+    width: 300,
+    height: 200
+  }
+});
 
 const CategoriesListModal = ({ classes, open, handleClose, flashcards }) => {
-  const handleDelete = categoryId => {};
   return (
     <div>
       <Dialog
@@ -31,7 +36,9 @@ const CategoriesListModal = ({ classes, open, handleClose, flashcards }) => {
               return <CategoriesListItem key={index} category={category} />;
             })
           ) : (
-            <Typography>List is empty</Typography>
+            <Grid className={classes.emptyContainer}>
+              <Typography variant='body1'>List is empty</Typography>
+            </Grid>
           )}
         </DialogContent>
         <DialogActions>
@@ -47,6 +54,14 @@ const CategoriesListModal = ({ classes, open, handleClose, flashcards }) => {
     </div>
   );
 };
+
+CategoriesListModal.propTypes = {
+  classes: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  flashcards: PropTypes.object
+};
+
 const mapStateToProps = state => ({
   flashcards: state.flashcards
 });

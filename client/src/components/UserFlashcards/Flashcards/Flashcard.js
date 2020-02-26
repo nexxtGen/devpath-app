@@ -76,7 +76,10 @@ const Flashcard = ({
 
 Flashcard.propTypes = {
   classes: PropTypes.object.isRequired,
-  card: PropTypes.object.isRequired
+  card: PropTypes.object.isRequired,
+  open: PropTypes.func.isRequired,
+  setCurrentEditedFlashcard: PropTypes.func.isRequired,
+  deleteCurrentFlashcard: PropTypes.func.isRequired
 };
 
 export default connect(null, {

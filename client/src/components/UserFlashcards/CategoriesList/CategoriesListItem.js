@@ -9,6 +9,7 @@ import {
 import { Delete } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { deleteFlashcardsCategory } from '../../../actions/flashcards';
+import PropTypes from 'prop-types';
 
 const styles = createStyles({
   container: {
@@ -70,6 +71,12 @@ const CategoriesListItem = ({
       </Grid>
     </Grid>
   );
+};
+
+CategoriesListItem.propTypes = {
+  classes: PropTypes.object.isRequired,
+  category: PropTypes.object,
+  deleteFlashcardsCategory: PropTypes.func.isRequired
 };
 
 export default connect(null, {

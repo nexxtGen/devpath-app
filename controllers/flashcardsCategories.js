@@ -7,8 +7,6 @@ const Flashcard = require('../models/Flashcard');
 // @route GET /api/v1/flashcards-categories
 // @access Private
 exports.getFlashcardsCategories = asyncHandler(async (req, res, next) => {
-  //req.body.user = req.user.id;
-
   const categories = await FlashcardsCategories.findOne({
     user: req.user.id
   });
@@ -59,4 +57,30 @@ exports.createFlashcardsCategory = asyncHandler(async (req, res, next) => {
   categories = new FlashcardsCategories(categoryFields);
   await categories.save();
   res.json(categories);
+});
+
+// @desc Delete Flashcards Category
+// @route DELETE /api/v1/flashcards-categories/:id
+// @access Private
+exports.deleteFlashcardsCategory = asyncHandler(async (req, res, next) => {
+  let category = await FlashcardsCategories.findOne({
+    user: req.user.id
+  });
+
+  if (!category) {
+    return next(new ErrorResponse('There is no categories for this user', 404));
+  }
+
+  const filtered = category.categories.filter(
+    item => item._id.toString() !== req.params.id
+  );
+
+  category.categories = filtered;
+  const updatedCategories = await FlashcardsCategories.findOneAndUpdate(
+    { user: req.user.id },
+    { $set: category },
+    { new: true }
+  );
+
+  res.json(updatedCategories);
 });

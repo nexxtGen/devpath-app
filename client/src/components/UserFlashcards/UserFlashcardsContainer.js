@@ -43,6 +43,7 @@ const UserFlashcardsContainer = ({
 
   const handleCloseFlashcardModal = () => {
     setOpenFlashcardModal(false);
+    setTimeout(() => setFormMode(''), 300);
   };
 
   useEffect(() => {

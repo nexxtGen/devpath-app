@@ -103,8 +103,6 @@ export const createFlashcardsCategory = categoryData => async dispatch => {
 
 export const deleteFlashcardsCategory = categoryId => async dispatch => {
   try {
-    dispatch(setLoading());
-
     await axios.delete(`/api/v1/flashcards-categories/${categoryId}`);
 
     dispatch(setAlert('Flashcards category has been deleted', 'success'));

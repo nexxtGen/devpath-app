@@ -164,7 +164,6 @@ const AddFlashcardModal = ({
             <TextField
               multiline
               rowsMax='5'
-              autoFocus
               margin='dense'
               id='description'
               label='Description*'

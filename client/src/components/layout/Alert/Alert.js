@@ -6,16 +6,18 @@ import { connect } from 'react-redux';
 
 const styles = createStyles({
   container: {
+    position: 'fixed',
+    bottom: '30px',
+    zIndex: 999,
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '10px',
+    marginTop: 10,
     marginBottom: 30,
     width: '100%'
   },
   alert: {
     width: '50%',
-    display: 'flex',
-    justifyContent: 'center'
+    display: 'flex'
   }
 });
 
@@ -24,7 +26,12 @@ const Alert = ({ classes, alerts }) =>
   alerts.length > 0 &&
   alerts.map(alert => (
     <Grid className={classes.container} key={alert.id}>
-      <MUIAlert severity={alert.alertType} className={classes.alert}>
+      <MUIAlert
+        elevation={6}
+        variant='filled'
+        severity={alert.alertType}
+        className={classes.alert}
+      >
         {alert.msg}
       </MUIAlert>
     </Grid>
