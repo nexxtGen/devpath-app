@@ -61,4 +61,4 @@ const JobSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Flashcard', FlashcardSchema);
+module.exports = mongoose.model('Job', JobSchema);
