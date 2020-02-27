@@ -38,17 +38,17 @@ const JobSchema = new mongoose.Schema({
     min: [1, 'Value rating must be at least 1'],
     max: [5, 'Value rating must can not be more than 5']
   },
-  comment: {
+  source: {
     type: String,
-    maxlength: [300, 'Comment can not be more than 300 characters']
+    maxlength: [800, 'Comment can not be more than 800 characters']
   },
   pros: {
     type: String,
-    maxlength: [300, 'Pros can not be more than 300 characters']
+    maxlength: [150, 'Pros can not be more than 150 characters']
   },
   cons: {
     type: String,
-    maxlength: [300, 'Pros can not be more than 300 characters']
+    maxlength: [150, 'Pros can not be more than 150 characters']
   },
   applied: {
     type: Boolean,
