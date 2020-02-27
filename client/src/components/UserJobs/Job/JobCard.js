@@ -33,6 +33,13 @@ const styles = createStyles({
     overflowY: 'scroll',
     padding: 15
   },
+  link: {
+    color: '#1b75bc',
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  },
   commentContainer: {
     padding: '6px 0'
   },
@@ -56,6 +63,20 @@ const styles = createStyles({
     borderRadius: '0 0 3px 3px',
     padding: '0 20px'
   },
+  appliedTypo: {
+    color: 'white',
+    marginLeft: 10,
+    paddingLeft: 10,
+    borderLeft: '1px solid white',
+    fontWeight: 600
+  },
+  appliedButton: {
+    color: 'lightgreen',
+    border: '1px solid lightgreen',
+    padding: '3px 5px',
+    borderRadius: '2px',
+    marginLeft: 7
+  },
   icon: {
     color: 'white',
     padding: 4,
@@ -77,7 +98,13 @@ const JobCard = ({ classes }) => {
       <Grid className={classes.container}>
         <Grid container direction='row'>
           <Grid item xs={8}>
-            <Typography variant='h6'>Junior Front End Developer</Typography>
+            <a
+              href='https://www.pracuj.pl/praca/junior-web-developer-warszawa,oferta,7369926?sug=sg_bestmatch_bd_3_tname_654321_tgroup_A'
+              target='blank'
+              className={classes.link}
+            >
+              <Typography variant='h6'>Junior Front End Developer</Typography>
+            </a>
           </Grid>
           <Grid item xs={4} container className={classes.locationContainer}>
             <Typography variant='body2' color='textSecondary'>
@@ -131,33 +158,18 @@ const JobCard = ({ classes }) => {
           size='small'
         />
 
-        <Typography
-          variant='subtitle2'
-          style={{
-            color: 'white',
-            marginLeft: 10,
-            paddingLeft: 10,
-            borderLeft: '1px solid white',
-            fontWeight: 600
-          }}
-        >
+        <Typography variant='subtitle2' className={classes.appliedTypo}>
           Applied?
         </Typography>
         <Tooltip title='Click to change status' placement='top'>
           <IconButton
-            style={{
-              color: 'lightgreen',
-              border: '1px solid lightgreen',
-              padding: '3px 5px',
-              borderRadius: '2px',
-              marginLeft: 7
-            }}
+            className={classes.appliedButton}
             aria-label='Applied value'
           >
             <CheckCircleOutline />
           </IconButton>
         </Tooltip>
-        <Grid style={{ marginLeft: 40 }}>
+        <Grid container justify='flex-end'>
           <IconButton aria-label='add an alarm'>
             <Edit className={classes.icon} />
           </IconButton>

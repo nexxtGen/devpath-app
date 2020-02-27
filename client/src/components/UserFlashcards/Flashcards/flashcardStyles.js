@@ -2,7 +2,8 @@ import { createStyles } from '@material-ui/core';
 import {
   primaryLight,
   primary,
-  primaryExtraLight
+  primaryExtraLight,
+  secondaryDark
 } from '../../../shared/colors';
 
 const styles = createStyles({
@@ -49,7 +50,7 @@ const styles = createStyles({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    background: primaryLight,
+    background: secondaryDark,
     width: '100%',
     height: 50,
     position: 'absolute',
