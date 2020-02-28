@@ -81,8 +81,8 @@ const SkillsList = ({
                   </Typography>
                 </Grid>
                 <Grid item xs={1}>
-                  <Field
-                    render={({ field, form }) => (
+                  <Field>
+                    {({ field, form }) => (
                       <Button
                         className={classes.editSkillButton}
                         disabled={editMode}
@@ -96,7 +96,7 @@ const SkillsList = ({
                         <Create />
                       </Button>
                     )}
-                  />
+                  </Field>
                 </Grid>
                 <Grid item xs={1}>
                   <Button

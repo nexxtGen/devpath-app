@@ -1,24 +1,24 @@
 import React from 'react';
 import JobForm from './JobForm';
-import Button from '@material-ui/core/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { primary } from '../../shared/colors';
 import {
   withStyles,
   createStyles,
   Dialog,
   DialogContent,
   DialogTitle,
-  Typography,
   Grid
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 const styles = createStyles({});
 
-const AddCategoryModal = ({ classes, open, setIsOpen }) => {
-  const handleSubmitCreate = (values, actions) => {};
+const AddCategoryModal = ({ classes, open, setIsOpen, companies }) => {
+  const handleSubmitCreate = values => {
+    console.log(values);
+    setIsOpen({ open: false, mode: '' });
+  };
 
   return (
     <Grid>
@@ -30,12 +30,23 @@ const AddCategoryModal = ({ classes, open, setIsOpen }) => {
         <DialogTitle id='form-dialog-title'>Add Job</DialogTitle>
         <DialogContent>
           <Formik
-            initialValues={{ name: '', image: '' }}
+            initialValues={{
+              position: '',
+              city: '',
+              technologies: '',
+              pros: '',
+              cons: '',
+              level: '',
+              rating: 3,
+              companyId: ''
+            }}
             enableReinitialize={true}
             validationSchema={jobSchema}
-            onSubmit={(values, actions) => handleSubmitCreate(values, actions)}
+            onSubmit={(values, actions) => handleSubmitCreate(values)}
           >
-            {FormikBag => <JobForm setIsOpen={setIsOpen} />}
+            {FormikBag => (
+              <JobForm setIsOpen={setIsOpen} companies={companies} />
+            )}
           </Formik>
         </DialogContent>
       </Dialog>
@@ -44,14 +55,14 @@ const AddCategoryModal = ({ classes, open, setIsOpen }) => {
 };
 
 const jobSchema = Yup.object().shape({
-  name: Yup.string()
+  position: Yup.string()
     .min(2, 'Minimum 2 characters')
     .max(20, 'Maximum 20 characters')
-    .required('Category name is required'),
-  image: Yup.string()
-    .min(10, 'Minimum 10 characters')
-    .max(500, 'Maximum 500 characters')
-    .required('Image link is required')
+    .required('Position is required'),
+  city: Yup.string()
+    .min(3, 'Minimum 3 characters')
+    .max(30, 'Maximum 30 characters')
+    .required('City is required')
 });
 
 export default connect(null, {})(withStyles(styles)(AddCategoryModal));

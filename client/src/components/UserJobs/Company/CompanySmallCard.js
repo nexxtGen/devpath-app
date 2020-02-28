@@ -30,7 +30,7 @@ const CompanySmallCard = ({ classes }) => {
   return (
     <Grid container className={classes.companyContainer}>
       <Grid item sm={4} className={classes.logoContainer}>
-        <img src={logo} className={classes.logoImage} />
+        <img src={logo} className={classes.logoImage} alt='Company logo' />
       </Grid>
       <Grid item sm={8}>
         <Typography variant='body1' className={classes.companyName}>

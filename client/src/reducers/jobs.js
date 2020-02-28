@@ -1,7 +1,8 @@
 import {
   GET_ALL_USER_COMPANIES,
   CREATE_NEW_USER_JOB,
-  JOBS_ERROR
+  JOBS_ERROR,
+  SET_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -24,7 +25,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        jobs: [...jobs, payload]
+        jobs: [...state.jobs, payload]
+      };
+    case JOBS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;

@@ -53,8 +53,8 @@ const AddSkill = ({
       justify='flex-start'
     >
       <Grid item xs={2}>
-        <Field
-          render={({ field, form }) => {
+        <Field>
+          {({ field, form }) => {
             return (
               <Button
                 name={skillNameProps}
@@ -77,12 +77,11 @@ const AddSkill = ({
               </Button>
             );
           }}
-        />
+        </Field>
       </Grid>
       <Grid item xs={9}>
-        <Field
-          name={skillNameProps}
-          render={({ field, form }) => {
+        <Field name={skillNameProps}>
+          {({ field, form }) => {
             return (
               <FormControl fullWidth>
                 <Input
@@ -105,10 +104,9 @@ const AddSkill = ({
               </FormControl>
             );
           }}
-        />
-        <Field
-          name={iconNameProps}
-          render={({ field, form }) => {
+        </Field>
+        <Field name={iconNameProps}>
+          {({ field, form }) => {
             return (
               <FormControl fullWidth>
                 <Input
@@ -131,7 +129,7 @@ const AddSkill = ({
               </FormControl>
             );
           }}
-        />
+        </Field>
       </Grid>
     </Grid>
   );

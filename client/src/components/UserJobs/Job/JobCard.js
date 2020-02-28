@@ -3,7 +3,6 @@ import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from '../Company/CompanySmallCard';
 import {
   LocationOn,
-  HighlightOff,
   CheckCircleOutline,
   Edit,
   DeleteOutline
@@ -183,6 +182,3 @@ const JobCard = ({ classes }) => {
 };
 
 export default withStyles(styles)(JobCard);
-
-const logo =
-  'https://mir-s3-cdn-cf.behance.net/user/276/26a23494436.5c0e23af9216d.png';

@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   TextField,
   FormControl,
@@ -60,6 +59,7 @@ const AddFlashcardModal = ({
       setCategoryId(currentFlashcard.categoryId);
       setCode(currentFlashcard.code);
     }
+    //eslint-disable-next-line
   }, [formMode]);
 
   const handleSubmitCreate = () => {

@@ -14,8 +14,7 @@ import {
   Grid,
   MenuItem,
   InputLabel,
-  Select,
-  TextField
+  Select
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 
@@ -27,7 +26,7 @@ const styles = createStyles({
   }
 });
 
-const JobForm = ({ classes, setIsOpen }) => {
+const JobForm = ({ classes, setIsOpen, companies }) => {
   return (
     <Form>
       <Grid container direction='row'>
@@ -91,24 +90,22 @@ const JobForm = ({ classes, setIsOpen }) => {
           </Field>
         </Grid>
         <Grid item xs={5} style={{ paddingLeft: 15 }}>
-          <Field name='company'>
+          <Field name='companyId'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
                 <InputLabel id='select-company'>Company*</InputLabel>
                 <Select
                   labelId='select-company'
-                  //id='company-select-category'
-                  //value={categoryId}
-                  //onChange={e => setCategoryId(e.target.value)}
+                  inputProps={field}
                   style={{ paddingBottom: 3 }}
-                  //disabled={formMode === 'edit' ? true : false}
                 >
-                  <MenuItem key={1} value='01'>
-                    Merix Studio
-                  </MenuItem>
-                  <MenuItem key={2} value='02'>
-                    Code Sofware
-                  </MenuItem>
+                  {companies.map((company, index) => {
+                    return (
+                      <MenuItem key={index} value={company._id}>
+                        {company.name}
+                      </MenuItem>
+                    );
+                  })}
                 </Select>
                 <FormHelperText error>
                   {' '}
@@ -117,24 +114,20 @@ const JobForm = ({ classes, setIsOpen }) => {
               </FormControl>
             )}
           </Field>
-          <Field name='lvl'>
+          <Field name='level'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
                 <InputLabel id='select-level'>Level</InputLabel>
                 <Select
                   labelId='select-level'
-                  //id='company-select-category'
-                  //value={categoryId}
-                  //onChange={e => setCategoryId(e.target.value)}
+                  inputProps={field}
                   style={{ paddingBottom: 3 }}
-                  //disabled={formMode === 'edit' ? true : false}
                 >
-                  <MenuItem key={1} value='01'>
-                    Trainee
-                  </MenuItem>
-                  <MenuItem key={2} value='02'>
-                    Junior
-                  </MenuItem>
+                  <MenuItem value='Trainee'>Trainee</MenuItem>
+                  <MenuItem value='Junior'>Junior</MenuItem>
+                  <MenuItem value='Mid'>Mid</MenuItem>
+                  <MenuItem value='Senior'>Senior</MenuItem>
+                  <MenuItem value='Expert'>Expert</MenuItem>
                 </Select>
                 <FormHelperText error>
                   {' '}
@@ -143,17 +136,11 @@ const JobForm = ({ classes, setIsOpen }) => {
               </FormControl>
             )}
           </Field>
-          <Field name='rating'>
+          <Field name='rating' type='number'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
                 <Typography>Set job offer rating</Typography>
-                <Rating
-                  name='simple-controlled'
-                  //value={value}
-                  //onChange={(event, newValue) => {
-                  //  setValue(newValue);
-                  //}}
-                />
+                <Rating name='rating' onChange={field.onChange} />
               </FormControl>
             )}
           </Field>
