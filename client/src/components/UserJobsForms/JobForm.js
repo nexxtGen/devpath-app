@@ -23,6 +23,9 @@ const styles = createStyles({
     '&::after': {
       border: `1px solid ${primary}`
     }
+  },
+  ratingContainer: {
+    padding: 20
   }
 });
 
@@ -39,6 +42,18 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
                   {form.touched.position &&
                     form.errors.position &&
                     form.errors.position}
+                </FormHelperText>
+              </FormControl>
+            )}
+          </Field>
+          <Field name='source'>
+            {({ field, form }) => (
+              <FormControl fullWidth style={{ height: '75px' }}>
+                <FTextField label={'Source link'} fieldProps={field} />
+                <FormHelperText error>
+                  {form.touched.source &&
+                    form.errors.source &&
+                    form.errors.source}
                 </FormHelperText>
               </FormControl>
             )}
@@ -109,7 +124,9 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
                 </Select>
                 <FormHelperText error>
                   {' '}
-                  {form.touched.cons && form.errors.cons && form.errors.cons}
+                  {form.touched.companyId &&
+                    form.errors.companyId &&
+                    form.errors.companyId}
                 </FormHelperText>
               </FormControl>
             )}
@@ -131,19 +148,25 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
                 </Select>
                 <FormHelperText error>
                   {' '}
-                  {form.touched.cons && form.errors.cons && form.errors.cons}
+                  {form.touched.level && form.errors.level && form.errors.level}
                 </FormHelperText>
               </FormControl>
             )}
           </Field>
-          <Field name='rating' type='number'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <Typography>Set job offer rating</Typography>
-                <Rating name='rating' onChange={field.onChange} />
-              </FormControl>
-            )}
-          </Field>
+          <Grid className={classes.ratingContainer}>
+            <Field name='rating' type='number'>
+              {({ field, form }) => (
+                <FormControl fullWidth style={{ height: '75px' }}>
+                  <Typography>Set job offer rating</Typography>
+                  <Rating
+                    name='rating'
+                    onChange={field.onChange}
+                    defaultValue={3}
+                  />
+                </FormControl>
+              )}
+            </Field>
+          </Grid>
         </Grid>
       </Grid>
       <DialogActions>

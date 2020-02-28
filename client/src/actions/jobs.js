@@ -2,9 +2,11 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import {
   GET_ALL_USER_COMPANIES,
+  GET_ALL_USER_JOBS,
   CREATE_NEW_USER_JOB,
   JOBS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  SET_CURRENT_EDITED_JOB
 } from './types';
 
 export const getAllUserCompanies = () => async dispatch => {
@@ -15,6 +17,24 @@ export const getAllUserCompanies = () => async dispatch => {
 
     dispatch({
       type: GET_ALL_USER_COMPANIES,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const getAllUserJobs = () => async dispatch => {
+  try {
+    dispatch(setLoading());
+
+    const res = await axios.get('/api/v1/jobs');
+
+    dispatch({
+      type: GET_ALL_USER_JOBS,
       payload: res.data.data
     });
   } catch (err) {
@@ -48,6 +68,15 @@ export const createNewUserJob = jobData => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+// Without API REQUEST
+
+export const setCurrentEditedJob = job => async dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_JOB,
+    payload: job
+  });
 };
 
 export const setLoading = () => {

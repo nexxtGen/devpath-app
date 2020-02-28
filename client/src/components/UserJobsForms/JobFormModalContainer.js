@@ -10,6 +10,7 @@ import {
   DialogTitle,
   Grid
 } from '@material-ui/core';
+import createJobValues from './utilis/createJobValues';
 import { connect } from 'react-redux';
 
 const styles = createStyles({});
@@ -20,6 +21,8 @@ const AddCategoryModal = ({ classes, open, setIsOpen, companies }) => {
     setIsOpen({ open: false, mode: '' });
   };
 
+  const job = null;
+  const initialValues = createJobValues(job);
   return (
     <Grid>
       <Dialog
@@ -30,23 +33,12 @@ const AddCategoryModal = ({ classes, open, setIsOpen, companies }) => {
         <DialogTitle id='form-dialog-title'>Add Job</DialogTitle>
         <DialogContent>
           <Formik
-            initialValues={{
-              position: '',
-              city: '',
-              technologies: '',
-              pros: '',
-              cons: '',
-              level: '',
-              rating: 3,
-              companyId: ''
-            }}
+            initialValues={initialValues}
             enableReinitialize={true}
             validationSchema={jobSchema}
-            onSubmit={(values, actions) => handleSubmitCreate(values)}
+            onSubmit={values => handleSubmitCreate(values)}
           >
-            {FormikBag => (
-              <JobForm setIsOpen={setIsOpen} companies={companies} />
-            )}
+            {() => <JobForm setIsOpen={setIsOpen} companies={companies} />}
           </Formik>
         </DialogContent>
       </Dialog>
@@ -62,7 +54,23 @@ const jobSchema = Yup.object().shape({
   city: Yup.string()
     .min(3, 'Minimum 3 characters')
     .max(30, 'Maximum 30 characters')
-    .required('City is required')
+    .required('City is required'),
+  technologies: Yup.string()
+    .min(2, 'Minimum 3 characters')
+    .max(200, 'Maximum 200 characters')
+    .required('Technologies is required'),
+  source: Yup.string()
+    .min(9, 'Minimum 9 characters')
+    .max(800, 'Maximum 800 characters')
+    .required('Source link is required'),
+  pros: Yup.string()
+    .min(3, 'Minimum 3 characters')
+    .max(150, 'Maximum 150 characters'),
+  cons: Yup.string()
+    .min(3, 'Minimum 3 characters')
+    .max(150, 'Maximum 150 characters'),
+  level: Yup.string().required('Level is required'),
+  companyId: Yup.string().required('Company is required')
 });
 
 export default connect(null, {})(withStyles(styles)(AddCategoryModal));

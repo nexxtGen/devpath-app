@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
-import JobCard from './Job/JobCard';
+import JobsList from './Job/JobsList';
 import JobFormModalContainer from '../UserJobsForms/JobFormModalContainer';
 import AddBtn from './AddBtn';
 import { connect } from 'react-redux';
 import { getAllUserCompanies } from '../../actions/jobs';
+import { getAllUserJobs } from '../../actions/jobs';
 
 const styles = createStyles({
   jobCards: {
@@ -19,7 +20,8 @@ const styles = createStyles({
 const UserJobsContainer = ({
   classes,
   getAllUserCompanies,
-  jobs: { loading, companies, jobs }
+  getAllUserJobs,
+  jobs
 }) => {
   const [isOpenJobFormModal, setIsOpenJobFormModal] = useState({
     open: false,
@@ -32,25 +34,29 @@ const UserJobsContainer = ({
 
   useEffect(() => {
     getAllUserCompanies();
+    getAllUserJobs();
     //eslint-disable-next-line
   }, []);
 
   return (
     <Grid>
       <Grid className={classes.jobCards}>
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        {!jobs.loading && jobs.jobs.length > 0 ? (
+          <Grid>
+            <JobsList jobs={jobs.jobs} />
+          </Grid>
+        ) : (
+          ''
+        )}
       </Grid>
-      {!loading && companies.length > 0 ? (
+      {!jobs.loading && jobs.companies.length > 0 ? (
         <JobFormModalContainer
           open={isOpenJobFormModal}
           setIsOpen={setIsOpenJobFormModal}
-          companies={companies}
+          companies={jobs.companies}
         />
       ) : (
-        <Grid></Grid>
+        ''
       )}
       <AddBtn openJobModal={setIsOpenJobFormModal} />
     </Grid>
@@ -61,6 +67,7 @@ const mapStateToProps = state => ({
   jobs: state.jobs
 });
 
-export default connect(mapStateToProps, { getAllUserCompanies })(
-  withStyles(styles)(UserJobsContainer)
-);
+export default connect(mapStateToProps, {
+  getAllUserCompanies,
+  getAllUserJobs
+})(withStyles(styles)(UserJobsContainer));
