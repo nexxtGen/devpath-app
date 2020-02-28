@@ -26,7 +26,7 @@ const styles = createStyles({
   }
 });
 
-const CompanySmallCard = ({ classes }) => {
+const CompanySmallCard = ({ classes, company: { logo, name, rating } }) => {
   return (
     <Grid container className={classes.companyContainer}>
       <Grid item sm={4} className={classes.logoContainer}>
@@ -34,13 +34,13 @@ const CompanySmallCard = ({ classes }) => {
       </Grid>
       <Grid item sm={8}>
         <Typography variant='body1' className={classes.companyName}>
-          Merix Studio Polska
+          {name}
         </Typography>
         <Grid container direction='row'>
           <Rating
             className={classes.iconFilled}
             name='read-only'
-            value={4}
+            value={rating}
             readOnly
             size='small'
           />
@@ -51,6 +51,3 @@ const CompanySmallCard = ({ classes }) => {
 };
 
 export default withStyles(styles)(CompanySmallCard);
-
-const logo =
-  'https://mir-s3-cdn-cf.behance.net/user/276/26a23494436.5c0e23af9216d.png';

@@ -76,6 +76,10 @@ const styles = createStyles({
       transform: 'scale(1.1)',
       cursor: 'pointer'
     }
+  },
+  lvlContainer: {
+    borderLeft: '1px solid lightgray',
+    paddingLeft: '10px'
   }
 });
 

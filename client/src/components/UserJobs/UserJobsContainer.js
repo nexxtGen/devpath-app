@@ -21,7 +21,8 @@ const UserJobsContainer = ({
   classes,
   getAllUserCompanies,
   getAllUserJobs,
-  jobs
+  jobs,
+  companies
 }) => {
   const [isOpenJobFormModal, setIsOpenJobFormModal] = useState({
     open: false,
@@ -41,9 +42,13 @@ const UserJobsContainer = ({
   return (
     <Grid>
       <Grid className={classes.jobCards}>
-        {!jobs.loading && jobs.jobs.length > 0 ? (
+        {!jobs.loading && jobs.jobs.length > 0 && jobs.companies.length > 0 ? (
           <Grid>
-            <JobsList jobs={jobs.jobs} />
+            <JobsList
+              jobs={jobs.jobs}
+              companies={jobs.companies}
+              setIsOpenJobFormModal={setIsOpenJobFormModal}
+            />
           </Grid>
         ) : (
           ''

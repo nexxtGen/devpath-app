@@ -16,7 +16,6 @@ import {
   InputLabel,
   Select
 } from '@material-ui/core';
-import { connect } from 'react-redux';
 
 const styles = createStyles({
   underline: {
@@ -29,7 +28,7 @@ const styles = createStyles({
   }
 });
 
-const JobForm = ({ classes, setIsOpen, companies }) => {
+const JobForm = ({ classes, setIsOpen, companies, open }) => {
   return (
     <Form>
       <Grid container direction='row'>
@@ -113,6 +112,7 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
                   labelId='select-company'
                   inputProps={field}
                   style={{ paddingBottom: 3 }}
+                  disabled={open.mode === 'edit' ? true : false}
                 >
                   {companies.map((company, index) => {
                     return (
@@ -161,7 +161,7 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
                   <Rating
                     name='rating'
                     onChange={field.onChange}
-                    defaultValue={3}
+                    defaultValue={parseInt(field.value)}
                   />
                 </FormControl>
               )}
@@ -185,4 +185,4 @@ const JobForm = ({ classes, setIsOpen, companies }) => {
   );
 };
 
-export default connect(null, {})(withStyles(styles)(JobForm));
+export default withStyles(styles)(JobForm);

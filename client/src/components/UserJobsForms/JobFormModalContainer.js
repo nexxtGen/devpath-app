@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import JobForm from './JobForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -12,17 +12,34 @@ import {
 } from '@material-ui/core';
 import createJobValues from './utilis/createJobValues';
 import { connect } from 'react-redux';
+import { createNewUserJob } from '../../actions/jobs';
+import { updateUserJob } from '../../actions/jobs';
 
 const styles = createStyles({});
 
-const AddCategoryModal = ({ classes, open, setIsOpen, companies }) => {
+const AddCategoryModal = ({
+  classes,
+  open,
+  setIsOpen,
+  companies,
+  currentEditedJob,
+  createNewUserJob,
+  updateUserJob
+}) => {
   const handleSubmitCreate = values => {
-    console.log(values);
+    values.rating = parseInt(values.rating);
+    createNewUserJob(values);
     setIsOpen({ open: false, mode: '' });
   };
 
-  const job = null;
-  const initialValues = createJobValues(job);
+  const handleSubmitUpdate = values => {
+    values.rating = parseInt(values.rating);
+    updateUserJob(currentEditedJob._id, values);
+    setIsOpen({ open: false, mode: '' });
+  };
+  const initialValues = createJobValues(
+    open.mode === 'edit' ? currentEditedJob : null
+  );
   return (
     <Grid>
       <Dialog
@@ -30,15 +47,27 @@ const AddCategoryModal = ({ classes, open, setIsOpen, companies }) => {
         onClose={() => setIsOpen({ open: false, mode: '' })}
         aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id='form-dialog-title'>Add Job</DialogTitle>
+        <DialogTitle id='form-dialog-title'>
+          {open.mode === 'create' ? 'Create New Job' : 'Edit Job'}
+        </DialogTitle>
         <DialogContent>
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
             validationSchema={jobSchema}
-            onSubmit={values => handleSubmitCreate(values)}
+            onSubmit={values =>
+              open.mode === 'create'
+                ? handleSubmitCreate(values)
+                : handleSubmitUpdate(values, currentEditedJob._id)
+            }
           >
-            {() => <JobForm setIsOpen={setIsOpen} companies={companies} />}
+            {() => (
+              <JobForm
+                setIsOpen={setIsOpen}
+                companies={companies}
+                open={open}
+              />
+            )}
           </Formik>
         </DialogContent>
       </Dialog>
@@ -73,4 +102,10 @@ const jobSchema = Yup.object().shape({
   companyId: Yup.string().required('Company is required')
 });
 
-export default connect(null, {})(withStyles(styles)(AddCategoryModal));
+const mapStateToProps = state => ({
+  currentEditedJob: state.jobs.currentEditedJob
+});
+
+export default connect(mapStateToProps, { createNewUserJob, updateUserJob })(
+  withStyles(styles)(AddCategoryModal)
+);

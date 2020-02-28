@@ -2,6 +2,8 @@ import {
   GET_ALL_USER_COMPANIES,
   GET_ALL_USER_JOBS,
   CREATE_NEW_USER_JOB,
+  UPDATE_USER_JOB,
+  DELETE_USER_JOB,
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB
@@ -33,8 +35,29 @@ export default function(state = initialState, action) {
     case CREATE_NEW_USER_JOB:
       return {
         ...state,
-        loading: false,
-        jobs: [...state.jobs, payload]
+
+        jobs: [...state.jobs, payload],
+        companies: state.companies.map(comp =>
+          comp._id === payload.companyId
+            ? { ...comp, jobs: [...comp.jobs, payload.companyId] }
+            : comp
+        ),
+        loading: false
+      };
+    case UPDATE_USER_JOB:
+      return {
+        ...state,
+        jobs: state.jobs.map(job => (job._id === payload._id ? payload : job)),
+        loading: false
+      };
+    case DELETE_USER_JOB:
+      return {
+        ...state,
+        jobs: state.jobs.filter(job => job._id !== payload.jobId),
+        companies: state.companies.map(comp =>
+          comp._id === payload.company._id ? payload.company : comp
+        ),
+        loading: false
       };
     case SET_CURRENT_EDITED_JOB: {
       return { ...state, currentEditedJob: payload };

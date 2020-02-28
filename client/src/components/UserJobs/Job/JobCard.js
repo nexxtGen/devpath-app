@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from '../Company/CompanySmallCard';
 import {
@@ -12,8 +13,22 @@ import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import styles from './jobCardStyles';
+import { connect } from 'react-redux';
+import { setCurrentEditedJob } from '../../../actions/jobs';
+import { deleteUserJob } from '../../../actions/jobs';
 
-const JobCard = ({ classes, job }) => {
+const JobCard = ({
+  classes,
+  job,
+  companies,
+  setIsOpenJobFormModal,
+  setCurrentEditedJob,
+  deleteUserJob
+}) => {
+  const handleEdit = () => {
+    setIsOpenJobFormModal({ open: true, mode: 'edit' });
+    setCurrentEditedJob(job);
+  };
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.container}>
@@ -48,12 +63,19 @@ const JobCard = ({ classes, job }) => {
           </Typography>
         </Grid>
         <Grid container direction='row'>
-          <CompanySmallCard />
-          <Grid
-            style={{ borderLeft: '1px solid lightgray', paddingLeft: '10px' }}
-          >
+          <CompanySmallCard
+            company={companies.find(obj => {
+              return obj._id === job.companyId;
+            })}
+          />
+          <Grid className={classes.lvlContainer}>
             <Typography>
-              lvl: <span style={{ color: 'green' }}>{job.level}</span>
+              Lvl: <span style={{ color: 'green' }}>{job.level}</span>
+            </Typography>
+            <Typography variant='subtitle2'>
+              <span style={{ color: 'gray' }}>
+                Created: {moment(job.createdAt).format('MMM Do YY')}
+              </span>
             </Typography>
           </Grid>
         </Grid>
@@ -79,10 +101,13 @@ const JobCard = ({ classes, job }) => {
           </IconButton>
         </Tooltip>
         <Grid container justify='flex-end'>
-          <IconButton aria-label='add an alarm'>
+          <IconButton aria-label='edit' onClick={() => handleEdit()}>
             <Edit className={classes.icon} />
           </IconButton>
-          <IconButton aria-label='add an alarm'>
+          <IconButton
+            aria-label='delete'
+            onClick={() => deleteUserJob(job._id, job.companyId)}
+          >
             <DeleteOutline className={classes.icon} />
           </IconButton>
         </Grid>
@@ -91,4 +116,6 @@ const JobCard = ({ classes, job }) => {
   );
 };
 
-export default withStyles(styles)(JobCard);
+export default connect(null, { setCurrentEditedJob, deleteUserJob })(
+  withStyles(styles)(JobCard)
+);
