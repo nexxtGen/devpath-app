@@ -6,6 +6,8 @@ import {
   CREATE_NEW_USER_JOB,
   UPDATE_USER_JOB,
   DELETE_USER_JOB,
+  FILTER_JOBS,
+  CLEAR_FILTER,
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB
@@ -97,7 +99,7 @@ export const updateUserJob = (jobId, jobData) => async dispatch => {
   }
 };
 
-export const deleteUserJob = (jobId, companyId) => async dispatch => {
+export const deleteUserJob = jobId => async dispatch => {
   try {
     dispatch(setLoading());
 
@@ -114,6 +116,15 @@ export const deleteUserJob = (jobId, companyId) => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const filterJobs = text => async dispatch => {
+  dispatch({ type: FILTER_JOBS, payload: text });
+};
+
+//Clear Filter
+export const clearFilter = () => dispatch => {
+  dispatch({ type: CLEAR_FILTER });
 };
 
 // Without API REQUEST

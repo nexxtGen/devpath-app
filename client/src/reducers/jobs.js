@@ -6,7 +6,9 @@ import {
   DELETE_USER_JOB,
   JOBS_ERROR,
   SET_LOADING,
-  SET_CURRENT_EDITED_JOB
+  SET_CURRENT_EDITED_JOB,
+  FILTER_JOBS,
+  CLEAR_FILTER
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +16,7 @@ const initialState = {
   jobs: [],
   loading: false,
   currentEditedJob: null,
+  filteredJobs: null,
   error: {}
 };
 
@@ -35,7 +38,6 @@ export default function(state = initialState, action) {
     case CREATE_NEW_USER_JOB:
       return {
         ...state,
-
         jobs: [...state.jobs, payload],
         companies: state.companies.map(comp =>
           comp._id === payload.companyId
@@ -62,6 +64,23 @@ export default function(state = initialState, action) {
     case SET_CURRENT_EDITED_JOB: {
       return { ...state, currentEditedJob: payload };
     }
+    case FILTER_JOBS:
+      return {
+        ...state,
+        filteredJobs: state.jobs.filter(job => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return (
+            job.position.match(regex) ||
+            job.technologies.match(regex) ||
+            job.city.match(regex)
+          );
+        })
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filteredJobs: null
+      };
     case JOBS_ERROR:
       return {
         ...state,

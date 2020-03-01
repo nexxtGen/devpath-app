@@ -24,7 +24,7 @@ const JobSchema = new mongoose.Schema({
     maxlength: [40, 'City name can not be more than 40 characters']
   },
   technologies: {
-    type: [String],
+    type: String,
     required: [true, 'Please add required technologies']
   },
   level: {
@@ -44,11 +44,13 @@ const JobSchema = new mongoose.Schema({
   },
   pros: {
     type: String,
-    maxlength: [150, 'Pros can not be more than 150 characters']
+    maxlength: [150, 'Pros can not be more than 150 characters'],
+    default: ''
   },
   cons: {
     type: String,
-    maxlength: [150, 'Pros can not be more than 150 characters']
+    maxlength: [150, 'Pros can not be more than 150 characters'],
+    default: ''
   },
   applied: {
     type: Boolean,
@@ -63,19 +65,5 @@ const JobSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
-async function populateCompany(next) {
-  this.populate('companyId', [
-    'name',
-    'localization',
-    'country',
-    'size',
-    'logo'
-  ]);
-  next();
-}
-
-JobSchema.pre('find', populateCompany);
-JobSchema.pre('findOne', populateCompany);
 
 module.exports = mongoose.model('Job', JobSchema);

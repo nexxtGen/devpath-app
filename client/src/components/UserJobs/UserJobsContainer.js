@@ -40,19 +40,15 @@ const UserJobsContainer = ({
   }, []);
 
   return (
-    <Grid>
+    <Grid container>
       <Grid className={classes.jobCards}>
-        {!jobs.loading && jobs.jobs.length > 0 && jobs.companies.length > 0 ? (
-          <Grid>
-            <JobsList
-              jobs={jobs.jobs}
-              companies={jobs.companies}
-              setIsOpenJobFormModal={setIsOpenJobFormModal}
-            />
-          </Grid>
-        ) : (
-          ''
-        )}
+        <Grid>
+          <JobsList
+            jobs={jobs.jobs}
+            companies={jobs.companies}
+            setIsOpenJobFormModal={setIsOpenJobFormModal}
+          />
+        </Grid>
       </Grid>
       {!jobs.loading && jobs.companies.length > 0 ? (
         <JobFormModalContainer

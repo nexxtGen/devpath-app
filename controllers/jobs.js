@@ -89,7 +89,7 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
 // @route DELETE /api/v1/jobs/:id
 // @access Private
 exports.deleteJob = asyncHandler(async (req, res, next) => {
-  await Job.findByIdAndDelete(req.params.id);
+  const job = await Job.findByIdAndDelete(req.params.id);
 
   if (!job) {
     return next(
@@ -97,16 +97,15 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
     );
   }
 
-  let company = await Company.findOne({ _id: req.body.companyId });
-
+  let company = await Company.findOne({ _id: job.companyId.toString() });
+  console.log('JOOB', job);
   const filtered = company.jobs.filter(
-    item => item._id.toString() !== req.params.id
+    item => item.toString() !== req.params.id
   );
-
   company.jobs = filtered;
 
   const updatedCompany = await Company.findOneAndUpdate(
-    { _id: req.body.companyId },
+    { _id: job.companyId.toString() },
     { $set: company },
     { new: true }
   );

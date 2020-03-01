@@ -106,7 +106,7 @@ const JobCard = ({
           </IconButton>
           <IconButton
             aria-label='delete'
-            onClick={() => deleteUserJob(job._id, job.companyId)}
+            onClick={() => deleteUserJob(job._id)}
           >
             <DeleteOutline className={classes.icon} />
           </IconButton>

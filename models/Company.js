@@ -34,7 +34,7 @@ const CompanySchema = new mongoose.Schema({
     required: [true, 'Please add a description'],
     maxlength: [400, 'Description can not be more than 400 characters']
   },
-  interesting: {
+  rating: {
     type: Number,
     required: [true, 'Please set interesting value'],
     min: [1, 'Interesting value rating must be at least 1'],
