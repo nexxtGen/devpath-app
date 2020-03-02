@@ -10,18 +10,17 @@ import {
   DialogTitle,
   Grid
 } from '@material-ui/core';
-import createJobValues from './utilis/createJobValues';
+import createCompanyValues from './utilis/createCompanyValues';
 import { connect } from 'react-redux';
 import { createNewUserCompany } from '../../actions/jobs';
 import { updateUserCompany } from '../../actions/jobs';
 
 const styles = createStyles({});
 
-const AddCategoryModal = ({
+const CompanyFormModalContainer = ({
   classes,
   open,
   setIsOpen,
-  companies,
   currentEditedCompany,
   createNewUserCompany,
   updateUserCompany
@@ -58,10 +57,10 @@ const AddCategoryModal = ({
             onSubmit={values =>
               open.mode === 'create'
                 ? handleSubmitCreate(values)
-                : handleSubmitUpdate(values, currentEditedJob._id)
+                : handleSubmitUpdate(values, currentEditedCompany._id)
             }
           >
-            {() => <JobForm setIsOpen={setIsOpen} open={open} />}
+            {() => <CompanyForm setIsOpen={setIsOpen} open={open} />}
           </Formik>
         </DialogContent>
       </Dialog>
@@ -73,17 +72,28 @@ const companySchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Minimum 2 characters')
     .max(30, 'Maximum 30 characters')
-    .required('Position is required'),
+    .required('Company Name is required'),
   address: Yup.string()
     .min(3, 'Minimum 3 characters')
-    .max(50, 'Maximum 30 characters')
-    .required('Adress is required')
+    .max(70, 'Maximum 70 characters')
+    .required('Adress is required'),
+  description: Yup.string()
+    .min(10, 'Minimum 3 characters')
+    .max(300, 'Maximum 300 characters')
+    .required('Description is required'),
+  rating: Yup.string().required('Rating is required'),
+  size: Yup.string().required('Company size is required'),
+  logo: Yup.string()
+    .min(10, 'Minimum 3 characters')
+    .max(800, 'Maximum 800 characters')
+    .required('Company logo image link is required')
 });
 
 const mapStateToProps = state => ({
-  currentEditedJob: state.jobs.currentEditedJob
+  currentEditedCompany: state.jobs.currentEditedCompany
 });
 
-export default connect(mapStateToProps, { createNewUserJob, updateUserJob })(
-  withStyles(styles)(AddCategoryModal)
-);
+export default connect(mapStateToProps, {
+  createNewUserCompany,
+  updateUserCompany
+})(withStyles(styles)(CompanyFormModalContainer));

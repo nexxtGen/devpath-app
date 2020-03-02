@@ -10,7 +10,10 @@ import {
   CLEAR_FILTER,
   JOBS_ERROR,
   SET_LOADING,
-  SET_CURRENT_EDITED_JOB
+  SET_CURRENT_EDITED_JOB,
+  SET_CURRENT_EDITED_COMPANY,
+  CREATE_NEW_USER_COMPANY,
+  UPDATE_USER_COMPANY
 } from './types';
 
 export const getAllUserCompanies = () => async dispatch => {
@@ -133,6 +136,68 @@ export const setCurrentEditedJob = job => async dispatch => {
   dispatch({
     type: SET_CURRENT_EDITED_JOB,
     payload: job
+  });
+};
+
+// COMPANY/COMPANIES ACTIONS
+export const createNewUserCompany = companyData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    dispatch(setLoading());
+
+    const res = await axios.post('/api/v1/companies', companyData, config);
+
+    dispatch(setAlert('Company has been created', 'success'));
+    dispatch({
+      type: CREATE_NEW_USER_COMPANY,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateUserCompany = (companyId, companyData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    dispatch(setLoading());
+
+    const res = await axios.put(
+      `/api/v1/companies/${companyId}`,
+      companyData,
+      config
+    );
+
+    dispatch(setAlert('Company has been updated', 'success'));
+    dispatch({
+      type: UPDATE_USER_COMPANY,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const setCurrentEditedCompany = company => async dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_COMPANY,
+    payload: company
   });
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import JobsList from './Job/JobsList';
 import JobFormModalContainer from '../UserJobsForms/JobFormModalContainer';
+import CompanyFormModalContainer from '../UserJobsForms/CompanyFormModalContainer';
 import AddBtn from './AddBtn';
 import { connect } from 'react-redux';
 import { getAllUserCompanies } from '../../actions/jobs';
@@ -21,8 +22,7 @@ const UserJobsContainer = ({
   classes,
   getAllUserCompanies,
   getAllUserJobs,
-  jobs,
-  companies
+  jobs
 }) => {
   const [isOpenJobFormModal, setIsOpenJobFormModal] = useState({
     open: false,
@@ -50,16 +50,19 @@ const UserJobsContainer = ({
           />
         </Grid>
       </Grid>
-      {!jobs.loading && jobs.companies.length > 0 ? (
-        <JobFormModalContainer
-          open={isOpenJobFormModal}
-          setIsOpen={setIsOpenJobFormModal}
-          companies={jobs.companies}
-        />
-      ) : (
-        ''
-      )}
-      <AddBtn openJobModal={setIsOpenJobFormModal} />
+      <JobFormModalContainer
+        open={isOpenJobFormModal}
+        setIsOpen={setIsOpenJobFormModal}
+        companies={jobs.companies}
+      />
+      <CompanyFormModalContainer
+        open={isOpenCompanyFormModal}
+        setIsOpen={setIsOpenCompanyFormModal}
+      />
+      <AddBtn
+        openJobModal={setIsOpenJobFormModal}
+        openCompanyModal={setIsOpenCompanyFormModal}
+      />
     </Grid>
   );
 };

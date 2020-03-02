@@ -7,8 +7,11 @@ import {
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB,
+  SET_CURRENT_EDITED_COMPANY,
   FILTER_JOBS,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  CREATE_NEW_USER_COMPANY,
+  UPDATE_USER_COMPANY
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   jobs: [],
   loading: false,
   currentEditedJob: null,
+  currentEditedCompany: null,
   filteredJobs: null,
   error: {}
 };
@@ -86,6 +90,24 @@ export default function(state = initialState, action) {
         ...state,
         loading: false,
         error: payload
+      };
+    // COMPANY
+    case CREATE_NEW_USER_COMPANY:
+      return {
+        ...state,
+        companies: [...state.companies, payload],
+        loading: false
+      };
+    case SET_CURRENT_EDITED_COMPANY: {
+      return { ...state, currentEditedCompany: payload };
+    }
+    case UPDATE_USER_COMPANY:
+      return {
+        ...state,
+        companies: state.companies.map(comp =>
+          comp._id === payload._id ? payload : comp
+        ),
+        loading: false
       };
     case SET_LOADING:
       return {

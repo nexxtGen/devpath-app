@@ -14,7 +14,7 @@ const styles = createStyles({
   }
 });
 
-const AddBtn = ({ classes, openJobModal }) => {
+const AddBtn = ({ classes, openJobModal, openCompanyModal }) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Fab
@@ -24,7 +24,10 @@ const AddBtn = ({ classes, openJobModal }) => {
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <Work style={{ color: 'white', marginTop: 7 }} />
       </Fab>
-      <Fab style={{ background: primaryLight, marginTop: 15 }}>
+      <Fab
+        onClick={() => openCompanyModal({ open: true, mode: 'create' })}
+        style={{ background: primaryLight, marginTop: 15 }}
+      >
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <Language style={{ color: 'white', marginTop: 7, fontSize: 28 }} />
       </Fab>
