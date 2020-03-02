@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const geocoder = require('../utils/geocoder');
 
 const CompanySchema = new mongoose.Schema({
   user: {
@@ -19,15 +20,26 @@ const CompanySchema = new mongoose.Schema({
       required: true
     }
   ],
-  country: {
+  address: {
     type: String,
-    required: [true, 'Please add a Country'],
-    maxlength: [20, 'Country can not be more than 20 characters']
+    required: [true, 'Please add a address'],
+    maxlength: [100, 'Address can not be more than 100 characters']
   },
-  localization: {
-    type: String,
-    required: [true, 'Please add a localization'],
-    maxlength: [60, 'City can not be more than 60 characters']
+  location: {
+    type: {
+      type: String,
+      enum: ['Point']
+    },
+    coordinates: {
+      type: [Number],
+      index: '2dsphere'
+    },
+    formattedAddress: String,
+    street: String,
+    city: String,
+    state: String,
+    zipcode: String,
+    country: String
   },
   description: {
     type: String,
@@ -55,7 +67,24 @@ const CompanySchema = new mongoose.Schema({
   }
 });
 
-/*
+// Geocode & create location field
+CompanySchema.pre('save', async function(next) {
+  const loc = await geocoder.geocode(this.address);
+  this.location = {
+    type: 'Point',
+    coordinates: [loc[0].latitude, loc[0].longitude],
+    formattedAddress: loc[0].formattedAddress,
+    street: loc[0].streetName,
+    city: loc[0].city,
+    state: loc[0].stateCode,
+    zipcode: loc[0].zipcode,
+    country: loc[0].countryCode
+  };
+
+  this.address = undefined;
+  next();
+});
+
 async function populateJobs(next) {
   this.populate('jobs', ['position']);
   next();
@@ -63,5 +92,5 @@ async function populateJobs(next) {
 
 CompanySchema.pre('find', populateJobs);
 CompanySchema.pre('findOne', populateJobs);
-*/
+
 module.exports = mongoose.model('Company', CompanySchema);
