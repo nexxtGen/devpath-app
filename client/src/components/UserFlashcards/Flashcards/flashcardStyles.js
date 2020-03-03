@@ -27,7 +27,7 @@ const styles = createStyles({
   },
   textContainer: {
     padding: '5px 15px 10px',
-    overflowY: 'scroll',
+    overflow: 'auto',
     width: '100%'
   },
   header: {

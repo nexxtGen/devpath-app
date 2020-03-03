@@ -12,7 +12,9 @@ import { getAllUserJobs } from '../../actions/jobs';
 const styles = createStyles({
   primaryContainer: {
     display: 'flex',
-    direction: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center'
   },
   jobCards: {
     overflowY: 'scroll',

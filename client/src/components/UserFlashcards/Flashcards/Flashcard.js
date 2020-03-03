@@ -58,8 +58,9 @@ const Flashcard = ({
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 12,
-            overflowY: 'scroll',
-            width: '100%'
+            overflow: 'auto',
+            width: '100%',
+            marginBottom: 50
           }}
         />
       </Grid>

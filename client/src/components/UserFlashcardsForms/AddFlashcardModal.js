@@ -187,9 +187,9 @@ const AddFlashcardModal = ({
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 14,
-              overflowY: 'scroll',
+              overflow: 'auto',
               width: '100%',
-              height: 200,
+              minHeight: 200,
               margin: '30px 0'
             }}
           />

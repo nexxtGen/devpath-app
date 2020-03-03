@@ -7,11 +7,12 @@ import CompanyListItem from './CompanyListItem';
 
 const styles = createStyles({
   listContainer: {
-    overflowY: 'scroll',
+    overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '300px',
-    paddingTop: 10
+    minWidth: '250px',
+    paddingTop: 10,
+    maxHeight: '300px'
   }
 });
 

@@ -15,7 +15,7 @@ const styles = createStyles({
     marginTop: '64px',
     width: 'calc(100vw - 66px)',
     minHeight: 'calc(100vh - 64px)',
-    overflow: 'hidden'
+    overflow: 'auto'
   }
 });
 

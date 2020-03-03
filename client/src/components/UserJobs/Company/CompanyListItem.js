@@ -1,22 +1,24 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from './CompanySmallCard';
-import {
-  LocationOn,
-  CheckCircleOutline,
-  Edit,
-  DeleteOutline
-} from '@material-ui/icons';
+import { LocationOn } from '@material-ui/icons';
 import { secondaryDark } from '../../../shared/colors';
 
 const styles = createStyles({
   companyContainer: {
-    minWidth: '400px',
+    minWidth: '300px',
+    width: '400px',
     boxShadow: '1px 1px 5px gray',
     display: 'flex',
     direction: 'row',
     margin: '3px 4px',
     padding: 5
+  },
+  infoContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
   },
   imgContainer: {
     width: '30%'
@@ -48,9 +50,13 @@ const CompanyListItem = ({ classes, company }) => {
           }}
         ></Grid>
       </Grid>
-      <Grid>
-        <Typography style={{ color: secondaryDark }}>{company.name}</Typography>
-        <Grid container direction='row'>
+      <Grid className={classes.infoContainer}>
+        <Grid item xs={7}>
+          <Typography style={{ color: secondaryDark }}>
+            {company.name}
+          </Typography>
+        </Grid>
+        <Grid container item xs={5} direction='row'>
           <Typography color='textSecondary'>{company.location.city}</Typography>
           <LocationOn className={classes.locationIcon} />
         </Grid>

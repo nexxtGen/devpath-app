@@ -17,7 +17,7 @@ const styles = createStyles({
   },
   container: {
     maxHeight: '215px',
-    overflowY: 'scroll',
+    overflow: 'auto',
     padding: 15
   },
   link: {
