@@ -85,20 +85,18 @@ const CompanyForm = ({ classes, setIsOpen }) => {
           </Field>
         </Grid>
         <Grid item xs={5} style={{ paddingLeft: 15 }}>
-          <Field name='level'>
+          <Field name='size'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <InputLabel id='select-level'>Level</InputLabel>
+                <InputLabel id='select-size'>Company size</InputLabel>
                 <Select
-                  labelId='select-level'
+                  labelId='select-size'
                   inputProps={field}
                   style={{ paddingBottom: 3 }}
                 >
-                  <MenuItem value='Trainee'>Trainee</MenuItem>
-                  <MenuItem value='Junior'>Junior</MenuItem>
-                  <MenuItem value='Mid'>Mid</MenuItem>
-                  <MenuItem value='Senior'>Senior</MenuItem>
-                  <MenuItem value='Expert'>Expert</MenuItem>
+                  <MenuItem value='Small'>Trainee</MenuItem>
+                  <MenuItem value='Medium'>Junior</MenuItem>
+                  <MenuItem value='Big'>Mid</MenuItem>
                 </Select>
                 <FormHelperText error>
                   {' '}
@@ -111,7 +109,7 @@ const CompanyForm = ({ classes, setIsOpen }) => {
             <Field name='rating' type='number'>
               {({ field, form }) => (
                 <FormControl fullWidth style={{ height: '75px' }}>
-                  <Typography>Set job offer rating</Typography>
+                  <Typography>Set company rating</Typography>
                   <Rating
                     name='rating'
                     onChange={field.onChange}

@@ -3,12 +3,17 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import JobsList from './Job/JobsList';
 import JobFormModalContainer from '../UserJobsForms/JobFormModalContainer';
 import CompanyFormModalContainer from '../UserJobsForms/CompanyFormModalContainer';
+import AppliedAndCompaniesContainer from './AppliedAndCompaniesContainer';
 import AddBtn from './AddBtn';
 import { connect } from 'react-redux';
 import { getAllUserCompanies } from '../../actions/jobs';
 import { getAllUserJobs } from '../../actions/jobs';
 
 const styles = createStyles({
+  primaryContainer: {
+    display: 'flex',
+    direction: 'row'
+  },
   jobCards: {
     overflowY: 'scroll',
     display: 'flex',
@@ -40,16 +45,13 @@ const UserJobsContainer = ({
   }, []);
 
   return (
-    <Grid container>
-      <Grid className={classes.jobCards}>
-        <Grid>
-          <JobsList
-            jobs={jobs.jobs}
-            companies={jobs.companies}
-            setIsOpenJobFormModal={setIsOpenJobFormModal}
-          />
-        </Grid>
-      </Grid>
+    <Grid className={classes.primaryContainer}>
+      <JobsList
+        jobs={jobs.jobs}
+        companies={jobs.companies}
+        setIsOpenJobFormModal={setIsOpenJobFormModal}
+      />
+
       <JobFormModalContainer
         open={isOpenJobFormModal}
         setIsOpen={setIsOpenJobFormModal}
@@ -62,6 +64,10 @@ const UserJobsContainer = ({
       <AddBtn
         openJobModal={setIsOpenJobFormModal}
         openCompanyModal={setIsOpenCompanyFormModal}
+      />
+      <AppliedAndCompaniesContainer
+        companies={jobs.companies}
+        loading={jobs.loading}
       />
     </Grid>
   );

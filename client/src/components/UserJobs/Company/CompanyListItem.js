@@ -1,46 +1,57 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
-import { LocationOn } from '@material-ui/icons';
-
-//import Rating from '@material-ui/lab/Rating';
+import CompanySmallCard from './CompanySmallCard';
+import {
+  LocationOn,
+  CheckCircleOutline,
+  Edit,
+  DeleteOutline
+} from '@material-ui/icons';
+import { secondaryDark } from '../../../shared/colors';
 
 const styles = createStyles({
   companyContainer: {
+    minWidth: '400px',
+    boxShadow: '1px 1px 5px gray',
     display: 'flex',
     direction: 'row',
-    alignItems: 'center',
-    background: '#e5e5e5',
-    width: '50%'
+    margin: '3px 4px',
+    padding: 5
   },
-  logoImage: {
-    width: 45,
-    height: 45,
-    padding: 0,
-    margin: 0
+  imgContainer: {
+    width: '30%'
   },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center'
+  logo: {
+    background: 'rgb(233, 233, 233)',
+    width: '50px',
+    height: '50px',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    display: 'inline-block',
+    margin: 5,
+    padding: 0
   },
   locationIcon: {
-    color: 'gray',
-    fontSize: 18,
-    paddingTop: 4
+    color: 'gray'
   }
 });
 
-const CompanyListItem = ({ classes }) => {
+const CompanyListItem = ({ classes, company }) => {
   return (
-    <Grid container className={classes.companyContainer}>
-      <Grid item sm={4} className={classes.logoContainer}>
-        <img src={logo} className={classes.logoImage} />
+    <Grid className={classes.companyContainer}>
+      <Grid className={classes.imgContainer}>
+        <Grid
+          className={classes.logo}
+          style={{
+            backgroundImage: `url('${company.logo}')`
+          }}
+        ></Grid>
       </Grid>
-      <Grid item sm={8}>
-        <Typography variant='subtitle2'>Merix Studio</Typography>
+      <Grid>
+        <Typography style={{ color: secondaryDark }}>{company.name}</Typography>
         <Grid container direction='row'>
-          <Typography variant='body2' color='textSecondary'>
-            Poznań
-          </Typography>
+          <Typography color='textSecondary'>{company.location.city}</Typography>
           <LocationOn className={classes.locationIcon} />
         </Grid>
       </Grid>
@@ -49,6 +60,3 @@ const CompanyListItem = ({ classes }) => {
 };
 
 export default withStyles(styles)(CompanyListItem);
-
-const logo =
-  'https://mir-s3-cdn-cf.behance.net/user/276/26a23494436.5c0e23af9216d.png';
