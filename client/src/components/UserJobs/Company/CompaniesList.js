@@ -7,11 +7,11 @@ import CompanyListItem from './CompanyListItem';
 
 const styles = createStyles({
   listContainer: {
+    margin: '2px',
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '250px',
-    paddingTop: 10,
+    padding: '10px 5px 5px 5px',
     maxHeight: '300px'
   }
 });
@@ -37,6 +37,5 @@ const CompaniesList = ({ classes, companies, loading }) => {
     </Grid>
   );
 };
-const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps, {})(withStyles(styles)(CompaniesList));
+export default connect(null, {})(withStyles(styles)(CompaniesList));

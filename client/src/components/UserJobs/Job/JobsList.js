@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, withStyles, createStyles } from '@material-ui/core';
+import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import JobCard from './JobCard';
 import JobFilter from './JobFilter';
@@ -7,6 +7,12 @@ import { connect } from 'react-redux';
 import PreloaderRelative from '../../../shared/PreloaderRelative';
 
 const styles = createStyles({
+  primaryContainer: {
+    marginBottom: 20,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
   listContainer: {
     overflowY: 'scroll',
     display: 'flex',
@@ -25,7 +31,10 @@ const JobsList = ({
 }) => {
   if (jobs.length === 0 && !loading) {
     return (
-      <h4 style={{ width: '500px', minWidth: '500px' }}>Please add Job</h4>
+      <Grid className={classes.primaryContainer}>
+        <JobFilter />
+        <Typography>Jobs list is empty</Typography>
+      </Grid>
     );
   }
 

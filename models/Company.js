@@ -61,6 +61,11 @@ const CompanySchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add a logo link']
   },
+  website: {
+    type: String,
+    required: [true, 'Please add a website address'],
+    maxlength: [400, 'Website address can not be more than 400 characters']
+  },
   createdAt: {
     type: Date,
     default: Date.now

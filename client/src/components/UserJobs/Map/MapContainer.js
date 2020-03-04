@@ -25,7 +25,7 @@ export default class MapLeaflet extends Component {
     return (
       <div id='map'>
         <Map
-          style={{ height: '400px', width: '850px' }}
+          style={{ minHeight: '400px', width: '100%' }}
           center={position}
           zoom={6}
         >
@@ -38,13 +38,6 @@ export default class MapLeaflet extends Component {
               A pretty CSS3 popup.
               <br />
               Easily customizable.
-            </Popup>
-          </Marker>
-          <Marker position={position} icon={customMarker}>
-            <Popup>
-              AAA
-              <br />
-              EEE
             </Popup>
           </Marker>
         </Map>

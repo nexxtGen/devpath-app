@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CompaniesList from './Company/CompaniesList';
+import CompanyInfo from './Company/CompanyInfo';
 import MapContainer from './Map/MapContainer';
 import { secondaryDark } from '../../shared/colors';
 
@@ -8,11 +9,13 @@ const styles = createStyles({
   primaryContainer: {
     display: 'flex',
     flexDirection: 'column'
+    //width: '60%'
   },
   listContainer: {
     display: 'flex',
     marginLeft: '30px',
     flexDirection: 'row',
+    justifyContent: 'center',
     flexWrap: 'wrap'
   },
   listHeader: {
@@ -22,7 +25,10 @@ const styles = createStyles({
   },
   mapContainer: {
     width: '100%',
-    margin: 20
+    maxWidth: '870px',
+    height: '400px',
+    padding: 15,
+    position: 'relative'
   }
 });
 
@@ -44,11 +50,11 @@ const AppliedAndCompaniesContainer = ({ classes, companies, loading }) => {
               Company Information
             </Typography>
           </Grid>
-          <CompaniesList companies={companies} loading={loading} />
+          <CompanyInfo companies={companies} loading={loading} />
         </Grid>
-      </Grid>
-      <Grid className={classes.mapContainer}>
-        <MapContainer />
+        <Grid className={classes.mapContainer}>
+          <MapContainer />
+        </Grid>
       </Grid>
     </Grid>
   );

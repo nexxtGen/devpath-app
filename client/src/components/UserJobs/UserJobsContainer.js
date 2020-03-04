@@ -14,7 +14,8 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    flexWrap: 'wrap'
   },
   jobCards: {
     overflowY: 'scroll',
@@ -53,6 +54,10 @@ const UserJobsContainer = ({
         companies={jobs.companies}
         setIsOpenJobFormModal={setIsOpenJobFormModal}
       />
+      <AppliedAndCompaniesContainer
+        companies={jobs.companies}
+        loading={jobs.loading}
+      />
 
       <JobFormModalContainer
         open={isOpenJobFormModal}
@@ -66,10 +71,6 @@ const UserJobsContainer = ({
       <AddBtn
         openJobModal={setIsOpenJobFormModal}
         openCompanyModal={setIsOpenCompanyFormModal}
-      />
-      <AppliedAndCompaniesContainer
-        companies={jobs.companies}
-        loading={jobs.loading}
       />
     </Grid>
   );

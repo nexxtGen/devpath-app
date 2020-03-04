@@ -11,7 +11,7 @@ import {
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB,
-  SET_CURRENT_EDITED_COMPANY,
+  SET_CURRENT_COMPANY,
   CREATE_NEW_USER_COMPANY,
   UPDATE_USER_COMPANY
 } from './types';
@@ -194,9 +194,9 @@ export const updateUserCompany = (companyId, companyData) => async dispatch => {
   }
 };
 
-export const setCurrentEditedCompany = company => async dispatch => {
+export const setCurrentCompany = company => async dispatch => {
   dispatch({
-    type: SET_CURRENT_EDITED_COMPANY,
+    type: SET_CURRENT_COMPANY,
     payload: company
   });
 };

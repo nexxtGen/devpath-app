@@ -3,11 +3,13 @@ import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from './CompanySmallCard';
 import { LocationOn } from '@material-ui/icons';
 import { secondaryDark } from '../../../shared/colors';
+import { connect } from 'react-redux';
+import { setCurrentCompany } from '../../../actions/jobs';
 
 const styles = createStyles({
   companyContainer: {
     minWidth: '300px',
-    width: '400px',
+    width: '380px',
     boxShadow: '1px 1px 5px gray',
     display: 'flex',
     direction: 'row',
@@ -39,9 +41,12 @@ const styles = createStyles({
   }
 });
 
-const CompanyListItem = ({ classes, company }) => {
+const CompanyListItem = ({ classes, company, setCurrentCompany }) => {
   return (
-    <Grid className={classes.companyContainer}>
+    <Grid
+      className={classes.companyContainer}
+      onClick={() => setCurrentCompany(company)}
+    >
       <Grid className={classes.imgContainer}>
         <Grid
           className={classes.logo}
@@ -65,4 +70,6 @@ const CompanyListItem = ({ classes, company }) => {
   );
 };
 
-export default withStyles(styles)(CompanyListItem);
+export default connect(null, { setCurrentCompany })(
+  withStyles(styles)(CompanyListItem)
+);

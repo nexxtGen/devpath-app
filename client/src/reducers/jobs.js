@@ -7,7 +7,7 @@ import {
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB,
-  SET_CURRENT_EDITED_COMPANY,
+  SET_CURRENT_COMPANY,
   FILTER_JOBS,
   CLEAR_FILTER,
   CREATE_NEW_USER_COMPANY,
@@ -19,7 +19,7 @@ const initialState = {
   jobs: [],
   loading: false,
   currentEditedJob: null,
-  currentEditedCompany: null,
+  currentCompany: null,
   filteredJobs: null,
   error: {}
 };
@@ -98,8 +98,8 @@ export default function(state = initialState, action) {
         companies: [...state.companies, payload],
         loading: false
       };
-    case SET_CURRENT_EDITED_COMPANY: {
-      return { ...state, currentEditedCompany: payload };
+    case SET_CURRENT_COMPANY: {
+      return { ...state, currentCompany: payload };
     }
     case UPDATE_USER_COMPANY:
       return {
