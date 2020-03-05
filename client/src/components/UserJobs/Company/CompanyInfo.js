@@ -78,7 +78,8 @@ const CompanyInfo = ({
   currentCompany,
   setCurrentCompany,
   companies,
-  loading
+  loading,
+  setIsOpenCompanyFormModal
 }) => {
   useEffect(() => {
     if (!loading && companies.length > 0) {
@@ -129,8 +130,7 @@ const CompanyInfo = ({
             <Grid container direction='row'>
               <Grid item xs={9} className={classes.description}>
                 <Typography variant='body2'>
-                  ndustry. Lorem Ipsum has been the industry's standard dummy
-                  text ever since the 1500s, when an unknown printer took a
+                  {currentCompany.description}
                 </Typography>
               </Grid>
               <Grid
@@ -160,7 +160,13 @@ const CompanyInfo = ({
           <Divider />
         </Grid>
         <Grid container justify='flex-end' style={{ paddingRight: 15 }}>
-          <IconButton aria-label='edit' className={classes.iconBtn}>
+          <IconButton
+            onClick={() =>
+              setIsOpenCompanyFormModal({ open: true, mode: 'edit' })
+            }
+            aria-label='edit'
+            className={classes.iconBtn}
+          >
             <Edit className={classes.icon} />
           </IconButton>
           <IconButton aria-label='delete' className={classes.iconBtn}>

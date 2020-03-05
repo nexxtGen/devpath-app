@@ -58,6 +58,21 @@ const CompanyForm = ({ classes, setIsOpen }) => {
               </FormControl>
             )}
           </Field>
+          <Field name='website'>
+            {({ field, form }) => (
+              <FormControl fullWidth style={{ height: '75px' }}>
+                <FTextField
+                  label={'Company website address'}
+                  fieldProps={field}
+                />
+                <FormHelperText error>
+                  {form.touched.website &&
+                    form.errors.website &&
+                    form.errors.website}
+                </FormHelperText>
+              </FormControl>
+            )}
+          </Field>
           <Field name='logo'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
@@ -94,9 +109,9 @@ const CompanyForm = ({ classes, setIsOpen }) => {
                   inputProps={field}
                   style={{ paddingBottom: 3 }}
                 >
-                  <MenuItem value='Small'>Trainee</MenuItem>
-                  <MenuItem value='Medium'>Junior</MenuItem>
-                  <MenuItem value='Big'>Mid</MenuItem>
+                  <MenuItem value='Small'>Small</MenuItem>
+                  <MenuItem value='Medium'>Medium</MenuItem>
+                  <MenuItem value='Big'>Big</MenuItem>
                 </Select>
                 <FormHelperText error>
                   {' '}

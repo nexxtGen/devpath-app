@@ -86,7 +86,7 @@ CompanySchema.pre('save', async function(next) {
     country: loc[0].countryCode
   };
 
-  this.address = undefined;
+  //this.address = undefined;
   next();
 });
 

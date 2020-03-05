@@ -32,7 +32,12 @@ const styles = createStyles({
   }
 });
 
-const AppliedAndCompaniesContainer = ({ classes, companies, loading }) => {
+const CompaniesContainer = ({
+  classes,
+  companies,
+  loading,
+  setIsOpenCompanyFormModal
+}) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.listContainer}>
@@ -50,7 +55,11 @@ const AppliedAndCompaniesContainer = ({ classes, companies, loading }) => {
               Company Information
             </Typography>
           </Grid>
-          <CompanyInfo companies={companies} loading={loading} />
+          <CompanyInfo
+            companies={companies}
+            loading={loading}
+            setIsOpenCompanyFormModal={setIsOpenCompanyFormModal}
+          />
         </Grid>
         <Grid className={classes.mapContainer}>
           <MapContainer />
@@ -60,4 +69,4 @@ const AppliedAndCompaniesContainer = ({ classes, companies, loading }) => {
   );
 };
 
-export default withStyles(styles)(AppliedAndCompaniesContainer);
+export default withStyles(styles)(CompaniesContainer);

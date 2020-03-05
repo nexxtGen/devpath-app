@@ -3,7 +3,7 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import JobsList from './Job/JobsList';
 import JobFormModalContainer from '../UserJobsForms/JobFormModalContainer';
 import CompanyFormModalContainer from '../UserJobsForms/CompanyFormModalContainer';
-import AppliedAndCompaniesContainer from './AppliedAndCompaniesContainer';
+import CompaniesContainer from './CompaniesContainer';
 import AddBtn from './AddBtn';
 import { connect } from 'react-redux';
 import { getAllUserCompanies } from '../../actions/jobs';
@@ -54,9 +54,10 @@ const UserJobsContainer = ({
         companies={jobs.companies}
         setIsOpenJobFormModal={setIsOpenJobFormModal}
       />
-      <AppliedAndCompaniesContainer
+      <CompaniesContainer
         companies={jobs.companies}
         loading={jobs.loading}
+        setIsOpenCompanyFormModal={setIsOpenCompanyFormModal}
       />
 
       <JobFormModalContainer

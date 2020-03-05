@@ -5,6 +5,7 @@ const createCompanyValues = companyData => {
     description: companyData ? companyData.description : '',
     size: companyData ? companyData.size : '',
     logo: companyData ? companyData.logo : '',
+    website: companyData ? companyData.website : '',
     rating: companyData ? companyData.rating : 3
   };
 };
