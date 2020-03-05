@@ -17,7 +17,7 @@ const styles = createStyles({
     marginRight: 20,
     marginLeft: 0,
     width: '100%',
-    minWidth: '480px',
+    minWidth: '470px',
     color: 'white'
   },
   searchIconContainer: {

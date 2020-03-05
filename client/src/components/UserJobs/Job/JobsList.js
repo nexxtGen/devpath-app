@@ -14,7 +14,7 @@ const styles = createStyles({
     flexDirection: 'column'
   },
   listContainer: {
-    overflowY: 'scroll',
+    overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
     height: '78vh'
