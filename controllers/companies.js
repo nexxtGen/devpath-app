@@ -75,5 +75,7 @@ exports.deleteCompany = asyncHandler(async (req, res, next) => {
     );
   }
 
+  await Job.remove({ companyId: company._id });
+
   res.status(200).json({ success: true, data: {} });
 });

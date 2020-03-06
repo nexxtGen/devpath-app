@@ -13,7 +13,8 @@ import {
   SET_CURRENT_EDITED_JOB,
   SET_CURRENT_COMPANY,
   CREATE_NEW_USER_COMPANY,
-  UPDATE_USER_COMPANY
+  UPDATE_USER_COMPANY,
+  DELETE_USER_COMPANY
 } from './types';
 
 export const getAllUserCompanies = () => async dispatch => {
@@ -185,6 +186,25 @@ export const updateUserCompany = (companyId, companyData) => async dispatch => {
     dispatch({
       type: UPDATE_USER_COMPANY,
       payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const deleteUserCompany = companyId => async dispatch => {
+  try {
+    dispatch(setLoading());
+
+    const res = await axios.delete(`/api/v1/companies/${companyId}`);
+
+    dispatch(setAlert('Company has been deleted', 'success'));
+    dispatch({
+      type: DELETE_USER_COMPANY,
+      payload: companyId
     });
   } catch (err) {
     dispatch({

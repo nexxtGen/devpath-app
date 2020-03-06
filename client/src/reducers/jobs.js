@@ -11,7 +11,8 @@ import {
   FILTER_JOBS,
   CLEAR_FILTER,
   CREATE_NEW_USER_COMPANY,
-  UPDATE_USER_COMPANY
+  UPDATE_USER_COMPANY,
+  DELETE_USER_COMPANY
 } from '../actions/types';
 
 const initialState = {
@@ -107,6 +108,14 @@ export default function(state = initialState, action) {
         companies: state.companies.map(comp =>
           comp._id === payload._id ? payload : comp
         ),
+        loading: false
+      };
+    case DELETE_USER_COMPANY:
+      return {
+        ...state,
+        currentCompany: null,
+        companies: state.companies.filter(comp => comp._id !== payload),
+        jobs: state.jobs.filter(job => job.companyId !== payload),
         loading: false
       };
     case SET_LOADING:

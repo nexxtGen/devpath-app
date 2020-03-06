@@ -11,7 +11,7 @@ import { LocationOn, Edit, DeleteOutline } from '@material-ui/icons';
 import { primaryLight } from '../../../shared/colors';
 import Rating from '@material-ui/lab/Rating';
 import { connect } from 'react-redux';
-import { setCurrentCompany } from '../../../actions/jobs';
+import { setCurrentCompany, deleteUserCompany } from '../../../actions/jobs';
 
 const styles = createStyles({
   primaryContainer: {
@@ -77,6 +77,7 @@ const CompanyInfo = ({
   classes,
   currentCompany,
   setCurrentCompany,
+  deleteUserCompany,
   companies,
   loading,
   setIsOpenCompanyFormModal
@@ -169,7 +170,11 @@ const CompanyInfo = ({
           >
             <Edit className={classes.icon} />
           </IconButton>
-          <IconButton aria-label='delete' className={classes.iconBtn}>
+          <IconButton
+            onClick={() => deleteUserCompany(currentCompany._id)}
+            aria-label='delete'
+            className={classes.iconBtn}
+          >
             <DeleteOutline className={classes.icon} />
           </IconButton>
         </Grid>
@@ -183,6 +188,7 @@ const mapStateToProps = state => ({
   companies: state.jobs.companies,
   loading: state.jobs.loading
 });
-export default connect(mapStateToProps, { setCurrentCompany })(
-  withStyles(styles)(CompanyInfo)
-);
+export default connect(mapStateToProps, {
+  setCurrentCompany,
+  deleteUserCompany
+})(withStyles(styles)(CompanyInfo));
