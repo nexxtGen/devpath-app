@@ -1,7 +1,7 @@
 const createCompanyValues = companyData => {
   return {
     name: companyData ? companyData.name : '',
-    address: companyData ? companyData.address : '',
+    address: companyData ? companyData.location.formattedAddress : '',
     description: companyData ? companyData.description : '',
     size: companyData ? companyData.size : '',
     logo: companyData ? companyData.logo : '',

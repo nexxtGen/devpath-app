@@ -72,8 +72,7 @@ const CompanySchema = new mongoose.Schema({
   }
 });
 
-// Geocode & create location field
-CompanySchema.pre('save', async function(next) {
+async function geocode(next) {
   const loc = await geocoder.geocode(this.address);
   this.location = {
     type: 'Point',
@@ -86,15 +85,18 @@ CompanySchema.pre('save', async function(next) {
     country: loc[0].countryCode
   };
 
-  //this.address = undefined;
+  this.address = undefined;
   next();
-});
+  next();
+}
 
 async function populateJobs(next) {
   this.populate('jobs', ['position']);
   next();
 }
 
+CompanySchema.pre('save', geocode);
+CompanySchema.pre('findByIdAndUpdate', geocode);
 CompanySchema.pre('find', populateJobs);
 CompanySchema.pre('findOne', populateJobs);
 
