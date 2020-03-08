@@ -15,7 +15,9 @@ const MapMarker = ({ company }) => {
       <Popup>
         {company.name}
         <br />
-        {company.website}
+        <a href={company.website} target='blank'>
+          {company.website}
+        </a>
       </Popup>
     </Marker>
   );

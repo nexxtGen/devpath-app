@@ -87,7 +87,6 @@ async function geocode(next) {
 
   this.address = undefined;
   next();
-  next();
 }
 
 async function populateJobs(next) {
@@ -96,7 +95,6 @@ async function populateJobs(next) {
 }
 
 CompanySchema.pre('save', geocode);
-CompanySchema.pre('findByIdAndUpdate', geocode);
 CompanySchema.pre('find', populateJobs);
 CompanySchema.pre('findOne', populateJobs);
 
