@@ -51,7 +51,6 @@ exports.createJob = asyncHandler(async (req, res, next) => {
   }
 
   const job = await Job.create(req.body);
-  console.log(company);
 
   company.jobs.push(job._id.toString());
 
