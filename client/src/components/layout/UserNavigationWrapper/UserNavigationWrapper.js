@@ -16,6 +16,7 @@ const styles = createStyles({
     width: 'calc(100vw - 66px)',
     minHeight: 'calc(100vh - 64px)',
     overflow: 'auto'
+    //backgroundColor: '#f4f4f4'
   }
 });
 

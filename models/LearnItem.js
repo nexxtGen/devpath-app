@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const LearnSourceSchema = new mongoose.Schema({
+const LearnItemSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -32,6 +32,11 @@ const LearnSourceSchema = new mongoose.Schema({
     required: [true, 'Please add a link'],
     maxlength: [900, 'Link can not be more than 900 characters']
   },
+  sourcename: {
+    type: String,
+    required: [true, 'Please add a source Name'],
+    maxlength: [80, 'Source name can not be more than 80 characters']
+  },
   published: {
     type: Date
   },
@@ -50,4 +55,4 @@ const LearnSourceSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('LearnSource', LearnSourceSchema);
+module.exports = mongoose.model('LearnItem', LearnItemSchema);
