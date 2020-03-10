@@ -73,7 +73,7 @@ exports.updateLearnCategory = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: category });
 });
 
-// @desc Delete Company
+// @desc Delete Learn Category
 // @route DELETE /api/v1/learn-categories/:id
 // @access Private
 exports.deleteLearnCategory = asyncHandler(async (req, res, next) => {

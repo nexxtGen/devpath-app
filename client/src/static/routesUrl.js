@@ -5,5 +5,6 @@ export const routes = {
   userProfile: '/user/main',
   userFlashcards: '/user/flashcards',
   createEditProfile: '/user/create-edit-profile',
-  userJobs: '/user/jobs'
+  userJobs: '/user/jobs',
+  userLearn: '/user/learn'
 };
