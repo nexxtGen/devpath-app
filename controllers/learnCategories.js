@@ -74,7 +74,7 @@ exports.updateLearnCategory = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Delete Company
-// @route DELETE /api/v1/companies/:id
+// @route DELETE /api/v1/learn-categories/:id
 // @access Private
 exports.deleteLearnCategory = asyncHandler(async (req, res, next) => {
   const category = await LearnCategory.findByIdAndDelete(req.params.id);

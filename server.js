@@ -11,11 +11,13 @@ dotenv.config({ path: './config/config.env' });
 connectDB();
 
 const auth = require('./routes/auth');
-const flashcards = require('./routes/flashcards');
 const profile = require('./routes/profile');
+const flashcards = require('./routes/flashcards');
 const flashcardsCategories = require('./routes/flashcardsCategories');
 const jobs = require('./routes/jobs');
 const companies = require('./routes/companies');
+const learnItems = require('./routes/learnItems');
+const learnCategories = require('./routes/learnCategories');
 
 const app = express();
 
@@ -33,6 +35,8 @@ app.use('/api/v1/flashcards', flashcards);
 app.use('/api/v1/flashcards-categories', flashcardsCategories);
 app.use('/api/v1/jobs', jobs);
 app.use('/api/v1/companies', companies);
+app.use('/api/v1/learn-items', learnItems);
+app.use('/api/v1/learn-categories', learnCategories);
 
 app.use(errorHandler);
 
