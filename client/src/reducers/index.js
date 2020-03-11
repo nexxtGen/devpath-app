@@ -4,11 +4,13 @@ import auth from './auth';
 import profile from './profile';
 import flashcards from './flashcards';
 import jobs from './jobs';
+import learn from './learn';
 
 export default combineReducers({
   alert,
   auth,
   profile,
   flashcards,
-  jobs
+  jobs,
+  learn
 });
