@@ -17,7 +17,7 @@ const styles = createStyles({
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    height: '78vh'
+    maxHeight: '76vh'
   }
 });
 

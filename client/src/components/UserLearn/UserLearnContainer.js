@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
+import CategoryListContainer from './LearnCategory/CategoryListContainer';
 import { connect } from 'react-redux';
+import { getAllUserLearnCategories } from '../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -12,7 +14,12 @@ const styles = createStyles({
   }
 });
 
-const UserLearnContainer = ({ classes }) => {
+const UserLearnContainer = ({
+  classes,
+  categories,
+  categoryLoading,
+  getAllUserLearnCategories
+}) => {
   const [isOpenItemFormModal, setIsOpenItemFormModal] = useState({
     open: false,
     mode: ''
@@ -23,19 +30,25 @@ const UserLearnContainer = ({ classes }) => {
   });
 
   useEffect(() => {
+    getAllUserLearnCategories();
     //eslint-disable-next-line
   }, []);
 
   return (
     <Grid className={classes.primaryContainer}>
-      <h4>User Learn</h4>
+      <CategoryListContainer
+        categories={categories}
+        loading={categoryLoading}
+      />
     </Grid>
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  categories: state.learn.learnCategories,
+  categoryLoading: state.learn.categoryLoading
+});
 
-export default connect(
-  mapStateToProps,
-  {}
-)(withStyles(styles)(UserLearnContainer));
+export default connect(mapStateToProps, { getAllUserLearnCategories })(
+  withStyles(styles)(UserLearnContainer)
+);
