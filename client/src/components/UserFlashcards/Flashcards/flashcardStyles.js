@@ -19,7 +19,6 @@ const styles = createStyles({
     background: 'white',
     borderRadius: '3px',
     boxShadow: '1px 2px 9px lightgray',
-
     transition: 'all 0.2s ease-in-out',
     '&:hover': {
       transform: 'scale(1.05)'
