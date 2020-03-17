@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CategoryList from './CategoryList';
-import { connect } from 'react-redux';
 import { primaryLight } from '../../../shared/colors';
 
 const styles = createStyles({

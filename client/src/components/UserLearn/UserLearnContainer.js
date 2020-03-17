@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import CategoryListContainer from './LearnCategory/CategoryListContainer';
+import LearnListContainer from './LearnItem/LearnListContainer';
 import { connect } from 'react-redux';
 import { getAllUserLearnCategories } from '../../actions/learn';
 
@@ -40,6 +41,7 @@ const UserLearnContainer = ({
         categories={categories}
         loading={categoryLoading}
       />
+      <LearnListContainer />
     </Grid>
   );
 };
