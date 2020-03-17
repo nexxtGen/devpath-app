@@ -5,26 +5,9 @@ import { makeStyles, useTheme, Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import TabPanel from '../../../shared/TabPanel';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { primaryLight } from '../../../shared/colors';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component='div'
-      role='tabpanel'
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
 
 function a11yProps(index) {
   return {
@@ -34,9 +17,18 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles(theme => ({
+  appBar: {
+    background:
+      'linear-gradient(135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)'
+  },
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500
+    minWidth: 400,
+    maxWidth: 800,
+    width: '100%'
+  },
+  indicator: {
+    backgroundColor: 'purple'
   }
 }));
 
@@ -55,14 +47,15 @@ const LearnListContainer = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='default'>
+      <AppBar position='static' className={classes.appBar}>
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor='primary'
-          textColor='primary'
+          //indicatorColor='primary'
+          textColor='inherit'
           variant='fullWidth'
           aria-label='full width tabs example'
+          classes={{ indicator: classes.indicator }}
         >
           <Tab label='Articles' {...a11yProps(0)} />
           <Tab label='Courses' {...a11yProps(1)} />

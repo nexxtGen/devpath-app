@@ -1,7 +1,8 @@
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 
-function TabPanel(props) {
+const TabPanel = props => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -16,6 +17,6 @@ function TabPanel(props) {
       {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
-}
+};
 
 export default TabPanel;

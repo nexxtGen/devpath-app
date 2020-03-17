@@ -10,7 +10,6 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignContent: 'center',
     flexWrap: 'wrap'
   }
 });
@@ -41,6 +40,7 @@ const UserLearnContainer = ({
         categories={categories}
         loading={categoryLoading}
       />
+
       <LearnListContainer />
     </Grid>
   );
