@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from '../../../shared/TabPanel';
-import Typography from '@material-ui/core/Typography';
+import LearnItem from './LearnItem';
 import { primaryLight } from '../../../shared/colors';
 
 function a11yProps(index) {
@@ -68,7 +68,9 @@ const LearnListContainer = () => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Grid> hasd</Grid>
+          <LearnItem />
+          <LearnItem />
+          <LearnItem />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           Item Two

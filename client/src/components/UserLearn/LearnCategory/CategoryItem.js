@@ -38,7 +38,9 @@ const styles = createStyles({
     width: 60,
     height: 37,
     clipPath: 'polygon(26% 0%, 100% 0, 74% 100%, 0% 100%)',
-    background: primaryLight,
+    //background: primaryLight,
+    background: '#ffb20a',
+    //background: '#fcf951ff',
     paddingLeft: 5
   }
 });

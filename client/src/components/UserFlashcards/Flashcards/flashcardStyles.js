@@ -75,7 +75,7 @@ const styles = createStyles({
     top: 0,
     width: 0,
     height: 0,
-    borderTop: `30px solid ${primaryLight}`,
+    borderTop: `30px solid #ffb20a`,
     borderLeft: '30px solid transparent'
   }
 });
