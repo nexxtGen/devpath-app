@@ -15,7 +15,7 @@ const LearnItemSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['Article', 'Tutorial', 'Other']
+    enum: ['article', 'tutorial', 'other']
   },
   image: {
     type: String,

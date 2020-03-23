@@ -28,11 +28,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%'
   },
   indicator: {
-    backgroundColor: 'purple'
+    backgroundColor: '#ffb20a'
   }
 }));
 
-const LearnListContainer = () => {
+const LearnListContainer = ({ categories }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -51,7 +51,6 @@ const LearnListContainer = () => {
         <Tabs
           value={value}
           onChange={handleChange}
-          //indicatorColor='primary'
           textColor='inherit'
           variant='fullWidth'
           aria-label='full width tabs example'
@@ -84,6 +83,7 @@ const LearnListContainer = () => {
 };
 
 TabPanel.propTypes = {
+  categories: PropTypes.object.isRequired,
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired

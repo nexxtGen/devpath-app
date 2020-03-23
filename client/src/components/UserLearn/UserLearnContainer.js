@@ -40,8 +40,7 @@ const UserLearnContainer = ({
         categories={categories}
         loading={categoryLoading}
       />
-
-      <LearnListContainer />
+      <LearnListContainer categories={categories} />
     </Grid>
   );
 };

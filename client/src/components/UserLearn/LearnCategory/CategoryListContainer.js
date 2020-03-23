@@ -14,7 +14,9 @@ const styles = createStyles({
       'linear-gradient(-135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)',
     padding: 8,
     width: '400px',
-    height: '47px'
+    height: '47px',
+    boxShadow: '0 3px 5px gray',
+    marginBottom: 5
   },
   typo: {
     color: 'white',

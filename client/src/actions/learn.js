@@ -3,6 +3,7 @@ import { setAlert } from './alert';
 import {
   GET_ALL_USER_LEARN_CATEGORIES,
   GET_ALL_USER_LEARN_ITEMS,
+  SET_CURRENT_LEARN_CATEGORY,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -42,6 +43,13 @@ export const getAllUserLearnItems = () => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const setCurrentLearnCategory = category => dispatch => {
+  dispatch({
+    type: SET_CURRENT_LEARN_CATEGORY,
+    payload: category
+  });
 };
 /*
 export const createNewUserJob = jobData => async dispatch => {

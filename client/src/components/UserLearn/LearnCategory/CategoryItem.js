@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { primaryLight, primaryDark } from '../../../shared/colors';
+import { connect } from 'react-redux';
+import { setCurrentLearnCategory } from '../../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -38,16 +40,17 @@ const styles = createStyles({
     width: 60,
     height: 37,
     clipPath: 'polygon(26% 0%, 100% 0, 74% 100%, 0% 100%)',
-    //background: primaryLight,
     background: '#ffb20a',
-    //background: '#fcf951ff',
     paddingLeft: 5
   }
 });
 
-const CategoryItem = ({ classes, category }) => {
+const CategoryItem = ({ classes, category, setCurrentLearnCategory }) => {
   return (
-    <Grid className={classes.primaryContainer}>
+    <Grid
+      className={classes.primaryContainer}
+      onClick={() => setCurrentLearnCategory(category)}
+    >
       <Grid
         className={classes.image}
         style={{
@@ -65,4 +68,6 @@ const CategoryItem = ({ classes, category }) => {
   );
 };
 
-export default withStyles(styles)(CategoryItem);
+export default connect(null, { setCurrentLearnCategory })(
+  withStyles(styles)(CategoryItem)
+);
