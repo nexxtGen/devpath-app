@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { primaryLight, primaryDark } from '../../../shared/colors';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const styles = createStyles({
   primaryContainer: {
@@ -27,24 +28,34 @@ const styles = createStyles({
     display: 'inline-block',
     marginRight: 10,
     clipPath: 'polygon(0 0, 100% 0, 84% 100%, 0% 100%)'
+  },
+  contentContainer: {
+    width: '100%'
   }
 });
 
-const LearnItem = ({ classes }) => {
+const LearnItem = ({ classes, item }) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Grid
         className={classes.image}
         style={{
-          backgroundImage:
-            'url(https://miro.medium.com/max/1200/1*Ww98S_CB1p5S-Wgw1H8NoA.jpeg)'
+          backgroundImage: `url(${item.image})`
         }}
       ></Grid>
-
-      <Typography variant='h6'>
-        How to Use Typescript with React and Redux
-      </Typography>
-      <Typography variant='subtitle2'> Source: medium.com</Typography>
+      <Grid className={classes.contentContainer}>
+        <Typography variant='h6'>{item.title}</Typography>
+        <Typography variant='subtitle2'> {item.description}</Typography>
+        <Typography variant='subtitle2'> Source: {item.sourcename}</Typography>
+        <Grid>
+          <Typography variant='subtitle2'>Progress</Typography>
+          <LinearProgress
+            variant='buffer'
+            value={item.progress}
+            //valueBuffer={buffer}
+          />
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
