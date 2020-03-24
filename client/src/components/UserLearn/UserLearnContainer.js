@@ -3,7 +3,10 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import CategoryListContainer from './LearnCategory/CategoryListContainer';
 import LearnListContainer from './LearnItem/LearnListContainer';
 import { connect } from 'react-redux';
-import { getAllUserLearnCategories } from '../../actions/learn';
+import {
+  getAllUserLearnCategories,
+  getAllUserLearnItems
+} from '../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -17,6 +20,7 @@ const styles = createStyles({
 const UserLearnContainer = ({
   classes,
   categories,
+  currentCategory,
   categoryLoading,
   getAllUserLearnCategories
 }) => {
@@ -31,6 +35,7 @@ const UserLearnContainer = ({
 
   useEffect(() => {
     getAllUserLearnCategories();
+    getAllUserLearnItems();
     //eslint-disable-next-line
   }, []);
 
@@ -40,16 +45,18 @@ const UserLearnContainer = ({
         categories={categories}
         loading={categoryLoading}
       />
-      <LearnListContainer categories={categories} />
+      <LearnListContainer currentCategory={currentCategory} />
     </Grid>
   );
 };
 
 const mapStateToProps = state => ({
   categories: state.learn.learnCategories,
-  categoryLoading: state.learn.categoryLoading
+  categoryLoading: state.learn.categoryLoading,
+  currentCategory: state.learn.currentCategory
 });
 
-export default connect(mapStateToProps, { getAllUserLearnCategories })(
-  withStyles(styles)(UserLearnContainer)
-);
+export default connect(mapStateToProps, {
+  getAllUserLearnCategories,
+  getAllUserLearnItems
+})(withStyles(styles)(UserLearnContainer));

@@ -6,8 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from '../../../shared/TabPanel';
-import LearnItem from './LearnItem';
-import { primaryLight } from '../../../shared/colors';
+import LearnList from './LearnList';
 
 function a11yProps(index) {
   return {
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LearnListContainer = ({ categories }) => {
+const LearnListContainer = ({ currentCategory }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -67,15 +66,13 @@ const LearnListContainer = ({ categories }) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <LearnItem />
-          <LearnItem />
-          <LearnItem />
+          <LearnList currentCategory={currentCategory} type='article' />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          <LearnList currentCategory={currentCategory} type='tutorial' />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          <LearnList currentCategory={currentCategory} type='other' />
         </TabPanel>
       </SwipeableViews>
     </div>
@@ -83,7 +80,6 @@ const LearnListContainer = ({ categories }) => {
 };
 
 TabPanel.propTypes = {
-  categories: PropTypes.object.isRequired,
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired
