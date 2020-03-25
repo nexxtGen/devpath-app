@@ -24,8 +24,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     minWidth: 400,
     maxWidth: 800,
-    width: '100%',
-    overflow: 'auto'
+    width: '100%'
   },
   indicator: {
     backgroundColor: '#ffb20a'
