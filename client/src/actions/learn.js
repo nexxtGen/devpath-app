@@ -4,6 +4,8 @@ import {
   GET_ALL_USER_LEARN_CATEGORIES,
   GET_ALL_USER_LEARN_ITEMS,
   SET_CURRENT_LEARN_CATEGORY,
+  SET_CURRENT_EDITED_LEARN_CATEGORY,
+  CREATE_NEW_LEARN_CATEGORY,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -51,8 +53,14 @@ export const setCurrentLearnCategory = category => dispatch => {
     payload: category
   });
 };
-/*
-export const createNewUserJob = jobData => async dispatch => {
+export const setCurrentEditedLearnCategory = category => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_LEARN_CATEGORY,
+    payload: category
+  });
+};
+
+export const createNewLearnCategory = categoryData => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -60,23 +68,25 @@ export const createNewUserJob = jobData => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
+    const res = await axios.post(
+      '/api/v1/learn-categories',
+      categoryData,
+      config
+    );
 
-    const res = await axios.post('/api/v1/jobs', jobData, config);
-
-    dispatch(setAlert('Job been created', 'success'));
+    dispatch(setAlert('New category has been created', 'success'));
     dispatch({
-      type: CREATE_NEW_USER_JOB,
+      type: CREATE_NEW_LEARN_CATEGORY,
       payload: res.data.data
     });
   } catch (err) {
     dispatch({
-      type: JOBS_ERROR,
+      type: LEARN_ERROR,
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
 };
-
+/*
 export const updateUserJob = (jobId, jobData) => async dispatch => {
   const config = {
     headers: {

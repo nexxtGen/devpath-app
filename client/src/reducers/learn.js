@@ -2,6 +2,8 @@ import {
   GET_ALL_USER_LEARN_CATEGORIES,
   GET_ALL_USER_LEARN_ITEMS,
   SET_CURRENT_LEARN_CATEGORY,
+  SET_CURRENT_EDITED_LEARN_CATEGORY,
+  CREATE_NEW_LEARN_CATEGORY,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING
 } from '../actions/types';
@@ -11,6 +13,7 @@ const initialState = {
   learnCategories: null,
   itemLoading: false,
   currentCategory: null,
+  currentEditedCategory: null,
   categoryLoading: false
 };
 
@@ -29,10 +32,20 @@ export default function(state = initialState, action) {
         learnItems: payload,
         itemLoading: false
       };
+    case CREATE_NEW_LEARN_CATEGORY:
+      return {
+        ...state,
+        learnCategories: [...state.learnCategories, ...payload]
+      };
     case SET_CURRENT_LEARN_CATEGORY:
       return {
         ...state,
         currentCategory: payload
+      };
+    case SET_CURRENT_EDITED_LEARN_CATEGORY:
+      return {
+        ...state,
+        currentEditedCategory: payload
       };
     case SET_LEARN_CATEGORY_LOADING:
       return {
