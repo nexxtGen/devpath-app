@@ -3,17 +3,17 @@ import CategoryForm from './CategoryForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Dialog, DialogContent, DialogTitle, Grid } from '@material-ui/core';
-import createCompanyValues from './utilis/createCompanyValues';
+import createCategoryValues from './utilis/createCategoryValues';
 import { connect } from 'react-redux';
 import { createNewLearnCategory } from '../../actions/learn';
-import { updateLearnCategory } from '../../actions/learn';
+//import { updateLearnCategory } from '../../actions/learn';
 
 const CategoryFormModalContainer = ({
   open,
   setIsOpen,
-  currentCategory,
-  createNewLearnCategory,
-  updateLearnCategory
+  currentEditedCategory,
+  createNewLearnCategory
+  //updateLearnCategory
 }) => {
   const handleSubmitCreate = values => {
     createNewLearnCategory(values);
@@ -21,12 +21,12 @@ const CategoryFormModalContainer = ({
   };
 
   const handleSubmitUpdate = values => {
-    updateLearnCategory(currentCategory._id, values);
+    //updateLearnCategory(currentCategory._id, values);
     setIsOpen({ open: false, mode: '' });
   };
 
-  const initialValues = createCompanyValues(
-    open.mode === 'edit' ? currentCompany : null
+  const initialValues = createCategoryValues(
+    open.mode === 'edit' ? currentEditedCategory : null
   );
 
   return (
@@ -37,7 +37,7 @@ const CategoryFormModalContainer = ({
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>
-          {open.mode === 'create' ? 'Create New Company' : 'Edit Company'}
+          {open.mode === 'create' ? 'Create New Category' : 'Edit Category'}
         </DialogTitle>
         <DialogContent>
           <Formik
@@ -47,7 +47,7 @@ const CategoryFormModalContainer = ({
             onSubmit={values =>
               open.mode === 'create'
                 ? handleSubmitCreate(values)
-                : handleSubmitUpdate(values, currentCompany._id)
+                : handleSubmitUpdate(values, currentEditedCategory._id)
             }
           >
             {() => <CategoryForm setIsOpen={setIsOpen} open={open} />}
@@ -70,10 +70,10 @@ const categorySchema = Yup.object().shape({
 });
 
 const mapStateToProps = state => ({
-  currentCategory: state.learn.currentCategory
+  currentEditedCategory: state.learn.currentEditedCategory
 });
 
 export default connect(mapStateToProps, {
-  createNewLearnCategory,
-  updateLearnCategory
+  createNewLearnCategory
+  //updateLearnCategory
 })(CategoryFormModalContainer);

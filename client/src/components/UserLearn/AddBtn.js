@@ -14,10 +14,13 @@ const styles = createStyles({
   }
 });
 
-const AddBtn = ({ classes }) => {
+const AddBtn = ({ classes, setIsOpenCategory }) => {
   return (
     <Grid className={classes.primaryContainer}>
-      <Fab style={{ background: primary, marginTop: 15 }}>
+      <Fab
+        onClick={() => setIsOpenCategory({ mode: 'create', open: true })}
+        style={{ background: primary, marginTop: 15 }}
+      >
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <Subtitles style={{ color: 'white', marginTop: 7 }} />
       </Fab>

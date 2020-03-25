@@ -52,7 +52,7 @@ const UserLearnContainer = ({
         open={isOpenCategoryModal}
         setIsOpen={setIsOpenCategoryFormModal}
       />
-      <AddBtn />
+      <AddBtn setIsOpenCategory={setIsOpenCategoryFormModal} />
     </Grid>
   );
 };
