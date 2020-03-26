@@ -1,8 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button, Typography } from '@material-ui/core';
 import { Field, Form } from 'formik';
 import FTextField from '../../shared/FormikComponents/FTextField';
-import Rating from '@material-ui/lab/Rating';
 import { primary } from '../../shared/colors';
 import {
   withStyles,
@@ -10,11 +9,7 @@ import {
   DialogActions,
   FormControl,
   FormHelperText,
-  Typography,
-  Grid,
-  MenuItem,
-  InputLabel,
-  Select
+  Grid
 } from '@material-ui/core';
 
 const styles = createStyles({
@@ -23,116 +18,52 @@ const styles = createStyles({
       border: `1px solid ${primary}`
     }
   },
-  ratingContainer: {
-    padding: 20
+  previewShape: {
+    background: 'rgb(233, 233, 233)',
+    width: '300px',
+    height: '112px',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    display: 'inline-block',
+    clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0% 100%)',
+    margin: '15px auto 25px'
   }
 });
 
-const CategoryForm = ({ classes, setIsOpen }) => {
+const CategoryForm = ({ classes, FormikBag, setIsOpen }) => {
   return (
     <Form>
       <Grid container direction='row'>
-        <Grid item xs={7} style={{ paddingRight: 15 }}>
+        <Grid style={{ paddingRight: 15 }}>
           <Field name='name'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField label={'Company Name'} fieldProps={field} />
+                <FTextField label={'Category Name'} fieldProps={field} />
                 <FormHelperText error>
                   {form.touched.name && form.errors.name && form.errors.name}
                 </FormHelperText>
               </FormControl>
             )}
           </Field>
-          <Field name='address'>
+          <Field name='image'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField
-                  label={'Company Address (or the City Name)'}
-                  fieldProps={field}
-                />
+                <FTextField label={'Category image link'} fieldProps={field} />
                 <FormHelperText error>
-                  {form.touched.address &&
-                    form.errors.address &&
-                    form.errors.address}
+                  {form.touched.image && form.errors.image && form.errors.image}
                 </FormHelperText>
               </FormControl>
             )}
           </Field>
-          <Field name='website'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField
-                  label={'Company website address'}
-                  fieldProps={field}
-                />
-                <FormHelperText error>
-                  {form.touched.website &&
-                    form.errors.website &&
-                    form.errors.website}
-                </FormHelperText>
-              </FormControl>
-            )}
-          </Field>
-          <Field name='logo'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField
-                  label={'Company logo image link'}
-                  fieldProps={field}
-                />
-                <FormHelperText error>
-                  {form.touched.logo && form.errors.logo && form.errors.logo}
-                </FormHelperText>
-              </FormControl>
-            )}
-          </Field>
-          <Field name='description'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField label={'Company description'} fieldProps={field} />
-                <FormHelperText error>
-                  {form.touched.description &&
-                    form.errors.description &&
-                    form.errors.description}
-                </FormHelperText>
-              </FormControl>
-            )}
-          </Field>
-        </Grid>
-        <Grid item xs={5} style={{ paddingLeft: 15 }}>
-          <Field name='size'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <InputLabel id='select-size'>Company size</InputLabel>
-                <Select
-                  labelId='select-size'
-                  inputProps={field}
-                  style={{ paddingBottom: 3 }}
-                >
-                  <MenuItem value='Small'>Small</MenuItem>
-                  <MenuItem value='Medium'>Medium</MenuItem>
-                  <MenuItem value='Big'>Big</MenuItem>
-                </Select>
-                <FormHelperText error>
-                  {' '}
-                  {form.touched.level && form.errors.level && form.errors.level}
-                </FormHelperText>
-              </FormControl>
-            )}
-          </Field>
-          <Grid className={classes.ratingContainer}>
-            <Field name='rating' type='number'>
-              {({ field, form }) => (
-                <FormControl fullWidth style={{ height: '75px' }}>
-                  <Typography>Set company rating</Typography>
-                  <Rating
-                    name='rating'
-                    onChange={field.onChange}
-                    defaultValue={parseInt(field.value)}
-                  />
-                </FormControl>
-              )}
-            </Field>
+          <Grid container direction='column' align='center'>
+            <Typography>Image preview</Typography>
+            <Grid
+              className={classes.previewShape}
+              style={{
+                backgroundImage: `url('${FormikBag.values.image}')`
+              }}
+            ></Grid>
           </Grid>
         </Grid>
       </Grid>

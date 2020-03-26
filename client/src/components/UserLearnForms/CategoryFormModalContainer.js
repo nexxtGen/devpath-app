@@ -50,7 +50,13 @@ const CategoryFormModalContainer = ({
                 : handleSubmitUpdate(values, currentEditedCategory._id)
             }
           >
-            {() => <CategoryForm setIsOpen={setIsOpen} open={open} />}
+            {FormikBag => (
+              <CategoryForm
+                setIsOpen={setIsOpen}
+                open={open}
+                FormikBag={FormikBag}
+              />
+            )}
           </Formik>
         </DialogContent>
       </Dialog>
