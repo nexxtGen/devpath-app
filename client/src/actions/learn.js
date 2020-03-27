@@ -6,6 +6,7 @@ import {
   SET_CURRENT_LEARN_CATEGORY,
   SET_CURRENT_EDITED_LEARN_CATEGORY,
   CREATE_NEW_LEARN_CATEGORY,
+  UPDATE_LEARN_CATEGORY,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -73,7 +74,6 @@ export const createNewLearnCategory = categoryData => async dispatch => {
       categoryData,
       config
     );
-
     dispatch(setAlert('New category has been created', 'success'));
     dispatch({
       type: CREATE_NEW_LEARN_CATEGORY,
@@ -87,7 +87,7 @@ export const createNewLearnCategory = categoryData => async dispatch => {
   }
 };
 /*
-export const updateUserJob = (jobId, jobData) => async dispatch => {
+export const updateLearnCategory = (jobId, jobData) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'

@@ -14,7 +14,11 @@ const styles = createStyles({
   }
 });
 
-const AddBtn = ({ classes, setIsOpenCategory }) => {
+const AddBtn = ({
+  classes,
+  setIsOpenCategory,
+  setIsOpenCategoriesListModal
+}) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Fab
@@ -28,7 +32,10 @@ const AddBtn = ({ classes, setIsOpenCategory }) => {
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <PhotoLibrary style={{ color: 'white', marginTop: 7 }} />
       </Fab>
-      <Fab style={{ background: primaryLight }}>
+      <Fab
+        onClick={() => setIsOpenCategoriesListModal(true)}
+        style={{ background: primaryLight }}
+      >
         <List style={{ color: 'white' }} />
       </Fab>
     </Grid>

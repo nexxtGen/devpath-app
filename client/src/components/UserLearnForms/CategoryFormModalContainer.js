@@ -16,6 +16,7 @@ const CategoryFormModalContainer = ({
   //updateLearnCategory
 }) => {
   const handleSubmitCreate = values => {
+    console.log(values);
     createNewLearnCategory(values);
     setIsOpen({ open: false, mode: '' });
   };

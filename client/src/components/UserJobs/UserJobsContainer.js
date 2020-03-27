@@ -5,6 +5,7 @@ import JobFormModalContainer from '../UserJobsForms/JobFormModalContainer';
 import CompanyFormModalContainer from '../UserJobsForms/CompanyFormModalContainer';
 import CompaniesContainer from './CompaniesContainer';
 import AddBtn from './AddBtn';
+import Alert from '../../components/layout/Alert';
 import { connect } from 'react-redux';
 import { getAllUserCompanies } from '../../actions/jobs';
 import { getAllUserJobs } from '../../actions/jobs';
@@ -49,6 +50,7 @@ const UserJobsContainer = ({
 
   return (
     <Grid className={classes.primaryContainer}>
+      <Alert />
       <JobsList
         jobs={jobs.jobs}
         companies={jobs.companies}

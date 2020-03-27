@@ -35,7 +35,7 @@ export default function(state = initialState, action) {
     case CREATE_NEW_LEARN_CATEGORY:
       return {
         ...state,
-        learnCategories: [...state.learnCategories, ...payload]
+        learnCategories: [...state.learnCategories, payload]
       };
     case SET_CURRENT_LEARN_CATEGORY:
       return {

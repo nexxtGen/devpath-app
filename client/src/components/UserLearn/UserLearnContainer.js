@@ -3,7 +3,9 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import CategoryListContainer from './LearnCategory/CategoryListContainer';
 import LearnListContainer from './LearnItem/LearnListContainer';
 import CategoryFormModalContainer from '../UserLearnForms/CategoryFormModalContainer';
+import CategoriesListModal from '../UserLearnForms/CategoriesListModal';
 import AddBtn from './AddBtn';
+import Alert from '../../components/layout/Alert';
 import { connect } from 'react-redux';
 import {
   getAllUserLearnCategories,
@@ -34,7 +36,9 @@ const UserLearnContainer = ({
     open: false,
     mode: ''
   });
-
+  const [isOpenCategoriesListModal, setIsOpenCategoriesListModal] = useState(
+    false
+  );
   useEffect(() => {
     getAllUserLearnCategories();
     getAllUserLearnItems();
@@ -43,6 +47,7 @@ const UserLearnContainer = ({
 
   return (
     <Grid className={classes.primaryContainer}>
+      <Alert />
       <CategoryListContainer
         categories={categories}
         loading={categoryLoading}
@@ -52,7 +57,14 @@ const UserLearnContainer = ({
         open={isOpenCategoryModal}
         setIsOpen={setIsOpenCategoryFormModal}
       />
-      <AddBtn setIsOpenCategory={setIsOpenCategoryFormModal} />
+      <CategoriesListModal
+        open={isOpenCategoriesListModal}
+        setIsOpen={setIsOpenCategoriesListModal}
+      />
+      <AddBtn
+        setIsOpenCategory={setIsOpenCategoryFormModal}
+        setIsOpenCategoriesListModal={setIsOpenCategoriesListModal}
+      />
     </Grid>
   );
 };
