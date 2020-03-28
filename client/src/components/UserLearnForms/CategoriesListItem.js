@@ -6,9 +6,13 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import { primaryLight } from '../../shared/colors';
+import { Delete, Edit } from '@material-ui/icons';
 import { connect } from 'react-redux';
-//import { deleteFlashcardsCategory } from '../../../actions/flashcards';
+import {
+  deleteLearnCategory,
+  setCurrentEditedLearnCategory
+} from '../../actions/learn';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({
@@ -21,13 +25,20 @@ const styles = createStyles({
     padding: 5
   },
   typoContainer: {
-    width: '60%'
+    width: '50%'
   },
   imgContainer: {
-    width: '30%'
+    width: '25%'
+  },
+  icons: {
+    display: 'flex',
+    direction: 'row'
   },
   icon: {
     color: '#f50057'
+  },
+  iconEdit: {
+    color: primaryLight
   },
   romb: {
     background: 'rgb(233, 233, 233)',
@@ -38,13 +49,17 @@ const styles = createStyles({
     backgroundPosition: 'center',
     display: 'inline-block',
     clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0% 100%)'
+  },
+  button: {
+    width: 20
   }
 });
 
 const CategoriesListItem = ({
   classes,
-  category
-  //deleteFlashcardsCategory
+  category,
+  deleteLearnCategory,
+  setCurrentEditedLearnCategory
 }) => {
   const { image, name, _id } = category;
   return (
@@ -60,13 +75,18 @@ const CategoriesListItem = ({
           }}
         ></Grid>
       </Grid>
-      <Grid className={classes.footer}>
+      <Grid className={classes.icons}>
         <Button
-          //onClick={() => deleteFlashcardsCategory(_id)}
-          className={classes.deleteButton}
-          color='primary'
+          onClick={() => deleteLearnCategory(_id)}
+          className={classes.button}
         >
           <Delete className={classes.icon} />
+        </Button>
+        <Button
+          onClick={category => setCurrentEditedLearnCategory(category)}
+          className={classes.button}
+        >
+          <Edit className={classes.iconEdit} />
         </Button>
       </Grid>
     </Grid>
@@ -80,5 +100,6 @@ CategoriesListItem.propTypes = {
 };
 
 export default connect(null, {
-  //deleteFlashcardsCategory
+  deleteLearnCategory,
+  setCurrentEditedLearnCategory
 })(withStyles(styles)(CategoriesListItem));

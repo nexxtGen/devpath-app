@@ -7,6 +7,7 @@ import {
   SET_CURRENT_EDITED_LEARN_CATEGORY,
   CREATE_NEW_LEARN_CATEGORY,
   UPDATE_LEARN_CATEGORY,
+  DELETE_LEARN_CATEGORY,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -86,6 +87,23 @@ export const createNewLearnCategory = categoryData => async dispatch => {
     });
   }
 };
+
+export const deleteLearnCategory = categoryId => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/v1/learn-categories/${categoryId}`);
+
+    dispatch(setAlert('Category has been deleted', 'success'));
+    dispatch({
+      type: DELETE_LEARN_CATEGORY,
+      payload: categoryId
+    });
+  } catch (err) {
+    dispatch({
+      type: LEARN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
 /*
 export const updateLearnCategory = (jobId, jobData) => async dispatch => {
   const config = {
@@ -112,24 +130,7 @@ export const updateLearnCategory = (jobId, jobData) => async dispatch => {
   }
 };
 
-export const deleteUserJob = jobId => async dispatch => {
-  try {
-    dispatch(setLoading());
 
-    const res = await axios.delete(`/api/v1/jobs/${jobId}`);
-
-    dispatch(setAlert('Job has been deleted', 'success'));
-    dispatch({
-      type: DELETE_USER_JOB,
-      payload: { company: res.data.data, jobId }
-    });
-  } catch (err) {
-    dispatch({
-      type: JOBS_ERROR,
-      payload: { msg: err.response.data.error, status: err.response.status }
-    });
-  }
-};
 
 export const filterJobs = text => async dispatch => {
   dispatch({ type: FILTER_JOBS, payload: text });
