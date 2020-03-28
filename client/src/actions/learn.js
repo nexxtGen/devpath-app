@@ -104,8 +104,11 @@ export const deleteLearnCategory = categoryId => async dispatch => {
     });
   }
 };
-/*
-export const updateLearnCategory = (jobId, jobData) => async dispatch => {
+
+export const updateLearnCategory = (
+  categoryId,
+  categoryData
+) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -113,24 +116,26 @@ export const updateLearnCategory = (jobId, jobData) => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
+    const res = await axios.put(
+      `/api/v1/learn-categories/${categoryId}`,
+      categoryData,
+      config
+    );
 
-    const res = await axios.put(`/api/v1/jobs/${jobId}`, jobData, config);
-
-    dispatch(setAlert('Job has been updated', 'success'));
+    dispatch(setAlert('Category has been updated', 'success'));
     dispatch({
-      type: UPDATE_USER_JOB,
+      type: UPDATE_LEARN_CATEGORY,
       payload: res.data.data
     });
   } catch (err) {
     dispatch({
-      type: JOBS_ERROR,
+      type: LEARN_ERROR,
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
 };
 
-
+/*
 
 export const filterJobs = text => async dispatch => {
   dispatch({ type: FILTER_JOBS, payload: text });
