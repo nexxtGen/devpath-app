@@ -5,15 +5,17 @@ import * as Yup from 'yup';
 import { Dialog, DialogContent, DialogTitle, Grid } from '@material-ui/core';
 import createCategoryValues from './utilis/createCategoryValues';
 import { connect } from 'react-redux';
-import { createNewLearnCategory } from '../../actions/learn';
-//import { updateLearnCategory } from '../../actions/learn';
+import {
+  createNewLearnCategory,
+  updateLearnCategory
+} from '../../actions/learn';
 
 const CategoryFormModalContainer = ({
   open,
   setIsOpen,
   currentEditedCategory,
-  createNewLearnCategory
-  //updateLearnCategory
+  createNewLearnCategory,
+  updateLearnCategory
 }) => {
   const handleSubmitCreate = values => {
     console.log(values);
@@ -22,7 +24,7 @@ const CategoryFormModalContainer = ({
   };
 
   const handleSubmitUpdate = values => {
-    //updateLearnCategory(currentCategory._id, values);
+    updateLearnCategory(currentEditedCategory._id, values);
     setIsOpen({ open: false, mode: '' });
   };
 
@@ -81,6 +83,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  createNewLearnCategory
-  //updateLearnCategory
+  createNewLearnCategory,
+  updateLearnCategory
 })(CategoryFormModalContainer);

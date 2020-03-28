@@ -59,8 +59,14 @@ const CategoriesListItem = ({
   classes,
   category,
   deleteLearnCategory,
-  setCurrentEditedLearnCategory
+  setCurrentEditedLearnCategory,
+  setIsOpenCategoryFormModal
 }) => {
+  const handleEdit = category => {
+    setCurrentEditedLearnCategory(category);
+    setIsOpenCategoryFormModal({ open: true, mode: 'edit' });
+  };
+
   const { image, name, _id } = category;
   return (
     <Grid className={classes.container}>
@@ -82,10 +88,7 @@ const CategoriesListItem = ({
         >
           <Delete className={classes.icon} />
         </Button>
-        <Button
-          onClick={category => setCurrentEditedLearnCategory(category)}
-          className={classes.button}
-        >
+        <Button onClick={() => handleEdit(category)} className={classes.button}>
           <Edit className={classes.iconEdit} />
         </Button>
       </Grid>

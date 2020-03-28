@@ -26,7 +26,8 @@ const CategoriesListModal = ({
   open,
   setIsOpen,
   categories,
-  categoriesLoading
+  categoriesLoading,
+  setIsOpenCategoryFormModal
 }) => {
   return (
     <div>
@@ -39,7 +40,13 @@ const CategoriesListModal = ({
         <DialogContent>
           {!categoriesLoading && categories ? (
             categories.map((category, index) => {
-              return <CategoriesListItem key={index} category={category} />;
+              return (
+                <CategoriesListItem
+                  key={index}
+                  category={category}
+                  setIsOpenCategoryFormModal={setIsOpenCategoryFormModal}
+                />
+              );
             })
           ) : (
             <Grid className={classes.emptyContainer}>

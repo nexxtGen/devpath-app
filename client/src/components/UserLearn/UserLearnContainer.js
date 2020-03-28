@@ -60,6 +60,7 @@ const UserLearnContainer = ({
       <CategoriesListModal
         open={isOpenCategoriesListModal}
         setIsOpen={setIsOpenCategoriesListModal}
+        setIsOpenCategoryFormModal={setIsOpenCategoryFormModal}
       />
       <AddBtn
         setIsOpenCategory={setIsOpenCategoryFormModal}
