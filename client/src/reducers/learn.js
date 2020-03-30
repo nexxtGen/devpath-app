@@ -16,6 +16,7 @@ const initialState = {
   itemLoading: false,
   currentCategory: null,
   currentEditedCategory: null,
+  currentEditedItem: null,
   categoryLoading: false
 };
 
