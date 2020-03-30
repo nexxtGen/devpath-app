@@ -6,7 +6,8 @@ const createItemValues = itemData => {
     description: itemData ? itemData.description : '',
     link: itemData ? itemData.link : '',
     sourcename: itemData ? itemData.sourcename : '',
-    progress: itemData ? itemData.progress : 0
+    progress: itemData ? itemData.progress : 33,
+    categoryId: itemData ? itemData.categoryId : ''
   };
 };
 

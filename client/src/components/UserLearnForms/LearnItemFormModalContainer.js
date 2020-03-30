@@ -3,7 +3,7 @@ import LearnItemForm from './LearnItemForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Dialog, DialogContent, DialogTitle, Grid } from '@material-ui/core';
-import createItemValues from './utilis/createCategoryValues';
+import createItemValues from './utilis/createItemValues';
 import { connect } from 'react-redux';
 import { createNewLearnItem, updateLearnItem } from '../../actions/learn';
 
