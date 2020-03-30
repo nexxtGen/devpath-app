@@ -3,6 +3,7 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import CategoryListContainer from './LearnCategory/CategoryListContainer';
 import LearnListContainer from './LearnItem/LearnListContainer';
 import CategoryFormModalContainer from '../UserLearnForms/CategoryFormModalContainer';
+import LearnItemFormModalContainer from '../UserLearnForms/LearnItemFormModalContainer';
 import CategoriesListModal from '../UserLearnForms/CategoriesListModal';
 import AddBtn from './AddBtn';
 import Alert from '../../components/layout/Alert';
@@ -57,6 +58,10 @@ const UserLearnContainer = ({
         open={isOpenCategoryModal}
         setIsOpen={setIsOpenCategoryFormModal}
       />
+      <LearnItemFormModalContainer
+        open={isOpenItemFormModal}
+        setIsOpen={setIsOpenItemFormModal}
+      />
       <CategoriesListModal
         open={isOpenCategoriesListModal}
         setIsOpen={setIsOpenCategoriesListModal}
@@ -65,6 +70,7 @@ const UserLearnContainer = ({
       <AddBtn
         setIsOpenCategory={setIsOpenCategoryFormModal}
         setIsOpenCategoriesListModal={setIsOpenCategoriesListModal}
+        setIsOpenItemFormModal={setIsOpenItemFormModal}
       />
     </Grid>
   );

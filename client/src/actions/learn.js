@@ -8,6 +8,8 @@ import {
   CREATE_NEW_LEARN_CATEGORY,
   UPDATE_LEARN_CATEGORY,
   DELETE_LEARN_CATEGORY,
+  CREATE_NEW_LEARN_ITEM,
+  UPDATE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -109,6 +111,56 @@ export const updateLearnCategory = (
   categoryId,
   categoryData
 ) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(
+      `/api/v1/learn-categories/${categoryId}`,
+      categoryData,
+      config
+    );
+
+    dispatch(setAlert('Category has been updated', 'success'));
+    dispatch({
+      type: UPDATE_LEARN_CATEGORY,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: LEARN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+// LEARN ITEM
+export const createNewLearnItem = itemData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post('/api/v1/learn-items', itemData, config);
+    dispatch(setAlert('New learn item has been created', 'success'));
+    dispatch({
+      type: CREATE_NEW_LEARN_ITEM,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: LEARN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateLearnItem = (categoryId, categoryData) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'

@@ -17,18 +17,22 @@ const styles = createStyles({
 const AddBtn = ({
   classes,
   setIsOpenCategory,
-  setIsOpenCategoriesListModal
+  setIsOpenCategoriesListModal,
+  setIsOpenItemFormModal
 }) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Fab
-        onClick={() => setIsOpenCategory({ mode: 'create', open: true })}
+        onClick={() => setIsOpenItemFormModal({ mode: 'create', open: true })}
         style={{ background: primary, marginTop: 15 }}
       >
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <Subtitles style={{ color: 'white', marginTop: 7 }} />
       </Fab>
-      <Fab style={{ background: primaryLight, marginTop: 15 }}>
+      <Fab
+        onClick={() => setIsOpenCategory({ mode: 'create', open: true })}
+        style={{ background: primaryLight, marginTop: 15 }}
+      >
         <Add style={{ color: 'white', marginBottom: 15, fontSize: 19 }} />
         <PhotoLibrary style={{ color: 'white', marginTop: 7 }} />
       </Fab>

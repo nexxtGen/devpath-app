@@ -12,7 +12,8 @@ const LearnItemFormModalContainer = ({
   setIsOpen,
   currentEditedItem,
   createNewLearnItem,
-  updateLearnItem
+  updateLearnItem,
+  categoriesList
 }) => {
   const handleSubmitCreate = values => {
     console.log(values);
@@ -25,7 +26,7 @@ const LearnItemFormModalContainer = ({
     setIsOpen({ open: false, mode: '' });
   };
 
-  const initialValues = createCategoryValues(
+  const initialValues = createItemValues(
     open.mode === 'edit' ? currentEditedItem : null
   );
 
@@ -55,6 +56,7 @@ const LearnItemFormModalContainer = ({
                 setIsOpen={setIsOpen}
                 open={open}
                 FormikBag={FormikBag}
+                categoriesList={categoriesList}
               />
             )}
           </Formik>
@@ -85,11 +87,13 @@ const itemSchema = Yup.object().shape({
   sourcename: Yup.string()
     .min(3, 'Minimum 3 characters')
     .max(20, 'Maximum 20 characters')
-    .required('Source name is required')
+    .required('Source name is required'),
+  categoryId: Yup.string().required('Source name is required')
 });
 
 const mapStateToProps = state => ({
-  currentEditedItem: state.learn.currentEditedItem
+  currentEditedItem: state.learn.currentEditedItem,
+  categoriesList: state.learn.learnCategories
 });
 
 export default connect(mapStateToProps, {
