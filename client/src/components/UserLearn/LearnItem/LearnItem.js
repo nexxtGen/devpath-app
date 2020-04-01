@@ -1,7 +1,15 @@
 import React from 'react';
-import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
+import {
+  Grid,
+  withStyles,
+  createStyles,
+  Typography,
+  Divider,
+  IconButton
+} from '@material-ui/core';
 import { primaryLight, primaryDark } from '../../../shared/colors';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { Edit, DeleteOutline } from '@material-ui/icons';
 
 const styles = createStyles({
   primaryContainer: {
@@ -30,7 +38,19 @@ const styles = createStyles({
     clipPath: 'polygon(0 0, 100% 0, 84% 100%, 0% 100%)'
   },
   contentContainer: {
-    width: '100%'
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  footerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderLeft: '1px solid lightgray'
+  },
+  iconBtn: { padding: 6, width: 37 },
+  icon: {
+    color: primaryLight
   }
 });
 
@@ -44,16 +64,38 @@ const LearnItem = ({ classes, item }) => {
         }}
       ></Grid>
       <Grid className={classes.contentContainer}>
-        <Typography variant='h6'>{item.title}</Typography>
-        <Typography variant='subtitle2'> {item.description}</Typography>
-        <Typography variant='subtitle2'> Source: {item.sourcename}</Typography>
-        <Grid>
-          <Typography variant='subtitle2'>Progress</Typography>
-          <LinearProgress
-            variant='buffer'
-            value={item.progress}
-            //valueBuffer={buffer}
-          />
+        <Grid item xs={11} style={{ paddingRight: '15px' }}>
+          <Typography variant='h6'>{item.title}</Typography>
+          <Typography variant='subtitle2'> {item.description}</Typography>
+          <Typography variant='subtitle2'>
+            {' '}
+            Source22: {item.sourcename}
+          </Typography>
+          <Grid style={{ margin: 5 }}>
+            <Divider />
+          </Grid>
+          <Grid>
+            <Typography variant='subtitle2'>Progress</Typography>
+            <LinearProgress variant='determinate' value={item.progress} />
+          </Grid>
+        </Grid>
+        <Grid item xs={1} className={classes.footerContainer}>
+          <IconButton
+            //onClick={() =>
+            //  setIsOpenCompanyFormModal({ open: true, mode: 'edit' })
+            //}
+            aria-label='edit'
+            className={classes.iconBtn}
+          >
+            <Edit className={classes.icon} />
+          </IconButton>
+          <IconButton
+            //onClick={() => deleteUserCompany(currentCompany._id)}
+            aria-label='delete'
+            className={classes.iconBtn}
+          >
+            <DeleteOutline className={classes.icon} />
+          </IconButton>
         </Grid>
       </Grid>
     </Grid>
