@@ -5,6 +5,7 @@ import {
   GET_ALL_USER_LEARN_ITEMS,
   SET_CURRENT_LEARN_CATEGORY,
   SET_CURRENT_EDITED_LEARN_CATEGORY,
+  SET_CURRENT_EDITED_LEARN_ITEM,
   CREATE_NEW_LEARN_CATEGORY,
   UPDATE_LEARN_CATEGORY,
   DELETE_LEARN_CATEGORY,
@@ -138,7 +139,7 @@ export const updateLearnCategory = (
   }
 };
 
-// LEARN ITEM
+// LEARN ITEM -------------------------------------------------------------
 export const createNewLearnItem = itemData => async dispatch => {
   const config = {
     headers: {
@@ -161,7 +162,14 @@ export const createNewLearnItem = itemData => async dispatch => {
   }
 };
 
-export const updateLearnItem = (categoryId, categoryData) => async dispatch => {
+export const setCurrentEditedLearnItem = item => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_LEARN_ITEM,
+    payload: item
+  });
+};
+
+export const updateLearnItem = (itemId, itemData) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -170,14 +178,14 @@ export const updateLearnItem = (categoryId, categoryData) => async dispatch => {
 
   try {
     const res = await axios.put(
-      `/api/v1/learn-categories/${categoryId}`,
-      categoryData,
+      `/api/v1/learn-items/${itemId}`,
+      itemData,
       config
     );
 
-    dispatch(setAlert('Category has been updated', 'success'));
+    dispatch(setAlert('Learn item has been updated', 'success'));
     dispatch({
-      type: UPDATE_LEARN_CATEGORY,
+      type: UPDATE_LEARN_ITEM,
       payload: res.data.data
     });
   } catch (err) {

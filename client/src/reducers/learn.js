@@ -3,14 +3,17 @@ import {
   GET_ALL_USER_LEARN_ITEMS,
   SET_CURRENT_LEARN_CATEGORY,
   SET_CURRENT_EDITED_LEARN_CATEGORY,
+  SET_CURRENT_EDITED_LEARN_ITEM,
   CREATE_NEW_LEARN_CATEGORY,
   CREATE_NEW_LEARN_ITEM,
   UPDATE_LEARN_CATEGORY,
+  UPDATE_LEARN_ITEM,
   DELETE_LEARN_CATEGORY,
   DELETE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING
 } from '../actions/types';
+import { cyan } from '@material-ui/core/colors';
 
 const initialState = {
   learnItems: null,
@@ -84,6 +87,32 @@ export default function(state = initialState, action) {
                 }
               : state.currentCategory
             : state.currentCategory
+      };
+    case UPDATE_LEARN_ITEM:
+      return {
+        ...state,
+        learnCategories: state.learnCategories.map(cat =>
+          cat._id === payload.categoryId
+            ? {
+                ...cat,
+                items: cat.items.map(item =>
+                  item._id === payload._id ? payload : item
+                )
+              }
+            : cat
+        ),
+        currentCategory: {
+          ...state.currentCategory,
+          items: state.currentCategory.items.map(item =>
+            item._id === payload._id ? payload : item
+          )
+        },
+        currentEditedItem: null
+      };
+    case SET_CURRENT_EDITED_LEARN_ITEM:
+      return {
+        ...state,
+        currentEditedItem: payload
       };
     case DELETE_LEARN_ITEM:
       return {

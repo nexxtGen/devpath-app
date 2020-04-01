@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import LearnItem from './LearnItem';
 
-const LearnList = ({ currentCategory, type }) => {
+const LearnList = ({ currentCategory, type, setIsOpenItemFormModal }) => {
   if (!currentCategory) {
     return (
       <Grid>
@@ -14,7 +14,15 @@ const LearnList = ({ currentCategory, type }) => {
     <Grid>
       {currentCategory && currentCategory.items.length > 0 ? (
         currentCategory.items.map(item =>
-          item.type === type ? <LearnItem item={item} key={item._id} /> : ''
+          item.type === type ? (
+            <LearnItem
+              item={item}
+              key={item._id}
+              setIsOpenItemFormModal={setIsOpenItemFormModal}
+            />
+          ) : (
+            ''
+          )
         )
       ) : (
         <Typography>List is empty</Typography>

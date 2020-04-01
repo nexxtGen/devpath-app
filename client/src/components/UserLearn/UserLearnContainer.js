@@ -53,7 +53,10 @@ const UserLearnContainer = ({
         categories={categories}
         loading={categoryLoading}
       />
-      <LearnListContainer currentCategory={currentCategory} />
+      <LearnListContainer
+        currentCategory={currentCategory}
+        setIsOpenItemFormModal={setIsOpenItemFormModal}
+      />
       <CategoryFormModalContainer
         open={isOpenCategoryModal}
         setIsOpen={setIsOpenCategoryFormModal}

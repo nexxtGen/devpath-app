@@ -1,6 +1,6 @@
 const createItemValues = itemData => {
   return {
-    title: itemData ? itemData.name : '',
+    title: itemData ? itemData.title : '',
     image: itemData ? itemData.image : '',
     type: itemData ? itemData.type : '',
     description: itemData ? itemData.description : '',

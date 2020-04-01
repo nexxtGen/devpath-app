@@ -11,7 +11,10 @@ import { primaryLight, primaryDark } from '../../../shared/colors';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Edit, DeleteOutline } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { deleteLearnItem } from '../../../actions/learn';
+import {
+  deleteLearnItem,
+  setCurrentEditedLearnItem
+} from '../../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -56,7 +59,17 @@ const styles = createStyles({
   }
 });
 
-const LearnItem = ({ classes, item, deleteLearnItem }) => {
+const LearnItem = ({
+  classes,
+  item,
+  deleteLearnItem,
+  setCurrentEditedLearnItem,
+  setIsOpenItemFormModal
+}) => {
+  const handleClickEdit = () => {
+    setCurrentEditedLearnItem(item);
+    setIsOpenItemFormModal({ open: true, mode: 'edit' });
+  };
   return (
     <Grid className={classes.primaryContainer}>
       <Grid
@@ -83,9 +96,7 @@ const LearnItem = ({ classes, item, deleteLearnItem }) => {
         </Grid>
         <Grid item xs={1} className={classes.footerContainer}>
           <IconButton
-            //onClick={() =>
-            //  setIsOpenCompanyFormModal({ open: true, mode: 'edit' })
-            //}
+            onClick={() => handleClickEdit()}
             aria-label='edit'
             className={classes.iconBtn}
           >
@@ -104,6 +115,6 @@ const LearnItem = ({ classes, item, deleteLearnItem }) => {
   );
 };
 
-export default connect(null, { deleteLearnItem })(
+export default connect(null, { deleteLearnItem, setCurrentEditedLearnItem })(
   withStyles(styles)(LearnItem)
 );

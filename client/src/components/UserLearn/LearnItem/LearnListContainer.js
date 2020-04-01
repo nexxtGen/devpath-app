@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LearnListContainer = ({ currentCategory }) => {
+const LearnListContainer = ({ currentCategory, setIsOpenItemFormModal }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -66,13 +66,25 @@ const LearnListContainer = ({ currentCategory }) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <LearnList currentCategory={currentCategory} type='article' />
+          <LearnList
+            currentCategory={currentCategory}
+            setIsOpenItemFormModal={setIsOpenItemFormModal}
+            type='article'
+          />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <LearnList currentCategory={currentCategory} type='tutorial' />
+          <LearnList
+            currentCategory={currentCategory}
+            setIsOpenItemFormModal={setIsOpenItemFormModal}
+            type='tutorial'
+          />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <LearnList currentCategory={currentCategory} type='other' />
+          <LearnList
+            currentCategory={currentCategory}
+            setIsOpenItemFormModal={setIsOpenItemFormModal}
+            type='other'
+          />
         </TabPanel>
       </SwipeableViews>
     </div>

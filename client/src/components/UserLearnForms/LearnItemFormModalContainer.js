@@ -16,7 +16,6 @@ const LearnItemFormModalContainer = ({
   categoriesList
 }) => {
   const handleSubmitCreate = values => {
-    console.log(values);
     createNewLearnItem(values);
     setIsOpen({ open: false, mode: '' });
   };
