@@ -75,11 +75,46 @@ exports.updateLearnItem = asyncHandler(async (req, res, next) => {
     new: true,
     runValidators: true
   });
-
+  console.log('req.body:', req.body);
   if (!learnItem) {
     return next(
       new ErrorResponse(`Learn Item not found with id of ${req.params.id}`, 404)
     );
+  }
+
+  if (req.body.categoryId !== req.body.prevCategory) {
+    // delete item from prev category
+
+    let prevCategory = await LearnCategory.findOne({
+      _id: req.body.prevCategory
+    });
+
+    const filtered = prevCategory.items.filter(
+      item => item._id.toString() !== req.params.id
+    );
+
+    prevCategory.items = filtered;
+
+    await LearnCategory.findOneAndUpdate(
+      { _id: req.body.prevCategory },
+      { $set: prevCategory },
+      { new: true }
+    );
+
+    // add item to new category
+    let actualCategory = await LearnCategory.findOne({
+      _id: req.body.categoryId
+    });
+
+    let newArray = [...actualCategory.items, req.params.id.toString()];
+    actualCategory.items = newArray;
+    const updatedCategory = await LearnCategory.findOneAndUpdate(
+      { _id: req.body.categoryId.toString() },
+      { $set: actualCategory },
+      { new: true }
+    );
+
+    res.status(200).json({ success: true, data: updatedCategory });
   }
 
   res.status(200).json({ success: true, data: learnItem });

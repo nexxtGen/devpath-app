@@ -21,7 +21,10 @@ const LearnItemFormModalContainer = ({
   };
 
   const handleSubmitUpdate = values => {
-    updateLearnItem(currentEditedItem._id, values);
+    updateLearnItem(currentEditedItem._id, {
+      ...values,
+      prevCategory: currentEditedItem.categoryId
+    });
     setIsOpen({ open: false, mode: '' });
   };
 
