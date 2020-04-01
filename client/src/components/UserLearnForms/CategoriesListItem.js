@@ -82,14 +82,14 @@ const CategoriesListItem = ({
         ></Grid>
       </Grid>
       <Grid className={classes.icons}>
+        <Button onClick={() => handleEdit(category)} className={classes.button}>
+          <Edit className={classes.iconEdit} />
+        </Button>
         <Button
           onClick={() => deleteLearnCategory(_id)}
           className={classes.button}
         >
           <Delete className={classes.icon} />
-        </Button>
-        <Button onClick={() => handleEdit(category)} className={classes.button}>
-          <Edit className={classes.iconEdit} />
         </Button>
       </Grid>
     </Grid>

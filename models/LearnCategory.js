@@ -36,5 +36,6 @@ async function populateCategory(next) {
 
 LearnCategorySchema.pre('find', populateCategory);
 LearnCategorySchema.pre('findOne', populateCategory);
+LearnCategorySchema.pre('findOneAndUpdate', populateCategory);
 
 module.exports = mongoose.model('LearnCategory', LearnCategorySchema);

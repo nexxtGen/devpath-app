@@ -7,6 +7,7 @@ import {
   CREATE_NEW_LEARN_ITEM,
   UPDATE_LEARN_CATEGORY,
   DELETE_LEARN_CATEGORY,
+  DELETE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING
 } from '../actions/types';
@@ -83,6 +84,14 @@ export default function(state = initialState, action) {
                 }
               : state.currentCategory
             : state.currentCategory
+      };
+    case DELETE_LEARN_ITEM:
+      return {
+        ...state,
+        learnCategories: state.learnCategories.map(cat =>
+          cat._id === payload.categoryId ? payload.data : cat
+        ),
+        currentCategory: payload.data
       };
     case SET_LEARN_CATEGORY_LOADING:
       return {

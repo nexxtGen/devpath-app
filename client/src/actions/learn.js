@@ -10,6 +10,7 @@ import {
   DELETE_LEARN_CATEGORY,
   CREATE_NEW_LEARN_ITEM,
   UPDATE_LEARN_ITEM,
+  DELETE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
   LEARN_ERROR
@@ -187,108 +188,22 @@ export const updateLearnItem = (categoryId, categoryData) => async dispatch => {
   }
 };
 
-/*
-
-export const filterJobs = text => async dispatch => {
-  dispatch({ type: FILTER_JOBS, payload: text });
-};
-
-//Clear Filter
-export const clearFilter = () => dispatch => {
-  dispatch({ type: CLEAR_FILTER });
-};
-
-// Without API REQUEST
-
-export const setCurrentEditedJob = job => async dispatch => {
-  dispatch({
-    type: SET_CURRENT_EDITED_JOB,
-    payload: job
-  });
-};
-
-// COMPANY/COMPANIES ACTIONS
-export const createNewUserCompany = companyData => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
+export const deleteLearnItem = (itemId, categoryId) => async dispatch => {
   try {
-    dispatch(setLoading());
+    const res = await axios.delete(`/api/v1/learn-items/${itemId}`);
 
-    const res = await axios.post('/api/v1/companies', companyData, config);
-
-    dispatch(setAlert('Company has been created', 'success'));
+    dispatch(setAlert('Learn item has been deleted', 'success'));
     dispatch({
-      type: CREATE_NEW_USER_COMPANY,
-      payload: res.data.data
+      type: DELETE_LEARN_ITEM,
+      payload: { data: res.data.data, categoryId }
     });
   } catch (err) {
     dispatch({
-      type: JOBS_ERROR,
+      type: LEARN_ERROR,
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
 };
-
-export const updateUserCompany = (companyId, companyData) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  try {
-    dispatch(setLoading());
-
-    const res = await axios.put(
-      `/api/v1/companies/${companyId}`,
-      companyData,
-      config
-    );
-
-    dispatch(setAlert('Company has been updated', 'success'));
-    dispatch({
-      type: UPDATE_USER_COMPANY,
-      payload: res.data.data
-    });
-  } catch (err) {
-    dispatch({
-      type: JOBS_ERROR,
-      payload: { msg: err.response.data.error, status: err.response.status }
-    });
-  }
-};
-
-export const deleteUserCompany = companyId => async dispatch => {
-  try {
-    dispatch(setLoading());
-
-    const res = await axios.delete(`/api/v1/companies/${companyId}`);
-
-    dispatch(setAlert('Company has been deleted', 'success'));
-    dispatch({
-      type: DELETE_USER_COMPANY,
-      payload: companyId
-    });
-  } catch (err) {
-    dispatch({
-      type: JOBS_ERROR,
-      payload: { msg: err.response.data.error, status: err.response.status }
-    });
-  }
-};
-
-export const setCurrentCompany = company => async dispatch => {
-  dispatch({
-    type: SET_CURRENT_COMPANY,
-    payload: company
-  });
-};
-
-*/
 
 export const setLearnCategoryLoading = () => {
   return {

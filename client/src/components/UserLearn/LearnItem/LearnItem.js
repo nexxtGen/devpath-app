@@ -10,6 +10,8 @@ import {
 import { primaryLight, primaryDark } from '../../../shared/colors';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Edit, DeleteOutline } from '@material-ui/icons';
+import { connect } from 'react-redux';
+import { deleteLearnItem } from '../../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -54,7 +56,7 @@ const styles = createStyles({
   }
 });
 
-const LearnItem = ({ classes, item }) => {
+const LearnItem = ({ classes, item, deleteLearnItem }) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Grid
@@ -90,7 +92,7 @@ const LearnItem = ({ classes, item }) => {
             <Edit className={classes.icon} />
           </IconButton>
           <IconButton
-            //onClick={() => deleteUserCompany(currentCompany._id)}
+            onClick={() => deleteLearnItem(item._id, item.categoryId)}
             aria-label='delete'
             className={classes.iconBtn}
           >
@@ -102,4 +104,6 @@ const LearnItem = ({ classes, item }) => {
   );
 };
 
-export default withStyles(styles)(LearnItem);
+export default connect(null, { deleteLearnItem })(
+  withStyles(styles)(LearnItem)
+);
