@@ -75,7 +75,7 @@ exports.updateLearnItem = asyncHandler(async (req, res, next) => {
     new: true,
     runValidators: true
   });
-  console.log('req.body:', req.body);
+
   if (!learnItem) {
     return next(
       new ErrorResponse(`Learn Item not found with id of ${req.params.id}`, 404)
@@ -114,9 +114,8 @@ exports.updateLearnItem = asyncHandler(async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ success: true, data: updatedCategory });
+    res.status(200).json({ success: true, data: learnItem });
   }
-
   res.status(200).json({ success: true, data: learnItem });
 });
 

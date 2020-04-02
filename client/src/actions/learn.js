@@ -186,7 +186,7 @@ export const updateLearnItem = (itemId, itemData) => async dispatch => {
     dispatch(setAlert('Learn item has been updated', 'success'));
     dispatch({
       type: UPDATE_LEARN_ITEM,
-      payload: res.data.data
+      payload: { data: res.data.data, prevId: itemData.prevCategory }
     });
   } catch (err) {
     dispatch({

@@ -91,21 +91,44 @@ export default function(state = initialState, action) {
     case UPDATE_LEARN_ITEM:
       return {
         ...state,
-        learnCategories: state.learnCategories.map(cat =>
-          cat._id === payload.categoryId
-            ? {
-                ...cat,
-                items: cat.items.map(item =>
-                  item._id === payload._id ? payload : item
-                )
-              }
-            : cat
-        ),
+        learnCategories:
+          payload.prevId === payload.data.categoryId
+            ? state.learnCategories.map(cat =>
+                cat._id === payload.data.categoryId
+                  ? {
+                      ...cat,
+                      items: cat.items.map(item =>
+                        item._id === payload.data._id ? payload : item
+                      )
+                    }
+                  : cat
+              )
+            : state.learnCategories.map(cat => {
+                if (cat._id === payload.data.categoryId) {
+                  return {
+                    ...cat,
+                    items: [...cat.items, payload.data]
+                  };
+                } else if (cat._id === payload.prevId) {
+                  return {
+                    ...cat,
+                    items: cat.items.filter(
+                      item => item._id !== payload.data._id
+                    )
+                  };
+                }
+                return cat;
+              }),
         currentCategory: {
           ...state.currentCategory,
-          items: state.currentCategory.items.map(item =>
-            item._id === payload._id ? payload : item
-          )
+          items:
+            payload.prevId === payload.data.categoryId
+              ? state.currentCategory.items.map(item =>
+                  item._id === payload.data._id ? payload.data : item
+                )
+              : state.currentCategory.items.filter(
+                  item => item._id !== payload.data._id
+                )
         },
         currentEditedItem: null
       };
