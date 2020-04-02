@@ -98,7 +98,7 @@ export default function(state = initialState, action) {
                   ? {
                       ...cat,
                       items: cat.items.map(item =>
-                        item._id === payload.data._id ? payload : item
+                        item._id === payload.data._id ? payload.data : item
                       )
                     }
                   : cat
