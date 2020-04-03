@@ -71,7 +71,7 @@ const LearnItemFormModalContainer = ({
 const itemSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, 'Minimum 2 characters')
-    .max(30, 'Maximum 30 characters')
+    .max(50, 'Maximum 50 characters')
     .required('Title is required'),
   image: Yup.string()
     .min(10, 'Minimum 3 characters')

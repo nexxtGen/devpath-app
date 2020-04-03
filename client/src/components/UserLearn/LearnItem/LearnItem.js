@@ -56,6 +56,13 @@ const styles = createStyles({
   iconBtn: { padding: 6, width: 37 },
   icon: {
     color: primaryLight
+  },
+  link: {
+    color: '#1b75bc',
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   }
 });
 
@@ -80,11 +87,13 @@ const LearnItem = ({
       ></Grid>
       <Grid className={classes.contentContainer}>
         <Grid item xs={11} style={{ paddingRight: '15px' }}>
-          <Typography variant='h6'>{item.title}</Typography>
+          <a href={item.link} target='blank' className={classes.link}>
+            <Typography variant='h6'>{item.title}</Typography>
+          </a>
           <Typography variant='subtitle2'> {item.description}</Typography>
           <Typography variant='subtitle2'>
             {' '}
-            Source22: {item.sourcename}
+            Source: {item.sourcename}
           </Typography>
           <Grid style={{ margin: 5 }}>
             <Divider />
