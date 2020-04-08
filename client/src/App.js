@@ -10,6 +10,7 @@ import UserProfileForm from './components/UserProfileForm';
 import UserFlashcardsContainer from './components/UserFlashcards';
 import UserJobsContainer from './components/UserJobs';
 import UserLearnContainer from './components/UserLearn';
+import UserKanbanContainer from './components/UserKanban';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -36,7 +37,8 @@ const App = () => {
     userFlashcards,
     createEditProfile,
     userJobs,
-    userLearn
+    userLearn,
+    userKanban
   } = routes;
 
   return (
@@ -49,6 +51,11 @@ const App = () => {
           <Route exact path={registerUser} component={RegisterUser} />
           <UserNavigationWrapper>
             <PrivateRoute exact path={userProfile} component={UserProfile} />
+            <PrivateRoute
+              exact
+              path={userKanban}
+              component={UserKanbanContainer}
+            />
             <PrivateRoute
               exact
               path={userLearn}

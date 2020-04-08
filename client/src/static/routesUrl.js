@@ -6,5 +6,6 @@ export const routes = {
   userFlashcards: '/user/flashcards',
   createEditProfile: '/user/create-edit-profile',
   userJobs: '/user/jobs',
-  userLearn: '/user/learn'
+  userLearn: '/user/learn',
+  userKanban: '/user/kanban'
 };

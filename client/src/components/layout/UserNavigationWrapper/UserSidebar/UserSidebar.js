@@ -12,6 +12,7 @@ import WorkIcon from '@material-ui/icons/Work';
 import ListItemText from '@material-ui/core/ListItemText';
 import SubtitlesIcon from '@material-ui/icons/Subtitles';
 import SchoolIcon from '@material-ui/icons/School';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import ProfileList from './ProfileList';
 import LinkWithoutDefaultStyles from '../../../../shared/LinkWithoutDefaultStyles';
 import { routes } from '../../../../static/routesUrl';
@@ -78,6 +79,14 @@ const UserSidebar = ({ classes, handleDrawerClose, open, user }) => {
           <ProfileList user={user} />
           <Divider />
           <List>
+            <LinkWithoutDefaultStyles to={routes.userKanban}>
+              <ListItem button>
+                <ListItemIcon>
+                  <DashboardIcon style={{ color: primaryLight }} />
+                </ListItemIcon>
+                <ListItemText primary='Kanban' />
+              </ListItem>
+            </LinkWithoutDefaultStyles>
             <LinkWithoutDefaultStyles to={routes.userLearn}>
               <ListItem button>
                 <ListItemIcon>
