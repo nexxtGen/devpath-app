@@ -38,7 +38,7 @@ app.use('/api/v1/jobs', jobs);
 app.use('/api/v1/companies', companies);
 app.use('/api/v1/learn-items', learnItems);
 app.use('/api/v1/learn-categories', learnCategories);
-app.use('/api/v1/boards', learnCategories);
+app.use('/api/v1/boards', boards);
 
 app.use(errorHandler);
 
