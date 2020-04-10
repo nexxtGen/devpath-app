@@ -39,12 +39,12 @@ const initialData = {
       laneId: 'lane_01'
     },
     {
-      _id: 'note_01',
+      _id: 'note_04',
       name: 'Czwarta notka',
       laneId: 'lane_02'
     },
     {
-      _id: 'note_01',
+      _id: 'note_05',
       name: 'Piąta notka',
       laneId: 'lane_03'
     }

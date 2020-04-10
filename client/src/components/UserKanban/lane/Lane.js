@@ -1,19 +1,45 @@
 import React from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
+import { Droppable } from 'react-beautiful-dnd';
+import Note from '../note/Note';
 
 const styles = createStyles({
-  primaryContainer: {
+  lane: {
+    border: '1px solid black',
+    width: 300,
+    height: 500,
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
+    flexDirection: 'column',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    padding: 10
+  },
+  notesContainer: {
+    width: '100%'
   }
 });
 
-const Board = ({ classes, lane, notes }) => {
-  return <Grid className={classes.primaryContainer}>{lane.name}</Grid>;
+const Lane = ({ classes, lane, notes }) => {
+  console.log('notes in lane:', notes);
+  return (
+    <Grid className={classes.lane}>
+      <p>{lane.name}</p>
+      <Droppable droppableId={lane._id}>
+        {provided => (
+          <Grid
+            className={classes.notesContainer}
+            innerRef={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {notes.map((note, index) => (
+              <Note key={note._id} note={note} index={index} />
+            ))}
+            {provided.placeholder}
+          </Grid>
+        )}
+      </Droppable>
+    </Grid>
+  );
 };
 
-const mapStateToProps = state => ({});
-
-export default withStyles(styles)(Board);
+export default withStyles(styles)(Lane);
