@@ -2,8 +2,7 @@ import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import BoardsListItem from './BoardsListItem';
-
-import PreloaderRelative from '../../../shared/PreloaderRelative';
+import PreloaderRelative from '../../shared/PreloaderRelative';
 
 const styles = createStyles({});
 

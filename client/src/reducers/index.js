@@ -5,6 +5,7 @@ import profile from './profile';
 import flashcards from './flashcards';
 import jobs from './jobs';
 import learn from './learn';
+import kanban from './kanban';
 
 export default combineReducers({
   alert,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile,
   flashcards,
   jobs,
-  learn
+  learn,
+  kanban
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
-import { primaryLight, primaryDark } from '../../../shared/colors';
+import { primaryLight, primaryDark } from '../../shared/colors';
 import { connect } from 'react-redux';
-import { setCurrentBoard } from '../../../actions/kanban';
+import { setCurrentBoard } from '../../actions/kanban';
 
 const styles = createStyles({
   primaryContainer: {
@@ -61,7 +61,7 @@ const BoardsListItem = ({ classes, board, setCurrentBoard }) => {
       <Typography variant='subtitle2'>{board.name}</Typography>
       <Grid className={classes.count}>
         <Typography variant='subtitle2' style={{ color: 'white' }}>
-          {board.notes.length}
+          {board.lanes.length}
         </Typography>
       </Grid>
     </Grid>

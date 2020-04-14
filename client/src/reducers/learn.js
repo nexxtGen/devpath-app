@@ -13,7 +13,6 @@ import {
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING
 } from '../actions/types';
-import { cyan } from '@material-ui/core/colors';
 
 const initialState = {
   learnItems: null,
