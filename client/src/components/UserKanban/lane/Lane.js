@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Note from '../note/Note';
 
 const styles = createStyles({
@@ -12,33 +12,43 @@ const styles = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     flexWrap: 'wrap',
-    padding: 10
+    padding: 10,
+    margin: '0 10px'
   },
   notesContainer: {
-    width: '100%'
+    width: '100%',
+    minHeight: 200,
+    background: 'lightgray'
   }
 });
 
-const Lane = ({ classes, lane, notes }) => {
-  console.log('notes in lane:', notes);
+const Lane = ({ classes, lane, notes, index }) => {
   return (
-    <Grid className={classes.lane}>
-      <p>{lane.name}</p>
-      <Droppable droppableId={lane._id}>
-        {provided => (
-          <Grid
-            className={classes.notesContainer}
-            innerRef={provided.innerRef}
-            {...provided.droppableProps}
-          >
-            {notes.map((note, index) => (
-              <Note key={note._id} note={note} index={index} />
-            ))}
-            {provided.placeholder}
-          </Grid>
-        )}
-      </Droppable>
-    </Grid>
+    <Draggable draggableId={lane._id} index={index}>
+      {provided => (
+        <Grid
+          className={classes.lane}
+          {...provided.draggableProps}
+          innerRef={provided.innerRef}
+        >
+          <p {...provided.dragHandleProps}>{lane.name}</p>
+          <Droppable droppableId={lane._id} type='note'>
+            {provided => (
+              <Grid
+                className={classes.notesContainer}
+                innerRef={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {notes.map((note, index) => (
+                  <Note key={note._id} note={note} index={index} />
+                ))}
+                {provided.placeholder}
+              </Grid>
+            )}
+          </Droppable>
+        </Grid>
+      )}
+    </Draggable>
   );
 };
 

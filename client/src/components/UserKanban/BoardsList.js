@@ -1,31 +1,28 @@
 import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import CategoryItem from './CategoryItem';
+import BoardsListItem from './BoardsListItem';
 
 import PreloaderRelative from '../../../shared/PreloaderRelative';
 
 const styles = createStyles({});
 
-const CategoryList = ({ classes, categories, loading }) => {
-  if (
-    (!categories && !loading) ||
-    (categories && categories.length === 0 && !loading)
-  ) {
+const BoardsList = ({ classes, boards, loading }) => {
+  if ((!boards && !loading) || (boards && boards.length === 0 && !loading)) {
     return (
       <Grid className={classes.primaryContainer}>
-        <Typography>Category list is empty</Typography>
+        <Typography>Boards list is empty</Typography>
       </Grid>
     );
   }
 
   return (
     <Grid className={classes.primaryContainer}>
-      {categories && categories.length > 0 ? (
+      {boards && boards.length > 0 ? (
         <TransitionGroup className={classes.listContainer}>
-          {categories.map(cat => (
-            <CSSTransition timeout={400} classNames='item' key={cat._id}>
-              <CategoryItem category={cat} />
+          {boards.map(board => (
+            <CSSTransition timeout={400} classNames='item' key={board._id}>
+              <BoardsListItem board={board} />
             </CSSTransition>
           ))}
         </TransitionGroup>
@@ -36,4 +33,4 @@ const CategoryList = ({ classes, categories, loading }) => {
   );
 };
 
-export default withStyles(styles)(CategoryList);
+export default withStyles(styles)(BoardsList);
