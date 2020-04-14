@@ -19,6 +19,7 @@ const companies = require('./routes/companies');
 const learnItems = require('./routes/learnItems');
 const learnCategories = require('./routes/learnCategories');
 const boards = require('./routes/boards');
+const lanes = require('./routes/lanes');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/v1/companies', companies);
 app.use('/api/v1/learn-items', learnItems);
 app.use('/api/v1/learn-categories', learnCategories);
 app.use('/api/v1/boards', boards);
+app.use('/api/v1/lanes', lanes);
 
 app.use(errorHandler);
 
