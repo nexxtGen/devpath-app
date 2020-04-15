@@ -21,7 +21,7 @@ const NoteSchema = new mongoose.Schema({
     type: String,
     maxlength: [900, 'Image can not be more than 900 characters']
   },
-  LaneId: {
+  laneId: {
     type: String,
     required: true
   },

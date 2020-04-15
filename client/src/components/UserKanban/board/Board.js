@@ -127,7 +127,6 @@ const Board = ({ classes }) => {
               className={classes.lanes}
             >
               {data.lanes.length > 0 &&
-                data.notes.length > 0 &&
                 data.lanes.map((lane, index) => {
                   let notes = lane.notes.map(noteId =>
                     data.notes.find(e => e._id === noteId)
