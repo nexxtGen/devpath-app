@@ -22,7 +22,7 @@ const styles = createStyles({
   }
 });
 
-const Lane = ({ classes, lane, notes, index }) => {
+const Lane = ({ classes, lane, laneNotes, index }) => {
   return (
     <Draggable draggableId={lane._id} index={index}>
       {provided => (
@@ -39,7 +39,7 @@ const Lane = ({ classes, lane, notes, index }) => {
                 innerRef={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {notes.map((note, index) => (
+                {laneNotes.map((note, index) => (
                   <Note key={note._id} note={note} index={index} />
                 ))}
                 {provided.placeholder}

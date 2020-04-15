@@ -23,7 +23,7 @@ const Note = ({ classes, note, index }) => {
           {...provided.dragHandleProps}
           innerRef={provided.innerRef}
         >
-          {note.name}
+          {note.description}
         </Grid>
       )}
     </Draggable>

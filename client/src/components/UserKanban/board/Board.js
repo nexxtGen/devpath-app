@@ -18,7 +18,7 @@ const styles = createStyles({
   }
 });
 
-const Board = ({ classes }) => {
+const Board = ({ classes, currentBoard, lanes, notes }) => {
   const [data, setData] = useState(initialData);
 
   const onDragEnd = result => {
@@ -126,16 +126,21 @@ const Board = ({ classes }) => {
               innerRef={provided.innerRef}
               className={classes.lanes}
             >
-              {data.lanes.length > 0 &&
-                data.lanes.map((lane, index) => {
-                  let notes = lane.notes.map(noteId =>
-                    data.notes.find(e => e._id === noteId)
+              {currentBoard &&
+                lanes &&
+                notes &&
+                currentBoard.lanes.length > 0 &&
+                currentBoard.lanes.map((laneId, index) => {
+                  let lane = lanes.find(lane => lane._id === laneId);
+                  let laneNotes = lane.notes.map(noteId =>
+                    notes.find(e => e._id === noteId)
                   );
+
                   return (
                     <Lane
                       key={lane._id}
                       lane={lane}
-                      notes={notes}
+                      laneNotes={laneNotes}
                       index={index}
                     />
                   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { primaryLight, primaryDark } from '../../shared/colors';
 import { connect } from 'react-redux';
-import { setCurrentBoard } from '../../actions/kanban';
+import { setCurrentKanbanBoard } from '../../actions/kanban';
 
 const styles = createStyles({
   primaryContainer: {
@@ -45,11 +45,11 @@ const styles = createStyles({
   }
 });
 
-const BoardsListItem = ({ classes, board, setCurrentBoard }) => {
+const BoardsListItem = ({ classes, board, setCurrentKanbanBoard }) => {
   return (
     <Grid
       className={classes.primaryContainer}
-      onClick={() => setCurrentBoard(board)}
+      onClick={() => setCurrentKanbanBoard(board)}
     >
       <Grid
         className={classes.image}
@@ -68,6 +68,6 @@ const BoardsListItem = ({ classes, board, setCurrentBoard }) => {
   );
 };
 
-export default connect(null, { setCurrentBoard })(
+export default connect(null, { setCurrentKanbanBoard })(
   withStyles(styles)(BoardsListItem)
 );

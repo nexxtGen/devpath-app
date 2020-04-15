@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import BoardsList from './BoardsList';
 
@@ -26,7 +26,18 @@ const styles = createStyles({
   }
 });
 
-const BoardsListContainer = ({ classes, boards, loading }) => {
+const BoardsListContainer = ({
+  classes,
+  boards,
+  loading,
+  setCurrentKanbanBoard
+}) => {
+  useEffect(() => {
+    if (!loading && boards && boards.length > 0) {
+      setCurrentKanbanBoard(boards[0]);
+    }
+  }, [boards]);
+
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.header}>
@@ -35,7 +46,11 @@ const BoardsListContainer = ({ classes, boards, loading }) => {
         </Typography>
       </Grid>
       <Grid className={classes.listContainer}>
-        <BoardsList boards={boards} loading={loading} />
+        <BoardsList
+          boards={boards}
+          loading={loading}
+          setCurrentKanbanBoard={setCurrentKanbanBoard}
+        />
       </Grid>
     </Grid>
   );

@@ -6,7 +6,8 @@ import Alert from '../layout/Alert';
 import {
   getAllUserKanbanBoards,
   getAllUserKanbanLanes,
-  getAllUserKanbanNotes
+  getAllUserKanbanNotes,
+  setCurrentKanbanBoard
 } from '../../actions/kanban';
 import { connect } from 'react-redux';
 
@@ -22,12 +23,16 @@ const styles = createStyles({
 const UserKanbanContainer = ({
   classes,
   boards,
+  lanes,
+  notes,
+  currentBoard,
   boardsLoading,
   lanesLoading,
   notesLoading,
   getAllUserKanbanBoards,
   getAllUserKanbanLanes,
-  getAllUserKanbanNotes
+  getAllUserKanbanNotes,
+  setCurrentKanbanBoard
 }) => {
   useEffect(() => {
     getAllUserKanbanBoards();
@@ -38,8 +43,18 @@ const UserKanbanContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Alert />
-      <BoardsListContainer boards={boards} loading={boardsLoading} />
-      <Board lanesLoading={lanesLoading} notesLoading={notesLoading} />
+      <BoardsListContainer
+        boards={boards}
+        loading={boardsLoading}
+        setCurrentKanbanBoard={setCurrentKanbanBoard}
+      />
+      <Board
+        lanesLoading={lanesLoading}
+        notesLoading={notesLoading}
+        currentBoard={currentBoard}
+        lanes={lanes}
+        notes={notes}
+      />
     </Grid>
   );
 };
@@ -57,5 +72,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getAllUserKanbanBoards,
   getAllUserKanbanLanes,
-  getAllUserKanbanNotes
+  getAllUserKanbanNotes,
+  setCurrentKanbanBoard
 })(withStyles(styles)(UserKanbanContainer));

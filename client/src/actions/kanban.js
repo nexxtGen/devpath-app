@@ -5,10 +5,10 @@ import {
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
   KANBAN_ERROR,
-  SET_CURRENT_KANBAN_BOARD
+  SET_CURRENT_KANBAN_BOARD,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
-  SET_KANBAN_NOTES_LOADING,
+  SET_KANBAN_NOTES_LOADING
 } from './types';
 
 export const getAllUserKanbanBoards = () => async dispatch => {
@@ -62,7 +62,7 @@ export const getAllUserKanbanNotes = () => async dispatch => {
   }
 };
 
-export const setCurrentKanbanBoard = (board) => dispatch => {
+export const setCurrentKanbanBoard = board => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_BOARD,
     payload: board
