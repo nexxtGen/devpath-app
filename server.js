@@ -20,6 +20,7 @@ const learnItems = require('./routes/learnItems');
 const learnCategories = require('./routes/learnCategories');
 const boards = require('./routes/boards');
 const lanes = require('./routes/lanes');
+const notes = require('./routes/notes');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use('/api/v1/learn-items', learnItems);
 app.use('/api/v1/learn-categories', learnCategories);
 app.use('/api/v1/boards', boards);
 app.use('/api/v1/lanes', lanes);
+app.use('/api/v1/notes', notes);
 
 app.use(errorHandler);
 
