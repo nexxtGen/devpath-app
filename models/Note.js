@@ -17,6 +17,10 @@ const NoteSchema = new mongoose.Schema({
     required: true,
     enum: ['low', 'medium', 'important']
   },
+  image: {
+    type: String,
+    maxlength: [900, 'Image can not be more than 900 characters']
+  },
   LaneId: {
     type: String,
     required: true
