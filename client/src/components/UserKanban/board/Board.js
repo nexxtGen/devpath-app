@@ -44,8 +44,10 @@ const Board = ({
     }
 
     if (type === 'lane') {
-      const newLaneOrder = data.lanes;
-      const movedLane = data.lanes.find(lane => lane._id === draggableId);
+      const newLaneOrder = currentBoard.lanes;
+      const movedLane = currentBoard.lanes.find(
+        laneId => laneId === draggableId
+      );
       newLaneOrder.splice(source.index, 1);
       newLaneOrder.splice(destination.index, 0, movedLane); //
 
@@ -54,7 +56,7 @@ const Board = ({
         lanes: newLaneOrder
       };
 
-      setData(newData);
+      setData(newLaneOrder, currentBoard._id);
       return;
     }
 
@@ -73,19 +75,11 @@ const Board = ({
         notes: newNoteIds
       };
 
-      /*
-      const newData = {
-        ...data,
-        lanes: [
-          ...data.lanes.map(lane => (lane._id === newLane._id ? newLane : lane))
-        ]
-      };
-    */
       moveNoteInLane(newLane);
       return;
     }
 
-    // Moving from one Lane to another
+    // Moving Note from one Lane to another
     const startNoteIds = Array.from(start.notes);
     startNoteIds.splice(source.index, 1);
 
@@ -100,24 +94,6 @@ const Board = ({
     const newFinish = {
       ...finish,
       notes: finishNoteIds
-    };
-
-    const newData = {
-      ...data,
-      lanes: data.lanes.map(lane => {
-        if (lane._id === newStart._id) {
-          return {
-            ...lane,
-            notes: newStart.notes
-          };
-        } else if (lane._id === newFinish._id) {
-          return {
-            ...lane,
-            notes: newFinish.notes
-          };
-        }
-        return lane;
-      })
     };
 
     moveNoteBetweenLanes(newStart, newFinish);

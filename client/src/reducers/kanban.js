@@ -5,6 +5,7 @@ import {
   SET_CURRENT_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
+  MOVE_LANE_IN_BOARD,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING,
@@ -73,6 +74,16 @@ export default function(state = initialState, action) {
           }
           return lane;
         })
+      };
+    case MOVE_LANE_IN_BOARD:
+      return {
+        ...state,
+        currentBoard: { ...state.currentBoard, lanes: payload.laneOrders },
+        boards: state.boards.map(board =>
+          board._id === payload.boardId
+            ? (board.lanes = payload.laneOrders)
+            : board
+        )
       };
     case SET_KANBAN_BOARDS_LOADING:
       return {
