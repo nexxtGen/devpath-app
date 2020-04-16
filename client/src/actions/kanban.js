@@ -6,6 +6,8 @@ import {
   GET_ALL_USER_KANBAN_NOTES,
   KANBAN_ERROR,
   SET_CURRENT_KANBAN_BOARD,
+  MOVE_NOTE_IN_LANE,
+  MOVE_NOTE_BETWEEN_LANES,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING
@@ -66,6 +68,20 @@ export const setCurrentKanbanBoard = board => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_BOARD,
     payload: board
+  });
+};
+
+export const moveNoteInLane = lane => dispatch => {
+  dispatch({
+    type: MOVE_NOTE_IN_LANE,
+    payload: lane
+  });
+};
+
+export const moveNoteBetweenLanes = (startLane, finishLane) => dispatch => {
+  dispatch({
+    type: MOVE_NOTE_BETWEEN_LANES,
+    payload: { startLane, finishLane }
   });
 };
 

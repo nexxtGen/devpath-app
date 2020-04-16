@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import Lane from '../lane/Lane';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { moveNoteInLane, moveNoteBetweenLanes } from '../../../actions/kanban';
 import { connect } from 'react-redux';
 import initialData from '../initialData';
 
@@ -18,7 +19,14 @@ const styles = createStyles({
   }
 });
 
-const Board = ({ classes, currentBoard, lanes, notes }) => {
+const Board = ({
+  classes,
+  currentBoard,
+  lanes,
+  notes,
+  moveNoteInLane,
+  moveNoteBetweenLanes
+}) => {
   const [data, setData] = useState(initialData);
 
   const onDragEnd = result => {
@@ -50,10 +58,9 @@ const Board = ({ classes, currentBoard, lanes, notes }) => {
       return;
     }
 
-    const start = data.lanes.find(lane => lane._id === source.droppableId);
-    const finish = data.lanes.find(
-      lane => lane._id === destination.droppableId
-    );
+    // Move note in Lane
+    const start = lanes.find(lane => lane._id === source.droppableId);
+    const finish = lanes.find(lane => lane._id === destination.droppableId);
 
     if (start === finish) {
       const newNoteIds = Array.from(start.notes);
@@ -66,18 +73,19 @@ const Board = ({ classes, currentBoard, lanes, notes }) => {
         notes: newNoteIds
       };
 
+      /*
       const newData = {
         ...data,
         lanes: [
           ...data.lanes.map(lane => (lane._id === newLane._id ? newLane : lane))
         ]
       };
-
-      setData(newData);
+    */
+      moveNoteInLane(newLane);
       return;
     }
 
-    // Moving from one list to another
+    // Moving from one Lane to another
     const startNoteIds = Array.from(start.notes);
     startNoteIds.splice(source.index, 1);
 
@@ -112,7 +120,7 @@ const Board = ({ classes, currentBoard, lanes, notes }) => {
       })
     };
 
-    setData(newData);
+    moveNoteBetweenLanes(newStart, newFinish);
     return;
   };
 
@@ -154,6 +162,6 @@ const Board = ({ classes, currentBoard, lanes, notes }) => {
   );
 };
 
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps, {})(withStyles(styles)(Board));
+export default connect(null, { moveNoteInLane, moveNoteBetweenLanes })(
+  withStyles(styles)(Board)
+);

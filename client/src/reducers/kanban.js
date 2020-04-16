@@ -3,6 +3,8 @@ import {
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
   SET_CURRENT_KANBAN_BOARD,
+  MOVE_NOTE_IN_LANE,
+  MOVE_NOTE_BETWEEN_LANES,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING,
@@ -46,6 +48,31 @@ export default function(state = initialState, action) {
       return {
         ...state,
         currentBoard: payload
+      };
+    case MOVE_NOTE_IN_LANE:
+      return {
+        ...state,
+        lanes: state.lanes.map(lane =>
+          lane._id === payload._id ? payload : lane
+        )
+      };
+    case MOVE_NOTE_BETWEEN_LANES:
+      return {
+        ...state,
+        lanes: state.lanes.map(lane => {
+          if (lane._id === payload.startLane._id) {
+            return {
+              ...lane,
+              notes: payload.startLane.notes
+            };
+          } else if (lane._id === payload.finishLane._id) {
+            return {
+              ...lane,
+              notes: payload.finishLane.notes
+            };
+          }
+          return lane;
+        })
       };
     case SET_KANBAN_BOARDS_LOADING:
       return {
