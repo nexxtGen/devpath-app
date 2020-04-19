@@ -14,8 +14,14 @@ import { connect } from 'react-redux';
 const styles = createStyles({
   primaryContainer: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
+    flexWrap: 'wrap'
+  },
+  boardsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'left',
     flexWrap: 'wrap'
   }
 });
@@ -43,18 +49,20 @@ const UserKanbanContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Alert />
-      <BoardsListContainer
-        boards={boards}
-        loading={boardsLoading}
-        setCurrentKanbanBoard={setCurrentKanbanBoard}
-      />
-      <Board
-        lanesLoading={lanesLoading}
-        notesLoading={notesLoading}
-        currentBoard={currentBoard}
-        lanes={lanes}
-        notes={notes}
-      />
+      <Grid className={classes.boardsContainer}>
+        <BoardsListContainer
+          boards={boards}
+          loading={boardsLoading}
+          setCurrentKanbanBoard={setCurrentKanbanBoard}
+        />
+        <Board
+          lanesLoading={lanesLoading}
+          notesLoading={notesLoading}
+          currentBoard={currentBoard}
+          lanes={lanes}
+          notes={notes}
+        />
+      </Grid>
     </Grid>
   );
 };
