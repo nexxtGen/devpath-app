@@ -103,7 +103,10 @@ export default function(state = initialState, action) {
     case KANBAN_ERROR:
       return {
         ...state,
-        error: payload
+        error: payload,
+        boardsLoading: null,
+        lanesLoading: null,
+        notesLoading: null
       };
     default:
       return state;

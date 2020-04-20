@@ -73,7 +73,7 @@ exports.updateKanbanCollection = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: board });
+  res.status(200).json({ success: true, data: collection });
 });
 
 // @desc Delete Kanban Collection

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { withStyles, createStyles, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import Lane from '../lane/Lane';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { moveNoteInLane, moveNoteBetweenLanes } from '../../../actions/kanban';
@@ -9,8 +9,8 @@ import initialData from '../initialData';
 const styles = createStyles({
   primaryContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
     flexWrap: 'wrap'
   },
   lanes: {
@@ -102,6 +102,11 @@ const Board = ({
 
   return (
     <Grid className={classes.primaryContainer}>
+      <Grid>
+        <Typography variant='h5' color='textSecondary'>
+          Kanban board
+        </Typography>
+      </Grid>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='all-columns' direction='horizontal' type='lane'>
           {provided => (
@@ -111,9 +116,9 @@ const Board = ({
               className={classes.lanes}
             >
               {currentBoard &&
-                lanes &&
-                notes &&
-                currentBoard.lanes.length > 0 &&
+              lanes &&
+              notes &&
+              currentBoard.lanes.length > 0 ? (
                 currentBoard.lanes.map((laneId, index) => {
                   let lane = lanes.find(lane => lane._id === laneId);
                   let laneNotes = lane.notes.map(noteId =>
@@ -128,7 +133,12 @@ const Board = ({
                       index={index}
                     />
                   );
-                })}
+                })
+              ) : (
+                <Typography variant='subtitle2' color='textSecondary'>
+                  List is empty
+                </Typography>
+              )}
               {provided.placeholder}
             </Grid>
           )}

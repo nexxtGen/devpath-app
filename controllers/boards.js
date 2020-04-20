@@ -1,6 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-const Collection = require('../models/Board');
+const Board = require('../models/Board');
 const KanbanCollection = require('../models/KanbanCollection');
 const Lane = require('../models/Lane');
 const Note = require('../models/Note');
@@ -39,6 +39,14 @@ exports.createBoard = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
 
   const board = await Board.create(req.body);
+
+  const collection = await KanbanCollection.findById(req.body.collectionId);
+  collection.boards.push(board._id.toString());
+
+  await KanbanCollection.findByIdAndUpdate(req.body.collectionId, collection, {
+    new: true,
+    runValidators: true
+  });
 
   res.status(201).json({
     success: true,
