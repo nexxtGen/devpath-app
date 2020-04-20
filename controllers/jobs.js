@@ -97,7 +97,7 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
   }
 
   let company = await Company.findOne({ _id: job.companyId.toString() });
-  console.log('JOOB', job);
+
   const filtered = company.jobs.filter(
     item => item.toString() !== req.params.id
   );

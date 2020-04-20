@@ -23,6 +23,10 @@ const LaneSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  collectionId: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now

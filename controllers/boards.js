@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-const Board = require('../models/Board');
+const Collection = require('../models/Board');
+const KanbanCollection = require('../models/KanbanCollection');
 const Lane = require('../models/Lane');
 const Note = require('../models/Note');
 
@@ -74,6 +75,20 @@ exports.deleteBoard = asyncHandler(async (req, res, next) => {
       new ErrorResponse(`Board not found with id of ${req.params.id}`, 404)
     );
   }
+
+  const collection = await KanbanCollection.findById(board.collectionId);
+
+  let filtered = collection.boards.filter(
+    boardId => boardId.toString() !== board.collectionId
+  );
+
+  collection.boards = filtered;
+
+  await KanbanCollection.findOneAndUpdate(
+    { _id: board.collectionId.toString() },
+    { $set: collection },
+    { new: true }
+  );
 
   await Lane.remove({ boardId: board._id });
   await Note.remove({ boardId: board._id });

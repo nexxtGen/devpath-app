@@ -28,7 +28,7 @@ const BoardSchema = new mongoose.Schema({
       required: true
     }
   ],
-  kanbanCollectionId: {
+  collectionId: {
     type: String,
     required: true
   },
