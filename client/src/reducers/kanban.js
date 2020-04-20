@@ -1,23 +1,28 @@
 import {
+  GET_ALL_USER_KANBAN_COLLECTIONS,
   GET_ALL_USER_KANBAN_BOARDS,
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
+  SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
+  SET_KANBAN_COLLECTIONS_LOADING,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING,
   KANBAN_ERROR
 } from '../actions/types';
-import { cyan } from '@material-ui/core/colors';
 
 const initialState = {
+  collections: null,
   boards: null,
   lanes: null,
   notes: null,
+  currentCollection: null,
   currentBoard: null,
+  collectionsLoading: null,
   boardsLoading: null,
   lanesLoading: null,
   notesLoading: null,
@@ -27,6 +32,12 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case GET_ALL_USER_KANBAN_COLLECTIONS:
+      return {
+        ...state,
+        collections: payload,
+        collectionsLoading: false
+      };
     case GET_ALL_USER_KANBAN_BOARDS:
       return {
         ...state,
@@ -44,6 +55,11 @@ export default function(state = initialState, action) {
         ...state,
         notes: payload,
         notesLoading: false
+      };
+    case SET_CURRENT_KANBAN_COLLECTION:
+      return {
+        ...state,
+        currentCollection: payload
       };
     case SET_CURRENT_KANBAN_BOARD:
       return {
@@ -84,6 +100,11 @@ export default function(state = initialState, action) {
             ? (board.lanes = payload.laneOrders)
             : board
         )
+      };
+    case SET_KANBAN_COLLECTIONS_LOADING:
+      return {
+        ...state,
+        collectionsLoading: true
       };
     case SET_KANBAN_BOARDS_LOADING:
       return {

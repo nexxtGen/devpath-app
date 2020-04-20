@@ -1,12 +1,13 @@
 import React from 'react';
 import SliderItem from './SliderItem';
 import Slider from 'react-slick';
-import { createStyles, withStyles, Grid } from '@material-ui/core';
+import { createStyles, withStyles, Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({
   container: {
-    width: '100%'
+    width: '100%',
+    margin: '15px 0'
   }
 });
 
@@ -14,15 +15,19 @@ const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
   return (
     <Grid className={classes.container}>
       <Slider {...settings}>
-        {collections.map((item, index) => (
-          <SliderItem
-            key={index}
-            name={item.name}
-            image={item.image}
-            id={item._id}
-            setCollection={setCollection}
-          />
-        ))}
+        {collections && collections.length > 0 ? (
+          collections.map((item, index) => (
+            <SliderItem
+              key={index}
+              name={item.name}
+              image={item.image}
+              id={item._id}
+              setCollection={setCollection}
+            />
+          ))
+        ) : (
+          <Typography>List is Empty</Typography>
+        )}
       </Slider>
     </Grid>
   );
@@ -39,7 +44,7 @@ const settings = {
     {
       breakpoint: 1100,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 2,
         infinite: true,
         dots: true
@@ -48,9 +53,11 @@ const settings = {
     {
       breakpoint: 700,
       settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        initialSlide: 2
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        //initialSlide: 2
+        infinite: true,
+        dots: true
       }
     }
   ]

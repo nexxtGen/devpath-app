@@ -11,11 +11,13 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    width: '80%'
   },
   lanes: {
     display: 'flex',
-    direction: 'row'
+    direction: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   }
 });
 
@@ -50,11 +52,6 @@ const Board = ({
       );
       newLaneOrder.splice(source.index, 1);
       newLaneOrder.splice(destination.index, 0, movedLane); //
-
-      const newData = {
-        ...data,
-        lanes: newLaneOrder
-      };
 
       setData(newLaneOrder, currentBoard._id);
       return;

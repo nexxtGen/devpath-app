@@ -1,18 +1,39 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 import {
+  GET_ALL_USER_KANBAN_COLLECTIONS,
   GET_ALL_USER_KANBAN_BOARDS,
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
   KANBAN_ERROR,
+  SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
+  SET_KANBAN_COLLECTIONS_LOADING,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING
 } from './types';
+
+export const getAllUserKanbanCollections = () => async dispatch => {
+  try {
+    dispatch(setKanbanCollectionsLoading());
+
+    const res = await axios.get('/api/v1/kanban-collections');
+
+    dispatch({
+      type: GET_ALL_USER_KANBAN_COLLECTIONS,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
 
 export const getAllUserKanbanBoards = () => async dispatch => {
   try {
@@ -65,6 +86,13 @@ export const getAllUserKanbanNotes = () => async dispatch => {
   }
 };
 
+export const setCurrentKanbanCollection = collection => dispatch => {
+  dispatch({
+    type: SET_CURRENT_KANBAN_COLLECTION,
+    payload: collection
+  });
+};
+
 export const setCurrentKanbanBoard = board => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_BOARD,
@@ -94,6 +122,12 @@ export const moveLaneInBoard = (boardId, laneOrders) => dispatch => {
 };
 
 // LOADING
+export const setKanbanCollectionsLoading = () => {
+  return {
+    type: SET_KANBAN_COLLECTIONS_LOADING
+  };
+};
+
 export const setKanbanBoardsLoading = () => {
   return {
     type: SET_KANBAN_BOARDS_LOADING

@@ -13,7 +13,7 @@ const styles = createStyles({
     alignItems: 'center',
     flexWrap: 'wrap',
     padding: 10,
-    margin: '0 10px'
+    margin: '0 10px 15px 10px'
   },
   notesContainer: {
     width: '100%',

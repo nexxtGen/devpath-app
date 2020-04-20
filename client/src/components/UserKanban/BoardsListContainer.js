@@ -4,7 +4,9 @@ import BoardsList from './BoardsList';
 
 const styles = createStyles({
   primaryContainer: {
-    marginRight: '50px'
+    //marginRight: '50px',
+    width: '20%',
+    minWidth: '250px'
   },
   header: {
     display: 'flex',
@@ -12,7 +14,7 @@ const styles = createStyles({
     background:
       'linear-gradient(-135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)',
     padding: 8,
-    width: '300px',
+    width: '100%',
     height: '47px',
     boxShadow: '0 3px 5px gray',
     marginBottom: 5

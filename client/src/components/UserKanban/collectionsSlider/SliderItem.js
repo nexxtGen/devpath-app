@@ -1,12 +1,12 @@
 import React from 'react';
 import { withStyles, Grid } from '@material-ui/core';
 import BasicButton from '../../../shared/BasicButton';
-import styles from './sliderItemStyles';
+import styles from './sliderStyles';
 import PropTypes from 'prop-types';
 
 const SliderItem = ({ classes, image, name, id, setCategory }) => {
   return (
-    <Grid>
+    <Grid className={classes.rombContainer}>
       <Grid
         className={classes.romb}
         style={{ backgroundImage: `url('${image}')` }}

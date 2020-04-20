@@ -1,6 +1,9 @@
 import { createStyles } from '@material-ui/core';
 
 const styles = createStyles({
+  rombContainer: {
+    marginLeft: 20
+  },
   romb: {
     background: 'rgb(233, 233, 233)',
     width: '250px',
@@ -26,16 +29,16 @@ const styles = createStyles({
   triangle1: {
     position: 'absolute',
     background: 'rgba(255, 255, 255, 0.2)',
-    width: '400px',
-    height: '150px',
+    width: '250px',
+    height: '60px',
     clipPath: 'polygon(20% 0%, 0% 100%, 40% 100%)',
     transition: 'background 0.2s linear'
   },
   triangle2: {
     position: 'absolute',
     background: 'rgba(48, 48, 48, 0.4)',
-    width: '400px',
-    height: '150px',
+    width: '250px',
+    height: '60px',
     clipPath: 'polygon(40% 100%, 20% 0, 60% 0)',
     transition: 'background 0.2s linear',
     transitionDelay: '0.1s'
@@ -43,8 +46,8 @@ const styles = createStyles({
   triangle3: {
     position: 'absolute',
     background: 'rgba(100, 100, 100, 0.3)',
-    width: '400px',
-    height: '150px',
+    width: '250px',
+    height: '60px',
     clipPath: 'polygon(40% 100%, 80% 100%, 60% 0)',
     transition: 'background 0.2s linear',
     transitionDelay: '0.2s'
@@ -52,8 +55,8 @@ const styles = createStyles({
   triangle4: {
     position: 'absolute',
     background: 'rgba(150, 150, 150, 0.3)',
-    width: '400px',
-    height: '150px',
+    width: '250px',
+    height: '60px',
     clipPath: 'polygon(80% 100%, 60% 0%, 100% 0)',
     transition: 'background 0.2s linear',
     transitionDelay: '0.1s'
