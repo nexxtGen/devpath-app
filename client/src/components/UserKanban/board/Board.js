@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import Lane from '../lane/Lane';
+import BoardInformation from './BoardInformation';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {
   moveNoteInLane,
@@ -14,7 +15,8 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '80%'
+    width: '80%',
+    margin: '10px 20px'
   },
   lanes: {
     display: 'flex',
@@ -101,9 +103,10 @@ const Board = ({
 
   return (
     <Grid className={classes.primaryContainer}>
+      <BoardInformation currentBoard={currentBoard} />
       <Grid>
         <Typography variant='h5' color='textSecondary'>
-          Kanban board
+          Board: {currentBoard ? currentBoard.name : ''}
         </Typography>
       </Grid>
       <DragDropContext onDragEnd={onDragEnd}>

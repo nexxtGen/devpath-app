@@ -1,27 +1,27 @@
 import React, { useEffect } from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import BoardsList from './BoardsList';
+import { primary } from '../../shared/colors';
 
 const styles = createStyles({
   primaryContainer: {
-    //marginRight: '50px',
     width: '20%',
-    minWidth: '250px'
+    minWidth: '250px',
+    margin: '10px 20px'
   },
   header: {
     display: 'flex',
     alignItems: 'center',
-    background:
-      'linear-gradient(-135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)',
+    borderBottom: `1px solid ${primary}`,
     padding: 8,
     width: '100%',
     height: '47px',
-    boxShadow: '0 3px 5px gray',
+    //boxShadow: '0 3px 5px gray',
     marginBottom: 5
   },
   typo: {
-    color: 'white',
-    textTransform: 'uppercase'
+    color: 'gray'
+    //textTransform: 'uppercase'
   },
   listContainer: {
     overflow: 'auto'
@@ -43,7 +43,7 @@ const BoardsListContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.header}>
-        <Typography variant='subtitle2' className={classes.typo}>
+        <Typography variant='h6' color='textSecondary' className={classes.typo}>
           Boards
         </Typography>
       </Grid>
