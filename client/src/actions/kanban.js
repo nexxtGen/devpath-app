@@ -100,25 +100,86 @@ export const setCurrentKanbanBoard = board => dispatch => {
   });
 };
 
-export const moveNoteInLane = lane => dispatch => {
-  dispatch({
-    type: MOVE_NOTE_IN_LANE,
-    payload: lane
-  });
+export const moveNoteInLane = lane => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    dispatch({
+      type: MOVE_NOTE_IN_LANE,
+      payload: lane
+    });
+
+    await axios.put(
+      `/api/v1/notes/move-note-in-lane/${lane._id}`,
+      lane,
+      config
+    );
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
 };
 
-export const moveNoteBetweenLanes = (startLane, finishLane) => dispatch => {
-  dispatch({
-    type: MOVE_NOTE_BETWEEN_LANES,
-    payload: { startLane, finishLane }
-  });
+export const moveNoteBetweenLanes = (
+  startLane,
+  finishLane
+) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const data = { startLane, finishLane };
+  try {
+    dispatch({
+      type: MOVE_NOTE_BETWEEN_LANES,
+      payload: { startLane, finishLane }
+    });
+
+    await axios.put(
+      `/api/v1/notes/move-note-between-lanes/${startLane._id}`,
+      data,
+      config
+    );
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
 };
 
-export const moveLaneInBoard = (boardId, laneOrders) => dispatch => {
-  dispatch({
-    type: MOVE_LANE_IN_BOARD,
-    payload: { boardId, laneOrders }
-  });
+export const moveLaneInBoard = (boardId, laneOrders) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    dispatch({
+      type: MOVE_LANE_IN_BOARD,
+      payload: { boardId, laneOrders }
+    });
+
+    const res = await axios.put(
+      `/api/v1/lanes/move-lane-in-board/${boardId}`,
+      laneOrders,
+      config
+    );
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
 };
 
 // LOADING

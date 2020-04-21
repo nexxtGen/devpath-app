@@ -98,13 +98,60 @@ exports.deleteNote = asyncHandler(async (req, res, next) => {
     user: req.user.id
   });
 
-  const filtered = lane.notes.filter(note => note.toString() !== note._id);
+  const filtered = lane.notes.filter(noteId => noteId.toString() !== note._id);
   lane.notes = filtered;
 
   await Lane.findOneAndUpdate(
     { _id: req.body.laneId },
     { $set: lane },
     { new: true }
+  );
+
+  res.status(200).json({ success: true, data: {} });
+});
+
+// MOVE NOTES
+
+// @desc Move note in Lane
+// @route PUT /api/v1/notes/move-note-in-lane
+// @access Private
+exports.moveNoteInLane = asyncHandler(async (req, res, next) => {
+  console.log('body:', req.body);
+
+  const lane = await Lane.findByIdAndUpdate(req.body._id.toString(), req.body, {
+    new: true,
+    runValidators: true
+  });
+
+  if (!lane) {
+    return next(
+      new ErrorResponse(`Lane not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({ success: true, data: lane });
+});
+
+// @desc Move between lanes
+// @route PUT /api/v1/notes/move-note-between-lanes
+// @access Private
+exports.moveNoteBetweenLanes = asyncHandler(async (req, res, next) => {
+  await Lane.findByIdAndUpdate(
+    req.body.startLane._id.toString(),
+    req.body.startLane,
+    {
+      new: true,
+      runValidators: true
+    }
+  );
+
+  await Lane.findByIdAndUpdate(
+    req.body.finishLane._id.toString(),
+    req.body.finishLane,
+    {
+      new: true,
+      runValidators: true
+    }
   );
 
   res.status(200).json({ success: true, data: {} });

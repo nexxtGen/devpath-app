@@ -94,12 +94,12 @@ export default function(state = initialState, action) {
     case MOVE_LANE_IN_BOARD:
       return {
         ...state,
-        currentBoard: { ...state.currentBoard, lanes: payload.laneOrders },
         boards: state.boards.map(board =>
           board._id === payload.boardId
-            ? (board.lanes = payload.laneOrders)
+            ? { ...board, lanes: payload.laneOrders }
             : board
-        )
+        ),
+        currentBoard: { ...state.currentBoard, lanes: payload.laneOrders }
       };
     case SET_KANBAN_COLLECTIONS_LOADING:
       return {

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import Lane from '../lane/Lane';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { moveNoteInLane, moveNoteBetweenLanes } from '../../../actions/kanban';
+import {
+  moveNoteInLane,
+  moveNoteBetweenLanes,
+  moveLaneInBoard
+} from '../../../actions/kanban';
 import { connect } from 'react-redux';
-import initialData from '../initialData';
 
 const styles = createStyles({
   primaryContainer: {
@@ -27,10 +30,9 @@ const Board = ({
   lanes,
   notes,
   moveNoteInLane,
-  moveNoteBetweenLanes
+  moveNoteBetweenLanes,
+  moveLaneInBoard
 }) => {
-  const [data, setData] = useState(initialData);
-
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
 
@@ -53,7 +55,7 @@ const Board = ({
       newLaneOrder.splice(source.index, 1);
       newLaneOrder.splice(destination.index, 0, movedLane); //
 
-      setData(newLaneOrder, currentBoard._id);
+      moveLaneInBoard(currentBoard._id, newLaneOrder);
       return;
     }
 
@@ -145,6 +147,8 @@ const Board = ({
   );
 };
 
-export default connect(null, { moveNoteInLane, moveNoteBetweenLanes })(
-  withStyles(styles)(Board)
-);
+export default connect(null, {
+  moveNoteInLane,
+  moveNoteBetweenLanes,
+  moveLaneInBoard
+})(withStyles(styles)(Board));

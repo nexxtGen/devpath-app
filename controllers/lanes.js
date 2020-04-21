@@ -98,3 +98,18 @@ exports.deleteLane = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: {} });
 });
+
+// @desc Move Lane in board
+// @route PUT /api/v1/lanes/move-lane-in-board/:id
+// @access Private
+exports.moveLaneInBoard = asyncHandler(async (req, res, next) => {
+  const board = await Board.findById(req.params.id);
+  board.lanes = req.body;
+
+  await Board.findByIdAndUpdate(req.params.id, board, {
+    new: true,
+    runValidators: true
+  });
+
+  res.status(200).json({ success: true, data: board });
+});

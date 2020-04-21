@@ -4,7 +4,8 @@ const {
   getLane,
   createLane,
   updateLane,
-  deleteLane
+  deleteLane,
+  moveLaneInBoard
 } = require('../controllers/lanes');
 
 const router = express.Router();
@@ -21,5 +22,9 @@ router
   .get(protect, authorize('user', 'admin'), getLane)
   .put(protect, authorize('user', 'admin'), updateLane)
   .delete(protect, authorize('user', 'admin'), deleteLane);
+
+router
+  .route('/move-lane-in-board/:id')
+  .put(protect, authorize('user', 'admin'), moveLaneInBoard);
 
 module.exports = router;

@@ -4,7 +4,9 @@ const {
   getNote,
   createNote,
   updateNote,
-  deleteNote
+  deleteNote,
+  moveNoteInLane,
+  moveNoteBetweenLanes
 } = require('../controllers/notes');
 
 const router = express.Router();
@@ -21,5 +23,13 @@ router
   .get(protect, authorize('user', 'admin'), getNote)
   .put(protect, authorize('user', 'admin'), updateNote)
   .delete(protect, authorize('user', 'admin'), deleteNote);
+
+router
+  .route('/move-note-in-lane/:id')
+  .put(protect, authorize('user', 'admin'), moveNoteInLane);
+
+router
+  .route('/move-note-between-lanes/:id')
+  .put(protect, authorize('user', 'admin'), moveNoteBetweenLanes);
 
 module.exports = router;
