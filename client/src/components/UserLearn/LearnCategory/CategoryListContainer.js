@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CategoryList from './CategoryList';
-import { primaryLight } from '../../../shared/colors';
 
 const styles = createStyles({
   primaryContainer: {
@@ -27,7 +26,13 @@ const styles = createStyles({
   }
 });
 
-const CategoryListContainer = ({ classes, categories, loading }) => {
+const CategoryListContainer = ({
+  classes,
+  categories,
+  loading,
+  setCurrentLearnCategory
+}) => {  
+
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.header}>
@@ -36,7 +41,7 @@ const CategoryListContainer = ({ classes, categories, loading }) => {
         </Typography>
       </Grid>
       <Grid className={classes.listContainer}>
-        <CategoryList categories={categories} loading={loading} />
+        <CategoryList categories={categories} loading={loading} setCurrentLearnCategory={setCurrentLearnCategory}/>
       </Grid>
     </Grid>
   );

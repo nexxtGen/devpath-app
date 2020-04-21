@@ -10,7 +10,8 @@ import Alert from '../../components/layout/Alert';
 import { connect } from 'react-redux';
 import {
   getAllUserLearnCategories,
-  getAllUserLearnItems
+  getAllUserLearnItems,
+  setCurrentLearnCategory
 } from '../../actions/learn';
 
 const styles = createStyles({
@@ -27,7 +28,8 @@ const UserLearnContainer = ({
   categories,
   currentCategory,
   categoryLoading,
-  getAllUserLearnCategories
+  getAllUserLearnCategories,
+  setCurrentLearnCategory
 }) => {
   const [isOpenItemFormModal, setIsOpenItemFormModal] = useState({
     open: false,
@@ -52,6 +54,7 @@ const UserLearnContainer = ({
       <CategoryListContainer
         categories={categories}
         loading={categoryLoading}
+        setCurrentLearnCategory={setCurrentLearnCategory}
       />
       <LearnListContainer
         currentCategory={currentCategory}
@@ -87,5 +90,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getAllUserLearnCategories,
-  getAllUserLearnItems
+  getAllUserLearnItems,
+  setCurrentLearnCategory
 })(withStyles(styles)(UserLearnContainer));

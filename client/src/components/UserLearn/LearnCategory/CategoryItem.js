@@ -1,8 +1,6 @@
 import React from 'react';
 import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { primaryLight, primaryDark } from '../../../shared/colors';
-import { connect } from 'react-redux';
-import { setCurrentLearnCategory } from '../../../actions/learn';
 
 const styles = createStyles({
   primaryContainer: {
@@ -68,6 +66,4 @@ const CategoryItem = ({ classes, category, setCurrentLearnCategory }) => {
   );
 };
 
-export default connect(null, { setCurrentLearnCategory })(
-  withStyles(styles)(CategoryItem)
-);
+export default withStyles(styles)(CategoryItem);
