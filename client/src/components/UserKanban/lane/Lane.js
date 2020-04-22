@@ -6,8 +6,8 @@ import Note from '../note/Note';
 const styles = createStyles({
   lane: {
     border: '1px solid black',
-    width: 300,
-    height: 500,
+    width: 325,
+    minHeight: 500,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

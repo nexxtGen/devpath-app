@@ -22,7 +22,8 @@ const styles = createStyles({
     display: 'flex',
     direction: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 20
   }
 });
 
@@ -103,12 +104,7 @@ const Board = ({
 
   return (
     <Grid className={classes.primaryContainer}>
-      <BoardInformation currentBoard={currentBoard} />
-      <Grid>
-        <Typography variant='h5' color='textSecondary'>
-          Board: {currentBoard ? currentBoard.name : ''}
-        </Typography>
-      </Grid>
+      <BoardInformation currentBoard={currentBoard} notes={notes} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='all-columns' direction='horizontal' type='lane'>
           {provided => (

@@ -43,7 +43,11 @@ const BoardsListContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.header}>
-        <Typography variant='h6' color='textSecondary' className={classes.typo}>
+        <Typography
+          variant='body1'
+          color='textSecondary'
+          className={classes.typo}
+        >
           Boards
         </Typography>
       </Grid>
