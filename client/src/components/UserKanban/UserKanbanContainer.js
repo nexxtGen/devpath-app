@@ -3,6 +3,7 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import KanbanSliderContainer from './collectionsSlider/KanbanSliderContainer';
 import Board from './board/Board';
 import BoardsListContainer from './BoardsListContainer';
+import CollectionFormModalContainer from '../UserKanbanForms/CollectionFormModalContainer';
 import Alert from '../layout/Alert';
 import {
   getAllUserKanbanCollections,
@@ -47,6 +48,11 @@ const UserKanbanContainer = ({
   setCurrentKanbanCollection,
   setCurrentKanbanBoard
 }) => {
+  const [isOpenCollectionModal, setIsOpenCollectionModal] = useState({
+    open: false,
+    mode: ''
+  });
+
   useEffect(() => {
     getAllUserKanbanCollections();
     getAllUserKanbanBoards();
@@ -57,9 +63,14 @@ const UserKanbanContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Alert />
+      <CollectionFormModalContainer
+        open={isOpenCollectionModal}
+        setIsOpen={setIsOpenCollectionModal}
+      />
       <KanbanSliderContainer
         collections={collections}
         setCollection={setCurrentKanbanCollection}
+        setIsOpenCollectionModal={setIsOpenCollectionModal}
       />
       <Grid className={classes.boardsContainer}>
         <BoardsListContainer

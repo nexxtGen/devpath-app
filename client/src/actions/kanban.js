@@ -86,6 +86,10 @@ export const getAllUserKanbanNotes = () => async dispatch => {
   }
 };
 
+export const createNewUserKanbanCollection = categoryData => async dispatch => {};
+
+export const updateUserKanbanCollection = categoryData => async dispatch => {};
+
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_COLLECTION,

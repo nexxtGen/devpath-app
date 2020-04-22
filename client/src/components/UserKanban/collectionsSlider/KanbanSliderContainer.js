@@ -12,7 +12,12 @@ const styles = createStyles({
   }
 });
 
-const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
+const KanbanSliderContainer = ({
+  classes,
+  collections,
+  setCollection,
+  setIsOpenCollectionModal
+}) => {
   useEffect(() => {
     if (collections && collections.length > 0) {
       setCollection(collections[0]);
@@ -20,7 +25,10 @@ const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
   }, [collections]);
   return (
     <Grid className={classes.container}>
-      <CollectionInformation collections={collections} />
+      <CollectionInformation
+        collections={collections}
+        setIsOpenCollectionModal={setIsOpenCollectionModal}
+      />
       <Slider {...settings}>
         {collections && collections.length > 0 ? (
           collections.map((item, index) => (

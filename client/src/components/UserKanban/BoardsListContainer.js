@@ -16,12 +16,10 @@ const styles = createStyles({
     padding: 8,
     width: '100%',
     height: '47px',
-    //boxShadow: '0 3px 5px gray',
     marginBottom: 5
   },
   typo: {
     color: 'gray'
-    //textTransform: 'uppercase'
   },
   listContainer: {
     overflow: 'auto'
