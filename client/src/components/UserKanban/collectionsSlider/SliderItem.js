@@ -4,7 +4,8 @@ import BasicButton from '../../../shared/BasicButton';
 import styles from './sliderStyles';
 import PropTypes from 'prop-types';
 
-const SliderItem = ({ classes, image, name, id, setCategory }) => {
+const SliderItem = ({ classes, collection, setCollection }) => {
+  const { image, name } = collection;
   return (
     <Grid className={classes.rombContainer}>
       <Grid
@@ -21,7 +22,7 @@ const SliderItem = ({ classes, image, name, id, setCategory }) => {
           transform: 'translate(-50px, -6px)',
           fontSize: '12px'
         }}
-        onClick={() => setCategory(id)}
+        onClick={() => setCollection(collection)}
       >
         {name}
       </BasicButton>

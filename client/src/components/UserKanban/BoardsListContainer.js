@@ -31,14 +31,18 @@ const styles = createStyles({
 const BoardsListContainer = ({
   classes,
   boards,
+  currentCollection,
   loading,
   setCurrentKanbanBoard
 }) => {
   useEffect(() => {
-    if (!loading && boards && boards.length > 0) {
-      setCurrentKanbanBoard(boards[0]);
+    if (currentCollection && !loading && boards && boards.length > 0) {
+      const collectionBoards = boards.filter(
+        item => item.collectionId === currentCollection._id
+      );
+      setCurrentKanbanBoard(collectionBoards[0]);
     }
-  }, [boards]);
+  }, [currentCollection, boards]);
 
   return (
     <Grid className={classes.primaryContainer}>
@@ -53,6 +57,7 @@ const BoardsListContainer = ({
       </Grid>
       <Grid className={classes.listContainer}>
         <BoardsList
+          currentCollection={currentCollection}
           boards={boards}
           loading={loading}
           setCurrentKanbanBoard={setCurrentKanbanBoard}

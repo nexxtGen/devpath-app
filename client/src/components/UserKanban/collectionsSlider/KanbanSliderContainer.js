@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SliderItem from './SliderItem';
 import Slider from 'react-slick';
 import { createStyles, withStyles, Grid, Typography } from '@material-ui/core';
@@ -13,6 +13,11 @@ const styles = createStyles({
 });
 
 const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
+  useEffect(() => {
+    if (collections && collections.length > 0) {
+      setCollection(collections[0]);
+    }
+  }, [collections]);
   return (
     <Grid className={classes.container}>
       <CollectionInformation collections={collections} />
@@ -21,9 +26,7 @@ const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
           collections.map((item, index) => (
             <SliderItem
               key={index}
-              name={item.name}
-              image={item.image}
-              id={item._id}
+              collection={item}
               setCollection={setCollection}
             />
           ))

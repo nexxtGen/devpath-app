@@ -57,9 +57,13 @@ const UserKanbanContainer = ({
   return (
     <Grid className={classes.primaryContainer}>
       <Alert />
-      <KanbanSliderContainer collections={collections} />
+      <KanbanSliderContainer
+        collections={collections}
+        setCollection={setCurrentKanbanCollection}
+      />
       <Grid className={classes.boardsContainer}>
         <BoardsListContainer
+          currentCollection={currentCollection}
           boards={boards}
           loading={boardsLoading}
           setCurrentKanbanBoard={setCurrentKanbanBoard}

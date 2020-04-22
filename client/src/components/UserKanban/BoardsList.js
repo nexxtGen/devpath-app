@@ -6,7 +6,7 @@ import PreloaderRelative from '../../shared/PreloaderRelative';
 
 const styles = createStyles({});
 
-const BoardsList = ({ classes, boards, loading }) => {
+const BoardsList = ({ classes, boards, loading, currentCollection }) => {
   if ((!boards && !loading) || (boards && boards.length === 0 && !loading)) {
     return (
       <Grid className={classes.primaryContainer}>
@@ -17,13 +17,20 @@ const BoardsList = ({ classes, boards, loading }) => {
 
   return (
     <Grid className={classes.primaryContainer}>
-      {boards && boards.length > 0 ? (
+      {currentCollection && boards && boards.length > 0 ? (
         <TransitionGroup className={classes.listContainer}>
-          {boards.map(board => (
-            <CSSTransition timeout={400} classNames='item' key={board._id}>
-              <BoardsListItem board={board} />
-            </CSSTransition>
-          ))}
+          {currentCollection.boards.map(boardId => {
+            const boardItem = boards.find(board => board._id === boardId);
+            return (
+              <CSSTransition
+                timeout={400}
+                classNames='item'
+                key={boardItem._id}
+              >
+                <BoardsListItem board={boardItem} />
+              </CSSTransition>
+            );
+          })}
         </TransitionGroup>
       ) : (
         <PreloaderRelative />
