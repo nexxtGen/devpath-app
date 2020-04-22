@@ -2,6 +2,7 @@ import React from 'react';
 import SliderItem from './SliderItem';
 import Slider from 'react-slick';
 import { createStyles, withStyles, Grid, Typography } from '@material-ui/core';
+import CollectionInformation from './CollectionInformation';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({
@@ -14,6 +15,7 @@ const styles = createStyles({
 const KanbanSliderContainer = ({ classes, collections, setCollection }) => {
   return (
     <Grid className={classes.container}>
+      <CollectionInformation collections={collections} />
       <Slider {...settings}>
         {collections && collections.length > 0 ? (
           collections.map((item, index) => (

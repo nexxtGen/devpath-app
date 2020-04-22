@@ -13,7 +13,9 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
+    padding: '0 20px',
+    marginBottom: 10
   },
   header: {
     display: 'flex',
@@ -31,36 +33,26 @@ const styles = createStyles({
   }
 });
 
-const BoardInformation = ({ classes, currentBoard, notes }) => {
+const CollectionInformation = ({ classes, collections }) => {
   return (
     <Grid className={classes.container}>
       <Grid className={classes.header}>
         <Typography variant='body1' color='textSecondary'>
-          Current board:{' '}
-          <span style={{ color: 'black' }}>
-            {currentBoard ? currentBoard.name : ''}
-          </span>
+          Current collection:{' '}
+          <span style={{ color: 'black' }}>Valkyrie Tech</span>
         </Typography>
         <Typography variant='body1' color='textSecondary'>
-          Columns:{' '}
+          Collections:{' '}
           <span style={{ color: 'black' }}>
-            {currentBoard ? currentBoard.lanes.length : ''}
-          </span>
-        </Typography>
-        <Typography variant='body1' color='textSecondary'>
-          Notes:{' '}
-          <span style={{ color: 'black' }}>
-            {currentBoard && notes
-              ? notes.filter(note => note.boardId === currentBoard._id).length
-              : ''}
+            {collections ? collections.length : ''}
           </span>
         </Typography>
         <Button size='medium' variant='outlined'>
-          Add Column
+          Add Collection
         </Button>
       </Grid>
     </Grid>
   );
 };
 
-export default withStyles(styles)(BoardInformation);
+export default withStyles(styles)(CollectionInformation);
