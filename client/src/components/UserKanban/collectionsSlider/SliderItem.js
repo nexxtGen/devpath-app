@@ -32,7 +32,6 @@ const SliderItem = ({ classes, collection, setCollection }) => {
 
 SliderItem.propTypes = {
   classes: PropTypes.object.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  collection: PropTypes.object.isRequired
 };
 export default withStyles(styles)(SliderItem);

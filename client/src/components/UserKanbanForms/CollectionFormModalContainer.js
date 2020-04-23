@@ -60,7 +60,13 @@ const CollectionFormModalContainer = ({
                 : handleSubmitUpdate(values, currentCollection._id)
             }
           >
-            {() => <CollectionForm setIsOpen={setIsOpen} open={open} />}
+            {FormikBag => (
+              <CollectionForm
+                setIsOpen={setIsOpen}
+                open={open}
+                FormikBag={FormikBag}
+              />
+            )}
           </Formik>
         </DialogContent>
       </Dialog>

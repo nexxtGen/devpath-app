@@ -20,7 +20,7 @@ const KanbanCollectionSchema = new mongoose.Schema({
   type: {
     type: String,
     required: [true, 'Select Collection/kategory title'],
-    enum: ['project', 'work', 'life', 'study', 'private']
+    enum: ['project', 'work', 'life', 'study', 'other']
   },
   image: {
     type: String,
