@@ -36,7 +36,8 @@ const styles = createStyles({
 const CollectionInformation = ({
   classes,
   collections,
-  setIsOpenCollectionModal
+  setIsOpenCollectionModal,
+  setIsOpenCollectionsListModal
 }) => {
   return (
     <Grid className={classes.container}>
@@ -59,6 +60,13 @@ const CollectionInformation = ({
           variant='outlined'
         >
           Add Collection
+        </Button>
+        <Button
+          onClick={() => setIsOpenCollectionsListModal(true)}
+          size='medium'
+          variant='outlined'
+        >
+          List
         </Button>
       </Grid>
     </Grid>

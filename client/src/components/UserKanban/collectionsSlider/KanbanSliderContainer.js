@@ -16,7 +16,8 @@ const KanbanSliderContainer = ({
   classes,
   collections,
   setCollection,
-  setIsOpenCollectionModal
+  setIsOpenCollectionModal,
+  setIsOpenCollectionsListModal
 }) => {
   useEffect(() => {
     if (collections && collections.length > 0) {
@@ -28,6 +29,7 @@ const KanbanSliderContainer = ({
       <CollectionInformation
         collections={collections}
         setIsOpenCollectionModal={setIsOpenCollectionModal}
+        setIsOpenCollectionsListModal={setIsOpenCollectionsListModal}
       />
       <Slider {...settings}>
         {collections && collections.length > 0 ? (

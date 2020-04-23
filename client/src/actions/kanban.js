@@ -7,6 +7,7 @@ import {
   GET_ALL_USER_KANBAN_NOTES,
   KANBAN_ERROR,
   SET_CURRENT_KANBAN_COLLECTION,
+  SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
@@ -86,13 +87,22 @@ export const getAllUserKanbanNotes = () => async dispatch => {
   }
 };
 
-export const createNewUserKanbanCollection = categoryData => async dispatch => {};
+export const createNewUserKanbanCollection = collectionData => async dispatch => {};
 
-export const updateUserKanbanCollection = categoryData => async dispatch => {};
+export const updateUserKanbanCollection = collectionData => async dispatch => {};
+
+export const deleteKanbanCollection = collectionId => async dispatch => {};
 
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_COLLECTION,
+    payload: collection
+  });
+};
+
+export const setCurrentEditedKanbanCollection = collection => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_KANBAN_COLLECTION,
     payload: collection
   });
 };

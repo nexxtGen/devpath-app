@@ -10,12 +10,12 @@ import {
   DialogTitle,
   Grid
 } from '@material-ui/core';
-import createCollectionValues from './utilis/createCollectionValues';
+import createCollectionValues from '../utilis/createCollectionValues';
 import { connect } from 'react-redux';
 import {
   createNewUserKanbanCollection,
   updateUserKanbanCollection
-} from '../../actions/kanban';
+} from '../../../../actions/kanban';
 
 const styles = createStyles({});
 
@@ -23,7 +23,7 @@ const CollectionFormModalContainer = ({
   classes,
   open,
   setIsOpen,
-  currentCollection,
+  currentEditedCollection,
   createNewUserKanbanCollection,
   updateUserKanbanCollection
 }) => {
@@ -33,11 +33,11 @@ const CollectionFormModalContainer = ({
   };
 
   const handleSubmitUpdate = values => {
-    updateUserKanbanCollection(currentCollection._id, values);
+    updateUserKanbanCollection(currentEditedCollection._id, values);
     setIsOpen({ open: false, mode: '' });
   };
   const initialValues = createCollectionValues(
-    open.mode === 'edit' ? currentCollection : null
+    open.mode === 'edit' ? currentEditedCollection : null
   );
   return (
     <Grid>
@@ -57,7 +57,7 @@ const CollectionFormModalContainer = ({
             onSubmit={values =>
               open.mode === 'create'
                 ? handleSubmitCreate(values)
-                : handleSubmitUpdate(values, currentCollection._id)
+                : handleSubmitUpdate(values, currentEditedCollection._id)
             }
           >
             {FormikBag => (
@@ -91,7 +91,7 @@ const collectionSchema = Yup.object().shape({
 });
 
 const mapStateToProps = state => ({
-  currentCollection: state.kanban.currentCollection
+  currentEditedCollection: state.kanban.currentEditedCollection
 });
 
 export default connect(mapStateToProps, {
