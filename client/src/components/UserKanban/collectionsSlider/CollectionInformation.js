@@ -37,14 +37,17 @@ const CollectionInformation = ({
   classes,
   collections,
   setIsOpenCollectionModal,
-  setIsOpenCollectionsListModal
+  setIsOpenCollectionsListModal,
+  currentCollection
 }) => {
   return (
     <Grid className={classes.container}>
       <Grid className={classes.header}>
         <Typography variant='body1' color='textSecondary'>
           Current collection:{' '}
-          <span style={{ color: 'black' }}>Valkyrie Tech</span>
+          <span style={{ color: 'black' }}>
+            {currentCollection ? currentCollection.name : ''}
+          </span>
         </Typography>
         <Typography variant='body1' color='textSecondary'>
           Collections:{' '}

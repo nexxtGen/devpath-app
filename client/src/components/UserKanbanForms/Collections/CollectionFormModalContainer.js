@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import {
   createNewUserKanbanCollection,
   updateUserKanbanCollection
-} from '../../../../actions/kanban';
+} from '../../../actions/kanban';
 
 const styles = createStyles({});
 

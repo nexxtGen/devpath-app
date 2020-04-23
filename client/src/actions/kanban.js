@@ -5,7 +5,8 @@ import {
   GET_ALL_USER_KANBAN_BOARDS,
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
-  KANBAN_ERROR,
+  CREATE_NEW_USER_KANBAN_COLLECTION,
+  UPDATE_USER_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -15,7 +16,8 @@ import {
   SET_KANBAN_COLLECTIONS_LOADING,
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
-  SET_KANBAN_NOTES_LOADING
+  SET_KANBAN_NOTES_LOADING,
+  KANBAN_ERROR
 } from './types';
 
 export const getAllUserKanbanCollections = () => async dispatch => {
@@ -87,9 +89,62 @@ export const getAllUserKanbanNotes = () => async dispatch => {
   }
 };
 
-export const createNewUserKanbanCollection = collectionData => async dispatch => {};
+export const createNewUserKanbanCollection = collectionData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
-export const updateUserKanbanCollection = collectionData => async dispatch => {};
+  try {
+    const res = await axios.post(
+      '/api/v1/kanban-collections',
+      collectionData,
+      config
+    );
+
+    dispatch(setAlert('New collection has been created', 'success'));
+    dispatch({
+      type: CREATE_NEW_USER_KANBAN_COLLECTION,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateUserKanbanCollection = (
+  collectionId,
+  collectionData
+) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(
+      `/api/v1/kanban-collections/${collectionId}`,
+      collectionData,
+      config
+    );
+
+    dispatch(setAlert('Collection has been updated', 'success'));
+    dispatch({
+      type: UPDATE_USER_KANBAN_COLLECTION,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
 
 export const deleteKanbanCollection = collectionId => async dispatch => {};
 

@@ -78,6 +78,7 @@ const UserKanbanContainer = ({
       />
       <KanbanSliderContainer
         collections={collections}
+        currentCollection={currentCollection}
         setCollection={setCurrentKanbanCollection}
         setIsOpenCollectionModal={setIsOpenCollectionModal}
         setIsOpenCollectionsListModal={setIsOpenCollectionsListModal}

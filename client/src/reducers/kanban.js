@@ -3,7 +3,10 @@ import {
   GET_ALL_USER_KANBAN_BOARDS,
   GET_ALL_USER_KANBAN_LANES,
   GET_ALL_USER_KANBAN_NOTES,
+  CREATE_NEW_USER_KANBAN_COLLECTION,
+  UPDATE_USER_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_COLLECTION,
+  SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
@@ -21,6 +24,7 @@ const initialState = {
   lanes: null,
   notes: null,
   currentCollection: null,
+  currentEditedCollection: null,
   currentBoard: null,
   collectionsLoading: null,
   boardsLoading: null,
@@ -56,10 +60,32 @@ export default function(state = initialState, action) {
         notes: payload,
         notesLoading: false
       };
+    case CREATE_NEW_USER_KANBAN_COLLECTION:
+      return {
+        ...state,
+        collections: [...state.collections, payload]
+      };
+    case UPDATE_USER_KANBAN_COLLECTION:
+      return {
+        ...state,
+        collections: state.collections.map(item =>
+          item._id === payload._id ? payload : item
+        ),
+        currentCollection:
+          state.currentCollection._id === payload._id
+            ? payload
+            : state.currentCollection,
+        currentEditedCollection: null
+      };
     case SET_CURRENT_KANBAN_COLLECTION:
       return {
         ...state,
         currentCollection: payload
+      };
+    case SET_CURRENT_EDITED_KANBAN_COLLECTION:
+      return {
+        ...state,
+        currentEditedCollection: payload
       };
     case SET_CURRENT_KANBAN_BOARD:
       return {
