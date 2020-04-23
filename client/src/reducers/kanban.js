@@ -5,6 +5,7 @@ import {
   GET_ALL_USER_KANBAN_NOTES,
   CREATE_NEW_USER_KANBAN_COLLECTION,
   UPDATE_USER_KANBAN_COLLECTION,
+  DELETE_USER_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -76,6 +77,15 @@ export default function(state = initialState, action) {
             ? payload
             : state.currentCollection,
         currentEditedCollection: null
+      };
+    case DELETE_USER_KANBAN_COLLECTION:
+      return {
+        ...state,
+        collections: state.collections.filter(item => item._id !== payload),
+        currentCollection:
+          state.currentCollection._id === payload
+            ? null
+            : state.currentCollection
       };
     case SET_CURRENT_KANBAN_COLLECTION:
       return {

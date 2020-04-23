@@ -7,6 +7,7 @@ import {
   GET_ALL_USER_KANBAN_NOTES,
   CREATE_NEW_USER_KANBAN_COLLECTION,
   UPDATE_USER_KANBAN_COLLECTION,
+  DELETE_USER_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -146,7 +147,23 @@ export const updateUserKanbanCollection = (
   }
 };
 
-export const deleteKanbanCollection = collectionId => async dispatch => {};
+export const deleteUserKanbanCollection = collectionId => async dispatch => {
+  console.log('ID:', collectionId);
+  try {
+    await axios.delete(`/api/v1/kanban-collections/${collectionId}`);
+
+    dispatch(setAlert('Collection has been deleted', 'success'));
+    dispatch({
+      type: DELETE_USER_KANBAN_COLLECTION,
+      payload: collectionId
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
 
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({

@@ -10,7 +10,7 @@ import { primaryLight } from '../../../shared/colors';
 import { Delete, Edit } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import {
-  deleteKanbanCollection,
+  deleteUserKanbanCollection,
   setCurrentEditedKanbanCollection
 } from '../../../actions/kanban';
 import PropTypes from 'prop-types';
@@ -58,7 +58,7 @@ const styles = createStyles({
 const CollectionsListItem = ({
   classes,
   collection,
-  deleteKanbanCollection,
+  deleteUserKanbanCollection,
   setCurrentEditedKanbanCollection,
   setIsOpenCollectionModal
 }) => {
@@ -89,7 +89,7 @@ const CollectionsListItem = ({
           <Edit className={classes.iconEdit} />
         </Button>
         <Button
-          onClick={() => deleteKanbanCollection(_id)}
+          onClick={() => deleteUserKanbanCollection(_id)}
           className={classes.button}
         >
           <Delete className={classes.icon} />
@@ -105,6 +105,6 @@ CollectionsListItem.propTypes = {
 };
 
 export default connect(null, {
-  deleteKanbanCollection,
+  deleteUserKanbanCollection,
   setCurrentEditedKanbanCollection
 })(withStyles(styles)(CollectionsListItem));
