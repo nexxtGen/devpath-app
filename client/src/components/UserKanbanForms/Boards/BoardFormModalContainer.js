@@ -1,5 +1,5 @@
 import React from 'react';
-import CollectionForm from './CollectionForm';
+import BoardForm from './BoardForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Dialog, DialogContent, DialogTitle, Grid } from '@material-ui/core';
@@ -19,6 +19,7 @@ const BoardFormModalContainer = ({
   updateUserKanbanBoard
 }) => {
   const handleSubmitCreate = values => {
+    console.log('CALUES CREATE', values);
     createNewUserKanbanBoard(values);
     setIsOpen({ open: false, mode: '' });
   };
@@ -29,7 +30,7 @@ const BoardFormModalContainer = ({
   };
   const initialValues = createBoardValues(
     open.mode === 'edit' ? currentEditedBoard : null,
-    currentCollection._id
+    currentCollection ? currentCollection._id : null
   );
   return (
     <Grid>
@@ -53,7 +54,7 @@ const BoardFormModalContainer = ({
             }
           >
             {FormikBag => (
-              <CollectionForm
+              <BoardForm
                 setIsOpen={setIsOpen}
                 open={open}
                 FormikBag={FormikBag}

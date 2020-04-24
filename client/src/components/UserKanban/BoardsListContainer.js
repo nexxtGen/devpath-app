@@ -38,11 +38,12 @@ const BoardsListContainer = ({
   boards,
   currentCollection,
   loading,
-  setCurrentKanbanBoard
+  setCurrentKanbanBoard,
+  setIsOpenBoardFormModal
 }) => {
   useEffect(() => {
     if (currentCollection && !loading && boards && boards.length > 0) {
-      const collectionBoards = boards.filter(
+      let collectionBoards = boards.filter(
         item => item.collectionId === currentCollection._id
       );
       setCurrentKanbanBoard(collectionBoards[0]);
@@ -60,10 +61,9 @@ const BoardsListContainer = ({
           Boards
         </Typography>
         <Button
-          /*
           onClick={() =>
-            setIsOpenCollectionModal({ open: true, mode: 'create' })
-          }*/
+            setIsOpenBoardFormModal({ open: true, mode: 'create' })
+          }
           size='medium'
           variant='outlined'
         >

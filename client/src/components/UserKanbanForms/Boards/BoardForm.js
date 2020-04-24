@@ -33,11 +33,11 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
   return (
     <Form>
       <Grid container direction='row'>
-        <Grid item xs={7} className={classes.fieldsContainer}>
+        <Grid item xs={12} className={classes.fieldsContainer}>
           <Field name='name'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField label={'Collection Name'} fieldProps={field} />
+                <FTextField label={'Board Name'} fieldProps={field} />
                 <FormHelperText error>
                   {form.touched.name && form.errors.name && form.errors.name}
                 </FormHelperText>
@@ -47,10 +47,7 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
           <Field name='description'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField
-                  label={'Collection description'}
-                  fieldProps={field}
-                />
+                <FTextField label={'Board description'} fieldProps={field} />
                 <FormHelperText error>
                   {form.touched.description &&
                     form.errors.description &&
@@ -62,10 +59,7 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
           <Field name='image'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField
-                  label={'Collection image image link'}
-                  fieldProps={field}
-                />
+                <FTextField label={'Board image link'} fieldProps={field} />
                 <FormHelperText error>
                   {form.touched.image && form.errors.image && form.errors.image}
                 </FormHelperText>

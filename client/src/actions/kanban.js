@@ -8,9 +8,12 @@ import {
   CREATE_NEW_USER_KANBAN_COLLECTION,
   UPDATE_USER_KANBAN_COLLECTION,
   DELETE_USER_KANBAN_COLLECTION,
+  CREATE_NEW_USER_KANBAN_BOARD,
+  UPDATE_USER_KANBAN_BOARD,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
+  SET_CURRENT_EDITED_KANBAN_BOARD,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
@@ -165,6 +168,54 @@ export const deleteUserKanbanCollection = collectionId => async dispatch => {
   }
 };
 
+// BOARDS
+
+export const createNewUserKanbanBoard = boardData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post('/api/v1/boards', boardData, config);
+
+    dispatch(setAlert('New board has been created', 'success'));
+    dispatch({
+      type: CREATE_NEW_USER_KANBAN_BOARD,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateUserKanbanBoard = (boardId, boardData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/v1/boards/${boardId}`, boardData, config);
+
+    dispatch(setAlert('Board has been updated', 'success'));
+    dispatch({
+      type: UPDATE_USER_KANBAN_BOARD,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_COLLECTION,
@@ -176,6 +227,13 @@ export const setCurrentEditedKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_EDITED_KANBAN_COLLECTION,
     payload: collection
+  });
+};
+
+export const setCurrentEditedKanbanBoard = board => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_KANBAN_BOARD,
+    payload: board
   });
 };
 
