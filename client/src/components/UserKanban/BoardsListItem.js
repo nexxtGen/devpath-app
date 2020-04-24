@@ -59,11 +59,6 @@ const BoardsListItem = ({ classes, board, setCurrentKanbanBoard }) => {
       ></Grid>
 
       <Typography variant='subtitle2'>{board.name}</Typography>
-      <Grid className={classes.count}>
-        <Typography variant='subtitle2' style={{ color: 'white' }}>
-          {board.lanes.length}
-        </Typography>
-      </Grid>
     </Grid>
   );
 };

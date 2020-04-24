@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
+import {
+  withStyles,
+  createStyles,
+  Grid,
+  Typography,
+  Button
+} from '@material-ui/core';
 import BoardsList from './BoardsList';
 import { primary } from '../../shared/colors';
 
@@ -12,6 +18,7 @@ const styles = createStyles({
   header: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderBottom: `1px solid ${primary}`,
     padding: 8,
     width: '100%',
@@ -52,6 +59,24 @@ const BoardsListContainer = ({
         >
           Boards
         </Typography>
+        <Button
+          /*
+          onClick={() =>
+            setIsOpenCollectionModal({ open: true, mode: 'create' })
+          }*/
+          size='medium'
+          variant='outlined'
+        >
+          Add
+        </Button>
+        <Button
+          /*
+          onClick={() => setIsOpenCollectionsListModal(true)} */
+          size='medium'
+          variant='outlined'
+        >
+          List
+        </Button>
       </Grid>
       <Grid className={classes.listContainer}>
         <BoardsList
