@@ -39,7 +39,8 @@ const BoardsListContainer = ({
   currentCollection,
   loading,
   setCurrentKanbanBoard,
-  setIsOpenBoardFormModal
+  setIsOpenBoardFormModal,
+  setIsOpenBoardsListModal
 }) => {
   useEffect(() => {
     if (currentCollection && !loading && boards && boards.length > 0) {
@@ -70,8 +71,7 @@ const BoardsListContainer = ({
           Add
         </Button>
         <Button
-          /*
-          onClick={() => setIsOpenCollectionsListModal(true)} */
+          onClick={() => setIsOpenBoardsListModal(true)}
           size='medium'
           variant='outlined'
         >

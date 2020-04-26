@@ -6,6 +6,7 @@ import BoardsListContainer from './BoardsListContainer';
 import CollectionFormModalContainer from '../UserKanbanForms/Collections/CollectionFormModalContainer';
 import CollectionsListModal from '../UserKanbanForms/Collections/CollectionsListModal';
 import BoardFormModalContainer from '../UserKanbanForms/Boards/BoardFormModalContainer';
+import BoardsListModal from '../UserKanbanForms/Boards/BoardsListModal';
 import Alert from '../layout/Alert';
 import {
   getAllUserKanbanCollections,
@@ -63,6 +64,8 @@ const UserKanbanContainer = ({
     mode: ''
   });
 
+  const [isOpenBoardsListModal, setIsOpenBoardsListModal] = useState(false);
+
   useEffect(() => {
     getAllUserKanbanCollections();
     getAllUserKanbanBoards();
@@ -83,11 +86,18 @@ const UserKanbanContainer = ({
         setIsOpenCollectionModal={setIsOpenCollectionModal}
       />
       {currentCollection && (
-        <BoardFormModalContainer
-          open={isOpenBoardFormModal}
-          setIsOpen={setIsOpenBoardFormModal}
-          currentCollection={currentCollection}
-        />
+        <Grid>
+          <BoardFormModalContainer
+            open={isOpenBoardFormModal}
+            setIsOpen={setIsOpenBoardFormModal}
+            currentCollection={currentCollection}
+          />
+          <BoardsListModal
+            open={isOpenBoardsListModal}
+            setisOpen={setIsOpenBoardsListModal}
+            setIsOpenBoardFormModal={setIsOpenBoardFormModal}
+          />
+        </Grid>
       )}
 
       <KanbanSliderContainer
@@ -104,6 +114,7 @@ const UserKanbanContainer = ({
           loading={boardsLoading}
           setCurrentKanbanBoard={setCurrentKanbanBoard}
           setIsOpenBoardFormModal={setIsOpenBoardFormModal}
+          setIsOpenBoardsListModal={setIsOpenBoardsListModal}
         />
         <Board
           lanesLoading={lanesLoading}
