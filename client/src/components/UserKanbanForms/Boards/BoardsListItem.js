@@ -9,9 +9,10 @@ import {
 import { primaryLight } from '../../../shared/colors';
 import { Delete, Edit } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import //deleteUserKanbanCollection,
-//setCurrentEditedKanbanCollection
-'../../../actions/kanban';
+import {
+  deleteUserKanbanBoard,
+  setCurrentEditedKanbanBoard
+} from '../../../actions/kanban';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({
@@ -57,12 +58,12 @@ const styles = createStyles({
 const BoardsListItem = ({
   classes,
   board,
-  //deleteUserKanbanCollection,
-  //setCurrentEditedKanbanCollection,
+  deleteUserKanbanBoard,
+  setCurrentEditedKanbanBoard,
   setIsOpenBoardFormModal
 }) => {
-  const handleEdit = collection => {
-    //setCurrentEditedKanbanCollection(collection);
+  const handleEdit = board => {
+    setCurrentEditedKanbanBoard(board);
     setIsOpenBoardFormModal({ open: true, mode: 'edit' });
   };
 
@@ -85,7 +86,7 @@ const BoardsListItem = ({
           <Edit className={classes.iconEdit} />
         </Button>
         <Button
-          //onClick={() => deleteUserKanbanCollection(_id)}
+          onClick={() => deleteUserKanbanBoard(_id)}
           className={classes.button}
         >
           <Delete className={classes.icon} />
@@ -101,6 +102,6 @@ BoardsListItem.propTypes = {
 };
 
 export default connect(null, {
-  //deleteUserKanbanCollection,
-  //setCurrentEditedKanbanCollection
+  deleteUserKanbanBoard,
+  setCurrentEditedKanbanBoard
 })(withStyles(styles)(BoardsListItem));

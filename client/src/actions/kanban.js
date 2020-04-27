@@ -10,6 +10,7 @@ import {
   DELETE_USER_KANBAN_COLLECTION,
   CREATE_NEW_USER_KANBAN_BOARD,
   UPDATE_USER_KANBAN_BOARD,
+  DELETE_USER_KANBAN_BOARD,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -151,7 +152,6 @@ export const updateUserKanbanCollection = (
 };
 
 export const deleteUserKanbanCollection = collectionId => async dispatch => {
-  console.log('ID:', collectionId);
   try {
     await axios.delete(`/api/v1/kanban-collections/${collectionId}`);
 
@@ -168,7 +168,7 @@ export const deleteUserKanbanCollection = collectionId => async dispatch => {
   }
 };
 
-// BOARDS
+// BOARDS ----------------------------
 
 export const createNewUserKanbanBoard = boardData => async dispatch => {
   const config = {
@@ -216,6 +216,24 @@ export const updateUserKanbanBoard = (boardId, boardData) => async dispatch => {
   }
 };
 
+export const deleteUserKanbanBoard = boardId => async dispatch => {
+  try {
+    await axios.delete(`/api/v1/boards/${boardId}`);
+
+    dispatch(setAlert('Board has been deleted', 'success'));
+    dispatch({
+      type: DELETE_USER_KANBAN_BOARD,
+      payload: boardId
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+// SET CURRENT ---------------------
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_COLLECTION,

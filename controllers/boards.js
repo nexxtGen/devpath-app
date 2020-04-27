@@ -78,28 +78,22 @@ exports.updateBoard = asyncHandler(async (req, res, next) => {
 exports.deleteBoard = asyncHandler(async (req, res, next) => {
   const board = await Board.findByIdAndDelete(req.params.id);
 
-  if (!board) {
-    return next(
-      new ErrorResponse(`Board not found with id of ${req.params.id}`, 404)
-    );
-  }
-
-  const collection = await KanbanCollection.findById(board.collectionId);
+  let collection = await KanbanCollection.findById(board.collectionId);
 
   let filtered = collection.boards.filter(
-    boardId => boardId.toString() !== board.collectionId
+    boardId => boardId.toString() !== board._id.toString()
   );
 
   collection.boards = filtered;
 
   await KanbanCollection.findOneAndUpdate(
-    { _id: board.collectionId.toString() },
+    { _id: board.collectionId },
     { $set: collection },
     { new: true }
   );
 
-  await Lane.remove({ boardId: board._id });
-  await Note.remove({ boardId: board._id });
+  await Lane.remove({ boardId: board._id.toString() });
+  await Note.remove({ boardId: board._id.toString() });
 
   res.status(200).json({ success: true, data: {} });
 });

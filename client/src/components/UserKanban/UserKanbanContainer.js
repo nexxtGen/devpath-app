@@ -94,7 +94,7 @@ const UserKanbanContainer = ({
           />
           <BoardsListModal
             open={isOpenBoardsListModal}
-            setisOpen={setIsOpenBoardsListModal}
+            setIsOpen={setIsOpenBoardsListModal}
             setIsOpenBoardFormModal={setIsOpenBoardFormModal}
           />
         </Grid>
