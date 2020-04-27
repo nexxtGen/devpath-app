@@ -11,10 +11,14 @@ import {
   CREATE_NEW_USER_KANBAN_BOARD,
   UPDATE_USER_KANBAN_BOARD,
   DELETE_USER_KANBAN_BOARD,
+  CREATE_NEW_USER_KANBAN_LANE,
+  UPDATE_USER_KANBAN_LANE,
+  DELETE_USER_KANBAN_LANE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   SET_CURRENT_EDITED_KANBAN_BOARD,
+  SET_CURRENT_EDITED_KANBAN_LANE,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
@@ -233,7 +237,74 @@ export const deleteUserKanbanBoard = boardId => async dispatch => {
   }
 };
 
-// SET CURRENT ---------------------
+// LANES ------------------------------------
+
+export const createNewUserKanbanLane = laneData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post('/api/v1/lanes', laneData, config);
+
+    dispatch(setAlert('New lane has been created', 'success'));
+
+    dispatch({
+      type: CREATE_NEW_USER_KANBAN_LANE,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateUserKanbanLane = (laneId, laneData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/v1/lanes/${laneId}`, laneData, config);
+
+    dispatch(setAlert('Lane has been updated', 'success'));
+    dispatch({
+      type: UPDATE_USER_KANBAN_LANE,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const deleteUserKanbanLane = laneId => async dispatch => {
+  try {
+    await axios.delete(`/api/v1/lanes/${laneId}`);
+
+    dispatch(setAlert('Lane has been deleted', 'success'));
+    dispatch({
+      type: DELETE_USER_KANBAN_LANE,
+      payload: laneId
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+// SET CURRENT ------------------------------
+
 export const setCurrentKanbanCollection = collection => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_COLLECTION,
@@ -261,6 +332,15 @@ export const setCurrentKanbanBoard = board => dispatch => {
     payload: board
   });
 };
+
+export const setCurrentEditedKanbanLane = lane => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_KANBAN_LANE,
+    payload: lane
+  });
+};
+
+// DND ---------------------------------------------
 
 export const moveNoteInLane = lane => async dispatch => {
   const config = {

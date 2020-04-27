@@ -28,7 +28,7 @@ const LaneFormModalContainer = ({
     updateUserKanbanLane(currentEditedLane._id, values);
     setIsOpen({ open: false, mode: '' });
   };
-  const initialValues = createBoardValues(
+  const initialValues = createLaneValues(
     open.mode === 'edit' ? currentEditedLane : null,
     currentCollection ? currentCollection._id : null,
     currentBoard ? currentBoard._id : null
@@ -54,12 +54,7 @@ const LaneFormModalContainer = ({
                 : handleSubmitUpdate(values, currentEditedLane._id)
             }
           >
-            { => (
-              <LaneForm
-                setIsOpen={setIsOpen}
-                open={open}              
-              />
-            )}
+            {() => <LaneForm setIsOpen={setIsOpen} open={open} />}
           </Formik>
         </DialogContent>
       </Dialog>
