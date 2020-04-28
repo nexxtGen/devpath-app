@@ -220,14 +220,17 @@ export const updateUserKanbanBoard = (boardId, boardData) => async dispatch => {
   }
 };
 
-export const deleteUserKanbanBoard = boardId => async dispatch => {
+export const deleteUserKanbanBoard = (
+  boardId,
+  collectionId
+) => async dispatch => {
   try {
     await axios.delete(`/api/v1/boards/${boardId}`);
 
     dispatch(setAlert('Board has been deleted', 'success'));
     dispatch({
       type: DELETE_USER_KANBAN_BOARD,
-      payload: boardId
+      payload: { boardId, collectionId }
     });
   } catch (err) {
     dispatch({
@@ -286,14 +289,14 @@ export const updateUserKanbanLane = (laneId, laneData) => async dispatch => {
   }
 };
 
-export const deleteUserKanbanLane = laneId => async dispatch => {
+export const deleteUserKanbanLane = (laneId, boardId) => async dispatch => {
   try {
     await axios.delete(`/api/v1/lanes/${laneId}`);
 
     dispatch(setAlert('Lane has been deleted', 'success'));
     dispatch({
       type: DELETE_USER_KANBAN_LANE,
-      payload: laneId
+      payload: { laneId, boardId }
     });
   } catch (err) {
     dispatch({

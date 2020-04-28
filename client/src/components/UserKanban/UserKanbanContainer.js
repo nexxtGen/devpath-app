@@ -138,6 +138,7 @@ const UserKanbanContainer = ({
           currentBoard={currentBoard}
           lanes={lanes}
           notes={notes}
+          setIsOpenLaneFormModal={setIsOpenLaneFormModal}
         />
       </Grid>
     </Grid>

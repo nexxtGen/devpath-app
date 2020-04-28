@@ -41,7 +41,7 @@ const LaneFormModalContainer = ({
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>
-          {open.mode === 'create' ? 'Create New Lane' : 'Edit Lane'}
+          {open.mode === 'create' ? 'Create New Column' : 'Edit Lane'}
         </DialogTitle>
         <DialogContent>
           <Formik

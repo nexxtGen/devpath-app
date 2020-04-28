@@ -12,6 +12,11 @@ import {
 } from '@material-ui/core';
 
 const styles = createStyles({
+  primaryContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    minWidth: 300
+  },
   fieldsContainer: {
     padding: 15,
     height: 200
@@ -21,31 +26,31 @@ const styles = createStyles({
 const BoardForm = ({ classes, setIsOpen }) => {
   return (
     <Form>
-      <Grid container direction='row'>
+      <Grid className={classes.primaryContainer}>
         <Grid item xs={12} className={classes.fieldsContainer}>
           <Field name='name'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField label={'Board Name'} fieldProps={field} />
+                <FTextField label={'Column Name'} fieldProps={field} />
                 <FormHelperText error>
                   {form.touched.name && form.errors.name && form.errors.name}
                 </FormHelperText>
               </FormControl>
             )}
           </Field>
-          <DialogActions>
-            <Button
-              variant='contained'
-              onClick={() => setIsOpen({ open: false, mode: '' })}
-              color='primary'
-            >
-              Cancel
-            </Button>
-            <Button type='submit' variant='contained' color='primary'>
-              Save
-            </Button>
-          </DialogActions>
         </Grid>
+        <DialogActions>
+          <Button
+            variant='contained'
+            onClick={() => setIsOpen({ open: false, mode: '' })}
+            color='primary'
+          >
+            Cancel
+          </Button>
+          <Button type='submit' variant='contained' color='primary'>
+            Save
+          </Button>
+        </DialogActions>
       </Grid>
     </Form>
   );

@@ -67,6 +67,7 @@ const BoardsListContainer = ({
           }
           size='medium'
           variant='outlined'
+          disabled={!currentCollection}
         >
           Add
         </Button>

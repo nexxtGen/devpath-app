@@ -34,7 +34,8 @@ const Board = ({
   notes,
   moveNoteInLane,
   moveNoteBetweenLanes,
-  moveLaneInBoard
+  moveLaneInBoard,
+  setIsOpenLaneFormModal
 }) => {
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
@@ -104,7 +105,11 @@ const Board = ({
 
   return (
     <Grid className={classes.primaryContainer}>
-      <BoardInformation currentBoard={currentBoard} notes={notes} />
+      <BoardInformation
+        currentBoard={currentBoard}
+        notes={notes}
+        setIsOpenLaneFormModal={setIsOpenLaneFormModal}
+      />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='all-columns' direction='horizontal' type='lane'>
           {provided => (

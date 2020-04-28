@@ -67,7 +67,7 @@ const BoardsListItem = ({
     setIsOpenBoardFormModal({ open: true, mode: 'edit' });
   };
 
-  const { image, name, _id } = board;
+  const { image, name, _id, collectionId } = board;
   return (
     <Grid className={classes.container}>
       <Grid className={classes.typoContainer}>
@@ -86,7 +86,7 @@ const BoardsListItem = ({
           <Edit className={classes.iconEdit} />
         </Button>
         <Button
-          onClick={() => deleteUserKanbanBoard(_id)}
+          onClick={() => deleteUserKanbanBoard(_id, collectionId)}
           className={classes.button}
         >
           <Delete className={classes.icon} />

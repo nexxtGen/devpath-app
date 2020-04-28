@@ -31,7 +31,12 @@ const styles = createStyles({
   }
 });
 
-const BoardInformation = ({ classes, currentBoard, notes }) => {
+const BoardInformation = ({
+  classes,
+  currentBoard,
+  notes,
+  setIsOpenLaneFormModal
+}) => {
   return (
     <Grid className={classes.container}>
       <Grid className={classes.header}>
@@ -55,7 +60,12 @@ const BoardInformation = ({ classes, currentBoard, notes }) => {
               : ''}
           </span>
         </Typography>
-        <Button size='medium' variant='outlined'>
+        <Button
+          size='medium'
+          variant='outlined'
+          onClick={() => setIsOpenLaneFormModal({ open: true, mode: 'create' })}
+          disabled={!currentBoard}
+        >
           Add Column
         </Button>
       </Grid>

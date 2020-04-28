@@ -9,6 +9,9 @@ import {
   CREATE_NEW_USER_KANBAN_BOARD,
   UPDATE_USER_KANBAN_BOARD,
   DELETE_USER_KANBAN_BOARD,
+  CREATE_NEW_USER_KANBAN_LANE,
+  UPDATE_USER_KANBAN_LANE,
+  DELETE_USER_KANBAN_LANE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -106,6 +109,67 @@ export default function(state = initialState, action) {
         ...state,
         boards: state.boards.map(item =>
           item._id === payload._id ? payload : item
+        )
+      };
+    case DELETE_USER_KANBAN_BOARD:
+      return {
+        ...state,
+        boards: state.boards.filter(board => board._id !== payload.boardId),
+        currentCollection: {
+          ...state.currentCollection,
+          boards: state.currentCollection.boards.filter(
+            boardId => boardId !== payload.boardId
+          )
+        },
+        collections: state.collections.map(collection =>
+          collection._id === payload.collectionId
+            ? {
+                ...collection,
+                boards: collection.boards.filter(
+                  boardId => boardId !== payload.boardId
+                )
+              }
+            : collection
+        )
+      };
+    case CREATE_NEW_USER_KANBAN_LANE:
+      return {
+        ...state,
+        lanes: [...state.lanes, payload],
+        boards: state.boards.map(board =>
+          board._id === payload.boardId
+            ? { ...board, lanes: [...board.lanes, payload._id] }
+            : board
+        ),
+        currentBoard: {
+          ...state.currentBoard,
+          lanes: [...state.currentBoard.lanes, payload._id]
+        }
+      };
+    case UPDATE_USER_KANBAN_LANE:
+      return {
+        ...state,
+        lanes: state.lanes.map(lane =>
+          lane._id === payload._id ? payload : lane
+        )
+      };
+    case DELETE_USER_KANBAN_LANE:
+      return {
+        ...state,
+        currentBoard: {
+          ...state.currentBoard,
+          lanes: state.currentBoard.lanes.filter(
+            laneId => laneId !== payload.laneId
+          )
+        },
+        lanes: state.lanes.filter(lane => lane._id !== payload.laneId),
+        boards: state.boards.map(board =>
+          board._id === payload.boardId
+            ? {
+                ...board,
+                lanes: board.lanes.filter(laneId => laneId !== payload.laneId)
+              }
+            : board
         )
       };
     case SET_CURRENT_KANBAN_COLLECTION:
