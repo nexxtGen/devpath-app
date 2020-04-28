@@ -27,6 +27,10 @@ const LaneSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  editing: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now

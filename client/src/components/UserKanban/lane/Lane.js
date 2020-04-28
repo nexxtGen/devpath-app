@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import EditLane from '../../UserKanbanForms/Lanes/EditLane';
 import Note from '../note/Note';
 
 const styles = createStyles({
@@ -15,6 +16,10 @@ const styles = createStyles({
     padding: 10,
     margin: '0 10px 15px 10px'
   },
+  laneName: {
+    width: '100%',
+    minHeight: 40
+  },
   notesContainer: {
     width: '100%',
     minHeight: 200,
@@ -22,7 +27,16 @@ const styles = createStyles({
   }
 });
 
-const Lane = ({ classes, lane, laneNotes, index }) => {
+const Lane = ({
+  classes,
+  lane,
+  laneNotes,
+  index,
+  editUserKanbanLane,
+  updateUserKanbanLane,
+  deleteUserKanbanLane,
+  currentBoard
+}) => {
   return (
     <Draggable draggableId={lane._id} index={index}>
       {provided => (
@@ -31,7 +45,22 @@ const Lane = ({ classes, lane, laneNotes, index }) => {
           {...provided.draggableProps}
           innerRef={provided.innerRef}
         >
-          <p {...provided.dragHandleProps}>{lane.name}</p>
+          <Grid className={classes.laneName}>
+            <EditLane
+              editing={lane.editing}
+              value={lane.name}
+              onValueClick={() => editUserKanbanLane(lane._id)}
+              onUpdate={name =>
+                updateUserKanbanLane(lane._id, {
+                  ...lane,
+                  name,
+                  editing: false
+                })
+              }
+              onDelete={() => deleteUserKanbanLane(lane._id, currentBoard._id)}
+            />
+          </Grid>
+          <p {...provided.dragHandleProps}>DRAGME</p>
           <Droppable droppableId={lane._id} type='note'>
             {provided => (
               <Grid

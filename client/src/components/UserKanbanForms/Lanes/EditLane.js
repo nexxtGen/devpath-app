@@ -1,9 +1,18 @@
 import React from 'react';
 import { withStyles, createStyles, Grid, TextField } from '@material-ui/core';
-
+import { primary } from '../../../shared/colors';
 const styles = createStyles({
   container: {},
-  delete: {}
+  delete: {},
+  muiTextField: {
+    backgroundColor: 'white',
+    paddingBottom: 5
+  },
+  underline: {
+    '&::after': {
+      border: `1px solid ${primary}`
+    }
+  }
 });
 
 const EditLane = ({
@@ -14,13 +23,13 @@ const EditLane = ({
   onValueClick,
   editing
 }) => {
-  checkEnter = e => {
+  const checkEnter = e => {
     if (e.key === 'Enter') {
       finishEdit(e);
     }
   };
 
-  finishEdit = e => {
+  const finishEdit = e => {
     const value = e.target.value;
 
     if (onUpdate) {
@@ -28,7 +37,7 @@ const EditLane = ({
     }
   };
 
-  renderDelete = () => {
+  const renderDelete = () => {
     return (
       <button className={classes.delete} onClick={onDelete}>
         x
@@ -36,7 +45,7 @@ const EditLane = ({
     );
   };
 
-  renderValue = () => {
+  const renderValue = () => {
     return (
       <Grid>
         <span className={classes.value} onClick={onValueClick}>
@@ -47,7 +56,7 @@ const EditLane = ({
     );
   };
 
-  renderEdit = () => {
+  const renderEdit = () => {
     return (
       <TextField
         type='text'
@@ -55,6 +64,13 @@ const EditLane = ({
         defaultValue={value}
         onBlur={finishEdit}
         onKeyPress={checkEnter}
+        InputProps={{
+          disableUnderline: false,
+          classes: {
+            input: classes.muiTextField,
+            underline: classes.underline
+          }
+        }}
       />
     );
   };

@@ -14,6 +14,7 @@ import {
   CREATE_NEW_USER_KANBAN_LANE,
   UPDATE_USER_KANBAN_LANE,
   DELETE_USER_KANBAN_LANE,
+  EDIT_USER_KANBAN_LANE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -304,6 +305,13 @@ export const deleteUserKanbanLane = (laneId, boardId) => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const editUserKanbanLane = laneId => async dispatch => {
+  dispatch({
+    type: EDIT_USER_KANBAN_LANE,
+    payload: laneId
+  });
 };
 
 // SET CURRENT ------------------------------

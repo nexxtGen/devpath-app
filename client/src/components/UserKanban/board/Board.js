@@ -6,7 +6,10 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {
   moveNoteInLane,
   moveNoteBetweenLanes,
-  moveLaneInBoard
+  moveLaneInBoard,
+  editUserKanbanLane,
+  updateUserKanbanLane,
+  deleteUserKanbanLane
 } from '../../../actions/kanban';
 import { connect } from 'react-redux';
 
@@ -35,7 +38,10 @@ const Board = ({
   moveNoteInLane,
   moveNoteBetweenLanes,
   moveLaneInBoard,
-  setIsOpenLaneFormModal
+  setIsOpenLaneFormModal,
+  editUserKanbanLane,
+  updateUserKanbanLane,
+  deleteUserKanbanLane
 }) => {
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
@@ -134,6 +140,10 @@ const Board = ({
                       lane={lane}
                       laneNotes={laneNotes}
                       index={index}
+                      editUserKanbanLane={editUserKanbanLane}
+                      updateUserKanbanLane={updateUserKanbanLane}
+                      deleteUserKanbanLane={deleteUserKanbanLane}
+                      currentBoard={currentBoard}
                     />
                   );
                 })
@@ -154,5 +164,8 @@ const Board = ({
 export default connect(null, {
   moveNoteInLane,
   moveNoteBetweenLanes,
-  moveLaneInBoard
+  moveLaneInBoard,
+  editUserKanbanLane,
+  updateUserKanbanLane,
+  deleteUserKanbanLane
 })(withStyles(styles)(Board));

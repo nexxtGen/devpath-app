@@ -12,6 +12,7 @@ import {
   CREATE_NEW_USER_KANBAN_LANE,
   UPDATE_USER_KANBAN_LANE,
   DELETE_USER_KANBAN_LANE,
+  EDIT_USER_KANBAN_LANE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -170,6 +171,13 @@ export default function(state = initialState, action) {
                 lanes: board.lanes.filter(laneId => laneId !== payload.laneId)
               }
             : board
+        )
+      };
+    case EDIT_USER_KANBAN_LANE:
+      return {
+        ...state,
+        lanes: state.lanes.map(lane =>
+          lane._id === payload ? { ...lane, editing: true } : lane
         )
       };
     case SET_CURRENT_KANBAN_COLLECTION:
