@@ -103,7 +103,12 @@ export default function(state = initialState, action) {
         currentCollection: {
           ...state.currentCollection,
           boards: [...state.currentCollection.boards, payload._id]
-        }
+        },
+        collections: state.collections.map(collection =>
+          collection._id === payload.collectionId
+            ? { ...collection, boards: [...collection.boards, payload._id] }
+            : collection
+        )
       };
     case UPDATE_USER_KANBAN_BOARD:
       return {

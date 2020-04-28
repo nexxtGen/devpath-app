@@ -9,6 +9,9 @@ const styles = createStyles({
   container: {
     width: '100%',
     margin: '15px 0'
+  },
+  empty: {
+    marginLeft: 20
   }
 });
 
@@ -43,7 +46,7 @@ const KanbanSliderContainer = ({
             />
           ))
         ) : (
-          <Typography>List is Empty</Typography>
+          <Typography className={classes.empty}>List is Empty</Typography>
         )}
       </Slider>
     </Grid>

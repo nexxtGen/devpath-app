@@ -86,6 +86,15 @@ exports.updateLane = asyncHandler(async (req, res, next) => {
 // @route DELETE /api/v1/lanes/:id
 // @access Private
 exports.deleteLane = asyncHandler(async (req, res, next) => {
+  //-----
+
+  await Lane.remove({ boardId: board._id.toString() });
+  await Note.remove({ boardId: board._id.toString() });
+
+  res.status(200).json({ success: true, data: {} });
+
+  //-------
+
   const lane = await Lane.findByIdAndDelete(req.params.id);
 
   if (!lane) {
@@ -93,6 +102,20 @@ exports.deleteLane = asyncHandler(async (req, res, next) => {
       new ErrorResponse(`Lane not found with id of ${req.params.id}`, 404)
     );
   }
+
+  let board = await Board.findById(lane.boardId);
+
+  let filtered = board.lanes.filter(
+    laneId => laneId.toString() !== lane._id.toString()
+  );
+
+  board.lanes = filtered;
+
+  await Board.findOneAndUpdate(
+    { _id: lane.boardId },
+    { $set: collection },
+    { new: true }
+  );
 
   await Note.remove({ laneId: lane._id });
 
