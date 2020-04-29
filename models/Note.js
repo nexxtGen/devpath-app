@@ -14,12 +14,23 @@ const NoteSchema = new mongoose.Schema({
   },
   priority: {
     type: String,
-    required: true,
-    enum: ['low', 'medium', 'important']
+    enum: ['low', 'medium', 'high']
   },
   image: {
     type: String,
     maxlength: [900, 'Image can not be more than 900 characters']
+  },
+  progress: {
+    steps: {
+      type: Number,
+      min: [2, 'Progress must be at least 2'],
+      max: [6, 'Progress value must can not be more than 6']
+    },
+    currentValue: {
+      type: Number,
+      min: [0, 'Progress must be at least 2'],
+      max: [6, 'Progress value must can not be more than 6']
+    }
   },
   collectionId: {
     type: String,
