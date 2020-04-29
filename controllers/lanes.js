@@ -86,15 +86,6 @@ exports.updateLane = asyncHandler(async (req, res, next) => {
 // @route DELETE /api/v1/lanes/:id
 // @access Private
 exports.deleteLane = asyncHandler(async (req, res, next) => {
-  //-----
-
-  await Lane.remove({ boardId: board._id.toString() });
-  await Note.remove({ boardId: board._id.toString() });
-
-  res.status(200).json({ success: true, data: {} });
-
-  //-------
-
   const lane = await Lane.findByIdAndDelete(req.params.id);
 
   if (!lane) {
@@ -103,7 +94,7 @@ exports.deleteLane = asyncHandler(async (req, res, next) => {
     );
   }
 
-  let board = await Board.findById(lane.boardId);
+  const board = await Board.findById(lane.boardId);
 
   let filtered = board.lanes.filter(
     laneId => laneId.toString() !== lane._id.toString()
@@ -113,7 +104,7 @@ exports.deleteLane = asyncHandler(async (req, res, next) => {
 
   await Board.findOneAndUpdate(
     { _id: lane.boardId },
-    { $set: collection },
+    { $set: board },
     { new: true }
   );
 

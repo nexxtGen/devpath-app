@@ -1,5 +1,11 @@
 import React from 'react';
-import { withStyles, createStyles, Grid, TextField } from '@material-ui/core';
+import {
+  withStyles,
+  createStyles,
+  Grid,
+  TextField,
+  Typography
+} from '@material-ui/core';
 import { primary } from '../../../shared/colors';
 const styles = createStyles({
   container: {},
@@ -12,6 +18,11 @@ const styles = createStyles({
     '&::after': {
       border: `1px solid ${primary}`
     }
+  },
+  valueContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
 
@@ -47,11 +58,20 @@ const EditLane = ({
 
   const renderValue = () => {
     return (
-      <Grid>
-        <span className={classes.value} onClick={onValueClick}>
-          {value}
-        </span>
-        {onDelete ? renderDelete() : null}
+      <Grid className={classes.valueContainer}>
+        <Grid item xs={9}>
+          <Typography
+            variant='h6'
+            color='textSecondary'
+            className={classes.value}
+            onClick={onValueClick}
+          >
+            {value}
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          {onDelete ? renderDelete() : null}
+        </Grid>
       </Grid>
     );
   };

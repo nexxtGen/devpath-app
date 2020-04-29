@@ -66,7 +66,7 @@ const laneSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Minimum 2 characters')
     .max(30, 'Maximum 30 characters')
-    .required('Collection Name is required')
+    .required('Column Name is required')
 });
 
 const mapStateToProps = state => ({

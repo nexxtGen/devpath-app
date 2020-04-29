@@ -1,36 +1,37 @@
 import React from 'react';
-import BoardForm from './BoardForm';
+//import NoteForm from './NoteForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Dialog, DialogContent, DialogTitle, Grid } from '@material-ui/core';
-import createBoardValues from '../utilis/createBoardValues';
+//mport createNoteValues from '../utilis/createNoteValues';
 import { connect } from 'react-redux';
 import {
-  createNewUserKanbanBoard,
-  updateUserKanbanBoard
+  createNewUserKanbanNote,
+  updateUserKanbanNote
 } from '../../../actions/kanban';
 
-const BoardFormModalContainer = ({
+const NoteFormModalContainer = ({
   open,
   setIsOpen,
   currentCollection,
-  currentEditedBoard,
-  createNewUserKanbanBoard,
-  updateUserKanbanBoard
+  currentBoard,
+  createNewUserKanbanNote,
+  updateUserKanbanNote
 }) => {
   const handleSubmitCreate = values => {
-    console.log('CALUES CREATE', values);
-    createNewUserKanbanBoard(values);
+    createNewUserKanbanNote(values);
     setIsOpen({ open: false, mode: '' });
   };
 
   const handleSubmitUpdate = values => {
-    updateUserKanbanBoard(currentEditedBoard._id, values);
+    updateUserKanbanNote(currentEditedNote._id, values);
     setIsOpen({ open: false, mode: '' });
   };
-  const initialValues = createBoardValues(
-    open.mode === 'edit' ? currentEditedBoard : null,
-    currentCollection ? currentCollection._id : null
+  const initialValues = createNoteValues(
+    open.mode === 'edit' ? currentEditedNote : null,
+    currentCollection ? currentCollection._id : null,
+    currentBoard ? currentBoard._id : null,
+    currentLane ? urrentLane._id : null
   );
   return (
     <Grid>
@@ -40,21 +41,21 @@ const BoardFormModalContainer = ({
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>
-          {open.mode === 'create' ? 'Create New Board' : 'Edit Board'}
+          {open.mode === 'create' ? 'Create New Note' : 'Edit Note'}
         </DialogTitle>
         <DialogContent>
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
-            validationSchema={boardSchema}
+            validationSchema={noteSchema}
             onSubmit={values =>
               open.mode === 'create'
                 ? handleSubmitCreate(values)
-                : handleSubmitUpdate(values, currentEditedBoard._id)
+                : handleSubmitUpdate(values, currentEditedNote._id)
             }
           >
             {FormikBag => (
-              <BoardForm
+              <NoteForm
                 setIsOpen={setIsOpen}
                 open={open}
                 FormikBag={FormikBag}
@@ -67,11 +68,11 @@ const BoardFormModalContainer = ({
   );
 };
 
-const boardSchema = Yup.object().shape({
+const noteSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Minimum 2 characters')
     .max(30, 'Maximum 30 characters')
-    .required('Collection Name is required'),
+    .required('Note Name is required'),
   description: Yup.string()
     .min(10, 'Minimum 10 characters')
     .max(100, 'Maximum 100 characters')
@@ -79,7 +80,7 @@ const boardSchema = Yup.object().shape({
   image: Yup.string()
     .min(10, 'Minimum 3 characters')
     .max(800, 'Maximum 800 characters')
-    .required('Board image link is required')
+    .required('Note image link is required')
 });
 
 const mapStateToProps = state => ({
@@ -89,4 +90,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   createNewUserKanbanBoard,
   updateUserKanbanBoard
-})(BoardFormModalContainer);
+})(NoteFormModalContainer);
