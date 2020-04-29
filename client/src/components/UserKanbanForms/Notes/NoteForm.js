@@ -10,9 +10,11 @@ import {
   FormHelperText,
   Grid,
   Typography,
-  Rating,
-  Select
+  Select,
+  InputLabel,
+  MenuItem
 } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 
 const styles = createStyles({
   fieldsContainer: {
@@ -20,7 +22,7 @@ const styles = createStyles({
   },
   imagePreview: {
     background: 'rgb(233, 233, 233)',
-    width: '250px',
+    width: '210px',
     height: '80px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -51,7 +53,7 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
                 <FTextField
-                  label={'Collection image image link'}
+                  label={'Note image link (not required)'}
                   fieldProps={field}
                 />
                 <FormHelperText error>

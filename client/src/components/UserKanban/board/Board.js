@@ -39,6 +39,7 @@ const Board = ({
   moveNoteBetweenLanes,
   moveLaneInBoard,
   setIsOpenLaneFormModal,
+  setIsOpenNoteFormModal,
   editUserKanbanLane,
   updateUserKanbanLane,
   deleteUserKanbanLane
@@ -144,6 +145,7 @@ const Board = ({
                       updateUserKanbanLane={updateUserKanbanLane}
                       deleteUserKanbanLane={deleteUserKanbanLane}
                       currentBoard={currentBoard}
+                      setIsOpenNoteFormModal={setIsOpenNoteFormModal}
                     />
                   );
                 })

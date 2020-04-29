@@ -314,6 +314,12 @@ export const editUserKanbanLane = laneId => async dispatch => {
   });
 };
 
+// NOTES------------------------------
+
+export const createNewUserKanbanNote = noteData => async dispatch => {};
+
+export const updateUserKanbanNote = (noteId, noteData) => async dispatch => {};
+
 // SET CURRENT ------------------------------
 
 export const setCurrentKanbanCollection = collection => dispatch => {

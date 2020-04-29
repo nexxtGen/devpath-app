@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles, Grid } from '@material-ui/core';
+import { withStyles, createStyles, Grid, Button } from '@material-ui/core';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import EditLane from '../../UserKanbanForms/Lanes/EditLane';
 import Note from '../note/Note';
@@ -32,6 +32,7 @@ const Lane = ({
   lane,
   laneNotes,
   index,
+  setIsOpenNoteFormModal,
   editUserKanbanLane,
   updateUserKanbanLane,
   deleteUserKanbanLane,
@@ -75,6 +76,13 @@ const Lane = ({
               </Grid>
             )}
           </Droppable>
+          <Button
+            onClick={() =>
+              setIsOpenNoteFormModal({ open: true, mode: 'create' })
+            }
+          >
+            Add Note
+          </Button>
         </Grid>
       )}
     </Draggable>

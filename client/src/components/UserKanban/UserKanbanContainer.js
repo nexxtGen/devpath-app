@@ -8,6 +8,7 @@ import CollectionsListModal from '../UserKanbanForms/Collections/CollectionsList
 import BoardFormModalContainer from '../UserKanbanForms/Boards/BoardFormModalContainer';
 import BoardsListModal from '../UserKanbanForms/Boards/BoardsListModal';
 import LaneFormModalContainer from '../UserKanbanForms/Lanes/LaneFormModalContainer';
+import NoteFormModalContainer from '../UserKanbanForms/Notes/NoteFormModalContainer';
 import Alert from '../layout/Alert';
 import {
   getAllUserKanbanCollections,
@@ -72,6 +73,11 @@ const UserKanbanContainer = ({
     mode: ''
   });
 
+  const [isOpenNoteFormModal, setIsOpenNoteFormModal] = useState({
+    open: false,
+    mode: ''
+  });
+
   useEffect(() => {
     getAllUserKanbanCollections();
     getAllUserKanbanBoards();
@@ -111,6 +117,12 @@ const UserKanbanContainer = ({
                 currentCollection={currentCollection}
                 currentBoard={currentBoard}
               />
+              <NoteFormModalContainer
+                open={isOpenNoteFormModal}
+                setIsOpen={setIsOpenNoteFormModal}
+                currentCollection={currentCollection}
+                currentBoard={currentBoard}
+              />
             </Grid>
           )}
         </Grid>
@@ -139,6 +151,7 @@ const UserKanbanContainer = ({
           lanes={lanes}
           notes={notes}
           setIsOpenLaneFormModal={setIsOpenLaneFormModal}
+          setIsOpenNoteFormModal={setIsOpenNoteFormModal}
         />
       </Grid>
     </Grid>
