@@ -1,5 +1,7 @@
-import React from 'react';
-import { withStyles, createStyles, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { withStyles, createStyles, Grid, Button } from '@material-ui/core';
+import NoteMenu from './NoteMenu';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { Draggable } from 'react-beautiful-dnd';
 
 const styles = createStyles({
@@ -16,6 +18,15 @@ const styles = createStyles({
 });
 
 const Note = ({ classes, note, index }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleOpenMenu = e => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
   return (
     <Draggable draggableId={note._id} index={index}>
       {provided => (
@@ -34,6 +45,17 @@ const Note = ({ classes, note, index }) => {
           steps: {note.steps || ''}
           <br />
           currentValue: {note.progress || ''}
+          <Grid>
+            <Button
+              aria-controls='simple-menu'
+              aria-haspopup='true'
+              onClick={handleOpenMenu}
+              color='primary'
+            >
+              <SettingsIcon />
+            </Button>
+            <NoteMenu anchorEl={anchorEl} handleCloseMenu={handleCloseMenu} />
+          </Grid>
         </Grid>
       )}
     </Draggable>

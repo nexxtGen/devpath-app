@@ -1,5 +1,11 @@
 import React from 'react';
-import { withStyles, createStyles, Grid, Button } from '@material-ui/core';
+import {
+  withStyles,
+  createStyles,
+  Grid,
+  Button,
+  Typography
+} from '@material-ui/core';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import EditLane from '../../UserKanbanForms/Lanes/EditLane';
 import Note from '../note/Note';
@@ -75,9 +81,15 @@ const Lane = ({
                 innerRef={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {laneNotes.map((note, index) => (
-                  <Note key={note._id} note={note} index={index} />
-                ))}
+                {laneNotes.map((noteItem, index) =>
+                  noteItem ? (
+                    <Note key={noteItem._id} note={noteItem} index={index} />
+                  ) : (
+                    <Typography key={index}>
+                      Note is Undefined. Data error.
+                    </Typography>
+                  )
+                )}
                 {provided.placeholder}
               </Grid>
             )}
