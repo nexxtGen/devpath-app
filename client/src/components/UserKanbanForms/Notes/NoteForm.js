@@ -12,8 +12,11 @@ import {
   Typography,
   Select,
   InputLabel,
-  MenuItem
+  MenuItem,
+  MobileStepper
 } from '@material-ui/core';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Rating from '@material-ui/lab/Rating';
 
 const styles = createStyles({
@@ -89,11 +92,51 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
           <Field name='progress' type='number'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <Typography>Set company rating</Typography>
+                <Typography>Task progress</Typography>
                 <Rating
                   name='progress'
                   onChange={field.onChange}
                   defaultValue={parseInt(field.value)}
+                  max={FormikBag.values.steps}
+                />
+              </FormControl>
+            )}
+          </Field>
+          <Field name='steps' type='number'>
+            {({ field, form }) => (
+              <FormControl fullWidth style={{ height: '75px' }}>
+                <Typography>Progress steps:{field.value}</Typography>
+                <MobileStepper
+                  name={field.name}
+                  variant='progress'
+                  steps={6}
+                  position='static'
+                  activeStep={parseInt(field.value)}
+                  className={classes.root}
+                  nextButton={
+                    <Button
+                      size='small'
+                      onClick={(e, value) =>
+                        form.setFieldValue(field.name, field.value + 1)
+                      }
+                      disabled={field.value === 5}
+                    >
+                      Next
+                      <KeyboardArrowRight />
+                    </Button>
+                  }
+                  backButton={
+                    <Button
+                      size='small'
+                      onClick={(e, value) =>
+                        form.setFieldValue(field.name, field.value + -1)
+                      }
+                      disabled={field.value === 0}
+                    >
+                      <KeyboardArrowLeft />
+                      Back
+                    </Button>
+                  }
                 />
               </FormControl>
             )}

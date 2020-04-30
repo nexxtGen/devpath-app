@@ -77,7 +77,8 @@ const noteSchema = Yup.object().shape({
     .required('Description is required'),
   image: Yup.string()
     .min(10, 'Minimum 3 characters')
-    .max(800, 'Maximum 800 characters')
+    .max(800, 'Maximum 800 characters'),
+  priority: Yup.string().required('Priority is required')
 });
 
 const mapStateToProps = state => ({
