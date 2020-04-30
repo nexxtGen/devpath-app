@@ -9,7 +9,8 @@ import {
   moveLaneInBoard,
   editUserKanbanLane,
   updateUserKanbanLane,
-  deleteUserKanbanLane
+  deleteUserKanbanLane,
+  setCurrentKanbanLane
 } from '../../../actions/kanban';
 import { connect } from 'react-redux';
 
@@ -42,7 +43,8 @@ const Board = ({
   setIsOpenNoteFormModal,
   editUserKanbanLane,
   updateUserKanbanLane,
-  deleteUserKanbanLane
+  deleteUserKanbanLane,
+  setCurrentKanbanLane
 }) => {
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
@@ -146,6 +148,7 @@ const Board = ({
                       deleteUserKanbanLane={deleteUserKanbanLane}
                       currentBoard={currentBoard}
                       setIsOpenNoteFormModal={setIsOpenNoteFormModal}
+                      setCurrentKanbanLane={setCurrentKanbanLane}
                     />
                   );
                 })
@@ -169,5 +172,6 @@ export default connect(null, {
   moveLaneInBoard,
   editUserKanbanLane,
   updateUserKanbanLane,
-  deleteUserKanbanLane
+  deleteUserKanbanLane,
+  setCurrentKanbanLane
 })(withStyles(styles)(Board));

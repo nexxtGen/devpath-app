@@ -207,18 +207,18 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
                 <FormControl fullWidth style={{ height: '75px' }}>
                   <Typography style={{ paddingLeft: 25 }}>
                     Task progress:
-                    {parseInt(field.value) > FormikBag.values.steps - 1
+                    {parseInt(field.value) > FormikBag.values.steps
                       ? 0
                       : parseInt(field.value)}
-                    /{parseInt(FormikBag.values.steps) - 1}
+                    /{parseInt(FormikBag.values.steps)}
                   </Typography>
                   <MobileStepper
                     name={field.name}
                     variant='progress'
-                    steps={parseInt(FormikBag.values.steps)}
+                    steps={parseInt(FormikBag.values.steps) + 1}
                     position='static'
                     activeStep={
-                      parseInt(field.value) > FormikBag.values.steps - 1
+                      parseInt(field.value) > FormikBag.values.steps
                         ? 0
                         : parseInt(field.value)
                     }
@@ -231,7 +231,7 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
                         }
                         disabled={
                           parseInt(field.value) >=
-                            parseInt(FormikBag.values.steps) - 1 ||
+                            parseInt(FormikBag.values.steps) ||
                           !FormikBag.values.setProgress
                         }
                       >

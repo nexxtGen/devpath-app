@@ -9,7 +9,9 @@ const styles = createStyles({
     margin: '5px 0',
     padding: 5,
     width: '100%',
-    background: 'white'
+    background: 'white',
+    display: 'flex',
+    direction: 'column'
   }
 });
 
@@ -23,7 +25,15 @@ const Note = ({ classes, note, index }) => {
           {...provided.dragHandleProps}
           innerRef={provided.innerRef}
         >
-          {note.description}
+          desc:{note.description}
+          <br />
+          img: {note.image || ''}
+          <br />
+          priority: {note.priority || ''}
+          <br />
+          steps: {note.steps || ''}
+          <br />
+          currentValue: {note.progress || ''}
         </Grid>
       )}
     </Draggable>

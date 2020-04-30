@@ -36,8 +36,14 @@ const Lane = ({
   editUserKanbanLane,
   updateUserKanbanLane,
   deleteUserKanbanLane,
-  currentBoard
+  currentBoard,
+  setCurrentKanbanLane
 }) => {
+  const handleOpenNoteForm = () => {
+    setCurrentKanbanLane(lane);
+    setIsOpenNoteFormModal({ open: true, mode: 'create' });
+  };
+
   return (
     <Draggable draggableId={lane._id} index={index}>
       {provided => (
@@ -76,13 +82,7 @@ const Lane = ({
               </Grid>
             )}
           </Droppable>
-          <Button
-            onClick={() =>
-              setIsOpenNoteFormModal({ open: true, mode: 'create' })
-            }
-          >
-            Add Note
-          </Button>
+          <Button onClick={() => handleOpenNoteForm()}>Add Note</Button>
         </Grid>
       )}
     </Draggable>

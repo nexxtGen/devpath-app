@@ -20,17 +20,15 @@ const NoteSchema = new mongoose.Schema({
     type: String,
     maxlength: [900, 'Image can not be more than 900 characters']
   },
+  setProgress: {
+    type: Boolean,
+    default: false
+  },
   progress: {
-    steps: {
-      type: Number,
-      min: [2, 'Progress must be at least 2'],
-      max: [6, 'Progress value must can not be more than 6']
-    },
-    currentValue: {
-      type: Number,
-      min: [0, 'Progress must be at least 2'],
-      max: [6, 'Progress value must can not be more than 6']
-    }
+    type: Number
+  },
+  steps: {
+    type: Number
   },
   collectionId: {
     type: String,

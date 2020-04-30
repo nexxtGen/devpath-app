@@ -15,11 +15,14 @@ import {
   UPDATE_USER_KANBAN_LANE,
   DELETE_USER_KANBAN_LANE,
   EDIT_USER_KANBAN_LANE,
+  CREATE_NEW_USER_KANBAN_NOTE,
+  UPDATE_USER_KANBAN_NOTE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   SET_CURRENT_EDITED_KANBAN_BOARD,
   SET_CURRENT_EDITED_KANBAN_LANE,
+  SET_CURRENT_KANBAN_LANE,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
@@ -316,9 +319,52 @@ export const editUserKanbanLane = laneId => async dispatch => {
 
 // NOTES------------------------------
 
-export const createNewUserKanbanNote = noteData => async dispatch => {};
+export const createNewUserKanbanNote = noteData => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
-export const updateUserKanbanNote = (noteId, noteData) => async dispatch => {};
+  try {
+    const res = await axios.post('/api/v1/notes', noteData, config);
+
+    dispatch(setAlert('New note has been created', 'success'));
+
+    dispatch({
+      type: CREATE_NEW_USER_KANBAN_NOTE,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const updateUserKanbanNote = (noteId, noteData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/v1/notes/${noteId}`, noteData, config);
+
+    dispatch(setAlert('Note has been updated', 'success'));
+    dispatch({
+      type: UPDATE_USER_KANBAN_NOTE,
+      payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
 
 // SET CURRENT ------------------------------
 
@@ -347,6 +393,13 @@ export const setCurrentKanbanBoard = board => dispatch => {
   dispatch({
     type: SET_CURRENT_KANBAN_BOARD,
     payload: board
+  });
+};
+
+export const setCurrentKanbanLane = lane => dispatch => {
+  dispatch({
+    type: SET_CURRENT_KANBAN_LANE,
+    payload: lane
   });
 };
 

@@ -7,7 +7,8 @@ import createNoteValues from '../utilis/createNoteValues';
 import { connect } from 'react-redux';
 import {
   createNewUserKanbanNote,
-  updateUserKanbanNote
+  updateUserKanbanNote,
+  setCurrentKanbanLane
 } from '../../../actions/kanban';
 
 const NoteFormModalContainer = ({
@@ -18,16 +19,24 @@ const NoteFormModalContainer = ({
   currentLane,
   currentEditedNote,
   createNewUserKanbanNote,
-  updateUserKanbanNote
+  updateUserKanbanNote,
+  setCurrentKanbanLane
 }) => {
-  const handleSubmitCreate = values => {
+  const handleSubmitCreate = values => {   
     createNewUserKanbanNote(values);
     setIsOpen({ open: false, mode: '' });
+    setCurrentKanbanLane(null);
   };
 
   const handleSubmitUpdate = values => {
     updateUserKanbanNote(currentEditedNote._id, values);
     setIsOpen({ open: false, mode: '' });
+    setCurrentKanbanLane(null);
+  };
+
+  const handleClose = () => {
+    setIsOpen({ open: false, mode: '' });
+    setCurrentKanbanLane(null);
   };
   const initialValues = createNoteValues(
     open.mode === 'edit' ? currentEditedNote : null,
@@ -39,7 +48,7 @@ const NoteFormModalContainer = ({
     <Grid>
       <Dialog
         open={open.open}
-        onClose={() => setIsOpen({ open: false, mode: '' })}
+        onClose={() => handleClose()}
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>
@@ -89,5 +98,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   createNewUserKanbanNote,
-  updateUserKanbanNote
+  updateUserKanbanNote,
+  setCurrentKanbanLane
 })(NoteFormModalContainer);

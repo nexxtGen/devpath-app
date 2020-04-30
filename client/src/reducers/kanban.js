@@ -13,10 +13,13 @@ import {
   UPDATE_USER_KANBAN_LANE,
   DELETE_USER_KANBAN_LANE,
   EDIT_USER_KANBAN_LANE,
+  CREATE_NEW_USER_KANBAN_NOTE,
+  UPDATE_USER_KANBAN_NOTE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
   SET_CURRENT_EDITED_KANBAN_BOARD,
+  SET_CURRENT_KANBAN_LANE,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
@@ -36,6 +39,7 @@ const initialState = {
   currentEditedCollection: null,
   currentBoard: null,
   currentEditedBoard: null,
+  currentLane: null,
   collectionsLoading: null,
   boardsLoading: null,
   lanesLoading: null,
@@ -185,6 +189,18 @@ export default function(state = initialState, action) {
           lane._id === payload ? { ...lane, editing: true } : lane
         )
       };
+    case CREATE_NEW_USER_KANBAN_NOTE:
+      return {
+        ...state,
+        notes: [...state.notes, payload]
+      };
+    case UPDATE_USER_KANBAN_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map(note =>
+          note._id === payload._id ? payload : note
+        )
+      };
     case SET_CURRENT_KANBAN_COLLECTION:
       return {
         ...state,
@@ -204,6 +220,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         currentEditedBoard: payload
+      };
+    case SET_CURRENT_KANBAN_LANE:
+      return {
+        ...state,
+        currentLane: payload
       };
     case MOVE_NOTE_IN_LANE:
       return {
