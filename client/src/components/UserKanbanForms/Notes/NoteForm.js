@@ -13,10 +13,17 @@ import {
   Select,
   InputLabel,
   MenuItem,
-  MobileStepper
+  MobileStepper,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Checkbox
 } from '@material-ui/core';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Rating from '@material-ui/lab/Rating';
 
 const styles = createStyles({
@@ -32,8 +39,40 @@ const styles = createStyles({
     backgroundPosition: 'center',
     display: 'inline-block',
     margin: '15px auto 25px'
+  },
+  checkbox: {
+    width: '7px',
+    marginRight: '10px',
+    height: '20px',
+    color: 'rgb(0,143, 213)'
+  },
+  checkboxError: {
+    marginBottom: '25px'
+  },
+  progressPrimaryContainer: {
+    padding: '18px 0 5px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    borderTop: '1px solid lightgray',
+    borderBottom: '1px solid lightgray',
+    marginBottom: 15
+  },
+  progressContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%'
   }
 });
+
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#3f51b5'
+  },
+  iconHover: {
+    color: '#3f51b5'
+  }
+})(Rating);
 
 const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
   return (
@@ -89,58 +128,135 @@ const BoardForm = ({ classes, setIsOpen, FormikBag }) => {
               </FormControl>
             )}
           </Field>
-          <Field name='progress' type='number'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <Typography>Task progress</Typography>
-                <Rating
-                  name='progress'
-                  onChange={field.onChange}
-                  defaultValue={parseInt(field.value)}
-                  max={FormikBag.values.steps}
-                />
-              </FormControl>
-            )}
-          </Field>
-          <Field name='steps' type='number'>
-            {({ field, form }) => (
-              <FormControl fullWidth style={{ height: '75px' }}>
-                <Typography>Progress steps:{field.value}</Typography>
-                <MobileStepper
-                  name={field.name}
-                  variant='progress'
-                  steps={6}
-                  position='static'
-                  activeStep={parseInt(field.value)}
-                  className={classes.root}
-                  nextButton={
-                    <Button
-                      size='small'
-                      onClick={(e, value) =>
-                        form.setFieldValue(field.name, field.value + 1)
+        </Grid>
+        <Divider />
+        <Grid className={classes.progressPrimaryContainer}>
+          <Grid style={{ height: 60, marginLeft: 10 }}>
+            <Field name='setProgress' type='checkbox'>
+              {({ field, form }) => (
+                <FormGroup>
+                  <Grid
+                    container
+                    direction='column'
+                    justify='flex-start'
+                    alignItems='flex-start'
+                  >
+                    <FormControlLabel
+                      className={classes.checkboxForm}
+                      control={
+                        <Checkbox
+                          color='primary'
+                          icon={
+                            <CheckBoxOutlineBlank
+                              style={{
+                                fontSize: 30,
+                                color: '#3f51b5'
+                              }}
+                            />
+                          }
+                          checkedIcon={
+                            <CheckBoxIcon style={{ fontSize: 30 }} />
+                          }
+                          {...field}
+                          className={classes.checkbox}
+                        />
                       }
-                      disabled={field.value === 5}
-                    >
-                      Next
-                      <KeyboardArrowRight />
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size='small'
-                      onClick={(e, value) =>
-                        form.setFieldValue(field.name, field.value + -1)
+                      label={
+                        <Typography
+                          variant='subtitle2'
+                          style={{
+                            lineHeight: '1rem',
+                            display: 'flex',
+                            flexDirection: 'row'
+                          }}
+                        >
+                          <Typography style={{ marginRight: 5 }}>
+                            Use progress bar
+                          </Typography>
+                        </Typography>
                       }
-                      disabled={field.value === 0}
-                    >
-                      <KeyboardArrowLeft />
-                      Back
-                    </Button>
-                  }
-                />
-              </FormControl>
-            )}
-          </Field>
+                    />
+                    <FormHelperText error className={classes.checkboxError}>
+                      {form.touched.setProgress &&
+                        form.errors.setProgress &&
+                        form.errors.setProgress}
+                    </FormHelperText>
+                  </Grid>
+                </FormGroup>
+              )}
+            </Field>
+          </Grid>
+          <Grid className={classes.progressContainer}>
+            <Field name='steps' type='number'>
+              {({ field, form }) => (
+                <FormControl fullWidth style={{ height: '75px' }}>
+                  <Typography>Progress steps</Typography>
+                  <StyledRating
+                    disabled={!FormikBag.values.setProgress}
+                    name='steps'
+                    onChange={field.onChange}
+                    defaultValue={parseInt(field.value)}
+                    max={6}
+                    icon={<FiberManualRecordIcon fontSize='inherit' />}
+                  />
+                </FormControl>
+              )}
+            </Field>
+            <Field name='progress' type='number'>
+              {({ field, form }) => (
+                <FormControl fullWidth style={{ height: '75px' }}>
+                  <Typography style={{ paddingLeft: 25 }}>
+                    Task progress:
+                    {parseInt(field.value) > FormikBag.values.steps - 1
+                      ? 0
+                      : parseInt(field.value)}
+                    /{parseInt(FormikBag.values.steps) - 1}
+                  </Typography>
+                  <MobileStepper
+                    name={field.name}
+                    variant='progress'
+                    steps={parseInt(FormikBag.values.steps)}
+                    position='static'
+                    activeStep={
+                      parseInt(field.value) > FormikBag.values.steps - 1
+                        ? 0
+                        : parseInt(field.value)
+                    }
+                    className={classes.root}
+                    nextButton={
+                      <Button
+                        size='small'
+                        onClick={(e, value) =>
+                          form.setFieldValue(field.name, field.value + 1)
+                        }
+                        disabled={
+                          parseInt(field.value) >=
+                            parseInt(FormikBag.values.steps) - 1 ||
+                          !FormikBag.values.setProgress
+                        }
+                      >
+                        +
+                        <KeyboardArrowRight />
+                      </Button>
+                    }
+                    backButton={
+                      <Button
+                        size='small'
+                        onClick={(e, value) =>
+                          form.setFieldValue(field.name, field.value - 1)
+                        }
+                        disabled={
+                          field.value === 0 || !FormikBag.values.setProgress
+                        }
+                      >
+                        <KeyboardArrowLeft />-
+                      </Button>
+                    }
+                  />
+                </FormControl>
+              )}
+            </Field>
+          </Grid>
         </Grid>
         <Grid container direction='column' align='center'>
           <Typography>Image preview</Typography>
