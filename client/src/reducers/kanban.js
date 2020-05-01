@@ -261,7 +261,12 @@ export default function(state = initialState, action) {
             };
           }
           return lane;
-        })
+        }),
+        notes: state.notes.map(note =>
+          note._id === payload.noteId
+            ? { ...note, laneId: payload.finishLane._id }
+            : note
+        )
       };
     case MOVE_LANE_IN_BOARD:
       return {

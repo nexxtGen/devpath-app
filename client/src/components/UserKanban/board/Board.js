@@ -108,7 +108,7 @@ const Board = ({
       notes: finishNoteIds
     };
 
-    moveNoteBetweenLanes(newStart, newFinish);
+    moveNoteBetweenLanes(newStart, newFinish, draggableId);
     return;
   };
 

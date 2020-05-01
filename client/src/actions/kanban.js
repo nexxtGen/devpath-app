@@ -448,7 +448,8 @@ export const moveNoteInLane = lane => async dispatch => {
 
 export const moveNoteBetweenLanes = (
   startLane,
-  finishLane
+  finishLane,
+  noteId
 ) => async dispatch => {
   const config = {
     headers: {
@@ -456,11 +457,11 @@ export const moveNoteBetweenLanes = (
     }
   };
 
-  const data = { startLane, finishLane };
+  const data = { startLane, finishLane, noteId };
   try {
     dispatch({
       type: MOVE_NOTE_BETWEEN_LANES,
-      payload: { startLane, finishLane }
+      payload: { startLane, finishLane, noteId }
     });
 
     await axios.put(

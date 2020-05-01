@@ -154,5 +154,14 @@ exports.moveNoteBetweenLanes = asyncHandler(async (req, res, next) => {
     }
   );
 
+  const note = await Note.findById(req.body.noteId);
+
+  note.laneId = req.body.finishLane._id.toString();
+
+  await Note.findByIdAndUpdate(req.body.noteId, note, {
+    new: true,
+    runValidators: false
+  });
+
   res.status(200).json({ success: true, data: {} });
 });
