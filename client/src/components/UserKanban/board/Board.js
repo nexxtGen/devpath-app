@@ -136,7 +136,6 @@ const Board = ({
                   let laneNotes = lane.notes.map(noteId =>
                     notes.find(e => e._id === noteId)
                   );
-                  console.log('LANE NOTES', laneNotes);
                   return (
                     <Lane
                       key={lane._id}

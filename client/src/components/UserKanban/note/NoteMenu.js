@@ -3,17 +3,22 @@ import { withStyles, createStyles, MenuItem, Menu } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { connect } from 'react-redux';
-import { setCurrentEditedKanbanNote } from '../../../actions/kanban';
+import {
+  setCurrentEditedKanbanNote,
+  deleteUserKanbanNote
+} from '../../../actions/kanban';
 
 const styles = createStyles({});
 
 const NoteMenu = ({
   classes,
   note,
+  laneId,
   anchorEl,
   handleCloseMenu,
   setCurrentEditedKanbanNote,
-  setIsOpenNoteFormModal
+  setIsOpenNoteFormModal,
+  deleteUserKanbanNote
 }) => {
   const handleClickEdit = () => {
     setCurrentEditedKanbanNote(note);
@@ -21,7 +26,10 @@ const NoteMenu = ({
     setIsOpenNoteFormModal({ open: true, mode: 'edit' });
   };
 
-  const handleClickDelete = () => {};
+  const handleClickDelete = () => {
+    deleteUserKanbanNote(note._id, laneId);
+    handleCloseMenu();
+  };
 
   return (
     <div>
@@ -36,7 +44,7 @@ const NoteMenu = ({
           <EditIcon />
           Edit
         </MenuItem>
-        <MenuItem onClick={handleCloseMenu}>
+        <MenuItem onClick={() => handleClickDelete()}>
           <DeleteOutlineIcon />
           Delete
         </MenuItem>
@@ -45,6 +53,7 @@ const NoteMenu = ({
   );
 };
 
-export default connect(null, { setCurrentEditedKanbanNote })(
-  withStyles(styles)(NoteMenu)
-);
+export default connect(null, {
+  setCurrentEditedKanbanNote,
+  deleteUserKanbanNote
+})(withStyles(styles)(NoteMenu));

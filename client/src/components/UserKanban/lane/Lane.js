@@ -84,6 +84,7 @@ const Lane = ({
                 {laneNotes.map((noteItem, index) =>
                   noteItem ? (
                     <Note
+                      laneId={lane._id}
                       key={noteItem._id}
                       note={noteItem}
                       index={index}

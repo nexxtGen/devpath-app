@@ -17,6 +17,7 @@ import {
   EDIT_USER_KANBAN_LANE,
   CREATE_NEW_USER_KANBAN_NOTE,
   UPDATE_USER_KANBAN_NOTE,
+  DELETE_USER_KANBAN_NOTE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -358,6 +359,23 @@ export const updateUserKanbanNote = (noteId, noteData) => async dispatch => {
     dispatch({
       type: UPDATE_USER_KANBAN_NOTE,
       payload: res.data.data
+    });
+  } catch (err) {
+    dispatch({
+      type: KANBAN_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
+};
+
+export const deleteUserKanbanNote = (noteId, laneId) => async dispatch => {
+  try {
+    await axios.delete(`/api/v1/notes/${noteId}`);
+
+    dispatch(setAlert('Note has been deleted', 'success'));
+    dispatch({
+      type: DELETE_USER_KANBAN_NOTE,
+      payload: { noteId, laneId }
     });
   } catch (err) {
     dispatch({

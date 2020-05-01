@@ -17,7 +17,7 @@ const styles = createStyles({
   }
 });
 
-const Note = ({ classes, note, index, setIsOpenNoteFormModal }) => {
+const Note = ({ classes, note, laneId, index, setIsOpenNoteFormModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenMenu = e => {
@@ -58,6 +58,7 @@ const Note = ({ classes, note, index, setIsOpenNoteFormModal }) => {
               anchorEl={anchorEl}
               handleCloseMenu={handleCloseMenu}
               note={note}
+              laneId={laneId}
               setIsOpenNoteFormModal={setIsOpenNoteFormModal}
             />
           </Grid>

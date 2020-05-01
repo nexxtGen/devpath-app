@@ -15,6 +15,7 @@ import {
   EDIT_USER_KANBAN_LANE,
   CREATE_NEW_USER_KANBAN_NOTE,
   UPDATE_USER_KANBAN_NOTE,
+  DELETE_USER_KANBAN_NOTE,
   SET_CURRENT_KANBAN_COLLECTION,
   SET_CURRENT_EDITED_KANBAN_COLLECTION,
   SET_CURRENT_KANBAN_BOARD,
@@ -126,6 +127,10 @@ export default function(state = initialState, action) {
     case DELETE_USER_KANBAN_BOARD:
       return {
         ...state,
+        currentBoard:
+          state.currentBoard._id === payload.boardId
+            ? null
+            : state.currentBoard,
         boards: state.boards.filter(board => board._id !== payload.boardId),
         currentCollection: {
           ...state.currentCollection,
@@ -142,7 +147,9 @@ export default function(state = initialState, action) {
                 )
               }
             : collection
-        )
+        ),
+        lanes: state.lanes.filter(lane => lane.boardId !== payload.boardId),
+        notes: state.notes.filter(note => note.boardId !== payload.boardId)
       };
     case CREATE_NEW_USER_KANBAN_LANE:
       return {
@@ -206,6 +213,19 @@ export default function(state = initialState, action) {
         ...state,
         notes: state.notes.map(note =>
           note._id === payload._id ? payload : note
+        )
+      };
+    case DELETE_USER_KANBAN_NOTE:
+      return {
+        ...state,
+        notes: state.notes.filter(note => note._id !== payload.noteId),
+        lanes: state.lanes.map(lane =>
+          lane._id === payload.laneId
+            ? {
+                ...lane,
+                notes: lane.notes.filter(noteId => noteId !== payload.noteId)
+              }
+            : lane
         )
       };
     case SET_CURRENT_KANBAN_COLLECTION:

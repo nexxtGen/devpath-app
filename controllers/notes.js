@@ -94,15 +94,17 @@ exports.deleteNote = asyncHandler(async (req, res, next) => {
   }
 
   let lane = await Lane.findOne({
-    _id: req.body.laneId,
+    _id: note.laneId,
     user: req.user.id
   });
 
-  const filtered = lane.notes.filter(noteId => noteId.toString() !== note._id);
+  const filtered = lane.notes.filter(
+    noteId => noteId.toString() !== req.params.id
+  );
   lane.notes = filtered;
 
   await Lane.findOneAndUpdate(
-    { _id: req.body.laneId },
+    { _id: note.laneId },
     { $set: lane },
     { new: true }
   );
