@@ -17,7 +17,7 @@ const styles = createStyles({
   }
 });
 
-const Note = ({ classes, note, index }) => {
+const Note = ({ classes, note, index, setIsOpenNoteFormModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenMenu = e => {
@@ -54,7 +54,12 @@ const Note = ({ classes, note, index }) => {
             >
               <SettingsIcon />
             </Button>
-            <NoteMenu anchorEl={anchorEl} handleCloseMenu={handleCloseMenu} />
+            <NoteMenu
+              anchorEl={anchorEl}
+              handleCloseMenu={handleCloseMenu}
+              note={note}
+              setIsOpenNoteFormModal={setIsOpenNoteFormModal}
+            />
           </Grid>
         </Grid>
       )}

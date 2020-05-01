@@ -83,7 +83,12 @@ const Lane = ({
               >
                 {laneNotes.map((noteItem, index) =>
                   noteItem ? (
-                    <Note key={noteItem._id} note={noteItem} index={index} />
+                    <Note
+                      key={noteItem._id}
+                      note={noteItem}
+                      index={index}
+                      setIsOpenNoteFormModal={setIsOpenNoteFormModal}
+                    />
                   ) : (
                     <Typography key={index}>
                       Note is Undefined. Data error.

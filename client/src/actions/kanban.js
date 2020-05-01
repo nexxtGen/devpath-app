@@ -23,6 +23,7 @@ import {
   SET_CURRENT_EDITED_KANBAN_BOARD,
   SET_CURRENT_EDITED_KANBAN_LANE,
   SET_CURRENT_KANBAN_LANE,
+  SET_CURRENT_EDITED_KANBAN_NOTE,
   MOVE_NOTE_IN_LANE,
   MOVE_NOTE_BETWEEN_LANES,
   MOVE_LANE_IN_BOARD,
@@ -407,6 +408,13 @@ export const setCurrentEditedKanbanLane = lane => dispatch => {
   dispatch({
     type: SET_CURRENT_EDITED_KANBAN_LANE,
     payload: lane
+  });
+};
+
+export const setCurrentEditedKanbanNote = note => dispatch => {
+  dispatch({
+    type: SET_CURRENT_EDITED_KANBAN_NOTE,
+    payload: note
   });
 };
 
