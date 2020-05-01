@@ -8,8 +8,12 @@ import {
 } from '@material-ui/core';
 import { primary } from '../../../shared/colors';
 const styles = createStyles({
-  container: {},
-  delete: {},
+  container: {
+    display: 'flex',
+    direction: 'row',
+    alignItems: 'center',
+    padding: 4
+  },
   muiTextField: {
     backgroundColor: 'white',
     paddingBottom: 5
@@ -23,17 +27,15 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  value: {
+    color: '#585858',
+    fontSize: 20,
+    fontWeight: 700
   }
 });
 
-const EditLane = ({
-  classes,
-  value,
-  onDelete,
-  onUpdate,
-  onValueClick,
-  editing
-}) => {
+const EditLane = ({ classes, value, onUpdate, onValueClick, editing }) => {
   const checkEnter = e => {
     if (e.key === 'Enter') {
       finishEdit(e);
@@ -47,31 +49,12 @@ const EditLane = ({
       onUpdate(value.trim());
     }
   };
-
-  const renderDelete = () => {
-    return (
-      <button className={classes.delete} onClick={onDelete}>
-        x
-      </button>
-    );
-  };
-
   const renderValue = () => {
     return (
       <Grid className={classes.valueContainer}>
-        <Grid item xs={9}>
-          <Typography
-            variant='h6'
-            color='textSecondary'
-            className={classes.value}
-            onClick={onValueClick}
-          >
-            {value}
-          </Typography>
-        </Grid>
-        <Grid item xs={3}>
-          {onDelete ? renderDelete() : null}
-        </Grid>
+        <Typography className={classes.value} onClick={onValueClick}>
+          {value}
+        </Typography>
       </Grid>
     );
   };

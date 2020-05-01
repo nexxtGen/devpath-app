@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { withStyles, createStyles, Grid, Button } from '@material-ui/core';
+import {
+  withStyles,
+  createStyles,
+  Grid,
+  Button,
+  Typography
+} from '@material-ui/core';
 import NoteMenu from './NoteMenu';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Draggable } from 'react-beautiful-dnd';
@@ -7,13 +13,35 @@ import { Draggable } from 'react-beautiful-dnd';
 const styles = createStyles({
   noteContainer: {
     border: '1px solid lightgray',
-    borderRadius: 2,
-    margin: '5px 0',
-    padding: 5,
+    borderRadius: '6px',
     width: '100%',
     background: 'white',
     display: 'flex',
-    direction: 'column'
+    flexDirection: 'column',
+    flexWrap: 'wrap'
+  },
+  contentContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'space-between'
+    //justifyContent: 'space-between'
+  },
+  descContainer: {
+    padding: 6
+  },
+  imgContainer: {
+    height: '80px'
+  },
+  picture: {
+    background: 'rgb(233, 233, 233)',
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    display: 'inline-block',
+    borderRadius: '0 0 6px 6px'
   }
 });
 
@@ -36,31 +64,35 @@ const Note = ({ classes, note, laneId, index, setIsOpenNoteFormModal }) => {
           {...provided.dragHandleProps}
           innerRef={provided.innerRef}
         >
-          desc:{note.description}
-          <br />
-          img: {note.image || ''}
-          <br />
-          priority: {note.priority || ''}
-          <br />
-          steps: {note.steps || ''}
-          <br />
-          currentValue: {note.progress || ''}
-          <Grid>
-            <Button
-              aria-controls='simple-menu'
-              aria-haspopup='true'
-              onClick={handleOpenMenu}
-              color='primary'
-            >
-              <SettingsIcon />
-            </Button>
-            <NoteMenu
-              anchorEl={anchorEl}
-              handleCloseMenu={handleCloseMenu}
-              note={note}
-              laneId={laneId}
-              setIsOpenNoteFormModal={setIsOpenNoteFormModal}
-            />
+          <Grid className={classes.contentContainer}>
+            <Grid>
+              <Button
+                aria-controls='simple-menu'
+                aria-haspopup='true'
+                onClick={handleOpenMenu}
+                color='primary'
+              >
+                <SettingsIcon />
+              </Button>
+              <NoteMenu
+                anchorEl={anchorEl}
+                handleCloseMenu={handleCloseMenu}
+                note={note}
+                laneId={laneId}
+                setIsOpenNoteFormModal={setIsOpenNoteFormModal}
+              />
+            </Grid>
+            <Grid className={classes.descContainer}>
+              <Typography variant='body2'>{note.description}</Typography>
+            </Grid>
+            <Grid className={classes.imgContainer}>
+              <Grid
+                className={classes.picture}
+                style={{
+                  backgroundImage: `url('${note.image}')`
+                }}
+              ></Grid>
+            </Grid>
           </Grid>
         </Grid>
       )}
