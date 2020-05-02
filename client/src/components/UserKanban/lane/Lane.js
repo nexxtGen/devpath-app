@@ -25,7 +25,7 @@ const styles = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     flexWrap: 'wrap',
-    padding: 12,
+    padding: 14,
     margin: '0 10px 20px 10px',
     boxShadow: '-6px 5px 11px #E6E6E6'
   },
