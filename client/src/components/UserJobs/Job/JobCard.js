@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from '../Company/CompanySmallCard';
 import {
@@ -16,6 +15,7 @@ import styles from './jobCardStyles';
 import { connect } from 'react-redux';
 import { setCurrentEditedJob } from '../../../actions/jobs';
 import { deleteUserJob } from '../../../actions/jobs';
+import * as moment from 'moment';
 
 const JobCard = ({
   classes,

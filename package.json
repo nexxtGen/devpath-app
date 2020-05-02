@@ -28,7 +28,6 @@
   },
   "homepage": "https://github.com/nexxtGen/devpath-app#readme",
   "dependencies": {
-    "@material-ui/lab": "^4.0.0-alpha.41",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^5.1.0",
@@ -40,11 +39,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10",
     "morgan": "^1.9.1",
-    "node-geocoder": "^3.25.0",
-    "react-github-calendar": "^1.0.4",
-    "react-minimal-pie-chart": "^6.0.1"
+    "node-geocoder": "^3.25.0"
   },
   "devDependencies": {
+    "moment-locales-webpack-plugin": "^1.2.0",
     "nodemon": "^2.0.2"
   }
 }
