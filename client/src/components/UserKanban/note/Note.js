@@ -7,6 +7,7 @@ import {
   Typography
 } from '@material-ui/core';
 import NoteMenu from './NoteMenu';
+import PriorityBox from './PriorityBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -25,8 +26,8 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'space-between'
-    //justifyContent: 'space-between'
   },
+
   descContainer: {
     padding: 6
   },
@@ -66,6 +67,7 @@ const Note = ({ classes, note, laneId, index, setIsOpenNoteFormModal }) => {
         >
           <Grid className={classes.contentContainer}>
             <Grid>
+              <PriorityBox priority={note.priority} />
               <Button
                 aria-controls='simple-menu'
                 aria-haspopup='true'
