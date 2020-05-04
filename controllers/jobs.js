@@ -70,10 +70,7 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 // @route PUT /api/v1/Jobs/:id
 // @access Private
 exports.updateJob = asyncHandler(async (req, res, next) => {
-  const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
+  let job = await Job.findById(req.params.id);
 
   if (!job) {
     return next(
@@ -81,7 +78,25 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({ success: true, data: job });
+  //job.position = req.body.position || '';
+
+  if (req.body.address !== '') {
+    job.address = req.body.address;
+  }
+  job.level = req.body.level || '';
+  job.technologies = req.body.technologies || '';
+  job.rating = req.body.rating || '';
+  job.pros = req.body.pros || '';
+  job.cons = req.body.cons || '';
+  job.applied = req.body.applied || false;
+  job.source = req.body.source || '';
+  job.agreement = req.body.agreement || '';
+
+  await job.save();
+
+  const jobUpdated = await Job.findById(req.params.id);
+
+  res.status(200).json({ success: true, data: jobUpdated });
 });
 
 // @desc Delete job

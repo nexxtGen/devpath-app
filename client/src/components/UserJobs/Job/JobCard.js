@@ -39,10 +39,16 @@ const JobCard = ({
             </a>
           </Grid>
           <Grid item xs={4} container className={classes.locationContainer}>
-            <Typography variant='body2' color='textSecondary'>
-              {job.city}
-            </Typography>
-            <LocationOn className={classes.locationIcon} />
+            {job.location ? (
+              <Grid>
+                <Typography variant='body2' color='textSecondary'>
+                  {job.location.city}
+                </Typography>
+                <LocationOn className={classes.locationIcon} />
+              </Grid>
+            ) : (
+              ''
+            )}
           </Grid>
         </Grid>
         <Divider />

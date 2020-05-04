@@ -57,12 +57,14 @@ const JobForm = ({ classes, setIsOpen, companies, open }) => {
               </FormControl>
             )}
           </Field>
-          <Field name='city'>
+          <Field name='address'>
             {({ field, form }) => (
               <FormControl fullWidth style={{ height: '75px' }}>
-                <FTextField label={'City'} fieldProps={field} />
+                <FTextField label={'Address'} fieldProps={field} />
                 <FormHelperText error>
-                  {form.touched.city && form.errors.city && form.errors.city}
+                  {form.touched.address &&
+                    form.errors.address &&
+                    form.errors.address}
                 </FormHelperText>
               </FormControl>
             )}
