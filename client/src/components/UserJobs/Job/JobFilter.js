@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, createStyles, withStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import { primaryExtraLight, secondaryDark } from '../../../shared/colors';
+import { gradientPrimary } from '../../../shared/colors';
 import { connect } from 'react-redux';
 import { filterJobs, clearFilter } from '../../../actions/jobs';
 
@@ -10,15 +10,11 @@ const styles = createStyles({
   search: {
     position: 'relative',
     borderRadius: '2px',
-    backgroundColor: secondaryDark,
-    '&:hover': {
-      backgroundColor: primaryExtraLight
-    },
-    marginRight: 20,
-    marginLeft: 0,
-    width: '100%',
-    minWidth: '470px',
-    color: 'white'
+    background: gradientPrimary,
+    width: '490px',
+    color: 'white',
+    height: 40,
+    paddingLeft: 10
   },
   searchIconContainer: {
     width: 20,

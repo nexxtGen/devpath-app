@@ -3,7 +3,7 @@ import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CompaniesList from './Company/CompaniesList';
 import CompanyInfo from './Company/CompanyInfo';
 import MapContainer from './Map/MapContainer';
-import { secondaryDark } from '../../shared/colors';
+import { gradientPrimary } from '../../shared/colors';
 
 const styles = createStyles({
   primaryContainer: {
@@ -19,9 +19,13 @@ const styles = createStyles({
     flexWrap: 'wrap'
   },
   listHeader: {
+    display: 'flex',
+    alignItems: 'center',
     width: '420px',
-    background: secondaryDark,
-    margin: '0 3px'
+    background: gradientPrimary,
+    margin: '0 3px',
+    height: 40,
+    paddingLeft: 10
   },
   mapContainer: {
     width: '100%',

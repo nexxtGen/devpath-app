@@ -6,6 +6,12 @@ import PreloaderRelative from '../../../shared/PreloaderRelative';
 import CompanyListItem from './CompanyListItem';
 
 const styles = createStyles({
+  primaryContainer: {
+    marginBottom: 25,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
   listContainer: {
     margin: '2px',
     overflow: 'auto',
@@ -13,6 +19,9 @@ const styles = createStyles({
     flexDirection: 'column',
     padding: '10px 5px 5px 5px',
     maxHeight: '300px'
+  },
+  preloader: {
+    marginTop: 90
   }
 });
 
@@ -32,7 +41,9 @@ const CompaniesList = ({ classes, companies, loading }) => {
           ))}{' '}
         </TransitionGroup>
       ) : (
-        <PreloaderRelative />
+        <Grid className={classes.preloader}>
+          <PreloaderRelative />
+        </Grid>
       )}
     </Grid>
   );

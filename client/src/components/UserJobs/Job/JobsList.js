@@ -8,12 +8,14 @@ import PreloaderRelative from '../../../shared/PreloaderRelative';
 
 const styles = createStyles({
   primaryContainer: {
-    marginBottom: 20,
+    marginBottom: 25,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column'
   },
   listContainer: {
+    marginTop: 2,
+    padding: '10px 0',
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',

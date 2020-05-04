@@ -77,7 +77,7 @@ export default function(state = initialState, action) {
           return (
             job.position.match(regex) ||
             job.technologies.match(regex) ||
-            job.city.match(regex)
+            job.location.city.match(regex)
           );
         })
       };
