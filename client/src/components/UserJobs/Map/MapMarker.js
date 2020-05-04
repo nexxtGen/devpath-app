@@ -3,7 +3,7 @@ import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
 const customMarker = new L.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
+  iconUrl: '/leaflet/marker_blue.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [0, -30]

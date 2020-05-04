@@ -78,7 +78,7 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
     );
   }
 
-  //job.position = req.body.position || '';
+  job.position = req.body.position || '';
 
   if (req.body.address !== '') {
     job.address = req.body.address;

@@ -2,10 +2,7 @@ const createJobValues = jobData => {
   return {
     position: jobData ? jobData.position : '',
     source: jobData ? jobData.source : '',
-    address:
-      jobData && jobData.formattedAddress
-        ? jobData.location.formattedAddress
-        : '',
+    address: jobData ? jobData.location.formattedAddress : '',
     technologies: jobData ? jobData.technologies : '',
     pros: jobData ? jobData.pros : '',
     cons: jobData ? jobData.cons : '',

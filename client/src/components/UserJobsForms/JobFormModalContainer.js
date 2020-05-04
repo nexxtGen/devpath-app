@@ -82,8 +82,8 @@ const jobSchema = Yup.object().shape({
     .required('Position is required'),
   address: Yup.string()
     .min(3, 'Minimum 3 characters')
-    .max(30, 'Maximum 30 characters')
-    .required('City is required'),
+    .max(40, 'Maximum 30 characters')
+    .required('Location is required'),
   technologies: Yup.string()
     .min(2, 'Minimum 3 characters')
     .max(200, 'Maximum 200 characters')
