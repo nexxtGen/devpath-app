@@ -17,11 +17,26 @@ const JobSchema = new mongoose.Schema({
     ref: 'Company',
     required: true
   },
-  city: {
+  address: {
     type: String,
-    required: [true, 'Please add a City'],
-    trim: true,
-    maxlength: [40, 'City name can not be more than 40 characters']
+    required: [true, 'Please add a address'],
+    maxlength: [100, 'Address can not be more than 100 characters']
+  },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point']
+    },
+    coordinates: {
+      type: [Number],
+      index: '2dsphere'
+    },
+    formattedAddress: String,
+    street: String,
+    city: String,
+    state: String,
+    zipcode: String,
+    country: String
   },
   technologies: {
     type: String,
@@ -65,5 +80,24 @@ const JobSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+async function geocode(next) {
+  const loc = await geocoder.geocode(this.address);
+  this.location = {
+    type: 'Point',
+    coordinates: [loc[0].latitude, loc[0].longitude],
+    formattedAddress: loc[0].formattedAddress,
+    street: loc[0].streetName,
+    city: loc[0].city,
+    state: loc[0].stateCode,
+    zipcode: loc[0].zipcode,
+    country: loc[0].countryCode
+  };
+
+  this.address = undefined;
+  next();
+}
+
+JobSchema.pre('save', geocode);
 
 module.exports = mongoose.model('Job', JobSchema);
