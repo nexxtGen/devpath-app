@@ -75,9 +75,11 @@ const UserFlashcardsContainer = ({
         />
       )}
       <Grid container direction='column' style={{ width: '100%' }}>
-        {flashcards.currentFlashcards && (
+        {flashcards.currentFlashcards && flashcards.flashcards && (
           <FlashcardsContainer
-            flashcards={flashcards.currentFlashcards}
+            flashcards={flashcards.flashcards}
+            filteredFlashcards={flashcards.filteredFlashcards}
+            currentFlashcards={flashcards.currentFlashcards}
             open={handleClickOpenFlashcardModal}
           />
         )}

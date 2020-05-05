@@ -1,6 +1,7 @@
 import React from 'react';
 import Flashcard from './Flashcard';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
+import FlashcardsFilter from './FlashcardsFilter';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({
@@ -10,22 +11,38 @@ const styles = createStyles({
     flexWrap: 'wrap',
     justifyContent: 'center',
     width: '100%',
-    marginTop: '80px'
+    marginTop: '30px'
   }
 });
 
-const FlashcardsList = ({ classes, flashcards, open }) => {
+const FlashcardsList = ({
+  classes,
+  flashcards,
+  currentFlashcards,
+  filteredFlashcards,
+  open
+}) => {
   return (
     <Grid className={classes.container}>
-      {flashcards.map((card, index) => (
-        <Flashcard key={index} card={card} open={open} />
-      ))}
+      <FlashcardsFilter />
+
+      {filteredFlashcards !== null
+        ? filteredFlashcards.map(card => (
+            <Grid key={card._id}>
+              <Flashcard card={card} open={open} />
+            </Grid>
+          ))
+        : currentFlashcards.map(card => (
+            <Grid key={card._id}>
+              <Flashcard card={card} open={open} />
+            </Grid>
+          ))}
     </Grid>
   );
 };
 
 FlashcardsList.propTypes = {
   classes: PropTypes.object.isRequired,
-  flashcards: PropTypes.array
+  currentFlashcards: PropTypes.array
 };
 export default withStyles(styles)(FlashcardsList);

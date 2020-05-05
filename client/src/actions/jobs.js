@@ -117,10 +117,6 @@ export const deleteUserJob = jobId => async dispatch => {
   }
 };
 
-export const filterJobs = text => dispatch => {
-  dispatch({ type: FILTER_JOBS, payload: text });
-};
-
 export const setUserJobApplied = (jobId, jobData) => async dispatch => {
   const config = {
     headers: {
@@ -138,6 +134,10 @@ export const setUserJobApplied = (jobId, jobData) => async dispatch => {
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const filterJobs = text => dispatch => {
+  dispatch({ type: FILTER_JOBS, payload: text });
 };
 
 //Clear Filter

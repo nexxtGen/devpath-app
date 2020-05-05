@@ -12,7 +12,9 @@ import {
   DELETE_CURRENT_FLASHCARD,
   DELETE_FLASHCARDS_CATEGORY,
   FLASHCARDS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  FILTER_FLASHCARDS,
+  CLEAR_FLASHCARDS_FILTER
 } from './types';
 
 // Get current users profile
@@ -210,6 +212,15 @@ export const deleteCurrentFlashcard = (
       payload: { msg: err.response.data.error, status: err.response.status }
     });
   }
+};
+
+export const filterFlashcards = text => dispatch => {
+  dispatch({ type: FILTER_FLASHCARDS, payload: text });
+};
+
+//Clear Filter
+export const clearFlashcardsFilter = () => dispatch => {
+  dispatch({ type: CLEAR_FLASHCARDS_FILTER });
 };
 
 export const setLoading = () => {

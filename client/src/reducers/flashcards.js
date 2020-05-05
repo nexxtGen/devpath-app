@@ -10,15 +10,19 @@ import {
   DELETE_CURRENT_FLASHCARD,
   DELETE_FLASHCARDS_CATEGORY,
   FLASHCARDS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  FILTER_FLASHCARDS,
+  CLEAR_FLASHCARDS_FILTER
 } from '../actions/types';
 
 const initialState = {
+  flashcards: [],
   categories: null,
   categoriesList: null,
   loading: false,
   currentEditedFlashcard: null,
   currentFlashcards: [],
+  filteredFlashcards: null,
   error: {}
 };
 
@@ -28,6 +32,7 @@ export default function(state = initialState, action) {
     case GET_ALL_USER_FLASHCARDS:
       return {
         ...state,
+        flashcards: payload,
         currentFlashcards: payload,
         loading: false
       };
@@ -63,7 +68,8 @@ export default function(state = initialState, action) {
     case CREATE_NEW_FLASHCARD:
       return {
         ...state,
-        currentFlashcards: [...state.currentFlashcards, payload]
+        currentFlashcards: [...state.currentFlashcards, payload],
+        flashcards: [...state.currentFlashcards, payload]
       };
     case SET_CURRENT_EDITED_FLASHCARD:
       return {
@@ -74,6 +80,17 @@ export default function(state = initialState, action) {
       return {
         ...state,
         currentFlashcards: state.currentFlashcards.map(item => {
+          if (item._id === payload._id) {
+            return {
+              ...item,
+              title: payload.title,
+              description: payload.description,
+              code: payload.code
+            };
+          }
+          return item;
+        }),
+        flashcards: state.currentFlashcards.map(item => {
           if (item._id === payload._id) {
             return {
               ...item,
@@ -97,6 +114,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false
+      };
+    case FILTER_FLASHCARDS:
+      return {
+        ...state,
+        filteredFlashcards: state.flashcards.filter(flashcard => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return flashcard.title.match(regex);
+        })
+      };
+    case CLEAR_FLASHCARDS_FILTER:
+      return {
+        ...state,
+        filteredFlashcards: null
       };
     case SET_LOADING:
       return { ...state, loading: true };
