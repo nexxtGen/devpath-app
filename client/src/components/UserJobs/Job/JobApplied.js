@@ -47,7 +47,11 @@ const JobApplied = ({ classes, job, setUserJobApplied }) => {
           }
           className={classes.appliedButton}
           aria-label='Applied value'
-          style={!job.applied ? { color: 'red', border: '1px solid red' } : {}}
+          style={
+            !job.applied
+              ? { color: '#ffb20a', border: '1px solid #ffb20a' }
+              : {}
+          }
         >
           {job.applied ? <CheckCircleOutline /> : <NotInterestedIcon />}
         </IconButton>

@@ -8,18 +8,23 @@ const styles = createStyles({
     display: 'flex',
     direction: 'row',
     alignItems: 'center',
-    //background: '#e5e5e5',
     width: '60%'
   },
-  logoImage: {
+  logoContainer: {
+    display: 'flex',
+    direction: 'row',
+    justifyContent: 'center'
+  },
+  logo: {
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    display: 'flex',
+    alignItems: 'center',
     width: 45,
     height: 45,
     padding: 0,
     margin: 0
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center'
   },
   iconFilled: {
     color: primaryLight
@@ -30,7 +35,10 @@ const CompanySmallCard = ({ classes, company: { logo, name, rating } }) => {
   return (
     <Grid container className={classes.companyContainer}>
       <Grid item sm={4} className={classes.logoContainer}>
-        <img src={logo} className={classes.logoImage} alt='Company logo' />
+        <Grid
+          style={{ backgroundImage: `url('${logo}')` }}
+          className={classes.logo}
+        ></Grid>
       </Grid>
       <Grid item sm={8}>
         <Typography variant='body1' className={classes.companyName}>
