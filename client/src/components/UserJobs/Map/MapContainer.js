@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import 'leaflet/dist/leaflet.css';
 import MarkersList from './MarkersList';
 
-const MapLeaflet = ({ companies, jobs }) => {
+const MapLeaflet = ({ companies, jobs, currentCompany }) => {
   const [zoom, setZoom] = useState(13);
 
   return (
@@ -20,7 +20,11 @@ const MapLeaflet = ({ companies, jobs }) => {
             url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <MarkersList companies={companies} jobs={jobs} />
+          <MarkersList
+            companies={companies}
+            jobs={jobs}
+            currentCompany={currentCompany}
+          />
         </Map>
       )}
     </Grid>
@@ -29,7 +33,8 @@ const MapLeaflet = ({ companies, jobs }) => {
 
 const mapStateToProps = state => ({
   companies: state.jobs.companies,
-  jobs: state.jobs.jobs
+  jobs: state.jobs.jobs,
+  currentCompany: state.jobs.currentCompany
 });
 
 export default connect(mapStateToProps, {})(MapLeaflet);

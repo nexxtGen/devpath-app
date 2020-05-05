@@ -9,9 +9,23 @@ const customMarker = new L.icon({
   popupAnchor: [0, -30]
 });
 
-const MapMarker = ({ company }) => {
+const activeMarker = new L.icon({
+  iconUrl: '/leaflet/marker_active.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [0, -30]
+});
+
+const MapMarker = ({ company, currentCompany }) => {
   return (
-    <Marker position={company.location.coordinates} icon={customMarker}>
+    <Marker
+      position={company.location.coordinates}
+      icon={
+        currentCompany && currentCompany._id === company._id
+          ? activeMarker
+          : customMarker
+      }
+    >
       <Popup>
         {company.name}
         <br />
