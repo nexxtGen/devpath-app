@@ -15,7 +15,7 @@ const styles = createStyles({
     flexDirection: 'row',
     width: '100%',
     borderBottom: `1px solid ${primary}`,
-    marginBottom: 15
+    marginBottom: 25
   },
   search: {
     position: 'relative',
@@ -81,7 +81,7 @@ const FlashcardsFilter = ({
         <InputBase
           value={inputValue}
           onChange={onChange}
-          placeholder='Search…'
+          placeholder='Search flashcard…'
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput

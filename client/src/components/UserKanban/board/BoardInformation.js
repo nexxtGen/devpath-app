@@ -7,6 +7,7 @@ import {
   Button
 } from '@material-ui/core';
 import { primary } from '../../../shared/colors';
+import KanbanAddButton from '../../../shared/KanbanAddButton';
 
 const styles = createStyles({
   container: {
@@ -60,14 +61,12 @@ const BoardInformation = ({
               : ''}
           </span>
         </Typography>
-        <Button
-          size='medium'
-          variant='outlined'
+        <KanbanAddButton
           onClick={() => setIsOpenLaneFormModal({ open: true, mode: 'create' })}
           disabled={!currentBoard}
         >
-          Add Column
-        </Button>
+          Column
+        </KanbanAddButton>
       </Grid>
     </Grid>
   );

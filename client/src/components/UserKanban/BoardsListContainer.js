@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core';
 import BoardsList from './BoardsList';
 import { primary } from '../../shared/colors';
+import KanbanAddButton from '../../shared/KanbanAddButton';
+import KanbanListButton from '../../shared/KanbanListButton';
 
 const styles = createStyles({
   primaryContainer: {
@@ -61,23 +63,19 @@ const BoardsListContainer = ({
         >
           Boards
         </Typography>
-        <Button
-          onClick={() =>
-            setIsOpenBoardFormModal({ open: true, mode: 'create' })
-          }
-          size='medium'
-          variant='outlined'
-          disabled={!currentCollection}
-        >
-          Add
-        </Button>
-        <Button
-          onClick={() => setIsOpenBoardsListModal(true)}
-          size='medium'
-          variant='outlined'
-        >
-          List
-        </Button>
+        <Grid>
+          <KanbanAddButton
+            onClick={() =>
+              setIsOpenBoardFormModal({ open: true, mode: 'create' })
+            }
+            disabled={!currentCollection}
+          >
+            Board
+          </KanbanAddButton>
+          <KanbanListButton
+            onClick={() => setIsOpenBoardsListModal(true)}
+          ></KanbanListButton>
+        </Grid>
       </Grid>
       <Grid className={classes.listContainer}>
         <BoardsList

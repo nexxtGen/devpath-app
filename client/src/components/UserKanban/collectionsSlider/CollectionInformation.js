@@ -7,6 +7,8 @@ import {
   Button
 } from '@material-ui/core';
 import { primary } from '../../../shared/colors';
+import KanbanAddButton from '../../../shared/KanbanAddButton';
+import KanbanListButton from '../../../shared/KanbanListButton';
 
 const styles = createStyles({
   container: {
@@ -55,22 +57,18 @@ const CollectionInformation = ({
             {collections ? collections.length : ''}
           </span>
         </Typography>
-        <Button
-          onClick={() =>
-            setIsOpenCollectionModal({ open: true, mode: 'create' })
-          }
-          size='medium'
-          variant='outlined'
-        >
-          Add Collection
-        </Button>
-        <Button
-          onClick={() => setIsOpenCollectionsListModal(true)}
-          size='medium'
-          variant='outlined'
-        >
-          List
-        </Button>
+        <Grid>
+          <KanbanAddButton
+            onClick={() =>
+              setIsOpenCollectionModal({ open: true, mode: 'create' })
+            }
+          >
+            Collection
+          </KanbanAddButton>
+          <KanbanListButton
+            onClick={() => setIsOpenCollectionsListModal(true)}
+          ></KanbanListButton>
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -4,7 +4,7 @@ const styles = createStyles({
   romb: {
     background: 'rgb(233, 233, 233)',
     width: '400px',
-    height: '150px',
+    height: '135px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -28,7 +28,7 @@ const styles = createStyles({
     background: 'rgba(255, 255, 255, 0.2)',
     width: '400px',
     height: '150px',
-    clipPath: 'polygon(20% 0%, 0% 100%, 40% 100%)',
+    clipPath: 'polygon(20% 0%, -10% 100%, 40% 100%)',
     transition: 'background 0.2s linear'
   },
   triangle2: {
