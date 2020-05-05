@@ -4,7 +4,7 @@ import BasicButton from '../../../shared/BasicButton';
 import styles from './sliderItemStyles';
 import PropTypes from 'prop-types';
 
-const SliderItem = ({ classes, image, name, id, setCategory }) => {
+const SliderItem = ({ classes, image, name, id, length, setCategory }) => {
   return (
     <Grid>
       <Grid
@@ -21,7 +21,7 @@ const SliderItem = ({ classes, image, name, id, setCategory }) => {
           transform: 'translate(-50px, -6px)',
           fontSize: '12px'
         }}
-        onClick={() => setCategory(id)}
+        onClick={() => setCategory(id, name, length)}
       >
         {name}
       </BasicButton>

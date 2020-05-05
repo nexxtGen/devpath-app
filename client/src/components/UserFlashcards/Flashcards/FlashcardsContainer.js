@@ -15,15 +15,15 @@ const styles = createStyles({
 
 const FlashcardsContainer = ({
   classes,
-  flashcards,
   currentFlashcards,
+  currentCategory,
   filteredFlashcards,
   open
 }) => {
   return (
     <Grid className={classes.container}>
       <FlashcardsList
-        flashcards={flashcards}
+        currentCategory={currentCategory}
         currentFlashcards={currentFlashcards}
         open={open}
         filteredFlashcards={filteredFlashcards}
@@ -35,7 +35,6 @@ const FlashcardsContainer = ({
 FlashcardsContainer.propTypes = {
   classes: PropTypes.object.isRequired,
   currentFlashcards: PropTypes.array,
-  flashcards: PropTypes.array,
   open: PropTypes.func.isRequired,
   filteredFlashcards: PropTypes.array
 };

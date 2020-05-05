@@ -23,6 +23,7 @@ const initialState = {
   currentEditedFlashcard: null,
   currentFlashcards: [],
   filteredFlashcards: null,
+  currentCategory: null,
   error: {}
 };
 
@@ -46,8 +47,9 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        currentCategory: { name: payload.name, length: payload.length },
         currentFlashcards: state.categories.categories
-          .filter(item => item._id === payload)
+          .filter(item => item._id === payload.categoryId)
           .map(el => el.flashcards)
           .flat()
       };
@@ -101,6 +103,19 @@ export default function(state = initialState, action) {
           }
           return item;
         }),
+        filteredFlashcards: state.filteredFlashcards
+          ? state.filteredFlashcards.map(item => {
+              if (item._id === payload._id) {
+                return {
+                  ...item,
+                  title: payload.title,
+                  description: payload.description,
+                  code: payload.code
+                };
+              }
+              return item;
+            })
+          : null,
         loading: false
       };
     case DELETE_CURRENT_FLASHCARD:

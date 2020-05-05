@@ -17,15 +17,14 @@ const styles = createStyles({
 
 const FlashcardsList = ({
   classes,
-  flashcards,
   currentFlashcards,
+  currentCategory,
   filteredFlashcards,
   open
 }) => {
   return (
     <Grid className={classes.container}>
-      <FlashcardsFilter />
-
+      <FlashcardsFilter currentCategory={currentCategory} />
       {filteredFlashcards !== null
         ? filteredFlashcards.map(card => (
             <Grid key={card._id}>

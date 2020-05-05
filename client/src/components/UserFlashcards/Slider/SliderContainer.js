@@ -20,6 +20,7 @@ const SliderContainer = ({ classes, categories, setCategory }) => {
             name={item.name}
             image={item.image}
             id={item._id}
+            length={categories.length}
             setCategory={setCategory}
           />
         ))}

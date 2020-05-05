@@ -64,12 +64,16 @@ export const setFlashcardsCategoriesList = categoriesData => dispatch => {
   });
 };
 
-export const setCurrentFLashcardsCategory = categoryId => async dispatch => {
+export const setCurrentFLashcardsCategory = (
+  categoryId,
+  name,
+  length
+) => async dispatch => {
   dispatch(setLoading());
 
   dispatch({
     type: SET_CURRENT_FLASHCARDS_CATEGORY,
-    payload: categoryId
+    payload: { categoryId, name, length }
   });
 };
 
@@ -81,8 +85,6 @@ export const createFlashcardsCategory = categoryData => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
-
     const res = await axios.post(
       '/api/v1/flashcards-categories',
       categoryData,
