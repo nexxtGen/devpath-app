@@ -1,21 +1,19 @@
 import React from 'react';
 import { withStyles, Grid, Typography } from '@material-ui/core';
 import CompanySmallCard from '../Company/CompanySmallCard';
-import {
-  LocationOn,
-  CheckCircleOutline,
-  Edit,
-  DeleteOutline
-} from '@material-ui/icons';
+import { LocationOn, Edit, DeleteOutline } from '@material-ui/icons';
 import Divider from '@material-ui/core/Divider';
 import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import styles from './jobCardStyles';
 import { connect } from 'react-redux';
-import { setCurrentEditedJob } from '../../../actions/jobs';
-import { deleteUserJob } from '../../../actions/jobs';
+import {
+  setCurrentEditedJob,
+  deleteUserJob,
+  setUserJobApplied
+} from '../../../actions/jobs';
 import * as moment from 'moment';
+import JobApplied from './JobApplied';
 
 const JobCard = ({
   classes,
@@ -23,7 +21,8 @@ const JobCard = ({
   companies,
   setIsOpenJobFormModal,
   setCurrentEditedJob,
-  deleteUserJob
+  deleteUserJob,
+  setUserJobApplied
 }) => {
   const handleEdit = () => {
     setIsOpenJobFormModal({ open: true, mode: 'edit' });
@@ -58,7 +57,6 @@ const JobCard = ({
             <span style={{ color: '#00a8cc' }}>{job.technologies}</span>
           </Typography>
         </Grid>
-
         <Divider />
         <Grid style={{ padding: '6px 0' }}>
           <Typography variant='subtitle2'>
@@ -94,18 +92,7 @@ const JobCard = ({
           readOnly
           size='small'
         />
-
-        <Typography variant='subtitle2' className={classes.appliedTypo}>
-          Applied?
-        </Typography>
-        <Tooltip title='Click to change status' placement='top'>
-          <IconButton
-            className={classes.appliedButton}
-            aria-label='Applied value'
-          >
-            <CheckCircleOutline />
-          </IconButton>
-        </Tooltip>
+        <JobApplied job={job} setUserJobApplied={setUserJobApplied} />
         <Grid container justify='flex-end'>
           <IconButton aria-label='edit' onClick={() => handleEdit()}>
             <Edit className={classes.icon} />
@@ -122,6 +109,8 @@ const JobCard = ({
   );
 };
 
-export default connect(null, { setCurrentEditedJob, deleteUserJob })(
-  withStyles(styles)(JobCard)
-);
+export default connect(null, {
+  setCurrentEditedJob,
+  deleteUserJob,
+  setUserJobApplied
+})(withStyles(styles)(JobCard));

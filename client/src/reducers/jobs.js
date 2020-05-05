@@ -9,6 +9,7 @@ import {
   SET_CURRENT_EDITED_JOB,
   SET_CURRENT_COMPANY,
   FILTER_JOBS,
+  SET_USER_JOB_APPLIED,
   CLEAR_FILTER,
   CREATE_NEW_USER_COMPANY,
   UPDATE_USER_COMPANY,
@@ -52,6 +53,7 @@ export default function(state = initialState, action) {
         loading: false
       };
     case UPDATE_USER_JOB:
+    case SET_USER_JOB_APPLIED:
       return {
         ...state,
         jobs: state.jobs.map(job => (job._id === payload._id ? payload : job)),

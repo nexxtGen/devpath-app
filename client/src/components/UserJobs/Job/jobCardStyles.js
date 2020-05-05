@@ -50,20 +50,7 @@ const styles = createStyles({
     borderRadius: '0 0 3px 3px',
     padding: '0 20px'
   },
-  appliedTypo: {
-    color: 'white',
-    marginLeft: 10,
-    paddingLeft: 10,
-    borderLeft: '1px solid white',
-    fontWeight: 600
-  },
-  appliedButton: {
-    color: 'lightgreen',
-    border: '1px solid lightgreen',
-    padding: '3px 5px',
-    borderRadius: '2px',
-    marginLeft: 7
-  },
+
   icon: {
     color: 'white',
     padding: 4,

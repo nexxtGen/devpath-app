@@ -9,7 +9,6 @@ const styles = createStyles({
   primaryContainer: {
     display: 'flex',
     flexDirection: 'column'
-    //width: '60%'
   },
   listContainer: {
     display: 'flex',
@@ -19,6 +18,15 @@ const styles = createStyles({
     flexWrap: 'wrap'
   },
   listHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '410px',
+    background: gradientPrimary,
+    margin: '0 6px',
+    height: 40,
+    paddingLeft: 10
+  },
+  listHeaderInfo: {
     display: 'flex',
     alignItems: 'center',
     width: '420px',
@@ -54,7 +62,7 @@ const CompaniesContainer = ({
           <CompaniesList companies={companies} loading={loading} />
         </Grid>
         <Grid>
-          <Grid className={classes.listHeader}>
+          <Grid className={classes.listHeaderInfo}>
             <Typography style={{ padding: 6, color: 'white' }}>
               Company Information
             </Typography>

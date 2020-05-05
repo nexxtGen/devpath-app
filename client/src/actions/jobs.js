@@ -8,6 +8,7 @@ import {
   DELETE_USER_JOB,
   FILTER_JOBS,
   CLEAR_FILTER,
+  SET_USER_JOB_APPLIED,
   JOBS_ERROR,
   SET_LOADING,
   SET_CURRENT_EDITED_JOB,
@@ -61,8 +62,6 @@ export const createNewUserJob = jobData => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
-
     const res = await axios.post('/api/v1/jobs', jobData, config);
 
     dispatch(setAlert('Job been created', 'success'));
@@ -86,8 +85,6 @@ export const updateUserJob = (jobId, jobData) => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
-
     const res = await axios.put(`/api/v1/jobs/${jobId}`, jobData, config);
 
     dispatch(setAlert('Job has been updated', 'success'));
@@ -105,8 +102,6 @@ export const updateUserJob = (jobId, jobData) => async dispatch => {
 
 export const deleteUserJob = jobId => async dispatch => {
   try {
-    dispatch(setLoading());
-
     const res = await axios.delete(`/api/v1/jobs/${jobId}`);
 
     dispatch(setAlert('Job has been deleted', 'success'));
@@ -122,8 +117,27 @@ export const deleteUserJob = jobId => async dispatch => {
   }
 };
 
-export const filterJobs = text => async dispatch => {
+export const filterJobs = text => dispatch => {
   dispatch({ type: FILTER_JOBS, payload: text });
+};
+
+export const setUserJobApplied = (jobId, jobData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/v1/jobs/${jobId}`, jobData, config);
+
+    dispatch({ type: SET_USER_JOB_APPLIED, payload: res.data.data });
+  } catch (err) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: err.response.data.error, status: err.response.status }
+    });
+  }
 };
 
 //Clear Filter
@@ -149,8 +163,6 @@ export const createNewUserCompany = companyData => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
-
     const res = await axios.post('/api/v1/companies', companyData, config);
 
     dispatch(setAlert('Company has been created', 'success'));
@@ -174,8 +186,6 @@ export const updateUserCompany = (companyId, companyData) => async dispatch => {
   };
 
   try {
-    dispatch(setLoading());
-
     const res = await axios.put(
       `/api/v1/companies/${companyId}`,
       companyData,
@@ -197,8 +207,6 @@ export const updateUserCompany = (companyId, companyData) => async dispatch => {
 
 export const deleteUserCompany = companyId => async dispatch => {
   try {
-    dispatch(setLoading());
-
     const res = await axios.delete(`/api/v1/companies/${companyId}`);
 
     dispatch(setAlert('Company has been deleted', 'success'));

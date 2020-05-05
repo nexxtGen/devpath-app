@@ -15,8 +15,11 @@ import { setCurrentCompany, deleteUserCompany } from '../../../actions/jobs';
 
 const styles = createStyles({
   primaryContainer: {
-    minWidth: '300px',
-    maxWidth: '420px',
+    padding: '0 5px',
+    position: 'relative'
+  },
+  contentContainer: {
+    width: '410px',
     minHeight: '290px',
     maxHeight: '300px',
     boxShadow: '1px 1px 5px gray',
@@ -65,7 +68,9 @@ const styles = createStyles({
   footerContainer: {
     position: 'absolute',
     bottom: 0,
-    width: '100%'
+    width: '98%',
+    paddingTop: 5,
+    paddingBottom: 4
   },
   iconBtn: { padding: 6 },
   icon: {
@@ -89,8 +94,8 @@ const CompanyInfo = ({
   }, [companies]);
 
   return (
-    <Grid style={{ position: 'relative' }}>
-      <Grid className={classes.primaryContainer}>
+    <Grid className={classes.primaryContainer}>
+      <Grid className={classes.contentContainer}>
         {currentCompany && (
           <Grid className={classes.container}>
             <Grid className={classes.headerContainer}>
