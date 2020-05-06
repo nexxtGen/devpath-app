@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createStyles, withStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Popover from '@material-ui/core/Popover';
-import { PieChart } from 'react-minimal-pie-chart';
+import PieChart from 'react-minimal-pie-chart';
 import PropTypes from 'prop-types';
 
 const styles = createStyles({

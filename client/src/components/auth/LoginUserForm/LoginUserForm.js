@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import FTextField from '../../../shared/FormikComponents/FTextField';
 import BasicButton from '../../../shared/BasicButton';
+import PersonIcon from '@material-ui/icons/Person';
 
 const styles = createStyles({
   form: {
@@ -66,7 +67,7 @@ const LoginUserForm = classes => {
         </Field>
       </Grid>
       <Grid container justify='center' style={{ marginTop: '45px' }}>
-        <BasicButton type='submit'>Login</BasicButton>
+        <BasicButton type='submit'>Log in</BasicButton>
       </Grid>
     </Form>
   );

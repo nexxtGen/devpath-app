@@ -22,33 +22,35 @@ const LoginUserFormContainer = ({ classes, login, auth }) => {
   }
 
   return (
-    <Grid className={classes.formContainer}>
+    <Grid className={classes.viewContainer}>
       <Alert />
-      <Grid className={classes.primaryContainer}>
-        <Grid className={classes.headerContainer}>
-          <Grid>
-            <img
-              src={logo}
-              style={{ width: '50px', height: '58px' }}
-              alt='logo'
-            />
+      <Grid className={classes.formContainer}>
+        <Grid className={classes.primaryContainer}>
+          <Grid className={classes.headerContainer}>
+            <Grid>
+              <img
+                src={logo}
+                style={{ width: '50px', height: '58px' }}
+                alt='logo'
+              />
+            </Grid>
+            <Typography variant='h4' className={classes.typographyPrimary}>
+              DevPath
+            </Typography>
           </Grid>
-          <Typography variant='h4' className={classes.typographyPrimary}>
-            DevPath
-          </Typography>
-        </Grid>
-        <Grid className={classes.formikContainer}>
-          <Formik
-            initialValues={{
-              email: '',
-              password: ''
-            }}
-            enableReinitialize={true}
-            validationSchema={formUserSchema}
-            onSubmit={(values, actions) => submitForm(values, actions)}
-          >
-            {FormikBag => <LoginUserForm FormikBag={FormikBag} />}
-          </Formik>
+          <Grid className={classes.formikContainer}>
+            <Formik
+              initialValues={{
+                email: '',
+                password: ''
+              }}
+              enableReinitialize={true}
+              validationSchema={formUserSchema}
+              onSubmit={(values, actions) => submitForm(values, actions)}
+            >
+              {FormikBag => <LoginUserForm FormikBag={FormikBag} />}
+            </Formik>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
