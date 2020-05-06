@@ -21,6 +21,12 @@ const styles = createStyles({
   },
   typography: {
     padding: 8
+  },
+  contentContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
@@ -43,7 +49,7 @@ const LangCard = ({ classes, githubLang }) => {
   return (
     <Grid className={classes.container}>
       {githubLang ? (
-        <Grid>
+        <Grid className={classes.contentContainer}>
           {' '}
           <Typography variant='h6'>Git Top Languages</Typography>
           <Grid style={{ maxWidth: '80%', maxHeight: '80%' }}>

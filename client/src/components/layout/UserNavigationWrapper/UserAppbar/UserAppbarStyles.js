@@ -36,6 +36,28 @@ const styles = createStyles({
   },
   menu: {
     marginTop: 52
+  },
+  link: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  logo: {
+    width: '33px',
+    height: '38px',
+    marginRight: '10px'
+  },
+  usernameContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    minWidth: 300,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
+  username: {
+    fontSize: 17
   }
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { withStyles, Grid } from '@material-ui/core';
+import logo from '../../../../assets/images/logo.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import UserAppbarMenu from './UserAppbarMenu';
 import styles from './UserAppbarStyles';
+import { Link } from 'react-router-dom';
 import { logout } from '../../../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -46,12 +48,17 @@ const UserAppbar = ({ classes, open, handleDrawerOpen, logout, user }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant='h6' className={classes.title}>
-              Logo
-            </Typography>
-            <Typography variant='subtitle1' className={classes.title2}>
-              hello {user.name}
-            </Typography>
+            <Grid style={{ width: '100%' }}>
+              <Link to='/' className={classes.link}>
+                <img src={logo} className={classes.logo} alt='logo' />
+                <Typography variant='h6' className={classes.title}>
+                  DevPath
+                </Typography>
+              </Link>
+            </Grid>
+            <Grid className={classes.usernameContainer}>
+              <span className={classes.username}>Hello {user.name}</span>
+            </Grid>
             <Grid>
               <IconButton
                 aria-label='account of current user'
