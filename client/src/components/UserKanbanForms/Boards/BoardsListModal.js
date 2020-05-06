@@ -6,7 +6,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Button
+  Button,
+  Grid,
+  Typography
 } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import BoardsListItem from './BoardsListItem';
@@ -18,6 +20,10 @@ const styles = createStyles({
   emptyContainer: {
     width: 300,
     height: 200
+  },
+  dialogContent: {
+    minHeight: 120,
+    minWidth: 300
   }
 });
 
@@ -38,8 +44,10 @@ const BoardsListModal = ({
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>Boards list</DialogTitle>
-        <DialogContent>
-          {currentCollection && boards && boards.length > 0 ? (
+        <DialogContent className={classes.dialogContent}>
+          {currentCollection &&
+          boards &&
+          currentCollection.boards.length > 0 ? (
             <TransitionGroup className={classes.listContainer}>
               {currentCollection.boards.map(boardId => {
                 const boardItem = boards.find(board => board._id === boardId);
@@ -58,7 +66,11 @@ const BoardsListModal = ({
               })}
             </TransitionGroup>
           ) : (
-            <PreloaderRelative />
+            <Grid>
+              <Typography color='textSecondary' variant='h6'>
+                List is empty
+              </Typography>
+            </Grid>
           )}
         </DialogContent>
         <DialogActions>

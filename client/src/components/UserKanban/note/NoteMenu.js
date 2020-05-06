@@ -7,8 +7,14 @@ import {
   setCurrentEditedKanbanNote,
   deleteUserKanbanNote
 } from '../../../actions/kanban';
+import { primary } from '../../../shared/colors';
 
-const styles = createStyles({});
+const styles = createStyles({
+  icon: {
+    color: primary,
+    marginRight: 10
+  }
+});
 
 const NoteMenu = ({
   classes,
@@ -41,11 +47,11 @@ const NoteMenu = ({
         onClose={handleCloseMenu}
       >
         <MenuItem onClick={() => handleClickEdit()}>
-          <EditIcon />
+          <EditIcon className={classes.icon} />
           Edit
         </MenuItem>
         <MenuItem onClick={() => handleClickDelete()}>
-          <DeleteOutlineIcon />
+          <DeleteOutlineIcon className={classes.icon} />
           Delete
         </MenuItem>
       </Menu>

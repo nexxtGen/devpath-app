@@ -4,7 +4,14 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import BoardsListItem from './BoardsListItem';
 import PreloaderRelative from '../../shared/PreloaderRelative';
 
-const styles = createStyles({});
+const styles = createStyles({
+  preloaderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    paddingTop: 20
+  }
+});
 
 const BoardsList = ({ classes, boards, loading, currentCollection }) => {
   if ((!boards && !loading) || (boards && boards.length === 0 && !loading)) {
@@ -33,7 +40,9 @@ const BoardsList = ({ classes, boards, loading, currentCollection }) => {
           })}
         </TransitionGroup>
       ) : (
-        <PreloaderRelative />
+        <Grid className={classes.preloaderContainer}>
+          <PreloaderRelative />
+        </Grid>
       )}
     </Grid>
   );
