@@ -1,7 +1,15 @@
 import { createStyles } from '@material-ui/core';
-import { primaryLight } from '../../../shared/colors';
+import { primaryLight, primaryDark } from '../../../shared/colors';
 
 const styles = createStyles({
+  viewContainer: {
+    minHeight: 'calc(100vh - 64px)',
+    backgroundImage:
+      'linear-gradient(to top, #534292, #58448f, #5d468c, #61488a, #644a87)'
+  },
+  formContainer: {
+    padding: '70px 0'
+  },
   content: {
     display: 'flex',
     flexGrow: 1,
@@ -17,10 +25,8 @@ const styles = createStyles({
     margin: '0 auto',
     background: '#F3F3F8',
     width: '370px',
-    border: '1px solid lightgray',
-    marginTop: 40,
-    marginBottom: 40,
-    boxShadow: '1px 1px 16px #aaaaaa'
+    border: `1px solid ${primaryDark}`,
+    boxShadow: '1px 1px 16px black'
   },
   headerContainer: {
     display: 'flex',
