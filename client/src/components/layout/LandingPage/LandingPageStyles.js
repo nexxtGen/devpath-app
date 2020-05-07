@@ -1,0 +1,137 @@
+import { createStyles } from '@material-ui/core';
+import { primary } from '../../../shared/colors';
+import landing_hero3 from '../../../assets/images/landing_hero3.jpg';
+
+const styles = createStyles({
+  hero: {
+    background: 'rgb(233, 233, 233)',
+    width: '100%',
+    height: '88vh',
+    backgroundImage: `url(${landing_hero3})`,
+    //backgroundImage:
+    //  'linear-gradient(to right top, #eff3f7, #dee5f0, #d1d6e9, #c8c6e0, #c3b6d5)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0% 100%)',
+    boxShadow: '3px 3px 13px black'
+  },
+  heroContent: {
+    width: '50%',
+    height: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  heroText: {
+    color: 'white',
+    fontFamily: 'Roboto Mono',
+    textShadow: '3px 3px purple'
+  },
+
+  heroButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 30
+  },
+  heroButton: {
+    color: 'white',
+    border: '1px solid white',
+    background: 'rgba(0, 0, 0, 0.2)',
+    width: 170,
+    height: 40,
+    margin: '0 16px'
+  },
+  orText: {
+    color: 'white',
+    fontFamily: 'Roboto Mono',
+    textShadow: '1px 1px purple'
+  },
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    transition: 'margin-left 0.3s, ease-in'
+  },
+  // ----------------
+  firstInfoSectionContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: '90px 90px 130px',
+    flexWrap: 'wrap',
+    borderBottom: '1px solid lightgray'
+    //boxShadow: '0px 5px 10px -7px #111'
+  },
+  infoCardContainer: {
+    width: 300,
+    height: 280,
+    padding: '50px 45px 25px',
+    margin: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderRadius: '2px',
+    boxShadow: '2px 2px 10px gray'
+  },
+  infoCardIcon: {
+    color: '#827799',
+    width: 60,
+    height: 60,
+    marginBottom: 15
+  },
+  infoCardTitle: {
+    color: primary,
+    fontSize: 22,
+    marginBottom: 15
+  },
+  infoCardText: {
+    color: 'gray',
+    textAlign: 'center'
+  },
+  //------------------
+  appInfoSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    width: '100%',
+    padding: '20px 80px',
+    marginTop: '50px'
+    //height: 700
+    //clipPath: 'polygon(0 23%, 100% 0, 100% 77%, 0% 100%)'
+  },
+  infoImageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: 400,
+    width: 500
+  },
+  textInfoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0 65px',
+    height: 400,
+    width: 500
+  },
+  appInfoImage: {
+    maxWidth: 500,
+    minWidth: 400
+  },
+  appInfoTextTitle: {
+    color: 'purple',
+    fontSize: 25
+  }
+});
+
+export default styles;
