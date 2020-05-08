@@ -88,79 +88,119 @@ const LandingPageContainer = ({ classes, auth }) => {
             </Typography>
           </Grid>
         </Grid>
-
-        <Grid container className={classes.appInfoSection}>
-          <Grid className={classes.textInfoContainer}>
-            <Grid container justify='flex-end'>
-              <Typography className={classes.appInfoTextTitle}>
-                First Title
+        <Grid className={classes.appInfoPrimaryContainer}>
+          <Grid container className={classes.appInfoSection}>
+            <Grid className={classes.textInfoContainer}>
+              <Grid container justify='flex-end'>
+                <Typography className={classes.appInfoTextTitle}>
+                  First Title
+                </Typography>
+              </Grid>
+              <Typography
+                color='textSecondary'
+                variant='body2'
+                style={{ textAlign: 'right' }}
+              >
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum."
               </Typography>
             </Grid>
-            <Typography
-              color='textSecondary'
-              variant='body2'
-              style={{ textAlign: 'right' }}
-            >
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
-            </Typography>
+            <Grid className={classes.infoImageContainer}>
+              <img src={info_app_03} className={classes.appInfoImage} />
+              <Grid className={classes.freepikInfo}>
+                <a
+                  href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'
+                  target='blank'
+                >
+                  Shared by freepik.com
+                </a>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid className={classes.infoImageContainer}>
-            <img src={info_app_03} className={classes.appInfoImage} />
-          </Grid>
-        </Grid>
-        <Grid container className={classes.appInfoSection}>
-          <Grid className={classes.infoImageContainer}>
-            <img src={info_app_01} className={classes.appInfoImage} />
-          </Grid>
-          <Grid className={classes.textInfoContainer}>
-            <Grid container justify='flex-end'>
-              <Typography className={classes.appInfoTextTitle}>
-                Second Title
+          <Grid container className={classes.appInfoSection}>
+            <Grid className={classes.infoImageContainer}>
+              <img src={info_app_01} className={classes.appInfoImage} />
+              <Grid
+                container
+                justify='flex-start'
+                className={classes.freepikInfoLeft}
+              >
+                <a
+                  href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'
+                  target='blank'
+                >
+                  Shared by freepik.com
+                </a>
+              </Grid>
+            </Grid>
+            <Grid className={classes.textInfoContainer}>
+              <Grid container justify='flex-start'>
+                <Typography className={classes.appInfoTextTitle}>
+                  Second Title
+                </Typography>
+              </Grid>
+              <Typography color='textSecondary' variant='body2'>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum."
               </Typography>
             </Grid>
-            <Typography color='textSecondary' variant='body2'>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
-            </Typography>
           </Grid>
-        </Grid>
-        <Grid container className={classes.appInfoSection}>
-          <Grid className={classes.textInfoContainer}>
-            <Grid container justify='flex-end'>
-              <Typography className={classes.appInfoTextTitle}>
-                Third title
+          <Grid
+            container
+            className={classes.appInfoSection}
+            style={{ marginBottom: 100 }}
+          >
+            <Grid className={classes.textInfoContainer}>
+              <Grid container justify='flex-end'>
+                <Typography className={classes.appInfoTextTitle}>
+                  Third title
+                </Typography>
+              </Grid>
+              <Typography
+                color='textSecondary'
+                variant='body2'
+                style={{ textAlign: 'right' }}
+              >
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum."
               </Typography>
             </Grid>
-            <Typography
-              color='textSecondary'
-              variant='body2'
-              style={{ textAlign: 'right' }}
-            >
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
-            </Typography>
-          </Grid>
-          <Grid className={classes.infoImageContainer}>
-            <img src={info_app_02} className={classes.appInfoImage} />
+            <Grid className={classes.infoImageContainer}>
+              <img src={info_app_02} className={classes.appInfoImage} />
+              <Grid className={classes.freepikInfo}>
+                <a
+                  href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'
+                  target='blank'
+                >
+                  Shared by freepik.com
+                </a>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </main>
+      <footer>
+        <Grid className={classes.footerContainer}>
+          <Typography variant='subtitle2'>
+            Copyright DevPath 2020, contact with author: kszczypior1@gmail.com
+          </Typography>
+        </Grid>
+      </footer>
     </Grid>
   );
 };

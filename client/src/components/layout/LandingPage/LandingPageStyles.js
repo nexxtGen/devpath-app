@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core';
-import { primary } from '../../../shared/colors';
+import { primary, gradientPrimary } from '../../../shared/colors';
 import landing_hero3 from '../../../assets/images/landing_hero3.jpg';
 
 const styles = createStyles({
@@ -59,7 +59,6 @@ const styles = createStyles({
     flexGrow: 1,
     transition: 'margin-left 0.3s, ease-in'
   },
-  // ----------------
   firstInfoSectionContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -67,7 +66,6 @@ const styles = createStyles({
     padding: '90px 90px 130px',
     flexWrap: 'wrap',
     borderBottom: '1px solid lightgray'
-    //boxShadow: '0px 5px 10px -7px #111'
   },
   infoCardContainer: {
     width: 300,
@@ -81,13 +79,13 @@ const styles = createStyles({
     boxShadow: '2px 2px 10px gray'
   },
   infoCardIcon: {
-    color: '#827799',
+    color: primary,
     width: 60,
     height: 60,
     marginBottom: 15
   },
   infoCardTitle: {
-    color: primary,
+    color: 'purple',
     fontSize: 22,
     marginBottom: 15
   },
@@ -95,7 +93,9 @@ const styles = createStyles({
     color: 'gray',
     textAlign: 'center'
   },
-  //------------------
+  appInfoPrimaryContainer: {
+    margin: '120px 30px'
+  },
   appInfoSection: {
     display: 'flex',
     flexDirection: 'row',
@@ -105,12 +105,11 @@ const styles = createStyles({
     alignItems: 'center',
     width: '100%',
     padding: '20px 80px',
-    marginTop: '50px'
-    //height: 700
-    //clipPath: 'polygon(0 23%, 100% 0, 100% 77%, 0% 100%)'
+    marginTop: '60px'
   },
   infoImageContainer: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     height: 400,
     width: 500
@@ -124,13 +123,37 @@ const styles = createStyles({
     height: 400,
     width: 500
   },
+  freepikInfo: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    fontSize: 10
+  },
+  freepikInfoLeft: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    fontSize: 10
+  },
   appInfoImage: {
     maxWidth: 500,
     minWidth: 400
   },
   appInfoTextTitle: {
     color: 'purple',
-    fontSize: 25
+    fontSize: 25,
+    fontWeight: '700'
+  },
+  footerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 40,
+    background: gradientPrimary,
+    color: 'white',
+    fontSize: 15,
+    color: 'lightgray'
   }
 });
 
