@@ -13,6 +13,13 @@ const styles = createStyles({
     justifyContent: 'center',
     width: '100%',
     marginTop: '30px'
+  },
+  cardsContainer: {
+    display: 'flex',
+    direction: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    width: '100%'
   }
 });
 
@@ -27,7 +34,7 @@ const FlashcardsList = ({
     <Grid className={classes.container}>
       <FlashcardsFilter currentCategory={currentCategory} />
       {currentFlashcards.length > 0 || filteredFlashcards ? (
-        <Grid>
+        <Grid className={classes.cardsContainer}>
           {filteredFlashcards !== null
             ? filteredFlashcards.map(card => (
                 <Grid key={card._id}>
