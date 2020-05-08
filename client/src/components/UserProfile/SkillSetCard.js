@@ -43,8 +43,8 @@ const SkillSetCard = ({ classes, skills }) => {
 
       {skills && skills.length > 0 ? (
         <Grid className={classes.skillsContainer}>
-          {skills.map(skill => {
-            return <SkillItem skill={skill} />;
+          {skills.map((skill, index) => {
+            return <SkillItem skill={skill} key={index} />;
           })}
         </Grid>
       ) : (

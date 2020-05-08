@@ -159,7 +159,7 @@ const LandingPageContainer = ({ classes, auth }) => {
             <Grid className={classes.textInfoContainer}>
               <Grid container justify='flex-end'>
                 <Typography className={classes.appInfoTextTitle}>
-                  Manage what is important to you
+                  Manage tasks that are important to you
                 </Typography>
               </Grid>
               <Typography
@@ -167,13 +167,9 @@ const LandingPageContainer = ({ classes, auth }) => {
                 variant='body2'
                 style={{ textAlign: 'right' }}
               >
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
+                DevPath has an extensive kanban table. Create your own
+                collections with multiple boards and add columns with tasks. Set
+                their priority, progress bar or add photo link and have fun.
               </Typography>
             </Grid>
             <Grid className={classes.infoImageContainer}>
