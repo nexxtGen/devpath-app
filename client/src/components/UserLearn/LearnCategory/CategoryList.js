@@ -3,8 +3,21 @@ import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import CategoryItem from './CategoryItem';
 import PreloaderRelative from '../../../shared/PreloaderRelative';
+import EmptyList from '../../../shared/EmptyList';
 
-const styles = createStyles({});
+const styles = createStyles({
+  primaryContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 130
+  },
+  preloader: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+});
 
 const CategoryList = ({
   classes,
@@ -22,11 +35,7 @@ const CategoryList = ({
     (!categories && !loading) ||
     (categories && categories.length === 0 && !loading)
   ) {
-    return (
-      <Grid className={classes.primaryContainer}>
-        <Typography>Category list is empty</Typography>
-      </Grid>
-    );
+    return <EmptyList />;
   }
 
   return (
@@ -43,7 +52,9 @@ const CategoryList = ({
           ))}
         </TransitionGroup>
       ) : (
-        <PreloaderRelative />
+        <Grid className={classes.preloader}>
+          <PreloaderRelative />
+        </Grid>
       )}
     </Grid>
   );

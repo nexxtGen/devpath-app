@@ -22,7 +22,9 @@ const styles = createStyles({
     textTransform: 'uppercase'
   },
   listContainer: {
-    overflow: 'auto'
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
   }
 });
 
@@ -31,8 +33,7 @@ const CategoryListContainer = ({
   categories,
   loading,
   setCurrentLearnCategory
-}) => {  
-
+}) => {
   return (
     <Grid className={classes.primaryContainer}>
       <Grid className={classes.header}>
@@ -41,7 +42,11 @@ const CategoryListContainer = ({
         </Typography>
       </Grid>
       <Grid className={classes.listContainer}>
-        <CategoryList categories={categories} loading={loading} setCurrentLearnCategory={setCurrentLearnCategory}/>
+        <CategoryList
+          categories={categories}
+          loading={loading}
+          setCurrentLearnCategory={setCurrentLearnCategory}
+        />
       </Grid>
     </Grid>
   );

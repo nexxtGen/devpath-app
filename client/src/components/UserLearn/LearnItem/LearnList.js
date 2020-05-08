@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import LearnItem from './LearnItem';
+import EmptyList from '../../../shared/EmptyList';
 
 const LearnList = ({ currentCategory, type, setIsOpenItemFormModal }) => {
   if (!currentCategory) {
@@ -25,7 +26,7 @@ const LearnList = ({ currentCategory, type, setIsOpenItemFormModal }) => {
           )
         )
       ) : (
-        <Typography>List is empty</Typography>
+        <EmptyList />
       )}
     </Grid>
   );

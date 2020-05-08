@@ -20,6 +20,11 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '76vh'
+  },
+  empty: {
+    fontSize: 18,
+    color: '#191919',
+    paddingTop: 30
   }
 });
 
@@ -35,7 +40,7 @@ const JobsList = ({
     return (
       <Grid className={classes.primaryContainer}>
         <JobFilter />
-        <Typography>Jobs list is empty</Typography>
+        <Typography className={classes.empty}>Jobs list is empty</Typography>
       </Grid>
     );
   }

@@ -5,6 +5,7 @@ import FlashcardsContainer from './Flashcards/FlashcardsContainer';
 import AddBtn from './AddBtn';
 import AddFlashcardModal from './../UserFlashcardsForms/AddFlashcardModal';
 import AddCategoryModal from './../UserFlashcardsForms/CategoriesForms/AddCategoryModal';
+import EmptyList from '../../shared/EmptyList';
 import CategoriesListModal from './CategoriesList/CategoriesListModal';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -68,11 +69,13 @@ const UserFlashcardsContainer = ({
         open={openCategoriesListModal}
         handleClose={setOpenCategoriesListModal}
       />
-      {flashcards.categories && (
+      {flashcards.categories ? (
         <SliderContainer
           categories={flashcards.categories.categories}
           setCategory={setCurrentFLashcardsCategory}
         />
+      ) : (
+        <EmptyList />
       )}
       <Grid container direction='column' style={{ width: '100%' }}>
         {flashcards.currentFlashcards && flashcards.flashcards && (

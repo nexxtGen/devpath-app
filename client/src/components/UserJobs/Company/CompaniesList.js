@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import PreloaderRelative from '../../../shared/PreloaderRelative';
 import CompanyListItem from './CompanyListItem';
+import EmptyList from '../../../shared/EmptyList';
 
 const styles = createStyles({
   primaryContainer: {
@@ -27,7 +28,7 @@ const styles = createStyles({
 
 const CompaniesList = ({ classes, companies, loading }) => {
   if (!loading && companies.length === 0) {
-    return <h4>List is empty</h4>;
+    return <EmptyList />;
   }
 
   return (
