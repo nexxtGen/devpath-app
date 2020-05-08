@@ -11,7 +11,8 @@ import {
   DELETE_LEARN_CATEGORY,
   DELETE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
-  SET_LEARN_ITEM_LOADING
+  SET_LEARN_ITEM_LOADING,
+  CLEAR_LEARN
 } from '../actions/types';
 
 const initialState = {
@@ -153,6 +154,17 @@ export default function(state = initialState, action) {
       return {
         ...state,
         itemLoading: true
+      };
+    case CLEAR_LEARN:
+      return {
+        ...state,
+        learnItems: null,
+        learnCategories: null,
+        itemLoading: false,
+        currentCategory: null,
+        currentEditedCategory: null,
+        currentEditedItem: null,
+        categoryLoading: false
       };
     default:
       return state;

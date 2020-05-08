@@ -12,7 +12,8 @@ import {
   FLASHCARDS_ERROR,
   SET_LOADING,
   FILTER_FLASHCARDS,
-  CLEAR_FLASHCARDS_FILTER
+  CLEAR_FLASHCARDS_FILTER,
+  CLEAR_FLASHCARDS
 } from '../actions/types';
 
 const initialState = {
@@ -142,6 +143,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filteredFlashcards: null
+      };
+    case CLEAR_FLASHCARDS:
+      return {
+        ...state,
+        flashcards: [],
+        categories: null,
+        categoriesList: null,
+        loading: false,
+        currentEditedFlashcard: null,
+        currentFlashcards: [],
+        filteredFlashcards: null,
+        currentCategory: null,
+        error: {}
       };
     case SET_LOADING:
       return { ...state, loading: true };

@@ -29,7 +29,8 @@ import {
   SET_KANBAN_BOARDS_LOADING,
   SET_KANBAN_LANES_LOADING,
   SET_KANBAN_NOTES_LOADING,
-  KANBAN_ERROR
+  KANBAN_ERROR,
+  CLEAR_KANBAN
 } from '../actions/types';
 
 const initialState = {
@@ -317,6 +318,25 @@ export default function(state = initialState, action) {
       return {
         ...state,
         notesLoading: true
+      };
+    case CLEAR_KANBAN:
+      return {
+        ...state,
+        collections: null,
+        boards: null,
+        lanes: null,
+        notes: null,
+        currentCollection: null,
+        currentEditedCollection: null,
+        currentBoard: null,
+        currentEditedBoard: null,
+        currentLane: null,
+        currentEditedNote: null,
+        collectionsLoading: null,
+        boardsLoading: null,
+        lanesLoading: null,
+        notesLoading: null,
+        error: null
       };
     case KANBAN_ERROR:
       return {

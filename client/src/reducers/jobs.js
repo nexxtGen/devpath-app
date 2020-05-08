@@ -13,7 +13,8 @@ import {
   CLEAR_FILTER,
   CREATE_NEW_USER_COMPANY,
   UPDATE_USER_COMPANY,
-  DELETE_USER_COMPANY
+  DELETE_USER_COMPANY,
+  CLEAR_JOBS
 } from '../actions/types';
 
 const initialState = {
@@ -119,6 +120,17 @@ export default function(state = initialState, action) {
         companies: state.companies.filter(comp => comp._id !== payload),
         jobs: state.jobs.filter(job => job.companyId !== payload),
         loading: false
+      };
+    case CLEAR_JOBS:
+      return {
+        ...state,
+        companies: [],
+        jobs: [],
+        loading: false,
+        currentEditedJob: null,
+        currentCompany: null,
+        filteredJobs: null,
+        error: {}
       };
     case SET_LOADING:
       return {
