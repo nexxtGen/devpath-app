@@ -32,11 +32,16 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: '20px 0 25px'
   },
   codewars: {
-    padding: '20px 0 25px',
     maxWidth: '90%'
+  },
+  codewarsLink: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
@@ -68,11 +73,21 @@ const AvatarCard = ({ classes, profile, user }) => {
         </Typography>
       </Grid>
       <Grid className={classes.codewarsContainer}>
-        <img
-          src='https://www.codewars.com/users/nexxtGen/badges/large?logo=false'
-          alt='Codewars'
-          className={classes.codewars}
-        />
+        {profile.usernameservices.codewars &&
+          profile.usernameservices.codewars !== '' && (
+            <a
+              href={`https://www.codewars.com/users/${profile.usernameservices.codewars}`}
+              target='blank'
+              className={classes.codewarsLink}
+            >
+              {' '}
+              <img
+                src={`https://www.codewars.com/users/${profile.usernameservices.codewars}/badges/large?logo=false`}
+                alt='Codewars'
+                className={classes.codewars}
+              />
+            </a>
+          )}
       </Grid>
     </Grid>
   );

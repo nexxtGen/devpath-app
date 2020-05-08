@@ -7,9 +7,8 @@ const styles = createStyles({
     background: 'rgb(233, 233, 233)',
     width: '100%',
     height: '88vh',
+    background: '#605772',
     backgroundImage: `url(${landing_hero3})`,
-    //backgroundImage:
-    //  'linear-gradient(to right top, #eff3f7, #dee5f0, #d1d6e9, #c8c6e0, #c3b6d5)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -154,6 +153,16 @@ const styles = createStyles({
     color: 'white',
     fontSize: 15,
     color: 'lightgray'
+  },
+  scrollUpIcon: {
+    color: primary,
+    width: 35,
+    height: 35,
+    border: `1px solid ${primary}`,
+    borderRadius: '50%'
+  },
+  gitLink: {
+    color: '#9999ff'
   }
 });
 

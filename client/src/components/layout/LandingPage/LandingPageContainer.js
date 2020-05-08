@@ -10,15 +10,16 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { routes } from '../../../static/routesUrl';
 import PropTypes from 'prop-types';
+import ScrollToTop from 'react-scroll-up';
 import LinkWithoutDefaultStyles from '../../../shared/LinkWithoutDefaultStyles';
 import info_app_01 from '../../../assets/images/info_app_01.png';
 import info_app_02 from '../../../assets/images/info_app_02.png';
 import info_app_03 from '../../../assets/images/info_app_03.png';
-
 import {
   AnnouncementOutlined,
   TrendingUpOutlined,
-  ListAltOutlined
+  ListAltOutlined,
+  ExpandLess
 } from '@material-ui/icons';
 import styles from './LandingPageStyles';
 
@@ -193,11 +194,21 @@ const LandingPageContainer = ({ classes, auth }) => {
             </Grid>
           </Grid>
         </Grid>
+        <ScrollToTop showUnder={160} duration={800}>
+          <ExpandLess className={classes.scrollUpIcon} />
+        </ScrollToTop>
       </main>
       <footer>
         <Grid className={classes.footerContainer}>
           <Typography variant='subtitle2'>
-            Copyright DevPath 2020, contact with author: kszczypior1@gmail.com
+            Copyright DevPath 2020, created by{' '}
+            <a
+              href='https://github.com/nexxtGen'
+              target='blank'
+              className={classes.gitLink}
+            >
+              Kamil Sz
+            </a>
           </Typography>
         </Grid>
       </footer>
@@ -217,10 +228,3 @@ LandingPageContainer.propTypes = {
 export default connect(mapStateToProps)(
   withStyles(styles)(LandingPageContainer)
 );
-
-/*
-<a href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'>
-  Projekt plik wektorowy utworzone przez upklyak - pl.freepik.com
-</a>;
-
-*/
