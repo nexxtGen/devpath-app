@@ -19,6 +19,8 @@ const styles = createStyles({
     justifyContent: 'center'
   },
   basicInfoForm: {
+    display: 'flex',
+    flexDirection: 'column',
     borderRight: '1px solid lightgray',
     margin: '10px 25px 10px 0',
     minWidth: 500
@@ -42,7 +44,10 @@ const styles = createStyles({
     paddingLeft: 20,
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginBottom: 18
+    marginBottom: 25
+  },
+  buttonContainer: {
+    margin: '45px 0 70px'
   }
 });
 
@@ -72,7 +77,7 @@ const ProfileForm = ({ classes, FormikBag, user }) => {
           <SkillsFieldArray FormikBag={FormikBag} />
         </Grid>
       </Grid>
-      <Grid container justify='center' style={{ marginTop: '45px' }}>
+      <Grid container justify='center' className={classes.buttonContainer}>
         <BasicButton type='submit'>save</BasicButton>
       </Grid>
     </Form>

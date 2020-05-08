@@ -52,15 +52,15 @@ const UserProfileContainer = ({
         <Grid>
           <Grid className={classes.profileContainer}>
             <AvatarCard profile={profile.profile} user={auth.user} />
+            {profile.profile.skills && profile.profile.skills.length > 0 && (
+              <SkillsetCard skills={profile.profile.skills} />
+            )}
             {checkGitLanguagesExist(profile.githubLang) ? (
               <Grid>
                 <LangCard githubLang={profile.githubLang} />
               </Grid>
             ) : (
               <Grid>Check Github username. </Grid>
-            )}
-            {profile.profile.skills && profile.profile.skills.length > 0 && (
-              <SkillsetCard skills={profile.profile.skills} />
             )}
           </Grid>
           {profile.profile.usernameservices.github && (
