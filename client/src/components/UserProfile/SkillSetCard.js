@@ -1,6 +1,6 @@
 import React from 'react';
-import { createStyles, withStyles, Grid } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { createStyles, withStyles, Grid, Typography } from '@material-ui/core';
+import SkillItem from './SkillItem';
 
 const styles = createStyles({
   container: {
@@ -14,45 +14,43 @@ const styles = createStyles({
     backgroundImage:
       'linear-gradient(to right bottom, #664b8e, #5c4181, #523874, #482e67, #3e255b)',
     boxShadow: '1px 1px 8px #aaaaaa',
-    margin: '30px 50px'
+    margin: '30px 50px',
+    padding: '15px 15px'
   },
-  title: {
-    color: 'white'
-  },
-  pos: {
-    marginBottom: 12
-  },
-  avatar: {
-    height: 150,
-    margin: '20px 0',
-    borderRadius: '50%'
-  },
-  codewarsContainer: {
-    background: '#664b8',
+  skillsContainer: {
+    width: '100%',
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    alignItems: 'space-between',
+    flexWrap: 'wrap',
+    overflowY: 'scroll'
   },
-  codewars: {
-    padding: '20px 0 25px',
-    maxWidth: '90%'
+  skillsetText: {
+    width: '100%',
+    color: 'white',
+    marginBottom: 16,
+    borderBottom: '1px solid lightgray',
+    width: '85%'
   }
 });
 
-const AvatarCard = ({ classes, profile, user }) => {
-  const { avatar, name } = user;
+const SkillSetCard = ({ classes, skills }) => {
   return (
     <Grid className={classes.container}>
-      <Grid
-        container
-        direction='column'
-        alignItems='center'
-        style={{ height: '100%' }}
-      >
-        fghfghfgj
+      <Grid className={classes.skillsetText}>
+        <Typography variant='h6'>Skillset</Typography>
       </Grid>
+
+      {skills && skills.length > 0 ? (
+        <Grid className={classes.skillsContainer}>
+          {skills.map(skill => {
+            return <SkillItem skill={skill} />;
+          })}
+        </Grid>
+      ) : (
+        <Grid></Grid>
+      )}
     </Grid>
   );
 };
-export default withStyles(styles)(AvatarCard);
+export default withStyles(styles)(SkillSetCard);

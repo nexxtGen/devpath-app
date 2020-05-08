@@ -8,6 +8,7 @@ import { routes } from '../../static/routesUrl';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
 import AvatarCard from './AvatarCard';
 import LangCard from './LangCard';
+import SkillsetCard from './SkillSetCard';
 import GithubCalendar from './GithubCalendar';
 import Alert from '../layout/Alert/Alert';
 import checkGitLanguagesExist from './utilis/checkGitLanguagesExist';
@@ -57,6 +58,9 @@ const UserProfileContainer = ({
               </Grid>
             ) : (
               <Grid>Check Github username. </Grid>
+            )}
+            {profile.profile.skills && profile.profile.skills.length > 0 && (
+              <SkillsetCard skills={profile.profile.skills} />
             )}
           </Grid>
           {profile.profile.usernameservices.github && (
