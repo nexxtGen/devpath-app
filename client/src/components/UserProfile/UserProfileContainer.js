@@ -9,6 +9,7 @@ import { withStyles, createStyles, Grid } from '@material-ui/core';
 import AvatarCard from './AvatarCard';
 import LangCard from './LangCard';
 import GithubCalendar from './GithubCalendar';
+import Alert from '../layout/Alert/Alert';
 import checkGitLanguagesExist from './utilis/checkGitLanguagesExist';
 
 const styles = createStyles({
@@ -45,6 +46,7 @@ const UserProfileContainer = ({
 
   return (
     <Grid style={{ padding: '30px' }}>
+      <Alert />
       {auth.isAuthenticated && profile.profile ? (
         <Grid>
           <Grid className={classes.profileContainer}>

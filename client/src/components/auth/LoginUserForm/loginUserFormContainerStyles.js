@@ -6,7 +6,8 @@ const styles = createStyles({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    minHeight: 'calc(100vh - 64px)',
+    height: 'calc(100vh - 64px)',
+    maxHeight: '100vh',
     backgroundImage:
       'linear-gradient(to top, #534292, #58448f, #5d468c, #61488a, #644a87)'
   },

@@ -1,4 +1,5 @@
 import { createStyles } from '@material-ui/core';
+import { gradientPrimary } from '../../../shared/colors';
 
 const styles = createStyles({
   root: {
@@ -24,6 +25,12 @@ const styles = createStyles({
     width: '33px',
     height: '38px',
     marginRight: '10px'
+  },
+  loggedIn: {
+    height: '64px',
+    width: '100%',
+    background:
+      'linear-gradient(135deg, rgba(101,74,141,1) 0%,rgba(88,62,125,1) 50%,rgba(67,39,98,1) 100%)'
   }
 });
 

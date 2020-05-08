@@ -13,7 +13,7 @@ const LandingNavbar = ({ classes, auth: { isAuthenticated, loading } }) => {
   return (
     <Fragment>
       {isAuthenticated || loading ? (
-        <Fragment></Fragment>
+        <Grid className={classes.loggedIn}></Grid>
       ) : (
         <Grid className={classes.root}>
           <AppBar position='static' className={classes.appBar}>
