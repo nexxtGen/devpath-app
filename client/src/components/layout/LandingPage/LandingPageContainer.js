@@ -94,7 +94,7 @@ const LandingPageContainer = ({ classes, auth }) => {
             <Grid className={classes.textInfoContainer}>
               <Grid container justify='flex-end'>
                 <Typography className={classes.appInfoTextTitle}>
-                  First Title
+                  Get in for free
                 </Typography>
               </Grid>
               <Typography
@@ -102,13 +102,10 @@ const LandingPageContainer = ({ classes, auth }) => {
                 variant='body2'
                 style={{ textAlign: 'right' }}
               >
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
+                Create your own account and use it at your will. Include your
+                usernames from sites like github or codewars and keep up to
+                date. Use the available tools the way you need. Always free from
+                anywhere.
               </Typography>
             </Grid>
             <Grid className={classes.infoImageContainer}>
@@ -142,17 +139,15 @@ const LandingPageContainer = ({ classes, auth }) => {
             <Grid className={classes.textInfoContainer}>
               <Grid container justify='flex-start'>
                 <Typography className={classes.appInfoTextTitle}>
-                  Second Title
+                  Collect what you need
                 </Typography>
               </Grid>
               <Typography color='textSecondary' variant='body2'>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
+                Do you need to save interesting articles or an interesting
+                course? Or maybe you want to create flashcards with valuable
+                information? Just use the right tool and have fun! And when you
+                want to look for a new job, put interesting companies and job
+                offers in one place!
               </Typography>
             </Grid>
           </Grid>
@@ -164,7 +159,7 @@ const LandingPageContainer = ({ classes, auth }) => {
             <Grid className={classes.textInfoContainer}>
               <Grid container justify='flex-end'>
                 <Typography className={classes.appInfoTextTitle}>
-                  Third title
+                  Manage what is important to you
                 </Typography>
               </Grid>
               <Typography

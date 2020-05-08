@@ -7,5 +7,6 @@ export const routes = {
   createEditProfile: '/user/create-edit-profile',
   userJobs: '/user/jobs',
   userLearn: '/user/learn',
-  userKanban: '/user/kanban'
+  userKanban: '/user/kanban',
+  notFound: '/404'
 };

@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import LandingPage from './components/layout/LandingPage/';
 import LandingNavbar from './components/layout/LandingNavbar';
 import LoginUser from './components/auth/LoginUserForm/';
@@ -11,6 +17,7 @@ import UserFlashcardsContainer from './components/UserFlashcards';
 import UserJobsContainer from './components/UserJobs';
 import UserLearnContainer from './components/UserLearn';
 import UserKanbanContainer from './components/UserKanban';
+import NotFoundPage from './components/layout/NotFoundPage';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -38,12 +45,13 @@ const App = () => {
     createEditProfile,
     userJobs,
     userLearn,
-    userKanban
+    userKanban,
+    notFound
   } = routes;
 
   return (
     <Provider store={store}>
-      <Router>
+      <HashRouter>
         <LandingNavbar />
         <Switch>
           <Route exact path={landingPage} component={LandingPage} />
@@ -73,8 +81,10 @@ const App = () => {
             />
             <PrivateRoute exact path={userJobs} component={UserJobsContainer} />
           </UserNavigationWrapper>
+          <Route path={notFound} component={NotFoundPage} />
+          <Redirect to={notFound} />
         </Switch>
-      </Router>
+      </HashRouter>
     </Provider>
   );
 };
