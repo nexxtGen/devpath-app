@@ -11,12 +11,10 @@ const styles = createStyles({
     display: 'flex'
   },
   content: {
-    padding: '50px',
-    marginTop: '64px',
+    padding: '60px 50px 50px',
     width: 'calc(100vw - 66px)',
     minHeight: 'calc(100vh - 64px)',
     overflow: 'auto'
-    //backgroundColor: '#f4f4f4'
   }
 });
 
