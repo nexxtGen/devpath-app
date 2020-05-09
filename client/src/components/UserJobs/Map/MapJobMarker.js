@@ -1,6 +1,6 @@
 import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
+import { withStyles, createStyles, Grid } from '@material-ui/core';
 import L from 'leaflet';
 
 const styles = createStyles({

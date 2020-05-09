@@ -83,6 +83,7 @@ const UserKanbanContainer = ({
     getAllUserKanbanBoards();
     getAllUserKanbanLanes();
     getAllUserKanbanNotes();
+    //eslint-disable-next-line
   }, []);
 
   return (

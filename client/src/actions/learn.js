@@ -94,7 +94,7 @@ export const createNewLearnCategory = categoryData => async dispatch => {
 
 export const deleteLearnCategory = categoryId => async dispatch => {
   try {
-    const res = await axios.delete(`/api/v1/learn-categories/${categoryId}`);
+    await axios.delete(`/api/v1/learn-categories/${categoryId}`);
 
     dispatch(setAlert('Category has been deleted', 'success'));
     dispatch({

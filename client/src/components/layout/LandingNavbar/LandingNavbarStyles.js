@@ -1,5 +1,4 @@
 import { createStyles } from '@material-ui/core';
-import { gradientPrimary } from '../../../shared/colors';
 
 const styles = createStyles({
   root: {

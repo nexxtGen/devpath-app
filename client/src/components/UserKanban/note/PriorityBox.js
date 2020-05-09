@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles, createStyles, Grid } from '@material-ui/core';
-import { fontWeight } from '@material-ui/system';
 
 const styles = createStyles({
   priorityBox: {

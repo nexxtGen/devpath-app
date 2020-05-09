@@ -4,7 +4,6 @@ import landing_hero3 from '../../../assets/images/landing_hero3.jpg';
 
 const styles = createStyles({
   hero: {
-    background: 'rgb(233, 233, 233)',
     width: '100%',
     height: '88vh',
     background: '#605772',
@@ -98,7 +97,6 @@ const styles = createStyles({
   appInfoSection: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -150,7 +148,6 @@ const styles = createStyles({
     width: '100%',
     height: 40,
     background: gradientPrimary,
-    color: 'white',
     fontSize: 15,
     color: 'lightgray'
   },

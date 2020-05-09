@@ -109,7 +109,11 @@ const LandingPageContainer = ({ classes, auth }) => {
               </Typography>
             </Grid>
             <Grid className={classes.infoImageContainer}>
-              <img src={info_app_03} className={classes.appInfoImage} />
+              <img
+                src={info_app_03}
+                className={classes.appInfoImage}
+                alt='UI layout'
+              />
               <Grid className={classes.freepikInfo}>
                 <a
                   href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'
@@ -122,7 +126,11 @@ const LandingPageContainer = ({ classes, auth }) => {
           </Grid>
           <Grid container className={classes.appInfoSection}>
             <Grid className={classes.infoImageContainer}>
-              <img src={info_app_01} className={classes.appInfoImage} />
+              <img
+                src={info_app_01}
+                className={classes.appInfoImage}
+                alt='UI layout'
+              />
               <Grid
                 container
                 justify='flex-start'
@@ -173,7 +181,11 @@ const LandingPageContainer = ({ classes, auth }) => {
               </Typography>
             </Grid>
             <Grid className={classes.infoImageContainer}>
-              <img src={info_app_02} className={classes.appInfoImage} />
+              <img
+                src={info_app_02}
+                className={classes.appInfoImage}
+                alt='UI second layout'
+              />
               <Grid className={classes.freepikInfo}>
                 <a
                   href='https://pl.freepik.com/darmowe-zdjecie-wektory/projekt'
@@ -197,6 +209,7 @@ const LandingPageContainer = ({ classes, auth }) => {
               href='https://github.com/nexxtGen'
               target='blank'
               className={classes.gitLink}
+              alt='UI layout'
             >
               Kamil Sz
             </a>

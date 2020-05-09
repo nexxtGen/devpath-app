@@ -20,7 +20,7 @@ const styles = createStyles({
 const NotFoundPage = ({ classes }) => {
   return (
     <Grid className={classes.container}>
-      <img src={not_found} className={classes.notFound} />
+      <img src={not_found} className={classes.notFound} alt='Not Found' />
       <p style={{ textAlign: 'center' }}>
         <Link to='/'>Go to Home </Link>
       </p>

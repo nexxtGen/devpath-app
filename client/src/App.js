@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import LandingPage from './components/layout/LandingPage/';
 import LandingNavbar from './components/layout/LandingNavbar';
 import LoginUser from './components/auth/LoginUserForm/';

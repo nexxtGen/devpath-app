@@ -91,6 +91,7 @@ const CompanyInfo = ({
     if (!loading && companies.length > 0) {
       setCurrentCompany(companies[0]);
     }
+    //eslint-disable-next-line
   }, [companies]);
 
   return (

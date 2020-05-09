@@ -1,6 +1,5 @@
 import { createStyles } from '@material-ui/core';
 import {
-  primaryLight,
   primary,
   primaryExtraLight,
   secondaryDark

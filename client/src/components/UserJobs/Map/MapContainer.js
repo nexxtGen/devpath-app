@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import { Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -6,8 +6,6 @@ import 'leaflet/dist/leaflet.css';
 import MarkersList from './MarkersList';
 
 const MapLeaflet = ({ companies, jobs, currentCompany }) => {
-  const [zoom, setZoom] = useState(13);
-
   return (
     <Grid id='map'>
       {companies.length > 0 && (

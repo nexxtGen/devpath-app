@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  withStyles,
-  createStyles,
-  Grid,
-  Typography,
-  Button
-} from '@material-ui/core';
+import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import { primary } from '../../../shared/colors';
 import KanbanAddButton from '../../../shared/KanbanAddButton';
 

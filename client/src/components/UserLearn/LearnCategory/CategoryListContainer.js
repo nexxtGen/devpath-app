@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import CategoryList from './CategoryList';
 

@@ -508,7 +508,7 @@ export const moveLaneInBoard = (boardId, laneOrders) => async dispatch => {
       payload: { boardId, laneOrders }
     });
 
-    const res = await axios.put(
+    await axios.put(
       `/api/v1/lanes/move-lane-in-board/${boardId}`,
       laneOrders,
       config

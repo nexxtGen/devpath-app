@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CategoryForm from './CategoryForm';
 import { Formik } from 'formik';
 import * as Yup from 'yup';

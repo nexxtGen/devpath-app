@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field, Form } from 'formik';
 import FTextField from '../../shared/FormikComponents/FTextField';
 import { primary } from '../../shared/colors';
@@ -43,7 +43,6 @@ function ValueLabelComponent(props) {
 }
 
 const LearnItemForm = ({ classes, FormikBag, setIsOpen, categoriesList }) => {
-  const { sliderValue, setSliderValue } = useState(88);
   return (
     <Form>
       <Grid container direction='row'>

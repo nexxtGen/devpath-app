@@ -26,7 +26,6 @@ const styles = createStyles({
     overflowY: 'scroll'
   },
   skillsetText: {
-    width: '100%',
     color: 'white',
     marginBottom: 16,
     borderBottom: '1px solid lightgray',

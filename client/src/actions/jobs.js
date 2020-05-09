@@ -140,12 +140,9 @@ export const filterJobs = text => dispatch => {
   dispatch({ type: FILTER_JOBS, payload: text });
 };
 
-//Clear Filter
 export const clearFilter = () => dispatch => {
   dispatch({ type: CLEAR_FILTER });
 };
-
-// Without API REQUEST
 
 export const setCurrentEditedJob = job => async dispatch => {
   dispatch({
@@ -154,7 +151,6 @@ export const setCurrentEditedJob = job => async dispatch => {
   });
 };
 
-// COMPANY/COMPANIES ACTIONS
 export const createNewUserCompany = companyData => async dispatch => {
   const config = {
     headers: {
@@ -207,7 +203,7 @@ export const updateUserCompany = (companyId, companyData) => async dispatch => {
 
 export const deleteUserCompany = companyId => async dispatch => {
   try {
-    const res = await axios.delete(`/api/v1/companies/${companyId}`);
+    await axios.delete(`/api/v1/companies/${companyId}`);
 
     dispatch(setAlert('Company has been deleted', 'success'));
     dispatch({

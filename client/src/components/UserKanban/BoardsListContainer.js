@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  withStyles,
-  createStyles,
-  Grid,
-  Typography,
-  Button
-} from '@material-ui/core';
+import { withStyles, createStyles, Grid, Typography } from '@material-ui/core';
 import BoardsList from './BoardsList';
 import { primary } from '../../shared/colors';
 import KanbanAddButton from '../../shared/KanbanAddButton';
@@ -51,6 +45,7 @@ const BoardsListContainer = ({
       );
       setCurrentKanbanBoard(collectionBoards[0]);
     }
+    //eslint-disable-next-line
   }, [currentCollection, boards]);
 
   return (

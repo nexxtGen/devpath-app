@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from '../../components/layout/Alert';
 import SliderContainer from './Slider/SliderContainer';
 import FlashcardsContainer from './Flashcards/FlashcardsContainer';

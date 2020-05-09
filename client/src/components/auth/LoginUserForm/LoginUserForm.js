@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import FTextField from '../../../shared/FormikComponents/FTextField';
 import BasicButton from '../../../shared/BasicButton';
-import PersonIcon from '@material-ui/icons/Person';
 
 const styles = createStyles({
   form: {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid, withStyles, createStyles, Typography } from '@material-ui/core';
+import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import CategoryItem from './CategoryItem';
 import PreloaderRelative from '../../../shared/PreloaderRelative';
@@ -29,6 +29,7 @@ const CategoryList = ({
     if (!loading && categories && categories.length > 0) {
       setCurrentLearnCategory(categories[0]);
     }
+    //eslint-disable-next-line
   }, [categories]);
 
   if (

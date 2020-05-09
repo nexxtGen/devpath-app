@@ -27,6 +27,7 @@ const KanbanSliderContainer = ({
     if (collections && collections.length > 0 && !currentCollection) {
       setCollection(collections[0]);
     }
+    //eslint-disable-next-line
   }, [collections]);
   return (
     <Grid className={classes.container}>

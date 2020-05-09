@@ -14,7 +14,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import BoardsListItem from './BoardsListItem';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PreloaderRelative from '../../../shared/PreloaderRelative';
 
 const styles = createStyles({
   emptyContainer: {

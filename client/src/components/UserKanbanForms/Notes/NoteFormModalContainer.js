@@ -22,7 +22,7 @@ const NoteFormModalContainer = ({
   updateUserKanbanNote,
   setCurrentKanbanLane
 }) => {
-  const handleSubmitCreate = values => {   
+  const handleSubmitCreate = values => {
     createNewUserKanbanNote(values);
     setIsOpen({ open: false, mode: '' });
     setCurrentKanbanLane(null);
@@ -92,8 +92,7 @@ const noteSchema = Yup.object().shape({
 
 const mapStateToProps = state => ({
   currentEditedNote: state.kanban.currentEditedNote,
-  currentLane: state.kanban.currentLane,
-  currentEditedNote: state.kanban.currentEditedNote
+  currentLane: state.kanban.currentLane
 });
 
 export default connect(mapStateToProps, {
