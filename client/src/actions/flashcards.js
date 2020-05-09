@@ -14,7 +14,8 @@ import {
   FLASHCARDS_ERROR,
   SET_LOADING,
   FILTER_FLASHCARDS,
-  CLEAR_FLASHCARDS_FILTER
+  CLEAR_FLASHCARDS_FILTER,
+  SET_FLASHCARDS_CATEGORIES_LOADING
 } from './types';
 
 // Get current users profile
@@ -39,7 +40,7 @@ export const getAllUserFlashcards = () => async dispatch => {
 
 export const getFlashcardsCategories = () => async dispatch => {
   try {
-    dispatch(setLoading());
+    dispatch(setFlashcardsCategoriesLoading());
 
     const res = await axios.get('/api/v1/flashcards-categories');
 
@@ -68,9 +69,7 @@ export const setCurrentFLashcardsCategory = (
   categoryId,
   name,
   length
-) => async dispatch => {
-  dispatch(setLoading());
-
+) => dispatch => {
   dispatch({
     type: SET_CURRENT_FLASHCARDS_CATEGORY,
     payload: { categoryId, name, length }
@@ -129,8 +128,6 @@ export const createNewFlashcard = data => async dispatch => {
     }
   };
   try {
-    dispatch(setLoading());
-
     const res = await axios.post('/api/v1/flashcards', data, config);
 
     dispatch(setAlert('Flashcard has been created', 'success'));
@@ -161,7 +158,6 @@ export const updateCurrentFlashcard = flashcard => async dispatch => {
     }
   };
   try {
-    dispatch(setLoading());
     const updatedFlashcard = {
       title: flashcard.title,
       description: flashcard.description,
@@ -198,8 +194,6 @@ export const deleteCurrentFlashcard = (
   };
 
   try {
-    dispatch(setLoading());
-
     await axios.delete(`/api/v1/flashcards/${flashcardId}`, categoryId, config);
 
     dispatch(setAlert('Flashcard has been deleted', 'success'));
@@ -228,5 +222,11 @@ export const clearFlashcardsFilter = () => dispatch => {
 export const setLoading = () => {
   return {
     type: SET_LOADING
+  };
+};
+
+export const setFlashcardsCategoriesLoading = () => {
+  return {
+    type: SET_FLASHCARDS_CATEGORIES_LOADING
   };
 };

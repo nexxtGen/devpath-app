@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SliderItem from './SliderItem';
 import Slider from 'react-slick';
 import { createStyles, withStyles, Grid } from '@material-ui/core';

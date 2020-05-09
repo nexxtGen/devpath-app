@@ -12,7 +12,8 @@ import {
   DELETE_LEARN_ITEM,
   SET_LEARN_CATEGORY_LOADING,
   SET_LEARN_ITEM_LOADING,
-  CLEAR_LEARN
+  CLEAR_LEARN,
+  LEARN_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -22,7 +23,8 @@ const initialState = {
   currentCategory: null,
   currentEditedCategory: null,
   currentEditedItem: null,
-  categoryLoading: false
+  categoryLoading: false,
+  error: null
 };
 
 export default function(state = initialState, action) {
@@ -165,6 +167,13 @@ export default function(state = initialState, action) {
         currentEditedCategory: null,
         currentEditedItem: null,
         categoryLoading: false
+      };
+    case LEARN_ERROR:
+      return {
+        ...state,
+        error: payload,
+        categoryLoading: false,
+        itemLoading: false
       };
     default:
       return state;

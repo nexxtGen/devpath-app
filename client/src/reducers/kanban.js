@@ -342,6 +342,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         error: payload,
+        collectionsLoading: null,
         boardsLoading: null,
         lanesLoading: null,
         notesLoading: null

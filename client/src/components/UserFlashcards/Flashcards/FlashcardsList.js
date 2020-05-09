@@ -1,6 +1,12 @@
 import React from 'react';
 import Flashcard from './Flashcard';
-import { Grid, withStyles, createStyles } from '@material-ui/core';
+import {
+  Grid,
+  withStyles,
+  createStyles,
+  CircularProgress
+} from '@material-ui/core';
+import { primary } from '../../../shared/colors';
 import FlashcardsFilter from './FlashcardsFilter';
 import EmptyList from '../../../shared/EmptyList';
 import PropTypes from 'prop-types';
@@ -20,6 +26,11 @@ const styles = createStyles({
     flexWrap: 'wrap',
     justifyContent: 'center',
     width: '100%'
+  },
+  progress: {
+    color: primary,
+    marginTop: 40,
+    marginRight: 45
   }
 });
 
@@ -28,7 +39,8 @@ const FlashcardsList = ({
   currentFlashcards,
   currentCategory,
   filteredFlashcards,
-  open
+  open,
+  loading
 }) => {
   return (
     <Grid className={classes.container}>
@@ -47,6 +59,8 @@ const FlashcardsList = ({
                 </Grid>
               ))}
         </Grid>
+      ) : loading ? (
+        <CircularProgress className={classes.progress} />
       ) : (
         <EmptyList />
       )}

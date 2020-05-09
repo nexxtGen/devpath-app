@@ -18,11 +18,13 @@ const FlashcardsContainer = ({
   currentFlashcards,
   currentCategory,
   filteredFlashcards,
-  open
+  open,
+  loading
 }) => {
   return (
     <Grid className={classes.container}>
       <FlashcardsList
+        loading={loading}
         currentCategory={currentCategory}
         currentFlashcards={currentFlashcards}
         open={open}

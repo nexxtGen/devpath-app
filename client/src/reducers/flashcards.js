@@ -13,7 +13,8 @@ import {
   SET_LOADING,
   FILTER_FLASHCARDS,
   CLEAR_FLASHCARDS_FILTER,
-  CLEAR_FLASHCARDS
+  CLEAR_FLASHCARDS,
+  SET_FLASHCARDS_CATEGORIES_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -21,10 +22,12 @@ const initialState = {
   categories: null,
   categoriesList: null,
   loading: false,
+  categoriesLoading: false,
   currentEditedFlashcard: null,
   currentFlashcards: [],
   filteredFlashcards: null,
   currentCategory: null,
+  sliderRendered: false,
   error: {}
 };
 
@@ -42,7 +45,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         categories: payload,
-        loading: false
+        categoriesLoading: false
       };
     case SET_CURRENT_FLASHCARDS_CATEGORY:
       return {
@@ -155,12 +158,23 @@ export default function(state = initialState, action) {
         currentFlashcards: [],
         filteredFlashcards: null,
         currentCategory: null,
+        sliderRendered: false,
         error: {}
       };
     case SET_LOADING:
       return { ...state, loading: true };
+    case SET_FLASHCARDS_CATEGORIES_LOADING:
+      return {
+        ...state,
+        categoriesLoading: true
+      };
     case FLASHCARDS_ERROR:
-      return { ...state, loading: false, error: payload };
+      return {
+        ...state,
+        loading: false,
+        categoriesLoading: false,
+        error: payload
+      };
     default:
       return state;
   }

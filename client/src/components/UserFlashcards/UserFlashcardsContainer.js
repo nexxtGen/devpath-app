@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import Alert from '../../components/layout/Alert';
 import SliderContainer from './Slider/SliderContainer';
 import FlashcardsContainer from './Flashcards/FlashcardsContainer';
@@ -7,6 +7,7 @@ import AddFlashcardModal from './../UserFlashcardsForms/AddFlashcardModal';
 import AddCategoryModal from './../UserFlashcardsForms/CategoriesForms/AddCategoryModal';
 import EmptyList from '../../shared/EmptyList';
 import CategoriesListModal from './CategoriesList/CategoriesListModal';
+import Preloader from '../../shared/Preloader';
 import { Grid, withStyles, createStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
@@ -22,6 +23,15 @@ const styles = createStyles({
     flexDirection: 'column',
     width: '100%',
     position: 'relative'
+  },
+  preloaderSliderContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    height: 100,
+    marginBottom: 75
   }
 });
 
@@ -53,6 +63,15 @@ const UserFlashcardsContainer = ({
     //eslint-disable-next-line
   }, []);
 
+  const {
+    categories,
+    currentFlashcards,
+    currentCategory,
+    filteredFlashcards,
+    loading,
+    categoriesLoading
+  } = flashcards;
+
   return (
     <Grid className={classes.container}>
       <Alert />
@@ -69,20 +88,25 @@ const UserFlashcardsContainer = ({
         open={openCategoriesListModal}
         handleClose={setOpenCategoriesListModal}
       />
-      {flashcards.categories ? (
+      {categories && categories.categories ? (
         <SliderContainer
-          categories={flashcards.categories.categories}
+          categories={categories.categories}
           setCategory={setCurrentFLashcardsCategory}
         />
-      ) : (
+      ) : !categories && !categoriesLoading ? (
         <EmptyList />
+      ) : (
+        <Grid className={classes.preloaderSliderContainer}>
+          <Preloader />
+        </Grid>
       )}
       <Grid container direction='column' style={{ width: '100%' }}>
-        {flashcards.currentFlashcards && flashcards.flashcards && (
+        {currentFlashcards && flashcards.flashcards && (
           <FlashcardsContainer
-            currentCategory={flashcards.currentCategory}
-            filteredFlashcards={flashcards.filteredFlashcards}
-            currentFlashcards={flashcards.currentFlashcards}
+            loading={loading}
+            currentCategory={currentCategory}
+            filteredFlashcards={filteredFlashcards}
+            currentFlashcards={currentFlashcards}
             open={handleClickOpenFlashcardModal}
           />
         )}
