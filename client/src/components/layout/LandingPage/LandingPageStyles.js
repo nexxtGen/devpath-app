@@ -15,6 +15,7 @@ const styles = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    webkitClipPath: 'polygon(0 0, 100% 0, 100% 75%, 0% 100%)',
     clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0% 100%)',
     boxShadow: '3px 3px 13px black'
   },
