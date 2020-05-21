@@ -33,6 +33,7 @@ const BoardsListContainer = ({
   classes,
   boards,
   currentCollection,
+  currentBoard,
   loading,
   setCurrentKanbanBoard,
   setIsOpenBoardFormModal,
@@ -43,7 +44,15 @@ const BoardsListContainer = ({
       let collectionBoards = boards.filter(
         item => item.collectionId === currentCollection._id
       );
-      setCurrentKanbanBoard(collectionBoards[0]);
+
+      if (!currentBoard) {
+        setCurrentKanbanBoard(collectionBoards[0]);
+      } else if (
+        currentBoard &&
+        currentBoard.collectionId !== currentCollection._id
+      ) {
+        setCurrentKanbanBoard(collectionBoards[0]);
+      }
     }
     //eslint-disable-next-line
   }, [currentCollection, boards]);

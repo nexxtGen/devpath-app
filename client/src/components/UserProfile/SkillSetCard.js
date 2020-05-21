@@ -23,7 +23,7 @@ const styles = createStyles({
     flexDirection: 'row',
     alignItems: 'space-between',
     flexWrap: 'wrap',
-    overflowY: 'scroll'
+    overflowY: 'auto'
   },
   skillsetText: {
     color: 'white',

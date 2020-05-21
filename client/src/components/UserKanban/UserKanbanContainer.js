@@ -139,6 +139,7 @@ const UserKanbanContainer = ({
       <Grid className={classes.boardsContainer}>
         <BoardsListContainer
           currentCollection={currentCollection}
+          currentBoard={currentBoard}
           boards={boards}
           loading={boardsLoading}
           setCurrentKanbanBoard={setCurrentKanbanBoard}
