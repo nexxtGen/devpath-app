@@ -8,9 +8,8 @@ import {
 const styles = createStyles({
   primaryContainer: {
     position: 'relative',
-    width: '450px',
+    width: '440px',
     height: '255px',
-    minWidth: '450px',
     minHeight: '255px',
     margin: 15,
     boxShadow: '1px 1px 10px gray'
@@ -35,7 +34,8 @@ const styles = createStyles({
   },
   locationIcon: {
     fontSize: 18,
-    color: 'gray'
+    color: 'gray',
+    marginLeft: '5px'
   },
   footer: {
     display: 'flex',

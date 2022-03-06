@@ -19,6 +19,8 @@ const styles = createStyles({
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     maxHeight: '76vh'
   },
   empty: {
